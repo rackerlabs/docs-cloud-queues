@@ -4,9 +4,9 @@
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:xi="http://www.w3.org/2001/XInclude" 
     xmlns:svg="http://www.w3.org/2000/svg"
-    version="5.0" 
-    xml:id="example-foo" 
-    status="DRAFT">
+    version="5.0-extension RaxBook-2.0"    
+    xml:id="cq-devguide">
+  <?rax canonical.url.base="http://docs.rackspace.com/queuing/api/v1.0/cs-devguide/content"?>
   <title>Cloud Queuing Developer Guide</title>
   <info>
     <copyright>

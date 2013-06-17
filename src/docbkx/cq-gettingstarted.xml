@@ -3,8 +3,9 @@
     xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:xi="http://www.w3.org/2001/XInclude"
-    version="5.0"
+    version="5.0-extension RaxBook-2.0"    
     xml:id="cq-gettingstarted">
+  <?rax canonical.url.base="http://docs.rackspace.com/queuing/api/v1.0/cs-gettingstarted/content"?>
   <title>Cloud Queuing Getting Started</title>
   <info>
     <author>
