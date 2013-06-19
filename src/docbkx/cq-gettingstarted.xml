@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!-- Some useful entities borrowed from HTML -->
+        <!ENTITY ndash "&#x2013;">
+        <!ENTITY mdash "&#x2014;">
+        <!ENTITY hellip "&#x2026;">
+        
+        <!-- Useful for describing APIs -->
+        <!ENTITY GET '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+        <!ENTITY PUT '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+        <!ENTITY POST '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+        
+        <!-- changing authentication endpoints; define entities for US & UK rather than maintaining in text -->
+        <!ENTITY ENDPOINT-US "https://identity.api.rackspacecloud.com/v1.1/">
+        <!ENTITY ENDPOINT-UK "https://lon.identity.api.rackspacecloud.com/v1.1/">
+        <!ENTITY ENDPOINT-US-20 "https://identity.api.rackspacecloud.com/v2.0/">
+        <!ENTITY ENDPOINT-UK-20 "https://lon.identity.api.rackspacecloud.com/v2.0/">
+        
+        <!-- Useful for specs -->
+        <!ENTITY MAY '<emphasis xmlns="http://docbook.org/ns/docbook" role="strong">MAY</emphasis>'>
+        <!ENTITY SHOULD '<emphasis xmlns="http://docbook.org/ns/docbook" role="strong">SHOULD</emphasis>'>
+        <!ENTITY MUST '<emphasis xmlns="http://docbook.org/ns/docbook" role="strong">MUST</emphasis>'>
+        <!ENTITY MUST_NOT '<emphasis xmlns="http://docbook.org/ns/docbook" role="strong">MUST NOT</emphasis>'>
+]>
+
 <book 
     xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -6,12 +31,16 @@
     version="5.0-extension RaxBook-2.0"    
     xml:id="cq-gettingstarted">
   <?rax canonical.url.base="http://docs.rackspace.com/queuing/api/v1.0/cs-gettingstarted/content"?>
-  <title>Cloud Queuing Getting Started</title>
+  <title>Rackspace Cloud Queuing Getting Started</title>
+  <titleabbrev xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml">Rackspace Cloud Queuing
+    Getting Started Guide</titleabbrev>
   <info>
     <author>
       <personname>
-        <firstname/>
-        <surname/>
+        <firstname>Catherine</firstname>
+        <surname>Richardson</surname>
       </personname>
       <affiliation>
         <orgname>Rackspace Cloud</orgname>
@@ -31,16 +60,31 @@
       </annotation>
     </legalnotice>
     <abstract>
-      <para>This document is intended for software developers
-      who want to develop applications by using... </para>
+      <para>This document is intended for software developers who want
+        to develop applications by using Cloud Queuing. Such
+        applications require a robust, web-scale message queuing
+        service to support the distributed nature of large web
+        applications. Cloud Queuing is a new Rackspace cloud product,
+        based on the OpenStack Marconi project, designed to fill this
+        need. Cloud Queuing creates an open alternative to SQS
+        (producer-consumer) and SNS (pub-sub) for use in applications
+        that run on OpenStack clouds. A message queueing service is
+        vital component of big, complex web applications Cloud Queuing
+        defines a clean RESTful API, uses a modular architecture, and
+        supports unified pub-sub and job-queuing semantics. Users will
+        be able to customize Cloud Queuing to achieve a wide range of
+        performance, durability, availability, and efficiency goals.
+      </para>
     </abstract>
-    <revhistory>
+    <revhistory xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml">
       <revision>
-        <date>2013-06-17</date>
+        <date>2013-06-18</date>
         <revdescription>
-          <itemizedlist>
+          <itemizedlist spacing="compact">
             <listitem>
-              <para>Ipsum Lorem...</para>
+              <para>Initial release.</para>
             </listitem>
           </itemizedlist>
         </revdescription>
@@ -50,11 +94,706 @@
         xmlns:raxm="http://docs.rackspace.com/api/metadata">
       <raxm:displayname>Getting Started Guide</raxm:displayname>
       <raxm:product version="v1.0">queuing</raxm:product>
-      <raxm:priority>10</raxm:priority>
+      <raxm:priority>1</raxm:priority>
     </raxm:metadata>
   </info>
   <chapter xml:id="overview">
-    <title>Introduction</title>
-    <para>Ipsum lorem</para>
+    <title>Document Change History</title>
+    <para>This version of the Getting Started replaces and obsoletes
+      all previous versions. The most recent changes are described in
+      the table below:</para>
+  </chapter>
+  <chapter xml:id="DB_Overview" xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+    <title>Overview</title>
+    <para>This guide provides step-by-step instructions for how to
+      properly enter the necessary URLs, using cURL, in order to set
+      up Cloud Queuing for <trademark>Cloud Servers</trademark> using
+      the Rackspace Cloud Queuing API. You can find additional details
+      about Rackspace Cloud Queuing in the <citetitle>Cloud  Queuing
+        Developer Guide</citetitle> at <link
+        xlink:href="http://docs.rackspace.com/"
+        >http://docs.rackspace.com/</link> and at <link
+        xlink:href="http://www.rackspace.com/cloud/cloud_hosting_products/dns/"
+        >http://www.rackspace.com/cloud/</link>.</para>
+    <section xml:id="core_concepts">
+      <title>Concepts</title>
+      <para>To use Cloud Queuing, you create a queue to which
+        producers post messages. Workers then claim messages from the
+        queue, complete the work in that message, and delete the
+        message. Subscribers monitor the claims of these queues to
+        keep track of activity and help troubleshoot if things go
+        wrong. </para>
+      <para>If a worker plans to be offline before its message
+        completes, the worker can retire the claim TTL, putting the
+        message back into the queue for another worker to claim. </para>
+      <para>For the majority of use cases, Cloud Queuing itself will
+        not be responsible for the ordering of messages. If there is
+        only a single producer, however, Cloud Queueing guarantees
+        that messages are handled in a First In, First Out (FIFO)
+        order. </para>
+    </section>
+    <section xml:id="terms" >
+      <title>Terms</title>
+      <para>See the <xref linkend="glossary-d1e018"/> for terms that
+        are key to understanding how Cloud Queuing works. </para>
+      <!--
+      <itemizedlist>
+        <listitem>
+          <para><emphasis role="bold">Claim</emphasis>: A worker
+            claims or checks out a message to perform a task. Doing so
+            prevents other workers from attempting to perform the same
+            task. </para>
+        </listitem>
+        <listitem>
+          <para><emphasis role="bold">Message</emphasis>: A message is
+            a task, a notification, or anything else that gets posted
+            to the queue.</para>
+        </listitem>
+        <listitem>
+          <para><emphasis role="bold">Producer</emphasis>: A producer
+            is a server that sends messages to the queue. </para>
+        </listitem>
+        <listitem>
+          <para><emphasis role="bold">Queue</emphasis>: A queue holds
+            messages.  </para>
+        </listitem>
+        <listitem>
+          <para><emphasis role="bold">Subscriber</emphasis>: A
+            subscriber (or observer) watches messages like an RSS
+            feed, but does not claim any messages.</para>
+        </listitem>
+        <listitem>
+          <para><emphasis role="bold">Worker</emphasis>: A worker is a
+            server that claims a messages and performs the necessary
+            task.</para>
+        </listitem>
+      </itemizedlist>
+      -->
+    </section>
+    <section xml:id="use_cases">
+      <title>Use Cases</title>
+      <para>Following are use cases for Cloud Queuing: </para>
+      <itemizedlist>
+        <listitem>
+          <para> Distribute tasks among multiple workers
+            (transactional job queues).   </para>
+        </listitem>
+        <listitem>
+          <para>Forward events to data collectors (transactional event
+            queues).</para>
+        </listitem>
+        <listitem>
+          <para>Publish events to any number of subscribers
+            (publish-subscribe).</para>
+        </listitem>
+        <listitem>
+          <para>Send commands to one or more agents (point-to-point or
+            publish-subscribe).</para>
+        </listitem>
+        <listitem>
+          <para>Request an action or get information from a Remote
+            Procedure Call (RPC) agent.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section xml:id="operating_modes">
+      <title>Operating Modes</title>
+      <para>Cloud Queuing uses the operating modes described in the
+        following sections. </para>
+      <section xml:id="producer_consumer">
+        <title>Producer-Consumer</title>
+        <para>Characteristics of the Producer-Consumer mode
+          are:</para>
+        <itemizedlist>
+          <listitem>
+            <para>The worker acts on <emphasis role="italic">only one
+                message</emphasis>.</para>
+          </listitem>
+          <listitem>
+            <para>The worker must delete the message when work is
+              done.</para>
+          </listitem>
+          <listitem>
+            <para>TTL restores a message to an unclaimed state if the
+              worker never finishes.</para>
+          </listitem>
+          <listitem>
+            <para>This mode is ideal for dispatching jobs to multiple
+              processors.</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+      <section xml:id="publish_subscribe">
+        <title>Publish-Subscribe</title>
+        <para>Characteristics of the Publish-Subscribe mode
+          are:</para>
+        <itemizedlist>
+          <listitem>
+            <para>All subscribers listen to the messages in the queue.
+            </para>
+          </listitem>
+          <listitem>
+            <para>Messages are not claimed.</para>
+          </listitem>
+          <listitem>
+            <para>Subscribers can send a marker/cursor to skip
+              messages already seen. </para>
+          </listitem>
+          <listitem>
+            <para>TTL eventually deletes messages. </para>
+          </listitem>
+          <listitem>
+            <para>This mode is ideal for notification of events to
+              multiple listeners at once.</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+      <section xml:id="queues">
+        <title>Queues</title>
+        <para>The following actions are available for queues:</para>
+        <itemizedlist>
+          <listitem>
+            <para>Create Queue</para>
+          </listitem>
+          <listitem>
+            <para>List Queues</para>
+          </listitem>
+          <listitem>
+            <para>Set Queue Metadata</para>
+          </listitem>
+          <listitem>
+            <para>Get Queue Metadata</para>
+          </listitem>
+          <listitem>
+            <para>Get Queue Stats</para>
+          </listitem>
+          <listitem>
+            <para>Delete Queue</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+      <section xml:id="messages" >
+        <title>Messages</title>
+        <para>The following actions are available for messages:</para>
+        <itemizedlist>
+          <listitem>
+            <para>Post Message(s)</para>
+          </listitem>
+          <listitem>
+            <para>Get Messages</para>
+          </listitem>
+          <listitem>
+            <para>Get a Specific Message</para>
+          </listitem>
+          <listitem>
+            <para>Claim Messages</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+      <section xml:id="claims">
+        <title>Claims</title>
+        <para>The following actions are available for claims:</para>
+        <itemizedlist>
+          <listitem>
+            <para>Query Claim</para>
+          </listitem>
+          <listitem>
+            <para>Update Claim</para>
+          </listitem>
+          <listitem>
+            <para>Release Claim</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+    </section>
+  </chapter> <chapter xml:id="DB_Sending_API_Requests">
+    <title>Send Requests to the API</title>
+    <para>You have several options for sending requests through an
+      API: </para>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>Developers and testers may prefer to use cURL,
+          the command-line tool from <link
+            xlink:href="http://curl.haxx.se/"
+            >http://curl.haxx.se/</link>. </para>
+        <para>With cURL you can send HTTP requests and receive
+          responses back from the command line. </para>
+      </listitem>
+      <listitem>
+        <para>If you like to use a more graphical interface,
+          the ReST client for Firefox also works well for
+          testing and trying out commands, see <link
+            xlink:href="https://addons.mozilla.org/en-US/firefox/addon/restclient/"
+            >https://addons.mozilla.org/en-US/firefox/addon/restclient/</link>. </para>
+      </listitem>
+      <listitem>
+        <para>You can also download and install rest-client, a
+          Java application to test ReSTful web services,
+          from <link
+            xlink:href="http://code.google.com/p/rest-client/"
+            >http://code.google.com/p/rest-client/</link>. </para>
+      </listitem>
+    </itemizedlist>
+    <section xml:id="DB_using-curl-cli">
+      <title>Send API Requests Using cURL</title>
+      <para>cURL is a command-line tool that is available on
+        most UNIX®-like environments and Mac OS X® and can be
+        downloaded for Windows® in order to interact with the
+        ReST interfaces. For more information on cURL, visit
+        <link xlink:href="http://curl.haxx.se/"
+          >http://curl.haxx.se/</link>. </para>
+      <para>cURL allows you to transmit and receive HTTP requests and responses from the
+        command-line or from within a shell script. This makes it possible to work with the ReST API
+        directly without using one of the client APIs. </para>
+      <para>The following cURL command-line options will be used
+        in this guide to run the examples:</para>
+      <variablelist>
+        <title>cURL Command-Line Options</title>
+        <varlistentry>
+          <term><option>-d</option></term>
+          <listitem>
+            <para>Sends the specified data in a post
+              request to the HTTP server.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>Includes the HTTP header in the
+              output.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><option>-H HEADER</option></term>
+          <listitem>
+            <para>Specify an HTTP header in the request.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><option>-X</option></term>
+          <listitem>
+            <para>Specifies the request method to use when
+              communicating with the HTTP server. The
+              specified request is used instead of the
+              default method, which is GET. For example,
+              <option>-X PUT</option> specifies to
+              use the PUT request method.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      <note>
+        <para>If you have the tools, you can run the cURL JSON
+          request examples with the following options to
+          format the output from cURL: <command>&lt;curl
+            JSON request example> | python
+            -mjson.tool</command>.</para>
+      </note>
+    </section>
+    <section xml:id="DB_copy_paste_examples">
+      <title>Copying and Pasting cURL Request Examples into a
+        Terminal Window</title>
+      <para>To run the cURL request examples shown in this guide
+        on Linux or Mac systems, copy and paste each example
+        from the HTML version of this guide into an ASCII
+        editor (for example <emphasis role="bold"
+          >vi</emphasis> or <emphasis role="bold"
+            >TextEdit</emphasis>). Then modify each example
+        with your required account information and so forth,
+        as detailed in this guide.</para>
+      <note>
+        <para>The carriage returns in the cURL request
+          examples that are part of the cURL syntax are
+          escaped with a backslash ('\') in order to avoid
+          prematurely terminating the command. However you
+          should not escape carriage returns inside the xml
+          or json message within the command.</para>
+      </note>
+      <para>Consider the following cURL Authentication Request: XML
+        example that is described in detail in <xref
+          linkend="Generating_Auth_Token"/>:</para>
+      <example>
+        <title>cURL Authentication Request: XML</title>
+        <?dbfo keep-together="always"?>
+        <screen language="bash"><command>curl</command> <option>-i</option> <option>-d</option> \
+'&lt;?xml version="1.0" encoding="UTF-8"?>
+ &lt;auth&gt;   
+    &lt;apiKeyCredentials     
+        xmlns="http://docs.rackspace.com/identity/api/ext/RAX-KSKEY/v1.0"     
+        username="<emphasis role="bold">your_username</emphasis>"     
+        apiKey="<emphasis role="bold">your_api_key</emphasis>"/&gt;   
+ &lt;/auth&gt;<option>'</option> \
+<uri>'https://identity.api.rackspacecloud.com/v2.0/tokens'</uri></screen>
+      </example>
+      <para>You can see that the lines that are part of the cURL
+        command syntax have all been escaped with a backslash
+        ('\') to indicate that the command continues on the
+        next line:</para>
+      <screen language="bash"><command>curl</command> <option>-i</option> <option>-d</option> \
+  
+   
+(... lines within the xml portion of the message are not shown in this example)
+(... the example only shows lines that are part of cURL syntax)     
+     
+
+   
+ &lt;/auth&gt;<option>'</option> \
+<uri>'https://identity.api.rackspacecloud.com/v2.0/tokens'</uri></screen>
+      <para>However the lines <emphasis>within</emphasis> the
+        xml portion of the message are
+        <emphasis>not</emphasis> escaped with a backslash
+        ('\') in order to avoid issues with the xml
+        processing:</para>
+      <screen language="bash">'&lt;?xml version="1.0" encoding="UTF-8"?>
+ &lt;auth&gt;   
+    &lt;apiKeyCredentials     
+        xmlns="http://docs.rackspace.com/identity/api/ext/RAX-KSKEY/v1.0"     
+        username="<emphasis role="bold">your_username</emphasis>"     
+        apiKey="<emphasis role="bold">your_api_key</emphasis>"/&gt;   
+ &lt;/auth&gt;<option>'</option> \
+</screen>
+      <note>
+        <para>The final line of the xml message is escaped
+          since the backslash lies
+          <emphasis>outside</emphasis> the xml message
+          and continues the cURL command to the next
+          line.</para>
+      </note>
+      <para>After you are finished modifying the text for the
+        cURL request example with your information (for
+        example <emphasis role="bold"
+          ><code>your_username</code></emphasis> and
+        <emphasis role="bold"
+          ><code>your_api_key</code></emphasis>), paste it
+        into your terminal window. Then execute the cURL
+        command by pressing <guilabel>Enter</guilabel>.</para>
+      <para>If you have trouble copying and pasting the examples
+        as described, try typing the entire example on one
+        long line, removing all the backslash line
+        continuation characters.</para>
+    </section>
+  </chapter>
+  <chapter xml:id="Generating_Auth_Token">
+    <title>Generate an Authentication Token</title>
+    <para>You need to generate a token whether you use cURL or a
+      ReST client.</para>
+    <para>In order to use the ReST API, you will first need to
+      obtain an authentication token, which will need to be
+      passed in for each request using the
+      <code>X-Auth-Token</code> header. </para>
+    <para>The following example demonstrates how to use cURL to obtain
+      the authentication token and the account number. You will need
+      to supply the authentication token and account number when
+      making subsequent Cloud Queuing API calls.</para>
+    <para>Remember to replace the names in the Authenticate
+      Request examples below with their respective
+      values:<itemizedlist spacing="compact">
+        <listitem>
+          <para><emphasis role="bold"
+            >your_username</emphasis> &mdash; The
+            username is your common Rackspace Cloud
+            username, as supplied during
+            registration.</para>
+        </listitem>
+        <listitem>
+          <para><emphasis role="bold"
+            >your_api_key</emphasis> &mdash; The key
+            is your API access key. The key can be
+            obtained from the Rackspace Cloud Control
+            Panel in the <guimenu>&lt;Your
+              Account></guimenu> / <guimenuitem>API
+                Keys</guimenuitem> section (login here:
+            <link
+              xlink:href="http://mycloud.rackspace.com/"
+              >Cloud Control Panel</link>).</para>
+        </listitem>
+      </itemizedlist></para>
+    <para> You can use either of the following endpoints to access
+      the Authentication Service, regardless of US or UK
+      identities: </para>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para><link xlink:href="&ENDPOINT-US-20;"
+          >&ENDPOINT-US-20;</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para><link xlink:href="&ENDPOINT-UK-20;"
+          >&ENDPOINT-UK-20;</link></para>
+      </listitem>
+    </itemizedlist>
+    <para> Your account may be based in either the US or the UK; this
+      is not determined by your physical location but by the location
+      of the Rackspace retail site that was used to create your
+      account: </para>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para> If your account was created via <link
+          xlink:href="http://www.rackspacecloud.com"
+          >http://www.rackspacecloud.com</link>, it is a
+          US-based account. </para>
+      </listitem>
+      <listitem>
+        <para> If your account was created via <link
+          xlink:href="http://www.rackspace.co.uk"
+          >http://www.rackspace.co.uk</link>, it is a
+          UK-based account. </para>
+      </listitem>
+    </itemizedlist>
+    <para>Notice that you authenticate using a special URL for Cloud
+      authentication services. For example, you may use
+        <code>https://identity.api.rackspacecloud.com/v2.0/tokens</code>,
+      as shown in the following Authentication Request examples. Note
+      that the <code>v2.0</code> component in the URL indicates that
+      you are using version 2.0 of the Cloud Auth API.</para>
+    <example>
+      <title>cURL Authentication Request: XML</title>
+      <?dbfo keep-together="always"?>
+      <screen language="bash"><command>curl</command> <option>-i</option> <option>-d</option> \
+'&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;auth>
+   &lt;apiKeyCredentials
+      xmlns="http://docs.rackspace.com/identity/api/ext/RAX-KSKEY/v1.0"
+         username="<emphasis role="bold">your_username</emphasis>"
+         apiKey="<emphasis role="bold">your_api_key</emphasis>"/>
+&lt;/auth>' \
+<option>-H 'Content-Type: application/xml'</option> \
+<option>-H 'Accept: application/xml'</option> \
+<uri>'https://identity.api.rackspacecloud.com/v2.0/tokens'</uri></screen>
+    </example>
+    <example>
+      <title>cURL Authentication Request: JSON</title>
+      <?dbfo keep-together="always"?>
+      <screen language="bash"><command>curl</command> <option>-i</option> <option>-d</option> \
+'{
+    "auth":
+    {
+       "RAX-KSKEY:apiKeyCredentials":
+       {
+          "username": "<emphasis role="bold">your_username</emphasis>",
+          "apiKey": "<emphasis role="bold">your_api_key</emphasis>"}
+    }
+}' \
+<option>-H 'Content-Type: application/json'</option> \
+<uri>'https://identity.api.rackspacecloud.com/v2.0/tokens'</uri></screen>
+    </example>
+    <note>
+      <para>For UK-based accounts, you may decide to use
+        <code>'https://lon.identity.api.rackspacecloud.com/v2.0/tokens'</code>
+        instead.</para>
+    </note>
+    <para>In your authentication request, use your own credentials
+      rather than the sample values shown here for username, password.
+      and tenantId. When you authenticate successfully, the response
+      to your authentication request will include a catalog of the
+      services to which you have subscribed. </para>
+    <para>You can request a token by providing your username and your
+      API key as shown in the following example.</para>
+    <example>
+      <title>cURL Authentication Request with Username and API
+        Key</title>
+      <programlisting>curl -X POST https://identity.api.rackspacecloud.com/v2.0/tokens -d '{ "auth":{ "RAX-KSKEY:apiKeyCredentials":{ "username":"theUserName", "apiKey":"00a00000a000a0000000a000a00aaa0a" } } }' -H "Content-type: application/json" | python -mjson.tool</programlisting>
+    </example>
+    <para>You can also request a token by providing your username and
+      your password as shown in the next example.</para>
+    <example>
+      <title>cURL Authentication Request with Username and
+        Password</title>
+      <programlisting>curl -X POST https://identity.api.rackspacecloud.com/v2.0/tokens -d '{"auth":{"passwordCredentials":{"username":"theUserName","password":"thePassword"}}}' -H "Content-type: application/json" | python -mjson.tool</programlisting>
+    </example>
+    <para>The following example shows only the service catalog portion
+      of the authentication response.</para>
+    <example>
+      <title>Service Catalog in Authentication Response: JSON</title>
+      <programlisting>{
+    "access": {
+        "serviceCatalog": [
+           ...
+        ],
+        "token": {
+            "expires": "2012-04-13T13:15:00.000-05:00",
+            "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+             "tenant": {
+                "id": "123456",
+                "name": "123456"
+            } 
+        },
+        "user": {
+            "RAX-AUTH:defaultRegion": "DFW",
+            "id": "161418",
+            "name": "demoauthor",
+            "roles": [
+                {
+                    "description": "User Admin Role.",
+                    "id": "3",
+                    "name": "identity:user-admin"
+                }
+            ]
+        }
+    }
+}</programlisting>
+    </example>
+    <para>Note your token.id and your user.id. The token.tenant.id is
+      your "tenantID" and you will need it to make requests to
+      Autoscale. </para>
+    <para>If the auth token received is
+      "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee" and your tenantID is
+      123456,  the following example request will list all groups
+      you've created:</para>
+    <example>
+      <title>Authentication Request  to List Groups Created</title>
+      <programlisting>$ curl -X GET -H "Content-Type: application/json" -H "X-Auth-token: {auth-token}" https://{region}.XXX.XXX.rackspacecloud.com/v1.0/{tenant-id}/groups/ | python -mjson.tool
+ </programlisting>
+    </example>
+    <para>The authentication token <code>id</code> is returned
+      along with an <code>expires</code> attribute that
+      specifies when the token expires. </para>
+    <note>
+      <title>Notes</title>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <para>For all response examples in this guide, the
+            field values you receive in your responses
+            will vary from those shown here since they
+            will be specific to your account.</para>
+        </listitem>
+        <listitem>
+          <para>The information shown in the Authentication Response
+            examples above is for US-based accounts. If you
+            authenticate against the UK-endpoint for auth, you will
+            see the service catalog information for UK-based
+            accounts.</para>
+        </listitem>
+        <listitem>
+          <para>The <code>id</code> attribute in the Authentication
+            Response specifies the authentication token. Tokens are
+            valid for a finite duration.</para>
+          <para>Remember to supply your authentication token
+            wherever you see the field <emphasis
+              role="bold">your_auth_token</emphasis> in
+            the examples in this guide.</para>
+        </listitem>
+        <listitem>
+          <para> The <code>expires</code> attribute denotes
+            the time after which the token will
+            automatically become invalid. A token may be
+            manually revoked before the time identified by
+            the expires attribute; <code>expires</code>
+            predicts a token's maximum possible lifespan
+            but does not guarantee that it will reach that
+            lifespan. Clients are encouraged to cache a
+            token until it expires.</para>
+        </listitem>
+        <listitem>
+          <para>Applications should be designed to
+            re-authenticate after receiving a 401
+            (Unauthorized) response from a service
+            endpoint.</para>
+        </listitem>
+      </itemizedlist>
+    </note>
+  </chapter>
+  <chapter xml:id="Service_Access_Endpoints-d1e753">
+    <title>Service Access/Endpoints</title>
+    <para>The endpoints to use for your Cloud Queuing API calls are
+      summarized in the table below.</para>
+    
+    <para>
+      <table rules="all">
+        <caption>Regionalized Service Endpoints</caption>
+        <thead>
+          <tr align="center">
+            <td colspan="2">Region</td>
+            <td colspan="5">Endpoint</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr align="left">
+            <td colspan="2">Chicago (ORD)</td>
+            <td colspan="5"
+                ><code>https://ord.queuing.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/  </td>
+          </tr>
+          <tr>
+            <td colspan="2"/>
+            <td colspan="5"
+                ><code>https://snet-ord.queuing.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </para>
+    <para>Replace the sample account ID number,
+        <parameter>1234</parameter>, with your actual account number
+      returned as part of the authentication response. Use your actual
+      account number.</para>
+    <para>When making a Cloud Queuing API call, place the endpoint at
+      the beginning of the request URL, for example:
+        <code>https://ord.queuing.api.rackspacecloud.com/v1.0/your_acct_id/</code></para>
   </chapter> 
+    <chapter xml:id="access_the_api">
+    <title xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml">Access the API</title>
+    <para/>
+  </chapter>
+  <chapter xml:id="stepping_through_the_api" >
+    <title xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml">Stepping through the
+      API</title>
+    <para/>
+  </chapter>
+  <glossary xml:id="glossary-d1e018">
+    <title>Glossary</title>
+    <info>
+      <raxm:metadata xmlns:raxm="http://docs.rackspace.com/api/metadata">
+        <raxm:type>concept</raxm:type>
+        <raxm:product version="v1.0">cdns</raxm:product>
+        <raxm:priority>50</raxm:priority>
+      </raxm:metadata> 
+    </info>
+    <glossentry xml:id="claim-d1e017">
+      <glossterm>Claim</glossterm>
+      <glossdef>
+        <para> A worker claims or checks out a message to perform a
+          task. Doing so prevents other workers from attempting to
+          perform the same task.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry xml:id="message-d1e016">
+      <glossterm>Message</glossterm>
+      <glossdef>
+        <para>A message is a task, a notification, or anything else
+          that gets posted to the queue.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry xml:id="producer-d1e020">
+      <glossterm>Producer</glossterm>
+      <glossdef>
+        <para>A producer is a server that sends messages to the
+          queue.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry xml:id="queue-d1e019">
+      <glossterm>Queue</glossterm>
+      <glossdef>
+        <para>A queue holds messages.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry xml:id="subscriber-d1e018">
+      <glossterm>Subscriber</glossterm>
+      <glossdef>
+        <para>A subscriber (or observer) watches messages like an RSS
+          feed, but does not claim any messages.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry xml:id="worker-d1e018" >
+      <glossterm>Worker</glossterm>
+      <glossdef>
+        <para>A worker is a server that claims a messages and performs
+          the necessary task.</para>
+      </glossdef>
+    </glossentry>
+  </glossary>
 </book>
