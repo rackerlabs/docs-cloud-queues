@@ -76,9 +76,7 @@
         performance, durability, availability, and efficiency goals.
       </para>
     </abstract>
-    <revhistory xmlns:svg="http://www.w3.org/2000/svg"
-      xmlns:m="http://www.w3.org/1998/Math/MathML"
-      xmlns:html="http://www.w3.org/1999/xhtml">
+    <revhistory>
       <revision>
         <date>2013-06-18</date>
         <revdescription>
@@ -88,6 +86,9 @@
             </listitem>
           </itemizedlist>
         </revdescription>
+      </revision>
+      <revision>
+        <date>test </date>
       </revision>
     </revhistory>
     <raxm:metadata
@@ -475,7 +476,7 @@
     </section>
   </chapter>
   <chapter xml:id="Generating_Auth_Token">
-    <title>Generate an Authentication Token</title>
+    <title>Authenticating</title>
     <para>You need to generate a token whether you use cURL or a
       ReST client.</para>
     <para>In order to use the ReST API, you will first need to
@@ -695,7 +696,7 @@
     </note>
   </chapter>
   <chapter xml:id="Service_Access_Endpoints-d1e753">
-    <title>Service Access/Endpoints</title>
+    <title>Accessing the API</title>
     <para>The endpoints to use for your Cloud Queuing API calls are
       summarized in the table below.</para>
     
@@ -725,24 +726,20 @@
     </para>
     <para>Replace the sample account ID number,
         <parameter>1234</parameter>, with your actual account number
-      returned as part of the authentication response. Use your actual
-      account number.</para>
+      that is returned in the publicURL, which is part of the
+      authentication response. (The account number is also sometimes
+      shown as the tenant ID.)  </para>
     <para>When making a Cloud Queuing API call, place the endpoint at
       the beginning of the request URL, for example:
         <code>https://ord.queuing.api.rackspacecloud.com/v1.0/your_acct_id/</code></para>
-  </chapter> 
-    <chapter xml:id="access_the_api">
-    <title xmlns:svg="http://www.w3.org/2000/svg"
-      xmlns:m="http://www.w3.org/1998/Math/MathML"
-      xmlns:html="http://www.w3.org/1999/xhtml">Access the API</title>
-    <para/>
   </chapter>
   <chapter xml:id="stepping_through_the_api" >
     <title xmlns:svg="http://www.w3.org/2000/svg"
       xmlns:m="http://www.w3.org/1998/Math/MathML"
       xmlns:html="http://www.w3.org/1999/xhtml">Stepping through the
       API</title>
-    <para/>
+    <para>This section provides specific information about each of API
+      call.</para>
   </chapter>
   <glossary xml:id="glossary-d1e018">
     <title>Glossary</title>
