@@ -19,8 +19,12 @@
     xmlns:xi="http://www.w3.org/2001/XInclude"
     version="5.0-extension RaxBook-2.0"    
     xml:id="cq-gettingstarted">
-  <?rax canonical.url.base="http://docs.rackspace.com/queuing/api/v1.0/cs-gettingstarted/content"?>
   <title>Cloud Queuing Getting Started Guide</title>
+  <?rax title.font.size="30px" 
+      pdf.url="../../cq-gettingstarted-latest.pdf" 
+      status.bar.text.font.size="40px"
+      status.bar.text="Preview" 
+      canonical.url.base="http://docs.rackspace.com/queuing/api/v1.0/cs-gettingstarted/content"?>
   <titleabbrev xmlns:svg="http://www.w3.org/2000/svg"
     xmlns:m="http://www.w3.org/1998/Math/MathML"
     xmlns:html="http://www.w3.org/1999/xhtml">Cloud Queuing
@@ -30,7 +34,7 @@
       <year>2013</year>
       <holder>Rackspace US, Inc.</holder>
     </copyright>
-    <releaseinfo>API v1.0</releaseinfo>
+    <releaseinfo>API v1.0 Preview</releaseinfo>
     <productname>Cloud Queuing</productname>
     <pubdate/>
     <legalnotice role="rs-api">
@@ -41,11 +45,11 @@
     </legalnotice>
     <revhistory>
       <revision>
-        <date>2013-06-20</date>
+        <date>2013-06-21</date>
         <revdescription>
           <itemizedlist spacing="compact">
             <listitem>
-              <para>Initial release.</para>
+              <para>Initial Preview release.</para>
             </listitem>
           </itemizedlist>
         </revdescription>
@@ -62,10 +66,18 @@
     xmlns:m="http://www.w3.org/1998/Math/MathML"
     xmlns:html="http://www.w3.org/1999/xhtml">
     <title>Overview</title>
-    <para>A message queueing service is a vital component of big,
-      complex web applications. Cloud Queuing from Rackspace is
-      designed to fill this need. Cloud Queuing is based on the
-      OpenStack Marconi project.</para>
+    <para>Rackspace Cloud Queuing is an API-based message and
+      notifications service. A message queueing service is a vital
+      component of big, complex web applications. Cloud Queuing from
+      Rackspace is designed to fill this need. Cloud Queuing is based
+      on the OpenStack Marconi project.</para>
+    <para>As you develop more complex web applications, you often have
+      multiple servers set up to complete a set of tasks for that
+      application. These tasks can be anything from creating users to
+      deleting blocks of storage. Cloud Queuing is a service that owns
+      the lists of tasks, but not necessarily the order or workflow of
+      the tasks. Many applications handle the workflow at a higher
+      level.</para>
     <para>Cloud Queuing creates an open alternative to the
       producer-consumer and the publish-subscribe (pub-sub) messaging
       patterns for use in applications that run on OpenStack clouds. </para>
@@ -76,14 +88,102 @@
     <para>This guide explains how to access and get started using the
       API so you can begin using Cloud Queuing for your applications.
       Instructions are given for how to properly enter the necessary
-      URLs, using cURL, in order to set up Cloud Queuing for
+      URLs, using cURL, in order to set up Cloud Queuing. <!-- for
         <trademark>Cloud Servers</trademark>. You can find additional
       details about Rackspace Cloud Queuing in the <citetitle>Cloud
         Queuing Developer Guide</citetitle> at <link
         xlink:href="http://docs.rackspace.com/"
         >http://docs.rackspace.com/</link> and at <link
         xlink:href="http://www.rackspace.com/cloud/cloud_hosting_products/dns/"
-        >http://www.rackspace.com/cloud/</link>.</para>
+        >http://www.rackspace.com/cloud/</link>. --></para>
+    <section xml:id="core_concepts">
+      <title>Preview Program</title>
+      <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Preview
+        program enables customers and Rackers by invitation to test an
+        early version of the product and provide feedback of the
+        product and capabilities. The Cloud Queuing Preview Program is
+        a pre-production service offering covered by the Beta Services
+        terms (<link
+          xlink:href="http://www.rackspace.com/information/legal/testterms/"
+          > rackspace.com/information/legal/testterms/</link>) in our
+        Rackspace Cloud Terms of Service.</para>
+      <para xmlns:wadl="http://wadl.dev.java.net/2009/02"> Preview
+        users must meet the following criteria: <itemizedlist
+          spacing="compact">
+          <listitem>
+            <para>A Rackspace Cloud account.</para>
+          </listitem>
+          <listitem>
+            <para>Prior knowledge of HTTP/1.1 conventions.</para>
+          </listitem>
+          <listitem>
+            <para>Basic familiarity with Cloud and RESTful
+              APIs.</para>
+          </listitem>
+          <listitem>
+            <para>A willingness to provide feedback to Rackspace’s
+              Product and Product Marketing functions.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <para xmlns:wadl="http://wadl.dev.java.net/2009/02"> The
+        following is supported during the Preview Program:
+          <itemizedlist spacing="compact">
+          <listitem>
+            <para> Operating System???? </para>
+          </listitem>
+          <listitem>
+            <para> Any other special mentions here???</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Preview
+        Program has some limitations. By using the Cloud Queuing API,
+        you agree and understand that:<itemizedlist spacing="compact">
+          <listitem>
+            <para>There is no charge for this service during the
+              Preview period.</para>
+          </listitem>
+          <listitem>
+            <para>If you participate in this Preview Program, you will
+              receive a notification prior to general availability.
+            </para>
+          </listitem>
+          <listitem>
+            <para>There is no Service Level Agreement. </para>
+          </listitem>
+          <listitem>
+            <para>The API contract is not locked and may change during
+              the Preview Program. Rackspace will notify customers in
+              Release Notes when and if the contract does
+              change.</para>
+          </listitem>
+          <listitem>
+            <para>Support is available from 8 AM – 5 PM (Central Time)
+              Monday–Friday.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <para xmlns:wadl="http://wadl.dev.java.net/2009/02">There are
+        some resource limits during the Preview Program: </para>
+      <para xmlns:wadl="http://wadl.dev.java.net/2009/02">Anything to
+        mention here???? Here's what the Cloud Big Data Preview
+          had.<itemizedlist spacing="compact">
+          <listitem>
+            <para> Up to 5 data nodes</para>
+          </listitem>
+          <listitem>
+            <para>Up to 5 virtual CPUs</para>
+          </listitem>
+          <listitem>
+            <para>Up to 25 GBs of RAM</para>
+          </listitem>
+          <listitem>
+            <para>Up to 2 Terabytes of disk space</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </section>
     <section xml:id="core_concepts">
       <title>How Cloud Queuing Works</title>
       <para>Here is an overview of the Cloud Queuing workflow: </para>
@@ -234,23 +334,23 @@
       <para>Following are some possible use cases for Cloud Queuing: </para>
       <itemizedlist>
         <listitem>
-          <para> Distribute tasks among multiple workers
+          <para> To distribute tasks among multiple workers
             (transactional job queues). </para>
         </listitem>
         <listitem>
-          <para>Forward events to data collectors (transactional event
-            queues).</para>
+          <para>To forward events to data collectors (transactional
+            event queues).</para>
         </listitem>
         <listitem>
-          <para>Publish events to any number of subscribers
+          <para>To publish events to any number of subscribers
             (publish-subscribe).</para>
         </listitem>
         <listitem>
-          <para>Send commands to one or more agents (point-to-point or
-            publish-subscribe).</para>
+          <para>To send commands to one or more agents (point-to-point
+            or publish-subscribe).</para>
         </listitem>
         <listitem>
-          <para>Request an action or get information from a Remote
+          <para>To request an action or get information from a Remote
             Procedure Call (RPC) agent.</para>
         </listitem>
       </itemizedlist>
@@ -294,6 +394,136 @@
     </section>
     <section xml:id="authentication-1">
       <title>Authentication</title>
+      <para> Every ReST request against the Cloud Queuing requires the
+        inclusion of a specific authorization token, supplied by the
+          <code>X-Auth-Token</code> HTTP header. Customers obtain this
+        token by first using the Rackspace Cloud Authentication
+        Service and supplying a valid username and API access key. </para>
+      <para>
+        To authenticate, submit a <code>POST/v2.0/tokens</code> request, 
+        presenting valid Rackspace customer credentials 
+        in the message body to a Rackspace authentication endpoint. 
+      </para>
+      <para>
+        <emphasis role="bold">GET YOUR CREDENTIALS</emphasis>
+      </para>
+      <para> You can use either of two sets of credentials: <itemizedlist>
+        <listitem>
+          <para>your <code>username</code> and
+            <code>password</code></para>
+        </listitem>
+        <listitem>
+          <para>your <code>username</code> and <code>API
+            key</code></para>
+        </listitem>
+      </itemizedlist>
+      </para>
+      <para>
+        Your <code>username</code> and
+        <code>password</code> are the ones you use to login to the 
+        Rackspace control panel. Once you are logged in, you can use 
+        the Rackspace control panel to obtain your <code>API key</code>.
+      </para>
+      <para>
+        Use the control panel for the region in which your account is based: 
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para>
+              US-based accounts use the control panel at <link xlink:href="https://manage.rackspacecloud.com/">https://manage.rackspacecloud.com/</link>.
+            </para>
+          </listitem>
+          <listitem>
+            <para> UK-based accounts use the control panel at
+              <link xlink:href="https://lon.manage.rackspacecloud.com/">
+                https://lon.manage.rackspacecloud.com/</link>. 
+            </para>
+          </listitem>
+        </itemizedlist> 
+      </para>
+      <para>
+        <emphasis role="bold">CHOOSE YOUR AUTHENTICATION </emphasis>
+      </para>
+      <para>
+        Use the authentication endpoint for the region in which your account is based:
+        <itemizedlist>
+          <listitem>
+            <para>All accounts authenticate through
+              <link xlink:href="https://identity.api.rackspacecloud.com/v2.0/tokens">
+                identity.api.rackspacecloud.com/v2.0/tokens</link>.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <para>
+        <emphasis role="bold">SEND YOUR CREDENTIALS TO YOUR AUTHENTICATION
+          ENDPOINT</emphasis>
+      </para>
+      <para> If you know your credentials and your authentication
+        endpoint, and you can issue a <code>POST
+          /v2.0/tokens</code> request in an API call, you have
+        all the basic information you need to use the Rackspace
+        Cloud Identity Service. 
+      </para>
+      <para> You can use <link xlink:href="http://curl.haxx.se/"
+        >cURL</link> to try the authentication process in two
+        steps: get a token; send the token to a service.<orderedlist>
+          <listitem>
+            <para>Get an authentication token by providing
+              your username and either your API key or your
+              password. Here are examples of both
+              approaches:</para>
+            <para><emphasis>You can request a token by
+              providing your username and your API
+              key.</emphasis></para>
+            <para>
+              <literallayout class="monospaced">curl -X POST https://auth.api.rackspacecloud.com/v2.0/tokens -d 
+'{ "auth":{ "RAX-KSKEY:apiKeyCredentials":{ "username":"theUserName", "apiKey":"00a00000a000a0000000a000a00aaa0a" } } }' -H "Content-type: application/json"</literallayout>
+            </para>
+            <para><emphasis>You can request a token by
+              providing your username and your
+              password.</emphasis></para>
+            <para>
+              <literallayout class="monospaced">curl -X POST https://auth.api.rackspacecloud.com/v2.0/tokens -d
+'{"auth":{"passwordCredentials":{"username":"theUserName","password":"thePassword"}}}' -H "Content-type: application/json"</literallayout>
+            </para>
+            <para> Successful authentication returns a token
+              which you can use as evidence that your
+              identity has already been authenticated. To
+              use the token, pass it to other services as an
+              <code>X-Auth-Token</code> header. </para>
+            <para> Authentication also returns a service
+              catalog, listing the endpoints you can use for
+              Cloud services. </para>
+          </listitem>
+          <listitem>
+            <para>Use the authentication token to send a GET
+              to a service you would like to use. Here is an
+              example of passing an authentication token to
+              the Cloud Files service, using the Cloud Files
+              service catalog endpoint that was returned
+              along with the token.</para>
+            <para><emphasis>You can use a token and a service endpoint to tell a service 
+              that your credentials are valid.</emphasis></para>
+          </listitem>
+        </orderedlist>
+      </para>
+      
+      
+      <para>Authentication tokens are typically valid for 24 hours.
+        Applications should be designed to re-authenticate after
+        receiving a 401 (Unauthorized) response from a service
+        endpoint. </para>
+      <important>
+        <para>If you are programmatically parsing an authentication
+          response, please be aware that service names are stable
+          for the life of the particular service and can be used as
+          keys. You should also be aware that a user's service
+          catalog can include multiple uniquely-named services which
+          perform similar functions. In Auth 2.0,
+          the service type attribute can be used as a key by which
+          to recognize similar services; see the tip below.
+        </para>
+      </important> 
+      <!--
       <para>You need to generate a token whether you use cURL or a
         ReST client.</para>
       <para>In order to use the ReST API, you will first need to
@@ -387,6 +617,7 @@
         password. and tenantId. When you authenticate successfully,
         the response to your authentication request will include a
         catalog of the services to which you have subscribed. </para>
+        -->
       <para>You can request a token by providing your username and
         your API key as shown in the following example.</para>
       <example>
@@ -446,6 +677,7 @@
         <programlisting>$ curl -X GET -H "Content-Type: application/json" -H "X-Auth-token: {auth-token}" https://{region}.XXX.XXX.rackspacecloud.com/v1.0/{tenant-id}/groups/ | python -mjson.tool
  </programlisting>
       </example>
+      <!--
       <para>The authentication token <code>id</code> is returned along
         with an <code>expires</code> attribute that specifies when the
         token expires. </para>
@@ -503,9 +735,17 @@
         specified in the examples in this guide.</para>
       <para>After authentication, you can use cURL to perform GET ,
         DELETE , and POST requests for the Cloud Queuing </para>
+        -->
     </section>
     <section xml:id="endpoints" >
-      <title>Endpoints</title>    <para>The endpoints to use for your Cloud Queuing API calls are
+      <title>Endpoints</title>
+      <para>The endpoint to use for your Cloud Queuing API calls for
+        the Preview program is:</para>
+      <para><code>https://ord.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </para>
+      <para>or</para>
+      <para><code>https://snet-ord.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </para>
+      <!--
+      <para>The endpoints to use for your Cloud Queuing API calls are
         summarized in the table below.</para>
       
       <para>
@@ -581,6 +821,7 @@
           </listitem>
         </itemizedlist>
       </note>
+      -->
       <para>Replace the sample account ID number,
           <parameter>1234</parameter>, with your actual account number
         returned as part of the authentication response. Use your
@@ -774,14 +1015,72 @@
   <chapter xml:id="stepping_through_the_api" >
     <title xmlns:svg="http://www.w3.org/2000/svg"
       xmlns:m="http://www.w3.org/1998/Math/MathML"
-      xmlns:html="http://www.w3.org/1999/xhtml">Create Your First
-      Message Queue</title>
-    <para>This section provides specific information about each of API
-      call.</para>
+      xmlns:html="http://www.w3.org/1999/xhtml">Working with Your
+      First Message Queue</title>
+    <para>This chapter contains a simple exercise that will help you
+      become familiar with the basic Cloud Queuing calls. Examples are
+      provided in cURL. </para>
+    <section>
+      <title>Create Queue</title>
+      <para/>
+      <example>
+        <title>cURL Create Queue Request</title>
+        <programlisting>curl -i -X PUT http://0.0.0.0:8888/v1/480924/queues/rgoodqueue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4"</programlisting>
+      </example>
+    </section>
+    <section>
+      <title>Claim Messages</title>
+      <para/>
+    </section>
+    <section>
+      <title>Delete Messages</title>
+      <para/>
+    </section>
+    <section>
+      <title>Delete Messages</title>
+      <para/>
+    </section>
+    <section>
+      <title>Delete Claim</title>
+      <para/>
+    </section>
+    <section>
+      <title>Delete Queue</title>
+      <para/>
+    </section>
     <para/>
     <para/>
     <para/>
     <para/>
+  </chapter>
+  <chapter xml:id="additional-resources" >
+    <title>Additional Resources</title>
+    <!--
+    <para>You can download the most current versions of the
+      API-related documents from <link
+        xlink:href="http://docs.rackspace.com/api/"
+        >docs.rackspace.com/api/</link>. 
+    </para>
+    -->
+    <para>
+      For information about Rackspace Cloud products, refer to
+      <link xlink:href="http://www.rackspace.com/cloud/">
+        www.rackspace.com/cloud</link>. This site also
+      offers links to Rackspace's official support channels,
+      including knowledge base articles, forums, phone, chat, and
+      email. </para>
+    <para>Email all support questions to:
+      <email>cbdteam@rackspace.com</email>. 
+    </para>
+    <para>You can follow Rackspace updates and announcements
+      via twitter at: <link
+        xlink:href="http://www.twitter.com/rackspace"
+        >www.twitter.com/rackspace</link>. </para>
+    <para>This API uses standard HTTP 1.1 response codes as
+      documented at: <link
+        xlink:href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"
+        >www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</link>.
+    </para>
   </chapter>
   <chapter xml:id="doc-change-history">
     <title>Document Change History</title>
