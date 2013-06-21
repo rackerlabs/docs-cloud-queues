@@ -67,7 +67,7 @@
     xmlns:html="http://www.w3.org/1999/xhtml">
     <title>Overview</title>
     <para>Rackspace Cloud Queuing is an API-based message and
-      notifications service. A message queueing service is a vital
+      notification service. A message queueing service is a vital
       component of big, complex web applications. Cloud Queuing from
       Rackspace is designed to fill this need. Cloud Queuing is based
       on the OpenStack Marconi project.</para>
@@ -828,10 +828,11 @@
         returned as part of the authentication response. Use your
         actual account number wherever you see the field <emphasis
           role="bold">your_acct_id</emphasis> specified in this guide.
-        Refer to <xref linkend="authentication-1"/>.</para>
+        Refer to <xref linkend="authentication-1"/>. </para>
       <para>When making a Cloud Queuing API call, place the endpoint
         at the beginning of the request URL, for example:
           (<code>https://ord.queue.api.rackspacecloud.com/v1.0/your_acct_id/</code>.</para>
+ <!--
       <section  xml:id="using-curl">
         <title>Using cURL</title>
         <para xmlns:svg="http://www.w3.org/2000/svg"
@@ -1011,6 +1012,7 @@
           typing the entire example on one long line, removing all the
           backslash line continuation characters.</para>
       </section>
+      -->
     </section>
 </chapter>
   <chapter xml:id="stepping_through_the_api" >
@@ -1019,23 +1021,24 @@
       xmlns:html="http://www.w3.org/1999/xhtml">Working with Your
       First Message Queue </title>
     <para>This chapter contains a simple exercise that will help you
-      become familiar with the basic Cloud Queuing calls. The calls
-      included in this exercise are the one you might most commonly
+      become familiar with some basic Cloud Queuing requests. The
+      requests included in this exercise are ones you would commonly
       use. Example requests are provided in cURL, followed by the
       response. </para>
     <para>For a complete list of requests available for Cloud Queuing,
-      see <xref linkend="cloud-queuing-actions"/>. Each requests
-      available will be fully described in the Cloud Queuing Developer
-      Guide.</para>
+      see <xref linkend="cloud-queuing-actions"/>. Each request
+      available will be fully described in the <emphasis role="italic"
+        >Cloud Queuing Developer Guide</emphasis>.</para>
     <section xml:id="create_queue">
       <title>Create Queue</title>
       <para><code>Create Queue</code> creates a queue and sets its
         metadata. </para>
       <para>The body of the PUT is a document that can contain
-        arbitrary metadata to associate with the queue, up to 4 KB
-        when serialized as JSON, including whitespace. Top-level field
-        names <emphasis role="italic">must not</emphasis> start with
-        an underscore. Such names are reserved for future use.</para>
+        arbitrary metadata to associate with the queue, with a limit
+        of 4 KB when serialized as JSON including whitespace.
+        Top-level field names <emphasis role="italic">must
+          not</emphasis> start with an underscore. Such names are
+        reserved for future use.</para>
       <para>
         <tag class="attribute">queue_name</tag> is the name to give
         the queue. The name <emphasis role="italic">must
@@ -1049,14 +1052,8 @@
       </example>
       <example>
         <title>Create Queue Response</title>
-        <programlisting>PUT /v1/480924/queues/fizbat HTTP/1.1
-Host: marconi.example.com
-
-...
-
-{
-    "game_id": "a34904d6-8dbc-11e2-864b-5d361e90beb5"
-}</programlisting>
+        <programlisting>HTTP/1.1 201 Created
+Location: /v1/480924/queues/rgoodqueue</programlisting>
       </example>
     </section>
     <section xml:id="insert_messages" >
@@ -1079,47 +1076,51 @@ Host: marconi.example.com
         list is returned. <tag class="attribute">partial</tag> is set
         to <tag class="attribute">true</tag>, and the client retries
         posting the remaining messages. If the server cannot enqueue
-        messages,  the server returns 503 Service Unavailable.</para>
+        messages, the server returns <code>503 Service
+          Unavailable</code>.</para>
       <para><tag class="attribute">body</tag> specifies an arbitrary
-        document which constitutes the body of the message being sent.
-        The size of this body, in characters and including whitespace,
-        is 4 KiB. The document MUST be valid JSON (Marconi will
-        validate).</para>
+        document that constitutes the body of the message being sent.
+        The size of this body, including characters and whitespace, is
+        limited to 4 KB. The document <emphasis role="italic"
+          >must</emphasis> be valid JSON (Cloud Queuing validates
+        it.).</para>
       <para><tag class="attribute">ttl</tag> is how long the server
         should wait before expiring and removing the message from the
-        queue. Value MUST be between 60 and 1209600 seconds (14 days),
-        inclusive. Note that the server may not actually delete the
-        message until it's age has reached up to (ttl + 60) seconds,
-        to allow for flexibility in storage implementations.</para>
+        queue. Valid values are between 60 and 1209600 seconds (14
+        days), inclusive. Note: To allow for flexibility in storage
+        implementations, the server might not actually delete the
+        message until its age reachs up to <tag class="attribute">(ttl
+          + 60)</tag> seconds.</para>
       <example>
         <title>cURL Insert Messages Request</title>
         <programlisting>curl -i -X POST http://0.0.0.0:8888/v1/480924/queues/rgoodqueue/messages -d '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" </programlisting>
       </example>
       <example>
-        <title>Insert Messages Response</title>
-        <programlisting>When a single message is submitted:
-
-HTTP/1.1 201 Created
-Location: /v1/480924/queues/fizbit/messages/50b68a50d6f5b8c8a7c62b01
+        <title>Insert Messages Response When a Single Message Is
+          Submitted</title>
+        <programlisting>HTTP/1.1 201 Created
+Location: /v1/480924/queues/rgoodqueue/messages/50b68a50d6f5b8c8a7c62b01
 Content-Type: application/json
 
 {
     "resources": [
-        "/v1/480924/queues/fizbit/messages/50b68a50d6f5b8c8a7c62b01"
+        "/v1/480924/queues/rgoodqueue/messages/50b68a50d6f5b8c8a7c62b01"
     ],
     "partial": false
 }
-
-When multiple messages are submitted:
-
-HTTP/1.1 201 Created
-Location: /v1/480924/queues/fizbit/messages?message_ids=50b68a50d6f5b8c8a7c62b01,50b68a50d6f5b8c8a7c62b05
+</programlisting>
+      </example>
+      <example>
+        <title>Insert Messages Response When Multiple Messages Are
+          Submitted</title>
+        <programlisting>HTTP/1.1 201 Created
+Location: /v1/480924/queues/rgoodqueue/messages?message_ids=50b68a50d6f5b8c8a7c62b01,50b68a50d6f5b8c8a7c62b05
 Content-Type: application/json
 
 {
     "resources": [
-        "/v1/480924/queues/fizbit/messages/50b68a50d6f5b8c8a7c62b01",
-        "/v1/480924/queues/fizbit/messages/50b68a50d6f5b8c8a7c62b05"
+        "/v1/480924/queues/rgoodqueue/messages/50b68a50d6f5b8c8a7c62b01",
+        "/v1/480924/queues/rgoodqueue/messages/50b68a50d6f5b8c8a7c62b05"
     ],
     "partial": false
 }
@@ -1128,9 +1129,11 @@ Content-Type: application/json
     </section>
     <section xml:id="Claim_messages">
       <title>Claim Messages</title>
-      <para>Claims a set of messages, up to limit, from oldest to
-        newest, skipping any that are already claimed. If no unclaimed
-        messages are available, returns 204 No Content. </para>
+      <para><code>Claims Messages</code> claims a set of messages (up
+        to <tag class="attribute">limit</tag>) from oldest to newest
+        and skips any that are already claimed. If no unclaimed
+        messages are available, Cloud Queuing returns <code>204 No
+          Content</code>. </para>
       <para>The client should delete the message when it has finished
         processing it, before the claim expires, to ensure the message
         is processed only once. As part of the delete operation, all
@@ -1156,13 +1159,13 @@ Content-Type: application/json
         should wait before releasing the claim. Value MUST be between
         60 and 43200 seconds (12 hours). </para>
       <para><tag class="attribute">grace</tag> is the message grace
-        period in seconds. Value MUST be between 60 and 43200 seconds
-        (12 hours). The server will extend the lifetime of claimed
-        messages to be at least as long as the lifetime of the claim
-        itself, plus a specified grace period to deal with crashed
-        workers (up to 1209600 or 14 days including claim lifetime).
-        If a claimed message would normally live longer than the grace
-        period, it's expiration will not be adjusted.</para>
+        period in seconds. Valid values are between 60 and 43200
+        seconds (12 hours). In order to deal with crashed workers (up
+        to 1209600 or 14 days including claim lifetime), the server
+        extends the lifetime of claimed messages to be at least as
+        long as the lifetime of the claim itself, plus a specified
+        grace period. If a claimed message normally lives longer than
+        the grace period, its expiration is not adjusted.</para>
       <example>
         <title>cURL Claim Messages Request</title>
         <programlisting>curl -i -X POST http://0.0.0.0:8888/v1/480924/queues/rgoodqueue/claims -d '{"ttl": 300,"grace":300}' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" </programlisting>
@@ -1171,13 +1174,13 @@ Content-Type: application/json
         <title>Claim Messages Response</title>
         <programlisting>HTTP/1.1 200 OK
 Content-Type: application/json
-Location: /v1/12345/queues/foo-bar/claims/a28ee94e-6cb4-11e2-b4d5-7703267a7926
+Location: /v1/480924/queues/rgoodqueue/claims/a28ee94e-6cb4-11e2-b4d5-7703267a7926
 
 ...
 
 [
   {
-    "href": "/v1/12345/queues/foo-bar/messages/50b68a50d6f5b8c8a7c62b01?claim_id=a28ee94e-6cb4-11e2-b4d5-7703267a7926",
+    "href": "/v1/480924/queues/rgoodqueue/messages/50b68a50d6f5b8c8a7c62b01?claim_id=a28ee94e-6cb4-11e2-b4d5-7703267a7926",
     "ttl": 800,
     "age": 100,
     "body": {
@@ -1186,7 +1189,7 @@ Location: /v1/12345/queues/foo-bar/claims/a28ee94e-6cb4-11e2-b4d5-7703267a7926
     }
   },
   {
-    "href": "/v1/12345/queues/foo-bar/messages/50b68a50d6f5b8c8a7c62b02?claim_id=a28ee94e-6cb4-11e2-b4d5-7703267a7926",
+    "href": "/v1/480924/queues/rgoodqueue/messages/50b68a50d6f5b8c8a7c62b02?claim_id=a28ee94e-6cb4-11e2-b4d5-7703267a7926",
     "ttl": 800,
     "age": 790,
     "body": {
@@ -1204,12 +1207,13 @@ Location: /v1/12345/queues/foo-bar/claims/a28ee94e-6cb4-11e2-b4d5-7703267a7926
         message to delete. </para>
       <para><tag class="attribute">claim_id</tag> specifies that the
         message should be deleted only if it has the specified claim
-        ID, and that claim has not expired. This is useful for
-        ensuring only one agent processes any given message. Whenever
-        a worker client's claim expires before it has a chance to
-        delete a message it has processed, the worker must roll back
-        any actions it took based on that message since another worker
-        will now be able to claim and process the same message.</para>
+        ID and that claim has not expired. This specification is
+        useful for ensuring only one agent processes any given
+        message. Whenever a worker client's claim expires before it
+        has a chance to delete a message it has processed, the worker
+        must roll back any actions it took based on that message since
+        another worker can now claim and process the same
+        message.</para>
       <example>
         <title>cURL Delete Messages Request</title>
         <programlisting>curl -i -X DELETE http://0.0.0.0:8888/v1/480924/queues/rgoodqueue/messages/51c3420f40a5dc90d9b0093f -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" -H "Client-ID: QClient"</programlisting>
@@ -1221,13 +1225,14 @@ Location: /v1/12345/queues/foo-bar/claims/a28ee94e-6cb4-11e2-b4d5-7703267a7926
     </section>
     <section xml:id="Delete_claim">
       <title>Delete Claim</title>
-      <para><code>Delete Claim</code> immediately release a claim,
+      <para><code>Delete Claim</code> immediately releases a claim
         making any (remaining, non-deleted) messages associated with
         the claim available to other workers. </para>
-      <para>This operation is useful when a worker is performing a
-        graceful shutdown, fails to process one or more messages, or
-        is taking longer than expected to process messages, and wishes
-        to make the remainder available to other workers.  </para>
+      <para><code>Delete Claim</code> is useful when a worker is
+        performing a graceful shutdown, fails to process one or more
+        messages, or is taking longer than expected to process
+        messages and wishes to make the remainder of the messages
+        available to other workers. </para>
       <example>
         <title>cURL Delete Claim Request</title>
         <programlisting>curl -i -X DELETE http://0.0.0.0:8888/v1/480924/queues/rgoodqueue/claims/51c343cc40a5dc90d9b00944 -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" -H "Client-ID: QClient"</programlisting>
@@ -1238,9 +1243,9 @@ Location: /v1/12345/queues/foo-bar/claims/a28ee94e-6cb4-11e2-b4d5-7703267a7926
       </example>
     </section>
     <section xml:id="Delete_queue">
-      <title>Delete Queue</title>
-      <para>Use this operation to immediately delete a queue along
-        with all its messages (if any).</para>
+      <title>Delete Queue </title>
+      <para>Delete Queue immediately deletes a queue along with all of
+        its messages (if any exists).</para>
       <example>
         <title>cURL Delete Queue Request</title>
         <programlisting>curl -i -X DELETE http://0.0.0.0:8888/v1/480924/queues/rgoodqueue -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" </programlisting>
