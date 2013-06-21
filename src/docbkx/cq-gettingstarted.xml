@@ -184,7 +184,7 @@
         </itemizedlist>
       </para>
     </section>
-    <section xml:id="core_concepts">
+    <section xml:id="how_cq_works">
       <title>How Cloud Queuing Works</title>
       <para>Here is an overview of the Cloud Queuing workflow: </para>
       <orderedlist>
@@ -1020,7 +1020,7 @@
     <para>This chapter contains a simple exercise that will help you
       become familiar with the basic Cloud Queuing calls. Examples are
       provided in cURL. </para>
-    <section>
+    <section xml:id="create_queue">
       <title>Create Queue</title>
       <para/>
       <example>
@@ -1028,30 +1028,22 @@
         <programlisting>curl -i -X PUT http://0.0.0.0:8888/v1/480924/queues/rgoodqueue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4"</programlisting>
       </example>
     </section>
-    <section>
+    <section xml:id="Claim_messages">
       <title>Claim Messages</title>
       <para/>
     </section>
-    <section>
+    <section xml:id="Delete_messages">
       <title>Delete Messages</title>
       <para/>
     </section>
-    <section>
-      <title>Delete Messages</title>
-      <para/>
-    </section>
-    <section>
+    <section xml:id="Delete_claim">
       <title>Delete Claim</title>
       <para/>
     </section>
-    <section>
+    <section xml:id="Delete_queue">
       <title>Delete Queue</title>
       <para/>
     </section>
-    <para/>
-    <para/>
-    <para/>
-    <para/>
   </chapter>
   <chapter xml:id="additional-resources" >
     <title>Additional Resources</title>
@@ -1062,13 +1054,11 @@
         >docs.rackspace.com/api/</link>. 
     </para>
     -->
-    <para>
-      For information about Rackspace Cloud products, refer to
-      <link xlink:href="http://www.rackspace.com/cloud/">
-        www.rackspace.com/cloud</link>. This site also
-      offers links to Rackspace's official support channels,
-      including knowledge base articles, forums, phone, chat, and
-      email. </para>
+    <para> For information about Rackspace Cloud products, refer to
+        <link xlink:href="http://www.rackspace.com/cloud/">
+        www.rackspace.com/cloud</link>. This site also offers links to
+      Rackspace's official support channels, including knowledge base
+      articles, forums, phone, chat, and email. </para>
     <para>Email all support questions to:
       <email>cbdteam@rackspace.com</email>. 
     </para>
