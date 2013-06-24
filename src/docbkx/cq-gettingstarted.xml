@@ -126,17 +126,6 @@
           </listitem>
         </itemizedlist>
       </para>
-      <para xmlns:wadl="http://wadl.dev.java.net/2009/02"> The
-        following is supported during the Preview Program:
-          <itemizedlist spacing="compact">
-          <listitem>
-            <para> Operating System???? </para>
-          </listitem>
-          <listitem>
-            <para> Any other special mentions here???</para>
-          </listitem>
-        </itemizedlist>
-      </para>
       <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Preview
         Program has some limitations. By using the Cloud Queuing API,
         you agree and understand that:<itemizedlist spacing="compact">
@@ -311,6 +300,9 @@
           </listitem>
           <listitem>
             <para>Claim Messages</para>
+          </listitem>
+          <listitem>
+            <para>Delete Message(s)</para>
           </listitem>
         </itemizedlist>
       </section>
@@ -1039,6 +1031,14 @@
         Top-level field names <emphasis role="italic">must
           not</emphasis> start with an underscore. Such names are
         reserved for future use.</para>
+      <para>The Create Queue template is:</para>
+      <para>
+        <programlisting>PUT {base_url}/queues/{queue_name}
+
+{
+    ...
+}</programlisting>
+      </para>
       <para>
         <tag class="attribute">queue_name</tag> is the name to give
         the queue. The name <emphasis role="italic">must
@@ -1046,6 +1046,8 @@
         US-ASCII letters, digits, underscores, and hyphens. If the
         specified queue already exists, the existing queue's metadata
         is overwritten with the provided document.</para>
+      <para>Examples of a Create Queue request and response are given
+        next:</para>
       <example>
         <title>cURL Create Queue Request</title>
         <programlisting>curl -i -X PUT http://0.0.0.0:8888/v1/480924/queues/rgoodqueue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4"</programlisting>
@@ -1064,6 +1066,8 @@ Location: /v1/480924/queues/rgoodqueue</programlisting>
         in JSON). You can use the resulting value of the location
         header or response body to retrieve the created messages for
         further processing if needed. </para>
+      <para>The Insert Messages template
+        is:<programlisting>POST {base_url}/queues/{queue_name}/messages</programlisting></para>
       <para>The client specifies only the <tag class="attribute"
           >body</tag> and <tag class="attribute">ttl</tag> for the
         message. The server inserts the metadata, such as <tag
@@ -1091,6 +1095,8 @@ Location: /v1/480924/queues/rgoodqueue</programlisting>
         implementations, the server might not actually delete the
         message until its age reachs up to <tag class="attribute">(ttl
           + 60)</tag> seconds.</para>
+      <para>Examples of an Insert Messages request and response are
+        given next:</para>
       <example>
         <title>cURL Insert Messages Request</title>
         <programlisting>curl -i -X POST http://0.0.0.0:8888/v1/480924/queues/rgoodqueue/messages -d '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" </programlisting>
@@ -1134,6 +1140,16 @@ Content-Type: application/json
         and skips any that are already claimed. If no unclaimed
         messages are available, Cloud Queuing returns <code>204 No
           Content</code>. </para>
+      <para>The Claim Messages template is:</para>
+      <programlisting>POST {base_url}/queues/{queue_name}/claims{?limit}
+Content-Type: application/json
+
+...
+
+{ 
+    "ttl": {claim_ttl},
+    "grace": {message_grace}
+}</programlisting>
       <para>The client should delete the message when it has finished
         processing it, before the claim expires, to ensure the message
         is processed only once. As part of the delete operation, all
@@ -1166,6 +1182,8 @@ Content-Type: application/json
         long as the lifetime of the claim itself, plus a specified
         grace period. If a claimed message normally lives longer than
         the grace period, its expiration is not adjusted.</para>
+      <para>Examples of a Claim Messages request and response are given
+        next:</para>
       <example>
         <title>cURL Claim Messages Request</title>
         <programlisting>curl -i -X POST http://0.0.0.0:8888/v1/480924/queues/rgoodqueue/claims -d '{"ttl": 300,"grace":300}' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" </programlisting>
@@ -1201,8 +1219,11 @@ Location: /v1/480924/queues/rgoodqueue/claims/a28ee94e-6cb4-11e2-b4d5-7703267a79
       </example>
     </section>
     <section xml:id="Delete_messages">
-      <title>Delete Messages</title>
+      <title>Delete Messages with Claim ID</title>
       <para><code>Delete Messages</code> deletes messages.</para>
+      <para>The Delete Messages template
+        is:<programlisting>DELETE {base_url}/queues/{queue_name}/messages/{message_id}{?claim_id}
+</programlisting></para>
       <para><tag class="attribute">message_id</tag> specifies the
         message to delete. </para>
       <para><tag class="attribute">claim_id</tag> specifies that the
@@ -1214,9 +1235,11 @@ Location: /v1/480924/queues/rgoodqueue/claims/a28ee94e-6cb4-11e2-b4d5-7703267a79
         must roll back any actions it took based on that message since
         another worker can now claim and process the same
         message.</para>
+      <para>Examples of a Delete Messages request and response are
+        given next:</para>
       <example>
         <title>cURL Delete Messages Request</title>
-        <programlisting>curl -i -X DELETE http://0.0.0.0:8888/v1/480924/queues/rgoodqueue/messages/51c3420f40a5dc90d9b0093f -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" -H "Client-ID: QClient"</programlisting>
+        <programlisting>curl -i -X DELETE http://0.0.0.0:8888/v1/480924/queues/rgoodqueue/messages/51c3420f40a5dc90d9b0093f?a28ee94e-6cb4-11e2-b4d5-7703267a7926 -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" -H "Client-ID: QClient"</programlisting>
       </example>
       <example>
         <title>Delete Messages Response</title>
@@ -1224,15 +1247,19 @@ Location: /v1/480924/queues/rgoodqueue/claims/a28ee94e-6cb4-11e2-b4d5-7703267a79
       </example>
     </section>
     <section xml:id="Delete_claim">
-      <title>Delete Claim</title>
+      <title>Delete Claim </title>
       <para><code>Delete Claim</code> immediately releases a claim
         making any (remaining, non-deleted) messages associated with
         the claim available to other workers. </para>
+      <para>The Delete Claim template is:</para>
+      <programlisting>DELETE {base_url}/queues/{queue_name}/claims/{claim_id}</programlisting>
       <para><code>Delete Claim</code> is useful when a worker is
         performing a graceful shutdown, fails to process one or more
         messages, or is taking longer than expected to process
         messages and wishes to make the remainder of the messages
         available to other workers. </para>
+      <para>Examples of a Delete Claim request and response are given
+        next:</para>
       <example>
         <title>cURL Delete Claim Request</title>
         <programlisting>curl -i -X DELETE http://0.0.0.0:8888/v1/480924/queues/rgoodqueue/claims/51c343cc40a5dc90d9b00944 -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" -H "Client-ID: QClient"</programlisting>
@@ -1246,6 +1273,10 @@ Location: /v1/480924/queues/rgoodqueue/claims/a28ee94e-6cb4-11e2-b4d5-7703267a79
       <title>Delete Queue </title>
       <para>Delete Queue immediately deletes a queue along with all of
         its messages (if any exists).</para>
+      <para>The Delete Queue template
+        is:<programlisting>DELETE {base_url}/queues/{queue_name}</programlisting></para>
+      <para>Examples of a Delete Queue request and response are given
+        next:</para>
       <example>
         <title>cURL Delete Queue Request</title>
         <programlisting>curl -i -X DELETE http://0.0.0.0:8888/v1/480924/queues/rgoodqueue -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" </programlisting>
@@ -1266,6 +1297,10 @@ Location: /v1/480924/queues/rgoodqueue/claims/a28ee94e-6cb4-11e2-b4d5-7703267a79
         >docs.rackspace.com/api/</link>. 
     </para>
     -->
+    <para>For information about the OpenStack Marconi API, refer to
+        <link
+        xlink:href="https://wiki.openstack.org/wiki/Marconi/specs/api/v1"
+        >wiki.openstack.org/wiki/Marconi/specs/api/v1</link>.</para>
     <para> For information about Rackspace Cloud products, refer to
         <link xlink:href="http://www.rackspace.com/cloud/">
         www.rackspace.com/cloud</link>. This site also offers links to
