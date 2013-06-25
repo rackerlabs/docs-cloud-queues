@@ -13,7 +13,7 @@
  
 ]>
 
-<book 
+<book
     xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -36,7 +36,7 @@
     </copyright>
     <releaseinfo>API v1.0 Preview</releaseinfo>
     <productname>Cloud Queuing</productname>
-    <pubdate/>
+    <pubdate>2013-06-26</pubdate>
     <legalnotice role="rs-api">
       <annotation>
         <remark>Copyright details are filled in by the
@@ -45,7 +45,7 @@
     </legalnotice>
     <revhistory>
       <revision>
-        <date>2013-06-21</date>
+        <date>2013-06-26</date>
         <revdescription>
           <itemizedlist spacing="compact">
             <listitem>
@@ -99,8 +99,8 @@
     <section xml:id="core_concepts">
       <title>Preview Program</title>
       <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Preview
-        program enables customers and Rackers by invitation to test an
-        early version of the product and provide feedback of the
+        program enables customers and Rackers, by invitation, to test
+        an early version of the product and provide feedback of the
         product and capabilities. The Cloud Queuing Preview Program is
         a pre-production service offering covered by the Beta Services
         terms (<link
@@ -126,6 +126,22 @@
           </listitem>
         </itemizedlist>
       </para>
+      <para>The endpoints for the Preview environment are:</para>
+      <itemizedlist>
+        <listitem>
+          <para>http://preview.queue.api.rackspacecloud.com:80</para>
+        </listitem>
+        <listitem>
+          <para>
+            https://preview.queue.api.rackspacecloud.com:443</para>
+        </listitem>
+      </itemizedlist>
+      <para>A valid certificate is not yet available.  Once the
+        certificate is available, the http link will go away. </para>
+      <para>Until the certificate is available, the https URL will
+        work only if you turn cert verification off. Following is the
+        cURL command to do this is:</para>
+      <programlisting>curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/480924/queues/Godqueue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 12334322222332" -v</programlisting>
       <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Preview
         Program has some limitations. By using the Cloud Queuing API,
         you agree and understand that:<itemizedlist spacing="compact">
@@ -150,25 +166,6 @@
           <listitem>
             <para>Support is available from 8 AM – 5 PM (Central Time)
               Monday–Friday.</para>
-          </listitem>
-        </itemizedlist>
-      </para>
-      <para xmlns:wadl="http://wadl.dev.java.net/2009/02">There are
-        some resource limits during the Preview Program: </para>
-      <para xmlns:wadl="http://wadl.dev.java.net/2009/02">Anything to
-        mention here???? Here's what the Cloud Big Data Preview
-          had.<itemizedlist spacing="compact">
-          <listitem>
-            <para> Up to 5 data nodes</para>
-          </listitem>
-          <listitem>
-            <para>Up to 5 virtual CPUs</para>
-          </listitem>
-          <listitem>
-            <para>Up to 25 GBs of RAM</para>
-          </listitem>
-          <listitem>
-            <para>Up to 2 Terabytes of disk space</para>
           </listitem>
         </itemizedlist>
       </para>
@@ -371,6 +368,34 @@
     </section>
     <section xml:id="access-api-2" >
       <title>Accessing the API</title>
+      <para xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:m="http://www.w3.org/1998/Math/MathML"
+        xmlns:html="http://www.w3.org/1999/xhtml">The endpoints for
+        the Preview environment are:</para>
+      <itemizedlist xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:m="http://www.w3.org/1998/Math/MathML"
+        xmlns:html="http://www.w3.org/1999/xhtml">
+        <listitem>
+          <para>http://preview.queue.api.rackspacecloud.com:80</para>
+        </listitem>
+        <listitem>
+          <para>
+            https://preview.queue.api.rackspacecloud.com:443</para>
+        </listitem>
+      </itemizedlist>
+      <para xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:m="http://www.w3.org/1998/Math/MathML"
+        xmlns:html="http://www.w3.org/1999/xhtml">A valid certificate
+        is not yet available. Once the certificate is available, the
+        http link will go away. </para>
+      <para xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:m="http://www.w3.org/1998/Math/MathML"
+        xmlns:html="http://www.w3.org/1999/xhtml">Until the
+        certificate is available, the https URL will work only if you
+        turn cert verification off. Following is the cURL command to
+        do this is:</para>
+      <programlisting xmlns:svg="http://www.w3.org/2000/svg" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml">curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/480924/queues/Godqueue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 12334322222332" -v</programlisting>
+    <!--
       <para>To access the Rackspace Cloud Queuing API use the
         following URL:</para>
       <para>https://queue.api.rackspacecloud.com/v1.0/ 1234</para>
@@ -381,9 +406,9 @@
           your Rackspace account number. If you don't know your
           account number, it is included in the publicURL, which is
           part of the Authentication response. See <xref
-            linkend="authentication-1"/>
-        </para>
+            linkend="authentication-1"/> .</para>
       </note>
+      -->
     </section>
     <section xml:id="authentication-1">
       <title>Authentication</title>
@@ -392,130 +417,119 @@
           <code>X-Auth-Token</code> HTTP header. Customers obtain this
         token by first using the Rackspace Cloud Authentication
         Service and supplying a valid username and API access key. </para>
-      <para>
-        To authenticate, submit a <code>POST/v2.0/tokens</code> request, 
-        presenting valid Rackspace customer credentials 
-        in the message body to a Rackspace authentication endpoint. 
-      </para>
+      <para> To authenticate, submit a <code>POST/v2.0/tokens</code>
+        request, presenting valid Rackspace customer credentials in
+        the message body to a Rackspace authentication endpoint. </para>
       <para>
         <emphasis role="bold">GET YOUR CREDENTIALS</emphasis>
       </para>
       <para> You can use either of two sets of credentials: <itemizedlist>
-        <listitem>
-          <para>your <code>username</code> and
-            <code>password</code></para>
-        </listitem>
-        <listitem>
-          <para>your <code>username</code> and <code>API
-            key</code></para>
-        </listitem>
-      </itemizedlist>
-      </para>
-      <para>
-        Your <code>username</code> and
-        <code>password</code> are the ones you use to login to the 
-        Rackspace control panel. Once you are logged in, you can use 
-        the Rackspace control panel to obtain your <code>API key</code>.
-      </para>
-      <para>
-        Use the control panel for the region in which your account is based: 
-        <itemizedlist spacing="compact">
           <listitem>
-            <para>
-              US-based accounts use the control panel at <link xlink:href="https://manage.rackspacecloud.com/">https://manage.rackspacecloud.com/</link>.
-            </para>
+            <para>your <code>username</code> and
+              <code>password</code></para>
           </listitem>
           <listitem>
-            <para> UK-based accounts use the control panel at
-              <link xlink:href="https://lon.manage.rackspacecloud.com/">
-                https://lon.manage.rackspacecloud.com/</link>. 
-            </para>
+            <para>your <code>username</code> and <code>API
+              key</code></para>
           </listitem>
-        </itemizedlist> 
+        </itemizedlist>
       </para>
-      <para>
-        <emphasis role="bold">CHOOSE YOUR AUTHENTICATION </emphasis>
-      </para>
-      <para>
-        Use the authentication endpoint for the region in which your account is based:
-        <itemizedlist>
+      <para> Your <code>username</code> and <code>password</code> are
+        the ones you use to login to the Rackspace control panel. Once
+        you are logged in, you can use the Rackspace control panel to
+        obtain your <code>API key</code>. </para>
+      <para> Use the control panel for the region in which your
+        account is based: <itemizedlist spacing="compact">
           <listitem>
-            <para>All accounts authenticate through
-              <link xlink:href="https://identity.api.rackspacecloud.com/v2.0/tokens">
-                identity.api.rackspacecloud.com/v2.0/tokens</link>.</para>
+            <para> US-based accounts use the control panel at <link
+                xlink:href="https://manage.rackspacecloud.com/"
+                >https://manage.rackspacecloud.com/</link>. </para>
+          </listitem>
+          <listitem>
+            <para> UK-based accounts use the control panel at <link
+                xlink:href="https://lon.manage.rackspacecloud.com/">
+                https://lon.manage.rackspacecloud.com/</link>. </para>
           </listitem>
         </itemizedlist>
       </para>
       <para>
-        <emphasis role="bold">SEND YOUR CREDENTIALS TO YOUR AUTHENTICATION
-          ENDPOINT</emphasis>
+        <emphasis role="bold">CHOOSE YOUR AUTHENTICATION </emphasis>
+      </para>
+      <para> Use the authentication endpoint for the region in which
+        your account is based: <itemizedlist>
+          <listitem>
+            <para>All accounts authenticate through <link
+                xlink:href="https://identity.api.rackspacecloud.com/v2.0/tokens"
+                >
+              identity.api.rackspacecloud.com/v2.0/tokens</link>.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <para>
+        <emphasis role="bold">SEND YOUR CREDENTIALS TO YOUR
+          AUTHENTICATION ENDPOINT</emphasis>
       </para>
       <para> If you know your credentials and your authentication
-        endpoint, and you can issue a <code>POST
-          /v2.0/tokens</code> request in an API call, you have
-        all the basic information you need to use the Rackspace
-        Cloud Identity Service. 
-      </para>
+        endpoint, and you can issue a <code>POST /v2.0/tokens</code>
+        request in an API call, you have all the basic information you
+        need to use the Rackspace Cloud Identity Service. </para>
+      <!--
       <para> You can use <link xlink:href="http://curl.haxx.se/"
-        >cURL</link> to try the authentication process in two
-        steps: get a token; send the token to a service.<orderedlist>
+          >cURL</link> to try the authentication process in two steps:
+        get a token; send the token to a service.<orderedlist>
           <listitem>
-            <para>Get an authentication token by providing
-              your username and either your API key or your
-              password. Here are examples of both
-              approaches:</para>
-            <para><emphasis>You can request a token by
-              providing your username and your API
-              key.</emphasis></para>
+            <para>Get an authentication token by providing your
+              username and either your API key or your password. Here
+              are examples of both approaches:</para>
+            <para><emphasis>You can request a token by providing your
+                username and your API key.</emphasis></para>
             <para>
               <literallayout class="monospaced">curl -X POST https://auth.api.rackspacecloud.com/v2.0/tokens -d 
 '{ "auth":{ "RAX-KSKEY:apiKeyCredentials":{ "username":"theUserName", "apiKey":"00a00000a000a0000000a000a00aaa0a" } } }' -H "Content-type: application/json"</literallayout>
             </para>
-            <para><emphasis>You can request a token by
-              providing your username and your
-              password.</emphasis></para>
+            <para><emphasis>You can request a token by providing your
+                username and your password.</emphasis></para>
             <para>
               <literallayout class="monospaced">curl -X POST https://auth.api.rackspacecloud.com/v2.0/tokens -d
-'{"auth":{"passwordCredentials":{"username":"theUserName","password":"thePassword"}}}' -H "Content-type: application/json"</literallayout>
+'{"auth":{"passworg":{"username":"theUserName","password":"thePassword"}}}' -H "Content-type: application/json"</literallayout>
             </para>
-            <para> Successful authentication returns a token
-              which you can use as evidence that your
-              identity has already been authenticated. To
-              use the token, pass it to other services as an
-              <code>X-Auth-Token</code> header. </para>
-            <para> Authentication also returns a service
-              catalog, listing the endpoints you can use for
-              Cloud services. </para>
+            <para> Successful authentication returns a token which you
+              can use as evidence that your identity has already been
+              authenticated. To use the token, pass it to other
+              services as an <code>X-Auth-Token</code> header. </para>
+            <para> Authentication also returns a service catalog,
+              listing the endpoints you can use for Cloud services.
+            </para>
           </listitem>
           <listitem>
-            <para>Use the authentication token to send a GET
-              to a service you would like to use. Here is an
-              example of passing an authentication token to
-              the Cloud Files service, using the Cloud Files
-              service catalog endpoint that was returned
-              along with the token.</para>
-            <para><emphasis>You can use a token and a service endpoint to tell a service 
-              that your credentials are valid.</emphasis></para>
+            <para>Use the authentication token to send a GET to a
+              service you would like to use. Here is an example of
+              passing an authentication token to the Cloud Files
+              service, using the Cloud Files service catalog endpoint
+              that was returned along with the token.</para>
+            <para><emphasis>You can use a token and a service endpoint
+                to tell a service that your credentials are
+                valid.</emphasis></para>
           </listitem>
         </orderedlist>
       </para>
-      
-      
+      -->
       <para>Authentication tokens are typically valid for 24 hours.
         Applications should be designed to re-authenticate after
         receiving a 401 (Unauthorized) response from a service
         endpoint. </para>
+      <!-- 
       <important>
         <para>If you are programmatically parsing an authentication
-          response, please be aware that service names are stable
-          for the life of the particular service and can be used as
-          keys. You should also be aware that a user's service
-          catalog can include multiple uniquely-named services which
-          perform similar functions. In Auth 2.0,
-          the service type attribute can be used as a key by which
-          to recognize similar services; see the tip below.
-        </para>
-      </important> 
+          response, please be aware that service names are stable for
+          the life of the particular service and can be used as keys.
+          You should also be aware that a user's service catalog can
+          include multiple uniquely-named services which perform
+          similar functions. In Auth 2.0, the service type attribute
+          can be used as a key by which to recognize similar services;
+          see the tip below. </para>
+      </important>
+      -->
       <!--
       <para>You need to generate a token whether you use cURL or a
         ReST client.</para>
@@ -625,6 +639,7 @@
           Password</title>
         <programlisting>curl -X POST https://identity.api.rackspacecloud.com/v2.0/tokens -d '{"auth":{"passwordCredentials":{"username":"theUserName","password":"thePassword"}}}' -H "Content-type: application/json" | python -mjson.tool</programlisting>
       </example>
+      <!--
       <para>The following example shows only the service catalog
         portion of the authentication response.</para>
       <example>
@@ -670,6 +685,7 @@
         <programlisting>$ curl -X GET -H "Content-Type: application/json" -H "X-Auth-token: {auth-token}" https://{region}.XXX.XXX.rackspacecloud.com/v1.0/{tenant-id}/groups/ | python -mjson.tool
  </programlisting>
       </example>
+      -->
       <!--
       <para>The authentication token <code>id</code> is returned along
         with an <code>expires</code> attribute that specifies when the
@@ -729,6 +745,7 @@
       <para>After authentication, you can use cURL to perform GET ,
         DELETE , and POST requests for the Cloud Queuing </para>
         -->
+      <!--
     </section>
     <section xml:id="endpoints" >
       <title>Endpoints</title>
@@ -737,7 +754,7 @@
       <para><code>https://ord.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </para>
       <para>or</para>
       <para><code>https://snet-ord.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </para>
-      <!--
+
       <para>The endpoints to use for your Cloud Queuing API calls are
         summarized in the table below.</para>
       
@@ -814,7 +831,6 @@
           </listitem>
         </itemizedlist>
       </note>
-      -->
       <para>Replace the sample account ID number,
           <parameter>1234</parameter>, with your actual account number
         returned as part of the authentication response. Use your
@@ -824,8 +840,9 @@
       <para>When making a Cloud Queuing API call, place the endpoint
         at the beginning of the request URL, for example:
           (<code>https://ord.queue.api.rackspacecloud.com/v1.0/your_acct_id/</code>.</para>
- <!--
-      <section  xml:id="using-curl">
+-->
+      <!--
+      <section xml:id="using-curl">
         <title>Using cURL</title>
         <para xmlns:svg="http://www.w3.org/2000/svg"
           xmlns:m="http://www.w3.org/1998/Math/MathML"
@@ -1003,9 +1020,9 @@
           trouble copying and pasting the examples as described, try
           typing the entire example on one long line, removing all the
           backslash line continuation characters.</para>
+      </section>  </section>
       </section>
-      -->
-    </section>
+      --></section>
 </chapter>
   <chapter xml:id="stepping_through_the_api" >
     <title xmlns:svg="http://www.w3.org/2000/svg"
@@ -1016,7 +1033,7 @@
       become familiar with some basic Cloud Queuing requests. The
       requests included in this exercise are ones you would commonly
       use. Example requests are provided in cURL, followed by the
-      response. </para>
+      response.  </para>
     <para>For a complete list of requests available for Cloud Queuing,
       see <xref linkend="cloud-queuing-actions"/>. Each request
       available will be fully described in the <emphasis role="italic"
@@ -1050,18 +1067,19 @@
         next:</para>
       <example>
         <title>cURL Create Queue Request</title>
-        <programlisting>curl -i -X PUT http://0.0.0.0:8888/v1/480924/queues/rgoodqueue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4"</programlisting>
+        <programlisting>curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 806067" </programlisting>
       </example>
       <example>
         <title>Create Queue Response</title>
         <programlisting>HTTP/1.1 201 Created
-Location: /v1/480924/queues/rgoodqueue</programlisting>
+Content-Length: 0
+Location: /v1/queues/samplequeue</programlisting>
       </example>
     </section>
     <section xml:id="insert_messages" >
       <title>Insert Messages</title>
       <para><code>Insert Messages</code> places messages in a queue. </para>
-      <para>You can submit up to 50 messages  in a single request, but
+      <para>You can submit up to 50 messages in a single request, but
         you must encapsulate them in a collection container (an array
         in JSON). You can use the resulting value of the location
         header or response body to retrieve the created messages for
@@ -1085,9 +1103,9 @@ Location: /v1/480924/queues/rgoodqueue</programlisting>
       <para><tag class="attribute">body</tag> specifies an arbitrary
         document that constitutes the body of the message being sent.
         The size of this body, including characters and whitespace, is
-        limited to 4 KB. The document <emphasis role="italic"
-          >must</emphasis> be valid JSON (Cloud Queuing validates
-        it.).</para>
+        limited to 256 KB. The document <emphasis role="italic"
+          >must</emphasis> be valid JSON. (Cloud Queuing validates
+        it.)</para>
       <para><tag class="attribute">ttl</tag> is how long the server
         should wait before expiring and removing the message from the
         queue. Valid values are between 60 and 1209600 seconds (14
@@ -1099,37 +1117,16 @@ Location: /v1/480924/queues/rgoodqueue</programlisting>
         given next:</para>
       <example>
         <title>cURL Insert Messages Request</title>
-        <programlisting>curl -i -X POST http://0.0.0.0:8888/v1/480924/queues/rgoodqueue/messages -d '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" </programlisting>
+        <programlisting>curl -k -i -X POST https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/messages -d '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 806067" </programlisting>
       </example>
       <example>
-        <title>Insert Messages Response When a Single Message Is
-          Submitted</title>
+        <title>Insert Messages Response </title>
         <programlisting>HTTP/1.1 201 Created
-Location: /v1/480924/queues/rgoodqueue/messages/50b68a50d6f5b8c8a7c62b01
-Content-Type: application/json
+Content-Length: 153
+Content-Type: application/json; charset=utf-8
+Location: /v1/queues/samplequeue/messages?ids=51ca00a0c508f154c912b85c,51ca00a0c508f154c912b85d
 
-{
-    "resources": [
-        "/v1/480924/queues/rgoodqueue/messages/50b68a50d6f5b8c8a7c62b01"
-    ],
-    "partial": false
-}
-</programlisting>
-      </example>
-      <example>
-        <title>Insert Messages Response When Multiple Messages Are
-          Submitted</title>
-        <programlisting>HTTP/1.1 201 Created
-Location: /v1/480924/queues/rgoodqueue/messages?message_ids=50b68a50d6f5b8c8a7c62b01,50b68a50d6f5b8c8a7c62b05
-Content-Type: application/json
-
-{
-    "resources": [
-        "/v1/480924/queues/rgoodqueue/messages/50b68a50d6f5b8c8a7c62b01",
-        "/v1/480924/queues/rgoodqueue/messages/50b68a50d6f5b8c8a7c62b05"
-    ],
-    "partial": false
-}
+{"partial": false, "resources": ["/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c", "/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85d"]}
 </programlisting>
       </example>
     </section>
@@ -1186,36 +1183,17 @@ Content-Type: application/json
         next:</para>
       <example>
         <title>cURL Claim Messages Request</title>
-        <programlisting>curl -i -X POST http://0.0.0.0:8888/v1/480924/queues/rgoodqueue/claims -d '{"ttl": 300,"grace":300}' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" </programlisting>
+        <programlisting>curl -k -i -X POST https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/claims -d '{"ttl": 300,"grace":300}' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 806067"
+</programlisting>
       </example>
       <example>
         <title>Claim Messages Response</title>
         <programlisting>HTTP/1.1 200 OK
-Content-Type: application/json
-Location: /v1/480924/queues/rgoodqueue/claims/a28ee94e-6cb4-11e2-b4d5-7703267a7926
+Content-Length: 164
+Content-Type: application/json; charset=utf-8
+Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
 
-...
-
-[
-  {
-    "href": "/v1/480924/queues/rgoodqueue/messages/50b68a50d6f5b8c8a7c62b01?claim_id=a28ee94e-6cb4-11e2-b4d5-7703267a7926",
-    "ttl": 800,
-    "age": 100,
-    "body": {
-      "object_id": "8a50d6",
-      "target": "h.264"
-    }
-  },
-  {
-    "href": "/v1/480924/queues/rgoodqueue/messages/50b68a50d6f5b8c8a7c62b02?claim_id=a28ee94e-6cb4-11e2-b4d5-7703267a7926",
-    "ttl": 800,
-    "age": 790,
-    "body": {
-      "object_id": "fb8c8a",
-      "target": "h.264"
-    }
-  }
-]</programlisting>
+[{"body": {"event": "BackupStarted"}, "age": 124, "href": "/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6", "ttl": 300}]</programlisting>
       </example>
     </section>
     <section xml:id="Delete_messages">
@@ -1239,7 +1217,7 @@ Location: /v1/480924/queues/rgoodqueue/claims/a28ee94e-6cb4-11e2-b4d5-7703267a79
         given next:</para>
       <example>
         <title>cURL Delete Messages Request</title>
-        <programlisting>curl -i -X DELETE http://0.0.0.0:8888/v1/480924/queues/rgoodqueue/messages/51c3420f40a5dc90d9b0093f?a28ee94e-6cb4-11e2-b4d5-7703267a7926 -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" -H "Client-ID: QClient"</programlisting>
+        <programlisting>curl -k -i -X DELETE https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "Client-ID: QClient"  -H "X-Project-Id: 806067"</programlisting>
       </example>
       <example>
         <title>Delete Messages Response</title>
@@ -1262,7 +1240,7 @@ Location: /v1/480924/queues/rgoodqueue/claims/a28ee94e-6cb4-11e2-b4d5-7703267a79
         next:</para>
       <example>
         <title>cURL Delete Claim Request</title>
-        <programlisting>curl -i -X DELETE http://0.0.0.0:8888/v1/480924/queues/rgoodqueue/claims/51c343cc40a5dc90d9b00944 -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" -H "Client-ID: QClient"</programlisting>
+        <programlisting>curl -k -i -X DELETE https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "Client-ID: QClient"  -H "X-Project-Id: 806067"</programlisting>
       </example>
       <example>
         <title>Delete Claim Response</title>
@@ -1279,7 +1257,7 @@ Location: /v1/480924/queues/rgoodqueue/claims/a28ee94e-6cb4-11e2-b4d5-7703267a79
         next:</para>
       <example>
         <title>cURL Delete Queue Request</title>
-        <programlisting>curl -i -X DELETE http://0.0.0.0:8888/v1/480924/queues/rgoodqueue -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" </programlisting>
+        <programlisting>curl -i -X DELETE https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -H "Content-type: application/json" -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4"</programlisting>
       </example>
       <example>
         <title>Delete Queue Response</title>
@@ -1306,9 +1284,6 @@ Location: /v1/480924/queues/rgoodqueue/claims/a28ee94e-6cb4-11e2-b4d5-7703267a79
         www.rackspace.com/cloud</link>. This site also offers links to
       Rackspace's official support channels, including knowledge base
       articles, forums, phone, chat, and email. </para>
-    <para>Email all support questions to:
-      <email>cbdteam@rackspace.com</email>. 
-    </para>
     <para>You can follow Rackspace updates and announcements
       via twitter at: <link
         xlink:href="http://www.twitter.com/rackspace"

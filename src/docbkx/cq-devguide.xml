@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+        <!-- Some useful entities borrowed from HTML -->
+        <!ENTITY ndash  "&#x2013;">
+        <!ENTITY mdash  "&#x2014;">
+        <!ENTITY hellip "&#x2026;">
+        
+        <!-- Useful for describing APIs -->
+        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+        
+        <!-- changing authentication endpoints; define entities for US & UK rather than maintaining in text -->
+        <!ENTITY ENDPOINT-US "https://identity.api.rackspacecloud.com/v1.1/">
+        <!ENTITY ENDPOINT-UK "https://lon.identity.api.rackspacecloud.com/v1.1/">
+        <!ENTITY ENDPOINT-US-20 "https://identity.api.rackspacecloud.com/v2.0/">
+        <!ENTITY ENDPOINT-UK-20 "https://lon.identity.api.rackspacecloud.com/v2.0/">
+        
+        <!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject>
+                  <imagedata fileref="img/Check_mark_23x20_02.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+              </inlinemediaobject>'>
+              
+        <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject>
+                  <imagedata fileref="img/Arrow_east.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+              </inlinemediaobject>'>
+]>
 <book  
+    status="draft"
     xmlns="http://docbook.org/ns/docbook" 
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:xi="http://www.w3.org/2001/XInclude" 
@@ -8,28 +41,43 @@
     xml:id="cq-devguide">
   <?rax canonical.url.base="http://docs.rackspace.com/queuing/api/v1.0/cs-devguide/content"?>
   <title>Cloud Queuing Developer Guide</title>
+  <titleabbrev>Cloud Queuing Developer Guide</titleabbrev>
   <info>
+    <author xmlns:wadl="http://wadl.dev.java.net/2009/02">
+      <personname>
+        <firstname/>
+        <surname/>
+      </personname>
+      <affiliation>
+        <orgname>Rackspace Cloud</orgname>
+      </affiliation>
+    </author>
     <copyright>
-      <year>2012</year>
+      <year>2013</year>
       <holder>Rackspace US, Inc.</holder>
     </copyright>
-    <releaseinfo>API v1.0</releaseinfo>
+    <releaseinfo>API v1.0 Preview</releaseinfo>
     <productname>Cloud Queuing</productname><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
-    <pubdate><!--If you leave the <pubdate> element empty, the build system inserts today's date automatically. --></pubdate>
-    <revhistory>
-      <revision>
-        <date>2013-06-17</date>
-        <revdescription>
+    <pubdate></pubdate>
+    <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically. -->
+    <abstract xmlns:wadl="http://wadl.dev.java.net/2009/02">
+      <para>This document is intended for software developers
+        interested in developing applications using the Rackspace
+        Cloud Queuing Application Programming Interface
+          (<abbrev>API</abbrev>). </para>
+    </abstract>    <!--
           <para>This is the revision history section. The technical
             writer updates this section when major changes are made to
             the doc to indicate what changed. Typically this will
             include links into the body of the document. From this
             element we generate the list in <xref
               linkend="change_history"/> as well as the atom feed for
-            the document an <link xlink:href="../atom.xml">atom feed</link> for the document.
-              <itemizedlist spacing="compact">
+            the document an <link xlink:href="../atom.xml">atom
+              feed</link> for the document. <itemizedlist
+              spacing="compact">
               <listitem>
-                <para>Itemized lists are useful constructs for improving the readability of documents.</para>
+                <para>Itemized lists are useful constructs for
+                  improving the readability of documents.</para>
               </listitem>
               <listitem>
                 <para>One way that itemized lists improve readablity
@@ -41,6 +89,17 @@
                 </para>
               </listitem>
             </itemizedlist></para>
+            -->
+    
+    <revhistory>
+      <revision>
+        <date>2013-06-25</date>
+        <revdescription>
+          <itemizedlist>
+            <listitem>
+              <para>Initial Preview release.</para>
+            </listitem>
+          </itemizedlist>
         </revdescription>
       </revision>
     </revhistory>
@@ -60,6 +119,1543 @@
         <raxm:priority>20</raxm:priority>
       </raxm:metadata>
   </info>
+  <chapter xml:id="overview"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02">
+    <title>Overview</title>
+    <para>Rackspace Cloud Queuing is an API-based message and
+      notification service. A message queueing service is a vital
+      component of big, complex web applications. Cloud Queuing from
+      Rackspace is designed to fill this need. Cloud Queuing is based
+      on the OpenStack Marconi project.</para>
+    <para>As you develop more complex web applications, you often have
+      multiple servers set up to complete a set of tasks for that
+      application. These tasks can be anything from creating users to
+      deleting blocks of storage. Cloud Queuing is a service that owns
+      the lists of tasks, but not necessarily the order or workflow of
+      the tasks. Many applications handle the workflow at a higher
+      level.</para>
+    <para>Cloud Queuing creates an open alternative to the
+      producer-consumer and the publish-subscribe (pub-sub) messaging
+      patterns for use in applications that run on OpenStack clouds. </para>
+    <para>The Cloud Queuing API uses a modular architecture and
+      supports unified pub-sub and job-queuing semantics. You can
+      customize Cloud Queuing to achieve a wide range of performance,
+      durability, availability, and efficiency goals. </para>
+    <para>Interactions with Cloud Queuing occur programmatically via
+      the Cloud Queuing API as described in this developer
+      guide.</para>
+    <remark security="reviewer">Reviewer: do you want to replace the
+      marketing info above with something more technical? Please give
+      me your suggestions. We could also add a diagram of Cloud
+      Queuing infrastructure / architecture if you can give it to me.
+      For an example, see the DB diagram at <link
+        xlink:href="http://docs.rackspace.com/cdb/api/v1.0/cdb-devguide/content/overview.html"
+        >
+        http://docs.rackspace.com/cdb/api/v1.0/cdb-devguide/content/overview.html</link>.</remark>
+    <section xml:id="Document_Change_History-d1e166">
+      <title>Document Change History</title>
+      <para>This version of the Developer Guide replaces and obsoletes
+        all previous versions. The most recent changes are described
+        in the table below:</para>
+      <?rax revhistory?>
+    </section>
+    <section xml:id="Additional_Resources-d1e532">
+      <title>Additional Resources</title>
+      <para> For more details about Cloud Queuing, refer to ??? (link
+        to www.rackspace.com/cloud/queue???)
+        <!-- <link
+          xlink:href="http://www.rackspace.com/cloud/sites/">
+          http://www.rackspace.com/cloud/sites/</link> -->.
+        This site also offers links to Rackspace's official support
+        channels, including knowledge base articles, forums, phone,
+        chat, and email.</para>
+      <remark security="reviewer">Reviewer: do you have a
+        corresponding link for the Cloud Queuing
+        landing page on rackspace.com/cloud? If so, can you please
+        give it to me?</remark>
+      <para>Email all support questions to:
+          <email>cbdteam@rackspace.com</email>. </para>
+      <remark security="reviewer">Reviewer: do you have a
+        corresponding email distribution list for the Cloud Queuing
+        team to provide initial product support? If so, can you please
+        give it to me?</remark>
+      <para>Please visit our <link
+          xlink:href="http://feedback.rackspace.com/forums/71021-product-feedback/category/6841-cloud-sites"
+          >Product Feedback Forum</link> and let us know what you
+        think about Cloud Queuing!</para>
+      <para>You can follow Rackspace updates and announcements via
+        twitter at: <link
+          xlink:href="http://www.twitter.com/rackspace"
+          >www.twitter.com/rackspace</link>. </para>
+      <para>This API uses standard HTTP 1.1 response codes as
+        documented at: <link
+          xlink:href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"
+          >www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</link>.
+      </para>
+    </section>
+    <section xml:id="API_Contract_Changes-d1e363">
+      <title>API Contract Changes</title>
+      <para>The API contract is not locked and may change during the
+        Preview Program.</para>
+      <para>Rackspace will notify customers in Release Notes when and
+        if the contract does change.</para>
+    </section>
+    <section xml:id="Pricing_SLA-d1e1362">
+      <title>Pricing and Service Level</title>
+      <para>Cloud Queuing is part of the Rackspace Cloud and your use
+        through the API will be billed as per the pricing schedule at
+          <link
+          xlink:href="http://www.rackspace.com/cloud/sites/pricing/"
+          >http://www.rackspace.com/cloud/sites/pricing/</link>.</para>
+      <remark security="reviewer">Reviewer: Questions about pricing
+        for Cloud Queuing... seems to be up in the air... not charge
+        or billed? Please let me know.</remark>
+      <para>The Service Level Agreement (SLA) for Cloud Queuing is
+        available at <link
+          xlink:href="http://www.rackspace.com/cloud/legal/sla/#cloud_sites"
+          >http://www.rackspace.com/cloud/legal/sla/#cloud_sites</link>.</para>
+      <remark security="reviewer">Reviewer: do you have a
+        corresponding link for SLA for the Cloud Queuing? If so, can
+        you please give it to me?</remark>
+    </section>
+  </chapter>
+  <chapter xml:id="Concepts"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02">
+    <title>Concepts</title>
+    <para> To use the Cloud Queuing API effectively, you should
+      understand several key concepts: </para>
+    <section xml:id="Site-d1e588"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml">
+      <title>How Cloud Queuing Works</title>
+      <para>Here is an overview of the Cloud Queuing workflow: </para>
+      <orderedlist>
+        <listitem>
+          <para>You create a queue to which producers post
+            messages.</para>
+        </listitem>
+        <listitem>
+          <para>Workers claim messages from the queue, complete the
+            work in that message, and delete the message.</para>
+          <para>If a worker plans to be offline before its message
+            completes, the worker can retire the claim Time To Live
+            (TTL), putting the message back into the queue for another
+            worker to claim. </para>
+        </listitem>
+        <listitem>
+          <para>Subscribers monitor the claims of these queues to keep
+            track of activity and help troubleshoot if things go
+            wrong.</para>
+        </listitem>
+      </orderedlist>
+      <para>For the majority of use cases, Cloud Queuing itself will
+        not be responsible for the ordering of messages. If there is
+        only a single producer, however, Cloud Queueing guarantees
+        that messages are handled in a First In, First Out (FIFO)
+        order. </para>
+      <para>See the <xref linkend="glossary-d1e018"/> for terms that
+        are key to understanding how Cloud Queuing works.</para>
+    </section>
+    <section xml:id="DatabaseInstance-d1e588"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml">
+      <title>Operating Modes</title>
+      <para>Cloud Queuing uses the operating modes described in the
+        following sections. </para>
+      <section xml:id="producer_consumer">
+        <title>Producer-Consumer</title>
+        <para>Characteristics of the Producer-Consumer mode
+          are:</para>
+        <itemizedlist>
+          <listitem>
+            <para>The worker acts on <emphasis role="italic">only one
+                message</emphasis>.</para>
+          </listitem>
+          <listitem>
+            <para>The worker must delete the message when work is
+              done.</para>
+          </listitem>
+          <listitem>
+            <para>TTL restores a message to an unclaimed state if the
+              worker never finishes.</para>
+          </listitem>
+          <listitem>
+            <para>This mode is ideal for dispatching jobs to multiple
+              processors.</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+      <section xml:id="publish_subscribe">
+        <title>Publish-Subscribe</title>
+        <para>Characteristics of the Publish-Subscribe mode
+          are:</para>
+        <itemizedlist>
+          <listitem>
+            <para>All subscribers listen to the messages in the queue.
+            </para>
+          </listitem>
+          <listitem>
+            <para>Messages are not claimed.</para>
+          </listitem>
+          <listitem>
+            <para>Subscribers can send a marker/cursor to skip
+              messages already seen. </para>
+          </listitem>
+          <listitem>
+            <para>TTL eventually deletes messages. </para>
+          </listitem>
+          <listitem>
+            <para>This mode is ideal for notification of events to
+              multiple listeners at once.</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+    </section>
+    <section xml:id="Database"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml">
+      <title>Cloud Queuing Requests</title>
+      <section xml:id="cloud-queuing-actions">
+        <para>This section provides a list of requests that are
+          possible using the Cloud Queuing API. </para>
+        <section xml:id="queue-actions">
+          <title>Queues </title>
+          <para>The following requests are available for queues: </para>
+          <itemizedlist>
+            <listitem>
+              <para>Create Queue</para>
+            </listitem>
+            <listitem>
+              <para>List Queues</para>
+            </listitem>
+            <listitem>
+              <para>Set Queue Metadata</para>
+            </listitem>
+            <listitem>
+              <para>Get Queue Metadata</para>
+            </listitem>
+            <listitem>
+              <para>Get Queue Stats</para>
+            </listitem>
+            <listitem>
+              <para>Delete Queue</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+        <section xml:id="message-actions">
+          <title>Messages</title>
+          <para>The following requests are available for
+            messages:</para>
+          <itemizedlist>
+            <listitem>
+              <para>Post Message(s)</para>
+            </listitem>
+            <listitem>
+              <para>Get Messages</para>
+            </listitem>
+            <listitem>
+              <para>Get a Specific Message</para>
+            </listitem>
+            <listitem>
+              <para>Claim Messages</para>
+            </listitem>
+            <listitem>
+              <para>Delete Message(s)</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+        <section xml:id="claim-actions">
+          <title>Claims</title>
+          <para>The following requests are available for
+            claims:</para>
+          <itemizedlist>
+            <listitem>
+              <para>Query Claim</para>
+            </listitem>
+            <listitem>
+              <para>Update Claim</para>
+            </listitem>
+            <listitem>
+              <para>Release Claim</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+      <section xml:id="use_cases">
+        <title>Use Cases</title>
+        <para>Following are some possible use cases for Cloud Queuing: </para>
+        <itemizedlist>
+          <listitem>
+            <para> To distribute tasks among multiple workers
+              (transactional job queues). </para>
+          </listitem>
+          <listitem>
+            <para>To forward events to data collectors (transactional
+              event queues).</para>
+          </listitem>
+          <listitem>
+            <para>To publish events to any number of subscribers
+              (publish-subscribe).</para>
+          </listitem>
+          <listitem>
+            <para>To send commands to one or more agents
+              (point-to-point or publish-subscribe).</para>
+          </listitem>
+          <listitem>
+            <para>To request an action or get information from a
+              Remote Procedure Call (RPC) agent.</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+    </section>
+  </chapter>
+  <chapter xml:id="General_API_Information-d1e633"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02">
+    <title>General API Information</title>
+    <para> The Cloud Queuing API is implemented using a ReSTful web
+      service interface. Like other products in the Rackspace Cloud
+      suite, Cloud Queuing shares a common token-based authentication
+      system that allows seamless access between products and
+      services. </para>
+    <note>
+      <para> All requests to authenticate against and operate the
+        service are performed using SSL over HTTP (HTTPS) on TCP port
+        443. </para>
+    </note>
+    <remark>Reviewer: Not sure this note applies to Cloud Queuing, but
+      it was in a base template. Can you please let me know whether I
+      should keep this note or not?</remark>
+    <section xml:id="Authentication-d1e647" security="writeronly">
+      <title>Authentication</title>
+      <para> Every ReST request against the Cloud Sites Service
+        requires the inclusion of a specific authorization token,
+        supplied by the <code>X-Auth-Token</code> HTTP header.
+        Customers obtain this token by first using the Rackspace Cloud
+        Authentication Service and supplying a valid username and API
+        access key. </para>
+      <para> To authenticate, submit a <code>POST/v2.0/tokens</code>
+        request, presenting valid Rackspace customer credentials in
+        the message body to a Rackspace authentication endpoint. </para>
+      <para>
+        <emphasis role="bold">GET YOUR CREDENTIALS</emphasis>
+      </para>
+      <para> You can use either of two sets of credentials: <itemizedlist>
+          <listitem>
+            <para>your <code>username</code> and
+              <code>password</code></para>
+          </listitem>
+          <listitem>
+            <para>your <code>username</code> and <code>API
+              key</code></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <para> Your <code>username</code> and <code>password</code> are
+        the ones you use to login to the Rackspace control panel. Once
+        you are logged in, you can use the Rackspace control panel to
+        obtain your <code>API key</code>. </para>
+      <para> Use the control panel for the region in which your
+        account is based: <itemizedlist spacing="compact">
+          <listitem>
+            <para> US-based accounts use the control panel at <link
+                xlink:href="https://manage.rackspacecloud.com/"
+                >https://manage.rackspacecloud.com/</link>. </para>
+          </listitem>
+          <listitem>
+            <para> UK-based accounts use the control panel at <link
+                xlink:href="https://lon.manage.rackspacecloud.com/">
+                https://lon.manage.rackspacecloud.com/</link>. </para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <para>
+        <emphasis role="bold">CHOOSE YOUR AUTHENTICATION </emphasis>
+      </para>
+      <para> Use the authentication endpoint for the region in which
+        your account is based: <itemizedlist>
+          <listitem>
+            <para>All accounts authenticate through <link
+                xlink:href="https://identity.api.rackspacecloud.com/v2.0/tokens"
+                >
+              identity.api.rackspacecloud.com/v2.0/tokens</link>.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <para>
+        <emphasis role="bold">SEND YOUR CREDENTIALS TO YOUR
+          AUTHENTICATION ENDPOINT</emphasis>
+      </para>
+      <para> If you know your credentials and your authentication
+        endpoint, and you can issue a <code>POST /v2.0/tokens</code>
+        request in an API call, you have all the basic information you
+        need to use the Rackspace Cloud Identity Service. </para>
+      <para> You can use <link xlink:href="http://curl.haxx.se/"
+          >cURL</link> to try the authentication process in two steps:
+        get a token; send the token to a service.<orderedlist>
+          <listitem>
+            <para>Get an authentication token by providing your
+              username and either your API key or your password. Here
+              are examples of both approaches:</para>
+            <para><emphasis>You can request a token by providing your
+                username and your API key.</emphasis></para>
+            <para>
+              <literallayout class="monospaced">curl -X POST https://auth.api.rackspacecloud.com/v2.0/tokens -d 
+'{ "auth":{ "RAX-KSKEY:apiKeyCredentials":{ "username":"theUserName", "apiKey":"00a00000a000a0000000a000a00aaa0a" } } }' -H "Content-type: application/json"</literallayout>
+            </para>
+            <para><emphasis>You can request a token by providing your
+                username and your password.</emphasis></para>
+            <para>
+              <literallayout class="monospaced">curl -X POST https://auth.api.rackspacecloud.com/v2.0/tokens -d
+'{"auth":{"passwordCredentials":{"username":"theUserName","password":"thePassword"}}}' -H "Content-type: application/json"</literallayout>
+            </para>
+            <para> Successful authentication returns a token which you
+              can use as evidence that your identity has already been
+              authenticated. To use the token, pass it to other
+              services as an <code>X-Auth-Token</code> header. </para>
+            <para> Authentication also returns a service catalog,
+              listing the endpoints you can use for Cloud services.
+            </para>
+          </listitem>
+          <listitem>
+            <para>Use the authentication token to send a GET to a
+              service you would like to use. Here is an example of
+              passing an authentication token to the Cloud Files
+              service, using the Cloud Files service catalog endpoint
+              that was returned along with the token.</para>
+            <para><emphasis>You can use a token and a service endpoint
+                to tell a service that your credentials are
+                valid.</emphasis></para>
+          </listitem>
+        </orderedlist>
+      </para>
+      <para>Authentication tokens are typically valid for 24 hours.
+        Applications should be designed to re-authenticate after
+        receiving a 401 (Unauthorized) response from a service
+        endpoint. </para>
+      <important>
+        <para>If you are programmatically parsing an authentication
+          response, please be aware that service names are stable for
+          the life of the particular service and can be used as keys.
+          You should also be aware that a user's service catalog can
+          include multiple uniquely-named services which perform
+          similar functions. In Auth 2.0, the service type attribute
+          can be used as a key by which to recognize similar services;
+          see the tip below. </para>
+      </important>
+    </section>
+    <section xml:id="Authentication-d1e648">
+      <title>Authentication</title>
+      <para> Every ReST request against the Sites Service requires the
+        inclusion of a specific authorization token, supplied by the
+          <code>X-Auth-Token</code> HTTP header. Customers obtain this
+        token by first using the Rackspace Cloud Authentication
+        Service and supplying a valid username and API access key. </para>
+      <section xml:id="Geographic_Endpoints">
+        <title>Geographic Endpoints</title>
+        <para> The Rackspace Cloud Authentication Service serves as
+          the entry point to all Rackspace Cloud APIs and is itself a
+          ReSTful web service. </para>
+        <para> To access the Authentication Service, you must know
+          whether your account is US-based or UK-based: </para>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para> US-based accounts authenticate through <link
+                xlink:href="&ENDPOINT-US-20;">&ENDPOINT-US-20;</link>.
+            </para>
+          </listitem>
+          <listitem>
+            <para> UK-based accounts authenticate through <link
+                xlink:href="&ENDPOINT-UK-20;">&ENDPOINT-UK-20;</link>.
+            </para>
+          </listitem>
+        </itemizedlist>
+        <para> Your account may be based in either the US or the UK;
+          this is not determined by your physical location but by the
+          location of the Rackspace retail site which was used to
+          create your account: </para>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para> If your account was created via <link
+                xlink:href="http://www.rackspacecloud.com"
+                >http://www.rackspacecloud.com</link>, it is a
+              US-based account. </para>
+          </listitem>
+          <listitem>
+            <para> If your account was created via <link
+                xlink:href="http://www.rackspace.co.uk"
+                >http://www.rackspace.co.uk</link>, it is a UK-based
+              account. </para>
+          </listitem>
+        </itemizedlist>
+        <para> If you are unsure how your account was created, use the
+          Rackspace contact information at either site to ask for
+          help. </para>
+      </section>
+      <section xml:id="Retrieving_Auth_Token">
+        <title>Retrieving the Authentication Token</title>
+        <informaltable rules="all">
+          <tbody>
+            <tr>
+              <td colspan="1">&POST; </td>
+              <td colspan="1"> v2.0/tokens </td>
+              <td colspan="4"> Authenticate to receive a token and a
+                service catalog. </td>
+            </tr>
+          </tbody>
+        </informaltable>
+        <simpara> Normal Response Code(s):
+            <returnvalue>200</returnvalue>,
+            <returnvalue>203</returnvalue>
+        </simpara>
+        <simpara> Error Response Code(s): unauthorized
+            (<errorcode>401</errorcode>), userDisabled
+            (<errorcode>403</errorcode>), badRequest
+            (<errorcode>400</errorcode>), authFault
+            (<errorcode>500</errorcode>), serviceUnavailable
+            (<errorcode>503</errorcode>) </simpara>
+        <para> The authenticate operation provides clients with an
+          authentication token and a list of regional cloud endpoints.
+          The sample requests and responses in this section illustrate
+          a general case. In your authentication request, use your own
+          credentials rather than the sample values shown here for
+            <code>username</code> and <code>apiKey</code>. When you
+          authenticate successfully, the response to your
+          authentication request will include a catalog of the
+          services to which you have subscribed rather than the sample
+          values shown here.</para>
+        <example>
+          <title>Auth Request: XML</title>
+          <programlistingco>
+            <areaspec>
+              <area xml:id="credentials.xml.user" units="linecolumn"
+                coords="13 17"/>
+              <area xml:id="credentials.xml.key" units="linecolumn"
+                coords="14 15"/>
+            </areaspec>
+            <programlisting language="xml">
+<xi:include href="../samples/db-credentials-20.xml" parse="text"/>
+                    </programlisting>
+          </programlistingco>
+        </example>
+        <example>
+          <title>Auth Request: JSON</title>
+          <programlistingco>
+            <areaspec>
+              <area xml:id="credentials.json.user" units="linecolumn"
+                coords="14 22"/>
+              <area xml:id="credentials.json.key" units="linecolumn"
+                coords="15 20"/>
+            </areaspec>
+            <programlisting language="json">
+<xi:include href="../samples/db-credentials-20.json" parse="text"/>
+                    </programlisting>
+          </programlistingco>
+        </example>
+        <calloutlist>
+          <callout arearefs="credentials.xml.user">
+            <para> The username supplied here is your common Rackspace
+              Cloud username. </para>
+          </callout>
+          <callout arearefs="credentials.xml.key">
+            <para> The key is your API access key. The key can be
+              obtained from the Rackspace Cloud Control Panel in the
+                <guimenu>&lt;Your Account></guimenu>/<guimenuitem>API
+                Access</guimenuitem> section (login here: <link
+                xlink:href="http://mycloud.rackspace.com/">Control
+                Panel Login</link>). </para>
+          </callout>
+        </calloutlist>
+        <example>
+          <title>Auth Response: XML</title>
+          <programlistingco>
+            <areaspec>
+              <area xml:id="response.xml.namespaces"
+                units="linecolumn" coords="7 9"/>
+              <area xml:id="response.xml.token" units="linecolumn"
+                coords="15 10"/>
+              <area xml:id="response.xml.dfltregion"
+                units="linecolumn" coords="16 67"/>
+              <area xml:id="response.xml.role" units="linecolumn"
+                coords="17 12"/>
+              <area xml:id="response.xml.catalog" units="linecolumn"
+                coords="22 21"/>
+              <area xml:id="response.xml.servicetype"
+                units="linecolumn" coords="51 34"/>
+              <area xml:id="response.xml.servicename"
+                units="linecolumn" coords="51 54"/>
+              <area xml:id="response.xml.region" units="linecolumn"
+                coords="52 30"/>
+              <area xml:id="response.xml.tenant" units="linecolumn"
+                coords="53 66"/>
+              <area xml:id="response.xml.url" units="linecolumn"
+                coords="54 9"/>
+            </areaspec>
+            <programlisting language="xml"><xi:include href="../samples/db-auth-20.xml" parse="text"/></programlisting>
+          </programlistingco>
+        </example>
+        <example xml:id="auth-response-example-json">
+          <title>Auth Response: JSON</title>
+          <programlistingco>
+            <areaspec>
+              <area xml:id="response.json.namespaces"
+                units="linecolumn" coords="200 1"/>
+              <area xml:id="response.json.token" units="linecolumn"
+                coords="9 8"/>
+              <area xml:id="response.json.dfltregion"
+                units="linecolumn" coords="16 45"/>
+              <area xml:id="response.json.role" units="linecolumn"
+                coords="17 12"/>
+              <area xml:id="response.json.catalog" units="linecolumn"
+                coords="30 8"/>
+              <area xml:id="response.json.servicetype"
+                units="linecolumn" coords="114 16"/>
+              <area xml:id="response.json.servicename"
+                units="linecolumn" coords="113 16"/>
+              <area xml:id="response.json.region" units="linecolumn"
+                coords="104 24"/>
+              <area xml:id="response.json.tenant" units="linecolumn"
+                coords="101 24"/>
+              <area xml:id="response.json.url" units="linecolumn"
+                coords="102 24"/>
+            </areaspec>
+            <programlisting language="json"><xi:include href="../samples/db-auth-20.json" parse="text"/>
+                    </programlisting>
+          </programlistingco>
+        </example>
+        <note>
+          <para>The information shown in the Auth Response examples is
+            for US-based accounts. If you authenticate against the
+            UK-endpoint for auth, you will see the service catalog
+            information for UK-based accounts.</para>
+        </note>
+        <calloutlist>
+          <callout arearefs="response.xml.namespaces">
+            <para> In XML responses only, a list of namespaces
+              identifies API extensions that add functionality to the
+              core API. </para>
+            <para> </para>
+          </callout>
+          <callout arearefs="response.xml.token">
+            <para> This token can be presented to a service as
+              evidence of authentication. Tokens are valid for a
+              finite duration; a token's default lifespan is
+              twenty-four hours. </para>
+            <para> The token's <code>expires</code> attribute denotes
+              the time after which the token will automatically become
+              invalid. A token may be manually revoked before the time
+              identified by the <code>expires</code> attribute;
+                <code>expires</code> predicts a token's maximum
+              possible lifespan but does not guarantee that it will
+              reach that lifespan. Clients are encouraged to cache a
+              token until it expires. </para>
+            <note>
+              <para>The token's expiration time is formatted
+                differently in the US and UK. These examples show the
+                US format. For examples of the UK format please refer
+                to <link
+                  xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_authenticate_v2.0_tokens_.html"
+                  >http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_authenticate_v2.0_tokens_.html</link></para>
+            </note>
+            <para> </para>
+          </callout>
+          <callout arearefs="response.xml.dfltregion">
+            <para> Users can be assigned a default region so that,
+              when there is a choice between multiple endpoints
+              associated with a service in the user's catalog, the
+              endpoint for the user's default region will be selected
+              if it is available. In this example, the user's default
+              region is DFW and several of the services in the user's
+              catalog offer endpoints in that region and the ORD
+              region; this user's work will be directed to the DFW
+              region whenever possible. </para>
+            <para> </para>
+          </callout>
+          <callout arearefs="response.xml.role">
+            <para> Users can be assigned multiple roles, with each
+              role providing specific privileges. In this example,
+                <code>jsmith</code> is the administrative user for the
+              account, holding the fully-privileged
+                <code>identity:admin</code> role. Other users might
+              hold other roles with different privileges. Roles need
+              not be associated with actual job functions such as
+              Administrator, Operator, Developer, Tester, or Trainer. </para>
+            <para> </para>
+          </callout>
+          <callout arearefs="response.xml.catalog">
+            <para> The service catalog lists the services this user
+              can access. In this example, the user can access one
+              database service, one loadbalancing service, two compute
+              services (Cloud Servers OpenStack and Cloud Servers),
+              two object storage services (Cloud Files Content
+              Distribution Network (CDN), and Cloud Files), and one
+              DNS service. The catalog listing for each service
+              provides at least one endpoint URL for that service.
+              Other information, such as regions, versions, and
+              tenants, is provided if it's relevant to this user's
+              access to this service. </para>
+            <para> </para>
+          </callout>
+          <callout arearefs="response.xml.servicetype">
+            <para> The service type attribute identifies services that
+              perform similar functions, whatever those services might
+              be named. In this example, the services named
+              cloudServers and cloudServersOpenstack are both
+              identified as <code>type="compute"</code>, identifying
+              them as compute services even though the word "compute"
+              does not appear in their names. </para>
+            <important>
+              <para>Use service type as the primary value for locating
+                a service. If multiple endpoints of the same service
+                type exist in the same region, use service name as the
+                tiebreaker.</para>
+            </important>
+            <para> </para>
+          </callout>
+          <callout arearefs="response.xml.servicename">
+            <para> The service name attribute identifies each unique
+              service in the catalog. Once a service is created, its
+              name does not change. However, new services of the same
+              service type may be added to the catalog with new names. </para>
+            <important>
+              <para> If you are programmatically parsing an
+                authentication response, use service type rather than
+                service name as the basis for determining whether a
+                user has access to a particular kind of service.
+                Service type is stable across all releases; new
+                service types may be developed, but existing service
+                types are not renamed. In this example,
+                  <code>type="compute"</code> identifies all the
+                available compute services, one of which is named
+                cloudServers and one of which is named
+                cloudServersOpenStack. New compute service names may
+                be added in future releases; whatever the compute
+                services are named, you can always recognize them by
+                parsing for <code>type="compute"</code> in the
+                authentication response's service catalog. </para>
+            </important>
+            <para> </para>
+          </callout>
+          <callout arearefs="response.xml.region">
+            <para> A service may expose endpoints in different
+              regions. Regional endpoints allow clients to provision
+              resources in a manner that provides high availability. </para>
+            <para> Some services are not region-specific. These
+              services supply a single non-regional endpoint and do
+              not provide access to internal URLs. </para>
+            <para> </para>
+          </callout>
+          <callout arearefs="response.xml.tenant">
+            <para> Some services recognize specification of a tenant.
+              If a service does recognize tenants, the format of the
+              tenant specification is defined only by the service; for
+              details about whether and how to specify a tenant, check
+              the documentation for the service you are using.</para>
+            <para> </para>
+          </callout>
+          <callout arearefs="response.xml.url">
+            <para> An endpoint can be assigned public and internal
+              URLs. A public URL is accessible from anywhere. Access
+              to a public URL usually incurs traffic charges. Internal
+              URLs are only accessible to services within the same
+              region. Access to an internal URL is free of charge. </para>
+            <para> </para>
+          </callout>
+        </calloutlist>
+        <para>Authentication tokens are typically valid for 24 hours.
+          Applications should be designed to re-authenticate after
+          receiving a 401 (Unauthorized) response from a service
+          endpoint. </para>
+        <important>
+          <para>If you are programmatically parsing an authentication
+            response, please be aware that service names are stable
+            for the life of the particular service and can be used as
+            keys. You should also be aware that a user's service
+            catalog can include multiple uniquely-named services which
+            perform similar functions. For example,
+            cloudServersOpenStack is the OpenStack version of compute
+            whereas cloudServers is the legacy version of compute; the
+            same user can have access to both services. In Auth 2.0,
+            the service type attribute can be used as a key by which
+            to recognize similar services; see the tip below.</para>
+        </important>
+        <tip>
+          <para>Beginning with Auth 2.0, the service catalog includes
+            a service type attribute to identify services that perform
+            similar functions but have different names; for example,
+              <code>type="compute"</code> identifies compute services
+            such as cloudServers and cloudServersOpenStack. Some
+            developers have found the service type attribute to be
+            useful in parsing the service catalog. For additional
+            information on Auth 2.0 (also known as the Cloud Identity
+            Service), refer to the <citetitle>Cloud Identity Client
+              Developer Guide</citetitle> at <link
+              xlink:href="http://docs.rackspace.com"
+              >http://docs.rackspace.com/</link>.</para>
+        </tip>
+        <para>Sites service endpoints are published in the service
+          catalog in the Auth response with the account number, which
+          is a required element of the service endpoints. The examples
+          shown here are for authentication for US customers.
+          Customers with UK-based accounts will see different values
+          in the service catalog. Refer to the next section for more
+          information about service endpoints. </para>
+      </section>
+    </section>
+    <section xml:id="Service_Access_Endpoints-d1e753">
+      <title>Service Access/Endpoints</title>
+      <para>The Cloud Sites Service is a regionalized service. The
+        user of the service is therefore responsible for appropriate
+        replication, caching, and overall maintenance of Cloud Sites
+        data across regional boundaries to other Cloud Sites
+        servers.</para>
+      <para>You can find the available service access/endpoints for
+        Cloud Sites summarized in the table below.</para>
+      <?rax-fo keep-with-next?>
+      <para>
+        <table rules="all">
+          <caption>Regionalized Service Endpoints</caption>
+          <thead>
+            <tr align="center">
+              <td colspan="2">Region</td>
+              <td colspan="5">Endpoint</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr align="left">
+              <td colspan="2">Chicago (ORD)</td>
+              <td colspan="5"
+                  ><code>https://ord.databases.api.rackspacecloud.com/v2.0/</code><parameter>1234</parameter>/
+              </td>
+            </tr>
+            <tr align="left">
+              <td colspan="2">Dallas/Ft. Worth (DFW)</td>
+              <td colspan="5"
+                  ><code>https://dfw.databases.api.rackspacecloud.com/v2.0/</code><parameter>1234</parameter>/
+              </td>
+            </tr>
+            <tr align="left">
+              <td colspan="2">London (LON)</td>
+              <td colspan="5">
+                <code>https://lon.databases.api.rackspacecloud.com/v2.0/</code><parameter>1234</parameter>/
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </para>
+      <remark security="reviewer">Reviewer: please provide service
+        endpoints for Cloud Sites so I can put them in the table
+        above.</remark>
+      <para>Replace the sample account ID number,
+          <parameter>1234</parameter>, with your actual account number
+        returned as part of the authentication service
+        response.</para>
+      <para>You will find the actual account number after the final
+        '/' in the <code>publicURL</code> field returned by the
+        authentication response. For example, in <xref
+          linkend="auth-response-example-json"/> you can see from the
+          <code>publicURL</code> field for <code>cloudServers</code>
+          ("https://servers.api.rackspacecloud.com/v1.0/<emphasis
+          role="bold">1100111</emphasis>") that the account number is
+        1100111.</para>
+    </section>
+    <section xml:id="CSites_service_versions">
+      <title>Cloud Sites Service Versions</title>
+      <para> The Cloud Sites version defines the contract and build
+        information for the API. </para>
+      <section xml:id="Contract_Version-d1e825">
+        <title>Contract Version</title>
+        <para> The contract version denotes the data model and
+          behavior that the API supports. The requested contract
+          version is included in all request URLs. Different contract
+          versions of the API may be available at any given time and
+          are not guaranteed to be compatible with one another. </para>
+        <remark security="reviewer">Reviewer: please provide correct
+          request URL for the example below.</remark>
+        <example>
+          <title>Example Request URL (contract version in <emphasis
+              role="strong">bold</emphasis>)</title>
+          <programlisting>https://ord.databases.api.rackspacecloud.com/<emphasis role="strong">v2.0</emphasis>/1234</programlisting>
+        </example>
+        <note>
+          <para>This document pertains to contract version 2.0.</para>
+        </note>
+      </section>
+    </section>
+    <section xml:id="Request_Response_Types-d1e903">
+      <title>Request/Response Types</title>
+      <para> The Cloud Sites API supports both the JSON and XML data
+        serialization formats. The request format is specified using
+        the <code>Content-Type</code> header and is
+          <emphasis>required</emphasis> for calls that have a request
+        body. The response format can be specified in requests either
+        by using the <code>Accept</code> header or by adding an
+          <code>.xml</code> or <code>.json</code> extension to the
+        request URI. Note that it is possible for a response to be
+        serialized using a format different from the request. If no
+        response format is specified, JSON is the default. If
+        conflicting formats are specified using both an
+          <code>Accept</code> header and a query extension, the query
+        extension takes precedence.</para>
+      <table rules="all">
+        <caption>Response Formats</caption>
+        <?dbfo keep-together="always"?>
+        <thead>
+          <tr align="center">
+            <td>Format</td>
+            <td>Accept Header</td>
+            <td>Query Extension</td>
+            <td>Default</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>JSON</td>
+            <td>application/json</td>
+            <td>.json</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>XML</td>
+            <td>application/xml</td>
+            <td>.xml</td>
+            <td>No</td>
+          </tr>
+        </tbody>
+      </table>
+      <para>In the request example below, notice that
+          <parameter>Content-Type</parameter> is set to
+          <parameter>application/json</parameter>, but
+          <parameter>application/xml</parameter> is requested via the
+          <parameter>Accept</parameter> header:</para>
+      <example xml:id="request_with_headers_json">
+        <title>Request with Headers: JSON</title>
+        <?dbfo keep-together="always"?>
+        <programlisting language="json"><xi:include href="../samples/db-request-types.json" parse="text"><xi:fallback>Missing code sample!<?rax fail?></xi:fallback></xi:include></programlisting>
+      </example>
+      <para><?rax-fo keep-with-next?>Therefore an XML response format
+        is returned:</para>
+      <example>
+        <title>Response with Headers: XML</title>
+        <?dbfo keep-together="always"?>
+        <programlisting language="xml"><xi:include href="../samples/db-response-types.xml" parse="text"><xi:fallback>Missing code sample!<?rax fail?></xi:fallback></xi:include></programlisting>
+      </example>
+      <remark security="reviewer">Reviewer: please provide cloud sites
+        examples for the 2 examples above.</remark>
+    </section>
+    <section xml:id="volume_status">
+      <title>Statuses</title>
+      <remark security="reviewer">Reviewer: does the information about
+        statuses in this section apply to cloud sites? If so please
+        provide your feedback. Otherwise I can delete it.</remark>
+      <para>
+        <table rules="all" security="reviewer">
+          <caption>Statuses</caption>
+          <?dbfo keep-together="always"?>
+          <thead>
+            <tr align="center">
+              <td>Response Code</td>
+              <td>Message</td>
+              <td>When</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>401</td>
+              <td>Not authorized</td>
+              <td>Invalid or missing token</td>
+            </tr>
+            <tr>
+              <td>403</td>
+              <td>Access is denied to this resource</td>
+              <td>Attempted a create/update/delete but user only has
+                read permissions</td>
+            </tr>
+            <tr>
+              <td>404</td>
+              <td>The resource could not be found</td>
+              <td>User requested an invalid URL or invalid resource by
+                ID</td>
+            </tr>
+          </tbody>
+        </table>
+      </para>
+      <remark security="reviewer">Reviewer: please review the table
+        above and give me any updates you have.</remark>
+    </section>
+    <section xml:id="Limits-d1e1208">
+      <title>Limits</title>
+      <remark security="reviewer">Reviewer: does the information about
+        limits in this section and its subsection apply to cloud
+        sites? If so please provide your feedback. Otherwise I can
+        delete or hide it.</remark>
+      <para> All accounts, by default, have a preconfigured set of
+        thresholds (or limits) to manage capacity and prevent abuse of
+        the system. The system recognizes two kinds of limits:
+          <firstterm>rate limits</firstterm> and <firstterm>absolute
+          limits</firstterm>. Rate limits are thresholds that are
+        reset after a certain amount of time passes. Absolute limits
+        are fixed. </para>
+      <section xml:id="Rate_Limits-d1e1222">
+        <title>Rate Limits</title>
+        <para> Rate limits are specified in terms of both a
+          human-readable wild-card URI and a machine-processable
+          regular expression. The regular expression boundary matcher
+          '^' takes effect after the root URI path. For example, the
+          regular expression ^/v1.0/instances would match the bolded
+          portion of the following URI:
+            https://ord.databases.api.rackspacecloud.com<emphasis
+            role="bold">/v1.0/instances</emphasis>. </para>
+        <remark security="reviewer">Reviewer: The URI above needs to
+          be updated for cloud sites if we keep this info.</remark>
+        <para>The following table specifies the default rate limits
+          for all API operations for all &GET;, &POST;, &PUT;, and
+          &DELETE; calls for databases and database instances: </para>
+        <remark security="reviewer">Reviewer: The sentence above needs
+          to be updated for cloud sites if we keep this info.</remark>
+        <table rules="all">
+          <caption>Default Rate Limits</caption>
+          <thead>
+            <tr align="center">
+              <td colspan="1">Verb</td>
+              <td colspan="2">URI</td>
+              <td colspan="2">RegEx</td>
+              <td colspan="1">Default</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="1">&GET; changes-since</td>
+              <td colspan="2">*/instances/*</td>
+              <td colspan="2">^/vd+.d+/instances.*</td>
+              <td colspan="1">3/minute</td>
+            </tr>
+            <tr>
+              <td colspan="1">&POST;</td>
+              <td colspan="2">*/instances/*</td>
+              <td colspan="2">^/vd+.d+/instances.*</td>
+              <td colspan="1">10/minute</td>
+            </tr>
+            <tr>
+              <td colspan="1">&POST; instances</td>
+              <td colspan="2">*/instances/*</td>
+              <td colspan="2">^/vd+.d+/instances.*</td>
+              <td colspan="1">50/day</td>
+            </tr>
+            <tr>
+              <td colspan="1">&PUT;</td>
+              <td colspan="2">*/instances/*</td>
+              <td colspan="2">^/vd+.d+/instances.*</td>
+              <td colspan="1">10/minute</td>
+            </tr>
+            <tr>
+              <td colspan="1">&DELETE;</td>
+              <td colspan="2">*/instances/*</td>
+              <td colspan="2">^/vd+.d+/instances.*</td>
+              <td colspan="1">100/minute</td>
+            </tr>
+          </tbody>
+        </table>
+        <remark security="reviewer">Reviewer: The table above needs to
+          be updated for cloud sites if we keep this info.</remark>
+        <para> Rate limits are applied in order relative to the verb,
+          going from least to most specific. For example, although the
+          threshold for &POST; to /v1.0/* is 10 per minute, one cannot
+          &POST; to /v1.0/* more than 50 times within a single day. </para>
+        <para> If you exceed the thresholds established for your
+          account, a <errorcode>413 (Rate Control)</errorcode> HTTP
+          response will be returned with a <code>Retry-After</code>
+          header to notify the client when it can attempt to try
+          again. </para>
+      </section>
+      <section xml:id="Absolute_Limits-d1e1397">
+        <title>Absolute Limits</title>
+        <remark security="reviewer">Reviewer: Need to update this
+          entire section. Please give me your updates.</remark>
+        <para>Refer to the following table for the absolute limits
+          that are set.</para>
+        <table rules="all">
+          <caption>Absolute Limits</caption>
+          <thead>
+            <tr>
+              <td colspan="1">Name</td>
+              <td colspan="3">Description</td>
+              <td colspan="1">Limit</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="1">Instances</td>
+              <td colspan="3">Maximum number of instances allowed for
+                your account</td>
+              <td colspan="1">25</td>
+            </tr>
+            <tr>
+              <td colspan="1">Volume Size</td>
+              <td colspan="3">Maximum volume size per instance in
+                gigabytes (GB) for your account</td>
+              <td colspan="1">50</td>
+            </tr>
+          </tbody>
+        </table>
+        <remark security="reviewer">Reviewer: the table above needs
+          updating if we keep it.</remark>
+      </section>
+    </section>
+    <section xml:id="datetimeformat">
+      <title>Date/Time Format</title>
+      <para> The Sites Service uses an ISO-8601 compliant date format
+        for the display and consumption of date/time values. </para>
+      <para>The system timezone is in UTC. MySQL converts TIMESTAMP
+        values from the current time zone to UTC for storage, and back
+        from UTC to the current time zone for retrieval. This does not
+        occur for other types, such as DATETIME. </para>
+      <example>
+        <title>DB Service Date/Time Format</title>
+        <programlisting>yyyy-MM-dd'T'HH:mm:ss.SSSZ</programlisting>
+        <para>See the table below for a description of the date/time
+          format codes.</para>
+        <para>May 19th, 2011 at 8:07:08 AM, GMT-5 would have the
+          following format:</para>
+        <programlisting>2011-05-19T08:07:08-05:00</programlisting>
+      </example>
+      <table rules="all">
+        <caption>Explanation of Date/Time Format Codes</caption>
+        <thead>
+          <tr>
+            <td>Code</td>
+            <td>Description</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>yyyy</td>
+            <td>Four digit year</td>
+          </tr>
+          <tr>
+            <td>MM</td>
+            <td>Two digit month</td>
+          </tr>
+          <tr>
+            <td>dd</td>
+            <td>Two digit day of month</td>
+          </tr>
+          <tr>
+            <td>T</td>
+            <td>Separator for date/time</td>
+          </tr>
+          <tr>
+            <td>HH</td>
+            <td>Two digit hour of day (00-23)</td>
+          </tr>
+          <tr>
+            <td>mm</td>
+            <td>Two digit minutes of hour</td>
+          </tr>
+          <tr>
+            <td>ss</td>
+            <td>Two digit seconds of the minute</td>
+          </tr>
+          <tr>
+            <td>SSS</td>
+            <td>Three digit milliseconds of the second</td>
+          </tr>
+          <tr>
+            <td>Z</td>
+            <td>RFC-822 timezone</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section xml:id="pagination">
+      <title>Pagination</title>
+      <remark security="reviewer">Reviewer: if this section applies we
+        need to update it with cloud sites information and
+        examples.</remark>
+      <para>To reduce load on the service, list operations return a
+        maximum of 20 items at a time. This is referred to as
+          <emphasis>pagination</emphasis>. Cloud Databases has
+        separate paging limits for instances, databases, and users,
+        which are currently all set to 20. If a request supplies no
+        limit or one that exceeds the configured default limit, the
+        default is used instead.</para>
+      <para> Pagination provides the ability to limit the size of the
+        returned data as well as retrieve a specified subset of a
+        large data set. Pagination has two key concepts: limit and
+        marker. <emphasis>Limit</emphasis> is the restriction on the
+        maximum number of items for that type that can be returned.
+          <emphasis>Marker</emphasis> is the ID of the last item in
+        the previous list returned. The ID is the UUID in the case of
+        instances, and the name in the case of databases and users.
+        For example, a query could request the next 10 instances after
+        the instance "1234" as follows:
+          <code>?limit=10&amp;marker=1234</code>. Items are displayed
+        sorted by ID. </para>
+      <para>Pagination applies only to the calls listed in the
+        following table: </para>
+      <informaltable rules="all">
+        <thead>
+          <tr align="center">
+            <td colspan="1">Verb</td>
+            <td colspan="2">URI</td>
+            <td colspan="3">Description</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="1">&GET;</td>
+            <td colspan="2">/instances/</td>
+            <td colspan="3">Lists the status and information for all
+              database instances.</td>
+          </tr>
+          <tr>
+            <td colspan="1">&GET;</td>
+            <td colspan="2"> /instances/{instanceId}/databases </td>
+            <td colspan="3">Lists databases for the specified
+              instance.</td>
+          </tr>
+          <tr>
+            <td colspan="1">&GET;</td>
+            <td colspan="2"> /instances/{instanceId}/users </td>
+            <td colspan="3">Lists the users in the specified database
+              instance.</td>
+          </tr>
+        </tbody>
+      </informaltable>
+      <para>If the content returned by a call is paginated, the
+        response includes a structured link much like an instance
+        item's links, with the basic structure <code>{"href":
+          "&lt;url>", "rel": "next"}</code>. Any response that is
+        truncated by pagination will have a <emphasis>next</emphasis>
+        link, which points to the next item in the collection. If
+        there are no more items, no <emphasis>next</emphasis> link is
+        returned.</para>
+      <para>See the examples of paged List Instances calls that
+        follow.</para>
+      <example>
+        <title>List Instances Paged Request: XML</title>
+        <?dbfo keep-together="always"?>
+        <programlisting language="xml">
+<xi:include href="../samples/db-instances-index-pagination-request.xml" parse="text"/>
+                    </programlisting>
+      </example>
+      <example>
+        <title>List Instances Paged Request: JSON</title>
+        <?dbfo keep-together="always"?>
+        <programlisting language="json">
+<xi:include href="../samples/db-instances-index-pagination-request.json" parse="text"/>
+                    </programlisting>
+      </example>
+      <para>Notice that the paged request examples above set the limit
+        to 2 (<code>?limit=2</code>), so the responses that follow
+        each show 2 instances and return a <emphasis>marker</emphasis>
+        set to the UUID of the last item in the returned list
+          (<code>?marker=4137d6a4-03b7-4b66-b0ef-8c7c35c470d3</code>).
+        Also a link is provided to retrieve the next 2 results
+          (<code>limit=2</code>) in the link element identified by the
+        attribute <code>rel="next"</code> (XML) or
+          <code>"rel":"next"</code> (JSON):</para>
+      <example>
+        <title>List Instances Paged Response: XML</title>
+        <?dbfo keep-together="always"?>
+        <programlisting language="xml">
+<xi:include href="../samples/db-instances-index-pagination-response.xml" parse="text"/>
+                    </programlisting>
+      </example>
+      <example>
+        <title>List Instances Paged Response: JSON</title>
+        <?dbfo keep-together="always"?>
+        <programlisting language="json">
+<xi:include href="../samples/db-instances-index-pagination-response.json" parse="text"/>
+                    </programlisting>
+      </example>
+    </section>
+    <section xml:id="DB_faults">
+      <title>Faults</title>
+      <remark security="reviewer">Reviewer: if this section applies we
+        need to update it thoughout with info that applies to cloud
+        sites.</remark>
+      <para> When an error occurs, the Sites Service returns a fault
+        object containing an HTTP error response code that denotes the
+        type of error. In the body of the response, the system will
+        return additional information about the fault. </para>
+      <para>The following table lists possible fault types with their
+        associated error codes and descriptions.</para>
+      <informaltable rules="all">
+        <thead>
+          <tr align="center">
+            <td colspan="2">Fault Type</td>
+            <td colspan="1">Associated Error Code</td>
+            <td colspan="3">Description</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="2"><code>badRequest</code></td>
+            <td colspan="1">400</td>
+            <td colspan="3">There was one or more errors in the user
+              request.</td>
+          </tr>
+          <tr>
+            <td colspan="2"><code>unauthorized</code></td>
+            <td colspan="1">401</td>
+            <td colspan="3">The supplied token is not authorized to
+              access the resources, either it's expired or
+              invalid.</td>
+          </tr>
+          <tr>
+            <td colspan="2"><code>forbidden</code></td>
+            <td colspan="1">403</td>
+            <td colspan="3">Access to the requested resource was
+              denied.</td>
+          </tr>
+          <tr>
+            <td colspan="2"><code>itemNotFound</code></td>
+            <td colspan="1">404</td>
+            <td colspan="3">The back-end services did not find
+              anything matching the Request-URI.</td>
+          </tr>
+          <tr>
+            <td colspan="2"><code>badMethod</code></td>
+            <td colspan="1">405</td>
+            <td colspan="3">The request method is not allowed for this
+              resource.</td>
+          </tr>
+          <tr>
+            <td colspan="2"><code>overLimit</code></td>
+            <td colspan="1">413</td>
+            <td colspan="3">Either the number of entities in the
+              request is larger than allowed limits, or the user has
+              exceeded allowable request rate limits. See the
+                <code>details</code> element for more specifics.
+              Contact support if you think you need higher request
+              rate limits.</td>
+          </tr>
+          <tr>
+            <td colspan="2"><code>badMediaType</code></td>
+            <td colspan="1">415</td>
+            <td colspan="3">The requested content type is not
+              supported by this service.</td>
+          </tr>
+          <tr>
+            <td colspan="2"><code>unprocessableEntity</code></td>
+            <td colspan="1">422</td>
+            <td colspan="3">The requested resource could not be
+              processed on at the moment.</td>
+          </tr>
+          <tr>
+            <td colspan="2"><code>instanceFault</code></td>
+            <td colspan="1">500</td>
+            <td colspan="3">This is a generic server error and the
+              message contains the reason for the error. This error
+              could wrap several error messages and is a catch
+              all.</td>
+          </tr>
+          <tr>
+            <td colspan="2"><code>notImplemented</code></td>
+            <td colspan="1">501</td>
+            <td colspan="3">The requested method or resource is not
+              implemented.</td>
+          </tr>
+          <tr>
+            <td colspan="2"><code>serviceUnavailable</code></td>
+            <td colspan="1">503</td>
+            <td colspan="3">The Sites Service is not available.</td>
+          </tr>
+        </tbody>
+      </informaltable>
+      <remark security="reviewer">Reviewer: can you please provide
+        updated examples for the following?</remark>
+      <para>The following two <code>instanceFault</code> examples show
+        errors when the server has erred or cannot perform the
+        requested operation:</para>
+      <example>
+        <title>Example instanceFault Response: XML</title>
+        <?dbfo keep-together="always"?>
+        <programlisting language="xml">
+<xi:include href="../samples/db-faults-instanceFault.xml" parse="text"/>
+                    </programlisting>
+      </example>
+      <example>
+        <title>Example Fault Response: JSON</title>
+        <?dbfo keep-together="always"?>
+        <programlisting language="json">
+<xi:include href="../samples/db-faults-instanceFault.json" parse="text"/>
+                    </programlisting>
+      </example>
+      <para> The error code (<code>code</code>) is returned in the
+        body of the response for convenience. The <code>message</code>
+        element returns a human-readable message that is appropriate
+        for display to the end user. The <code>details</code> element
+        is optional and may contain information that is useful for
+        tracking down an error, such as a stack trace. The
+          <code>details</code> element may or may not be appropriate
+        for display to an end user, depending on the role and
+        experience of the end user.</para>
+      <para>The fault's root element (for example,
+          <code>instanceFault</code>) may change depending on the type
+        of error. </para>
+      <para><?rax-fo keep-with-next?>The following two
+          <code>badRequest</code> examples show errors when the volume
+        size is invalid:</para>
+      <example>
+        <title>Example badRequest Fault on Volume Size Errors:
+          XML</title>
+        <?dbfo keep-together="always"?>
+        <programlisting language="xml">
+<xi:include href="../samples/db-faults-badRequest.xml" parse="text"/>
+                    </programlisting>
+      </example>
+      <example>
+        <title>Example badRequest Fault on Volume Size Errors:
+          JSON</title>
+        <?dbfo keep-together="always"?>
+        <programlisting language="json">
+<xi:include href="../samples/db-faults-badRequest.json" parse="text"/>
+                    </programlisting>
+      </example>
+      <para> The next two examples show <code>itemNotFound</code>
+        errors:</para>
+      <example>
+        <title>Example itemNotFound Fault: XML</title>
+        <?dbfo keep-together="always"?>
+        <programlisting language="xml">
+<xi:include href="../samples/db-faults-itemNotFound.xml" parse="text"/>
+                    </programlisting>
+      </example>
+      <example>
+        <title>Example itemNotFound Fault: JSON</title>
+        <?dbfo keep-together="always"?>
+        <programlisting language="json">
+<xi:include href="../samples/db-faults-itemNotFound.json" parse="text"/>
+                    </programlisting>
+      </example>
+      <section xml:id="synchro_vs_async_faults">
+        <title>Synchronous Versus Asynchronous Faults<?sbr?></title>
+        <remark security="reviewer">Reviewer: if this section applies
+          we need to update it thoughout with info that applies to
+          cloud sites.</remark>
+        <para><emphasis>Synchronous</emphasis> faults occur at request
+          time. When a synchronous fault occurs, the fault contains an
+          HTTP error response code, a human readable message, and
+          optional details about the error. The following Database API
+          calls are synchronous and may produce synchronous
+            faults:<itemizedlist spacing="compact">
+            <listitem>
+              <para>List Users</para>
+            </listitem>
+            <listitem>
+              <para>List Instances</para>
+            </listitem>
+            <listitem>
+              <para>List Instance Details by ID</para>
+            </listitem>
+            <listitem>
+              <para>List Databases</para>
+            </listitem>
+            <listitem>
+              <para>Enable Root User</para>
+            </listitem>
+            <listitem>
+              <para>List Root-Enabled Status</para>
+            </listitem>
+            <listitem>
+              <para>List Flavors</para>
+            </listitem>
+            <listitem>
+              <para>List Versions</para>
+            </listitem>
+            <listitem>
+              <para>List Version Details</para>
+            </listitem>
+          </itemizedlist></para>
+        <para><emphasis>Asynchronous</emphasis> faults occur in the
+          background while an instance, database, or user is being
+          built or an instance is executing an action. When an
+          asynchronous fault occurs, the system places the instance,
+          database, or user in an ERROR state and embeds the fault in
+          the offending instance, database, or user. When an
+          asynchronous fault occurs, the fault contains an HTTP error
+          response code, a human readable message, and optional
+          details about the error. The following Database API calls
+          are asynchronous and may produce asynchronous
+            faults:<itemizedlist spacing="compact">
+            <listitem>
+              <para>Create Instance</para>
+            </listitem>
+            <listitem>
+              <para>Delete Instance</para>
+            </listitem>
+            <listitem>
+              <para>Create Database</para>
+            </listitem>
+            <listitem>
+              <para>Delete Database</para>
+            </listitem>
+            <listitem>
+              <para>Create User</para>
+            </listitem>
+            <listitem>
+              <para>Delete User</para>
+            </listitem>
+            <listitem>
+              <para>Resize Volume</para>
+            </listitem>
+            <listitem>
+              <para>Resize Instance</para>
+            </listitem>
+            <listitem>
+              <para>Restart Instance</para>
+            </listitem>
+          </itemizedlist><note>
+            <para>Note that an asynchronous operation, if it fails,
+              may not give the user an error, and the operation can
+              error out without a failure notification.</para>
+          </note></para>
+      </section>
+    </section>
+    <section xml:id="database_instance_status">
+      <title>Site Status</title>
+      <remark security="reviewer">Reviewer: do we need to have a
+        section like this for site status? If so, please supply me
+        with the needed info.</remark>
+      <para><?rax-fo keep-with-next?>When making an API call to
+        create, list, or delete site(s), the following site status
+        values are possible:</para>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <para>BUILD &ndash; The site is being provisioned.</para>
+        </listitem>
+        <listitem>
+          <para>REBOOT &ndash; The site is rebooting.</para>
+        </listitem>
+        <listitem>
+          <para>ACTIVE &ndash; The site is online and available to
+            take requests.</para>
+        </listitem>
+        <listitem>
+          <para>BLOCKED &ndash; The site is unresponsive at the
+            moment.</para>
+        </listitem>
+        <listitem>
+          <para>RESIZE &ndash; The site is being resized at the
+            moment.</para>
+        </listitem>
+        <listitem>
+          <para>SHUTDOWN &ndash; The site is terminating services.
+            Also, SHUTDOWN is returned if for any reason the MySQL
+            instance is shut down but not the actual server. </para>
+        </listitem>
+        <listitem>
+          <para>ERROR &ndash; The last operation for the site failed
+            due to an error.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </chapter>
   <preface xml:id="preface">
     <title>Preface</title>
     <para>Ipsum lorem lacus suscipit nunc, in consequat tortor turpis
@@ -460,4 +2056,57 @@ contains foo-feature in your pom.xml file.&lt;/para></programlisting>In
       <resources xmlns="http://wadl.dev.java.net/2009/02" href="../wadl/example.wadl"/>
       
     </chapter>
+  <glossary>
+    <title>Glossary</title>
+    <info>
+      <raxm:metadata
+        xmlns:raxm="http://docs.rackspace.com/api/metadata">
+        <raxm:type>concept</raxm:type>
+        <raxm:product version="v1.0">cdns</raxm:product>
+        <raxm:priority>50</raxm:priority>
+      </raxm:metadata>
+    </info>
+    <glossentry xml:id="claim-d1e017">
+      <glossterm>Claim</glossterm>
+      <glossdef>
+        <para> A worker claims or checks out a message to perform a
+          task. Doing so prevents other workers from attempting to
+          perform the same task.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry xml:id="message-d1e016">
+      <glossterm>Message</glossterm>
+      <glossdef>
+        <para>A message is a task, a notification, or anything else
+          that gets posted to the queue.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry xml:id="producer-d1e020">
+      <glossterm>Producer</glossterm>
+      <glossdef>
+        <para>A producer is a server that sends messages to the
+          queue.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry xml:id="queue-d1e019">
+      <glossterm>Queue</glossterm>
+      <glossdef>
+        <para>A queue holds messages.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry xml:id="subscriber-d1e018">
+      <glossterm>Subscriber</glossterm>
+      <glossdef>
+        <para>A subscriber (or observer) watches messages like an RSS
+          feed, but does not claim any messages.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry xml:id="worker-d1e018">
+      <glossterm>Worker</glossterm>
+      <glossdef>
+        <para>A worker is a server that claims a messages and performs
+          the necessary task.</para>
+      </glossdef>
+    </glossentry>
+  </glossary>
 </book>
