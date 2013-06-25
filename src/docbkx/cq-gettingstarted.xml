@@ -1067,7 +1067,7 @@
         next:</para>
       <example>
         <title>cURL Create Queue Request</title>
-        <programlisting>curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 806067" </programlisting>
+        <programlisting>curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 101010" </programlisting>
       </example>
       <example>
         <title>Create Queue Response</title>
@@ -1117,7 +1117,7 @@ Location: /v1/queues/samplequeue</programlisting>
         given next:</para>
       <example>
         <title>cURL Insert Messages Request</title>
-        <programlisting>curl -k -i -X POST https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/messages -d '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 806067" </programlisting>
+        <programlisting>curl -k -i -X POST https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/messages -d '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 101010" </programlisting>
       </example>
       <example>
         <title>Insert Messages Response </title>
@@ -1183,7 +1183,7 @@ Content-Type: application/json
         next:</para>
       <example>
         <title>cURL Claim Messages Request</title>
-        <programlisting>curl -k -i -X POST https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/claims -d '{"ttl": 300,"grace":300}' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 806067"
+        <programlisting>curl -k -i -X POST https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/claims -d '{"ttl": 300,"grace":300}' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 101010"
 </programlisting>
       </example>
       <example>
@@ -1217,7 +1217,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         given next:</para>
       <example>
         <title>cURL Delete Messages Request</title>
-        <programlisting>curl -k -i -X DELETE https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "Client-ID: QClient"  -H "X-Project-Id: 806067"</programlisting>
+        <programlisting>curl -k -i -X DELETE https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "Client-ID: QClient"  -H "X-Project-Id: 101010"</programlisting>
       </example>
       <example>
         <title>Delete Messages Response</title>
@@ -1240,7 +1240,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         next:</para>
       <example>
         <title>cURL Delete Claim Request</title>
-        <programlisting>curl -k -i -X DELETE https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "Client-ID: QClient"  -H "X-Project-Id: 806067"</programlisting>
+        <programlisting>curl -k -i -X DELETE https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "Client-ID: QClient"  -H "X-Project-Id: 101010"</programlisting>
       </example>
       <example>
         <title>Delete Claim Response</title>
