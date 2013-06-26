@@ -141,7 +141,7 @@
       <para>Until the certificate is available, the https URL will
         work only if you turn cert verification off. Following is the
         cURL command to do this is:</para>
-      <programlisting>curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/480924/queues/Godqueue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 12334322222332" -v</programlisting>
+      <programlisting>curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 101010" </programlisting>
       <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Preview
         Program has some limitations. By using the Cloud Queuing API,
         you agree and understand that:<itemizedlist spacing="compact">
@@ -394,7 +394,7 @@
         certificate is available, the https URL will work only if you
         turn cert verification off. Following is the cURL command to
         do this is:</para>
-      <programlisting xmlns:svg="http://www.w3.org/2000/svg" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml">curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/480924/queues/Godqueue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 12334322222332" -v</programlisting>
+      <programlisting>curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 101010" </programlisting>
     <!--
       <para>To access the Rackspace Cloud Queuing API use the
         following URL:</para>
