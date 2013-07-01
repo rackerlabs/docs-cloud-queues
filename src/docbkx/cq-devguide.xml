@@ -58,7 +58,7 @@
     </copyright>
     <releaseinfo>API v1.0 Preview</releaseinfo>
     <productname>Cloud Queuing</productname><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
-    <pubdate></pubdate>
+    <pubdate>2013-07-15</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically. -->
     <abstract xmlns:wadl="http://wadl.dev.java.net/2009/02">
       <para>This document is intended for software developers
@@ -93,11 +93,11 @@
     
     <revhistory>
       <revision>
-        <date>2013-06-25</date>
+        <date>2013-07-15</date>
         <revdescription>
           <itemizedlist>
             <listitem>
-              <para>Initial Preview release.</para>
+              <para>Initial Early Access (EA) release.</para>
             </listitem>
           </itemizedlist>
         </revdescription>
@@ -154,6 +154,13 @@
         xlink:href="http://docs.rackspace.com/cdb/api/v1.0/cdb-devguide/content/overview.html"
         >
         http://docs.rackspace.com/cdb/api/v1.0/cdb-devguide/content/overview.html</link>.</remark>
+    <section xml:id="Intended_Audience-d1e166">
+      <title>Intended Audience</title>
+      <para>This document is intended for software developers who are
+        interested in developing applications that use the Rackspace
+        Cloud Queuing API. We assume you have the following
+        skills:</para>
+    </section>
     <section xml:id="Document_Change_History-d1e166">
       <title>Document Change History</title>
       <para>This version of the Developer Guide replaces and obsoletes
@@ -164,17 +171,17 @@
     <section xml:id="Additional_Resources-d1e532">
       <title>Additional Resources</title>
       <para> For more details about Cloud Queuing, refer to ??? (link
-        to www.rackspace.com/cloud/queue???)
-        <!-- <link
-          xlink:href="http://www.rackspace.com/cloud/sites/">
-          http://www.rackspace.com/cloud/sites/</link> -->.
-        This site also offers links to Rackspace's official support
-        channels, including knowledge base articles, forums, phone,
-        chat, and email.</para>
+        to www.rackspace.com/cloud/queue???) . This site also offers
+        links to Rackspace's official support channels, including
+        knowledge base articles, forums, phone, chat, and
+        email.</para>
       <remark security="reviewer">Reviewer: do you have a
         corresponding link for the Cloud Queuing
         landing page on rackspace.com/cloud? If so, can you please
         give it to me?</remark>
+      <para>For information about getting started using Cloud Queuing,
+        refer to the <citetitle>Cloud Queuing Getting Started
+          Guide</citetitle>. </para>
       <para>Email all support questions to:
           <email>cbdteam@rackspace.com</email>. </para>
       <remark security="reviewer">Reviewer: do you have a
@@ -198,7 +205,7 @@
     <section xml:id="API_Contract_Changes-d1e363">
       <title>API Contract Changes</title>
       <para>The API contract is not locked and may change during the
-        Preview Program.</para>
+        Eary Access (EA) Program.</para>
       <para>Rackspace will notify customers in Release Notes when and
         if the contract does change.</para>
     </section>
@@ -315,33 +322,32 @@
     </section>
     <section xml:id= "cloud-queuing-actions-1">
       <title>Cloud Queuing Requests</title>
-      <section xml:id="cloud-queuing-actions" >
-        <para>This section provides a list of requests that are
-          possible using the Cloud Queuing API. </para>
-        <section xml:id="queue-actions">
-          <title>Queues </title>
-          <para>The following requests are available for queues: </para>
-          <itemizedlist>
-            <listitem>
-              <para>Create Queue</para>
-            </listitem>
-            <listitem>
-              <para>List Queues</para>
-            </listitem>
-            <listitem>
-              <para>Set Queue Metadata</para>
-            </listitem>
-            <listitem>
-              <para>Get Queue Metadata</para>
-            </listitem>
-            <listitem>
-              <para>Get Queue Stats</para>
-            </listitem>
-            <listitem>
-              <para>Delete Queue</para>
-            </listitem>
-          </itemizedlist>
-        </section>
+      <para>This section provides a list of requests that are possible
+        using the Cloud Queuing API.</para>
+      <section xml:id="queue-actions1" >
+        <title>Queues</title>
+        <para>The following requests are available for queues: </para>
+        <itemizedlist>
+          <listitem>
+            <para>Create Queue</para>
+          </listitem>
+          <listitem>
+            <para>List Queues</para>
+          </listitem>
+          <listitem>
+            <para>Set Queue Metadata</para>
+          </listitem>
+          <listitem>
+            <para>Get Queue Metadata</para>
+          </listitem>
+          <listitem>
+            <para>Get Queue Stats</para>
+          </listitem>
+          <listitem>
+            <para>Delete Queue</para>
+          </listitem>
+        </itemizedlist>
+      </section>
         <section xml:id="message-actions">
           <title>Messages</title>
           <para>The following requests are available for
@@ -364,441 +370,62 @@
             </listitem>
           </itemizedlist>
         </section>
-        <section xml:id="claim-actions">
-          <title>Claims</title>
-          <para>The following requests are available for
-            claims:</para>
-          <itemizedlist>
-            <listitem>
-              <para>Query Claim</para>
-            </listitem>
-            <listitem>
-              <para>Update Claim</para>
-            </listitem>
-            <listitem>
-              <para>Release Claim</para>
-            </listitem>
-          </itemizedlist>
-        </section>
-      </section>
-      <section xml:id="use_cases">
-        <title>Use Cases</title>
-        <para>Following are some possible use cases for Cloud Queuing: </para>
+      <section xml:id="claim-actions">
+        <title>Claims</title>
+        <para>The following requests are available for claims:</para>
         <itemizedlist>
           <listitem>
-            <para> To distribute tasks among multiple workers
-              (transactional job queues). </para>
+            <para>Query Claim</para>
           </listitem>
           <listitem>
-            <para>To forward events to data collectors (transactional
-              event queues).</para>
+            <para>Update Claim</para>
           </listitem>
           <listitem>
-            <para>To publish events to any number of subscribers
-              (publish-subscribe).</para>
-          </listitem>
-          <listitem>
-            <para>To send commands to one or more agents
-              (point-to-point or publish-subscribe).</para>
-          </listitem>
-          <listitem>
-            <para>To request an action or get information from a
-              Remote Procedure Call (RPC) agent.</para>
+            <para>Release Claim</para>
           </listitem>
         </itemizedlist>
       </section>
     </section>
-  </chapter>
-  <preface xml:id="preface">
-    <title>Preface</title>
-    <para>Ipsum lorem lacus suscipit nunc, in consequat tortor turpis
-      vel nibh. Nulla eros nulla, iaculis vel laoreet at, consectetur
-      vitae massa. Praesent in imperdiet urna. Etiam commodo hendrerit
-      tincidunt. Aliquam non tortor lectus, sit amet laoreet tortor.
-      Vivamus sit amet tempor lorem. Fusce aliquam, lacus et eleifend
-      auctor, augue justo consectetur risus, a congue arcu mi a velit.
-      Donec lectus est, egestas eget laoreet a, accumsan ornare erat.
-      Suspendisse sed nulla ligula.</para>
-    <section xml:id="section_eow_tmw_ad">
-      <title>Intended Audience</title>
-      <para>This document is intended for technical writers and
-        developers who are learning to write DocBook documents. We
-        assume you have the following skills:</para>
-      <itemizedlist spacing="compact">
+    <section xml:id="use_cases"> 
+      <title>Use Cases</title>
+      <para>Following are some possible use cases for Cloud
+        Queuing:</para>
+      <itemizedlist>
         <listitem>
-          <para>Basic technical writing concepts</para>
+          <para> To distribute tasks among multiple workers
+            (transactional job queues). </para>
         </listitem>
         <listitem>
-          <para>Basic XML </para>
+          <para>To forward events to data collectors (transactional
+            event queues).</para>
+        </listitem>
+        <listitem>
+          <para>To publish events to any number of subscribers
+            (publish-subscribe).</para>
+        </listitem>
+        <listitem>
+          <para>To send commands to one or more agents (point-to-point
+            or publish-subscribe).</para>
+        </listitem>
+        <listitem>
+          <para>To request an action or get information from a Remote
+            Procedure Call (RPC) agent.</para>
         </listitem>
       </itemizedlist>
-      <para>Maecenas euismod,
-        lectus vitae tincidunt sollicitudin, est lacus suscipit nunc,
-        in consequat tortor turpis vel nibh. Nulla eros nulla, iaculis
-        vel laoreet at, consectetur vitae massa. Praesent in imperdiet
-        urna. Etiam commodo hendrerit tincidunt. Aliquam non tortor
-        lectus, sit amet laoreet tortor. Vivamus sit amet tempor
-        lorem. Fusce aliquam, lacus et eleifend auctor, augue justo
-        consectetur risus, a congue arcu mi a velit. Donec lectus est,
-        egestas eget laoreet a, accumsan ornare erat. Suspendisse sed
-        nulla ligula.</para>
-      <para>Maecenas euismod, <link
-          xlink:href="http://www.rackspace.com">lectus</link> vitae
-        tincidunt sollicitudin, est lacus suscipit nunc, in consequat
-        tortor turpis vel nibh. Nulla eros nulla, iaculis vel laoreet
-        at, consectetur vitae massa. </para>
-    </section>
-    <section xml:id="change_history">
-      <title>Document Change History</title>
-      <para>This section is generated dynamically from the
-          <tag>revhistory</tag> element in <tag>book/info</tag>. The
-        processing instruction
-          <?oxy_comment_start author="dcramer" timestamp="20130606T105400-0500" comment="This is a swell sentence. "?><code>&lt;?rax
-          revhistory?></code> is replaced at build-time with a
-        formatted version of the <tag>revhistory</tag>
-        section.<?oxy_comment_end?></para>
-      <para>
-        <?rax revhistory?>
-      </para>
-    </section>
-  </preface>
-  <chapter xml:id="Overview">
-    <title>Introduction</title>
-    <!--You can use the <?dbhtml stop-chunking?> processing instruction to prevent a chapter or section for chunking furhter in the html output. -->
-    <para><?oxy_comment_start author="dcramer" timestamp="20130606T105139-0500" comment="This sentence is confusing. Could you explain what you were trying to say?
-"?>This
-      would normally be a good place to introduce the product and API,
-      but in this example document we'll look at some commonly used
-      constructs. <?oxy_comment_end?>The following an image with a
-      title using the <tag>figure</tag> element. The oXygen editor
-      provides a
-      <?oxy_delete author="dcramer" timestamp="20130606T105210-0500" content="convenient" comment="I hate the word &quot;convenient&quot;"?>
-      way to insert figures with the necessary markup.
-      <?oxy_insert_start author="dcramer" timestamp="20130606T105239-0500" comment="No, seriously, I like pie."?>I
-      like pie.<?oxy_insert_end?><figure>
-        <title>An example of an .svg figure with a title</title>
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/example.png"
-              contentwidth="6in"/>
-          </imageobject>
-        </mediaobject>
-      </figure>
-    </para>
-    <para>When creating an image or diagram, use the correct
-      application and format for the situation. For images with lines
-      and text, you should use the scalable vector graphic format ,
-      SVG. SVG and other vector formats store the information as
-      points, lines, and fonts. As a result, they are very crisp when
-      printed and when scaled down or up. For screen shots and photos,
-      vector formats add no real value since they can only store the
-      raster image inside the vector as a binary blob. As a result,
-      you should use the png format scaled to the appropriate
-      size/resolution for your target browsers/screens. <itemizedlist>
-        <listitem>
-          <para>If you are creating an architectural diagram, seqence
-            diagram, flowchart, or something like a drawing with lots
-            of lines and text, then the preferred format is .svg.
-            Typically these are created with tools like <link
-              xlink:href="http://inkscape.org/">Inkscape</link>, Adobe
-            Illustrator, <link
-              xlink:href="https://www.omnigroup.com/products/omnigraffle/"
-              >Omnigraffle</link>, or Visio.</para>
-        </listitem>
-        <listitem>
-          <para>If you are working with screen shots or photos, use
-            png and a tool suited for manipulating raster formats.
-          </para>
-        </listitem>
-      </itemizedlist>Note that the for html output formats, the build
-      system converts .svg images to .png at build time since not all
-      browsers are capable of displaying .svg images. The .svg is used
-      directly for pdf output however. <procedure>
-        <title>To install the server</title>
-        <step>
-          <para>Buy a computer.</para>
-        </step>
-      </procedure><table width="90%">
-        <caption>An example of a table with a title</caption>
-        <col width="36%"/>
-        <col width="13%"/>
-        <col width="50%"/>
-        <thead>
-          <tr>
-            <th>Type of image</th>
-            <th>Preferred format</th>
-            <th>Tools</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Architectural diagrams, seqence diagrams, flowcharts,
-              or drawings with lots of lines and text</td>
-            <td>
-              <para>.svg</para>
-            </td>
-            <td>
-              <link xlink:href="http://inkscape.org/">Inkscape</link>,
-              Adobe Illustrator, <link
-                xlink:href="https://www.omnigroup.com/products/omnigraffle/"
-                >Omnigraffle</link>, or Visio.</td>
-          </tr>
-          <tr>
-            <td>A screen shot or picture</td>
-            <td>
-              <para>.png</para>
-            </td>
-            <td>
-              <para>Any screen capture utility or raster image
-                manipulating utility like the GIMP or Photoshop.
-              </para>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </para>
-    <para>You can also include tables without titles. These are
-        <tag>informaltable</tag>s in DocBook. <important>
-        <para>When you insert tables, be sure always to switch to the
-          html format instead of the CALS table format. For more
-          information on tables see the <link
-            xlink:href="http://docs.rackspace.com/writers-guide/content/ch_tables.html"
-            >Writer's Guide</link>.</para>
-        <para>Also note that this is an example of an admonition.
-          DocBook supports the following admonitions: <tag>note</tag>,
-            <tag>tip</tag>, <tag>important</tag>, <tag>caution</tag>,
-          and <tag>warning</tag>.</para>
-      </important>
-    </para>
-    <section xml:id="the-xml-id-attribute">
-      <title>The xml:id attribute and linking</title>
-      <para>You must add the <tag>xml:id</tag> attribute to all
-          <tag>book</tag>s, <tag>chapter</tag>s, <tag>section</tag>s,
-          <tag>appendix</tag>s, and <tag>preface</tag>s. These ids are
-        used for more than one thing:<itemizedlist>
-          <listitem>
-            <para>The <tag>xml:id</tag> on the <tag>book</tag> element
-              must be unique among all other Rackspace documents. This
-              ensures that the <link xlink:href="http://disqus.com"
-                >Disqus</link> comments are associated with that one
-              document. See <link
-                xlink:href="https://one.rackspace.com/display/C3/Disqus+project+identifiers"
-                >Disqus project identifiers</link> for a list of
-                <tag>xml:id</tag>s currently in use.</para>
-          </listitem>
-          <listitem>
-            <para>The <tag>xml:id</tag> on each <tag>chapter</tag>,
-                <tag>section</tag>, <tag>appendix</tag>, and
-                <tag>preface</tag> must be unique within the current
-              book. These ids are used to generate the filename for
-              the html format and also to associate the Disqus thread
-              with that page. </para>
-          </listitem>
-        </itemizedlist></para>
-      <para><?rax-fo keep-together?>The <tag>xml:id</tag> attribute is
-        also important for linking within the document. You use the
-          <tag>xref</tag> element with the <tag>linkend</tag>
-        attribute to create a hyperlink from one section to another.
-        At build-time, the <tag>xref</tag> is replaced with a
-        hyperlink and link text appropriate to the format. For
-        example, in html output an xref is just a hyperlink with the
-        title of the target as the link text. In pdf output, which is
-        intended for printing, the link text includes the page number
-        of the target, though in the pdf, the link is also a hot link
-        to the target. In the following example, <code>preface</code>
-        is the value of the <tag>xml:id</tag> of the target:<programlisting language="xml">&lt;xref linkend="preface"/></programlisting><important>
-          <para>Avoid putting the <tag>xml:id</tag> attribute on the
-              <tag>title</tag> tag. Instead put it on the element that
-            contains the <tag>title</tag>. For example avoid doing
-            this:<programlisting language="xml">&lt;section>&lt;title xml:id="widgets">Understanding widgets&lt;/title>...&lt;/section> &lt;!-- AVOID This! --></programlisting>Instead
-            do
-            this:<programlisting language="xml">&lt;section xml:id="widgets">&lt;title>Understanding widgets&lt;/title>...&lt;/section> &lt;!-- Much better! --></programlisting></para>
-        </important></para>
-      <para>We soon hope to support the <tag>olink</tag> tag, which
-        will allow you to link to other docs and provide a more
-        convenient way to link within a document. </para>
-      <para>If you need to link to a url, use the <tag>link</tag> tag
-        and the <tag>xlink:href</tag> attribute. For example, the
-        paragraph above contains some
-        hyperlinks:<programlisting language="xml">&lt;para>The &lt;tag>xml:id&lt;/tag> on the &lt;tag>book&lt;/tag> element
-must be unique among all other Rackspace documents. This
-ensures that the &lt;link xlink:href="http://disqus.com"
->Disqus&lt;/link> comments are associated with that one
-document. See &lt;link 
-xlink:href="https://one.rackspace.com/display/C3/Disqus+project+identifiers"
->Disqus project identifiers&lt;/link> for a list of
-&lt;tag>xml:id&lt;/tag>s currently in use.&lt;/para></programlisting>
-      </para>
-    </section>
-    <section xml:id="lists">
-      <title>Lists</title>
-      <para>The DocBook vocabulary supports several kinds of lists.
-        These lists can optionally have titles. <tip>
-          <para>A common pitfall writers fall into is to create
-            several small sections. This is suboptimal because you're
-            giving the full weight of a title in the table of contents
-            to something that may have a single sentence of content.
-            What you probably want in this case is some kind of
-            list.</para>
-        </tip><itemizedlist>
-          <title>Types of list in DocBook</title>
-          <para>Notice that this list has a title and an introductary
-            paragraph before the first list item. The title and intro
-            para are optional.</para>
-          <listitem>
-            <para><tag>itemizedlist</tag>: A bulleted list. Your hands
-              are soaking in one.</para>
-          </listitem>
-          <listitem>
-            <para><tag>orderedlist</tag>: A numbered list. There are
-              attributes that let you control the type of numbering
-              and the start of the numbering for unusual
-              situations.</para>
-          </listitem>
-          <listitem>
-            <para><tag>procedure</tag>: This is a list of steps.
-            </para>
-          </listitem>
-          <listitem>
-            <para><tag>variablelist</tag>: This is a list where each
-              item includes one or more <quote>terms</quote> followed
-              by a block of text describing it. You can control the
-              formatting so that it's formatted as blocks or as a
-              runin head. I'll include examples later in this
-              section.</para>
-          </listitem>
-          <listitem>
-            <para><tag>simplelist</tag>: This is a list without
-              bullets.</para>
-          </listitem>
-        </itemizedlist>The following are examples of
-          <tag>variablelist</tag>s. Notice that the
-          <quote>term</quote> is in bold. See <link
-          xlink:href="http://www.sagehill.net/docbookxsl/Variablelists.html"
-          >variablelist options</link> for detailed information on
-        formatting variablelists.<variablelist>
-          <title>Variablelist with default layout</title>
-          <varlistentry>
-            <term>itemizedlist</term>
-            <listitem>
-              <para>A bulleted list. Your hands are soaking in
-                one.</para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>orderedlist</term>
-            <listitem>
-              <para> A numbered list. There are attributes that let
-                you control the type of numbering and the start of the
-                numbering for unusual situations.</para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>procedure</term>
-            <listitem>
-              <para>This is a list of steps. As with other lists,
-                  <tag>procedure</tag>s can have <tag>title</tag>s and
-                some content before the first step. One use for
-                  <tag>procedure</tag>s is that you can create a list
-                of procedures at the front of the book. </para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>variablelist</term>
-            <listitem>
-              <para>This is a list where each item includes one or
-                more <quote>terms</quote> followed by a block of text
-                describing it. You can control the formatting so that
-                it's formatted as blocks or as a runin head. I'll
-                include examples later in this section.</para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>simplelist</term>
-            <listitem>
-              <para>This is a list without bullets.</para>
-            </listitem>
-          </varlistentry>
-        </variablelist><variablelist>
-          <title>The same variablelist formatted as blocks</title>
-          <?dbfo list-presentation="blocks"?>
-          <?dbfo term-width=".75in"?>
-          <?dbhtml list-presentation="table"?>
-          <?dbhtml term-width="15%"  list-width="85%" ?>
-          <varlistentry>
-            <term>itemizedlist</term>
-            <listitem>
-              <para>A bulleted list. Your hands are soaking in
-                one.</para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>orderedlist</term>
-            <listitem>
-              <para> A numbered list. There are attributes that let
-                you control the type of numbering and the start of the
-                numbering for unusual situations.</para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>procedure</term>
-            <listitem>
-              <para>This is a list of steps. As with other lists,
-                  <tag>procedure</tag>s can have <tag>title</tag>s and
-                some content before the first step. One use for
-                  <tag>procedure</tag>s is that you can create a list
-                of procedures at the front of the book. </para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>variablelist</term>
-            <listitem>
-              <para>This is a list where each item includes one or
-                more <quote>terms</quote> followed by a block of text
-                describing it. You can control the formatting so that
-                it's formatted as blocks or as a runin head. I'll
-                include examples later in this section.</para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>simplelist</term>
-            <listitem>
-              <para>This is a list without bullets.</para>
-            </listitem>
-          </varlistentry>
-        </variablelist></para>
     </section>
   </chapter>
-  <chapter xml:id="other-features">
-    <title>Conditional text/profiling</title>
-    <para>One important feature of the publishing system is the
-      ability to flag elements with certain attributes and produce
-      different versions of the same document from the same source
-      file. There are two scenarios in which you might use conditional text:<itemizedlist>
-        <listitem>
-          <para>Flagging content as internal, reviewer, or writeronly,
-            for
-            example:<programlisting>&lt;para security="internal">This para will not appear in the customer-facing external
-verison of the document. It will appear in blue text in the internal version published on 
-docs-internal.rackspace.com. &lt;/para></programlisting>If
-            you instead use <tag>security="reviewer"</tag> the content
-            will appear only if you set
-              <tag>&lt;security>reviewer&lt;/security></tag> in your
-              <filename>pom.xml</filename> file. </para>
-        </listitem>
-        <listitem>
-          <para>Using a feature-flag to control whether content
-            appears:<programlisting>&lt;para condition="foo-feature">This will appear only if the parameter profileCondition 
-contains foo-feature in your pom.xml file.&lt;/para></programlisting>In
-            your <filename>pom.xml</filename>, you can set
-              <tag>&lt;profileCondition>foo-feature&lt;/profileCondition></tag>.
-            Note that you can also use a semi-colon delimeted list:
-              <tag>&lt;profileCondition>foo-feature;bar-feature&lt;/profileCondition></tag>
-            to turn on elements with
-              <tag>condition="foo-feature"</tag> and
-              <tag>condition="bar-feature"</tag>.</para>
-        </listitem>
-      </itemizedlist></para>
+  <chapter xml:id="Gen_API_Info-de01">
+    <title>General API Information</title>
+    <para>The Cloud Queuing API is implemented using a ReSTful web
+      service interface. Like other products in the Rackspace Cloud
+      suite, Cloud Queuing shares a common token-based authentication
+      system that allows seamless access between products and
+      services.</para>
+    <note>
+      <para>All requests to authenticate against and operate the
+        service are performed using SSL over HTTP (HTTPS) on TCP port
+        443.</para>
+    </note>
   </chapter>
     <chapter xml:id="somesection" role="api-reference">
       <title>API Reference</title>
