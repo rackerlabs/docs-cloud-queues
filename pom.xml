@@ -22,9 +22,9 @@
 	    <phase>generate-sources</phase>
 	    <configuration>
 	      <includes>
-<!--	      cq-devguide.xml,-->
-	      cq-gettingstarted.xml, 
-	      cq-releasenotes.xml
+	      cq-devguide.xml<!--,
+      cq-gettingstarted.xml, 
+	      cq-releasenotes.xml -->
 	      </includes>
 	    </configuration>
 	  </execution>
