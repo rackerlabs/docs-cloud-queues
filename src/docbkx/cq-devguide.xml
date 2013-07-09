@@ -60,7 +60,7 @@
       <year>2013</year>
       <holder>Rackspace US, Inc.</holder>
     </copyright>
-    <releaseinfo>API v1.0 Preview</releaseinfo>
+    <releaseinfo>API v1.0</releaseinfo>
     <productname>Rackspace Cloud Queuing</productname><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <pubdate>2013-07-15</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically. -->
@@ -78,11 +78,11 @@
  
     <revhistory>
       <revision>
-        <date>2013-07-05</date>
+        <date>2013-07-15</date>
         <revdescription>
           <itemizedlist>
             <listitem>
-              <para>Initial Preview release.</para>
+              <para>Initial Early Access release.</para>
             </listitem>
           </itemizedlist>
         </revdescription>
@@ -206,7 +206,7 @@
     <section xml:id="API_Contract_Changes-d1e363">
       <title>API Contract Changes</title>
       <para>The API contract is not locked and may change during the
-       Preview Program.</para>
+        Early Access Program.</para>
       <para>Rackspace will notify customers in Release Notes when and
         if the contract does change.</para>
     </section>
@@ -830,7 +830,7 @@
           </tbody>
         </table>
       </para>
-      <para>Replace the sample account ID number,
+      <para>Replace the sample project ID number,
           <parameter>1234</parameter>, with your actual account number
         returned as part of the authentication service
         response.</para>
@@ -842,6 +842,15 @@
           ("https://servers.api.rackspacecloud.com/v1.0/<emphasis
           role="bold">1100111</emphasis>") that the account number is
         1100111. </para>
+      <note>
+        <para>Cloud Queuing uses the term project ID rather than
+          account ID, which is used in other Rackspace documentation.
+          Both refer to your Rackspace account number, which you can
+          find in your Cloud Control Panel at
+          <link
+            xlink:href="https://mycloud.rackspace.com/"
+            >mycloud.rackspace.com</link>.</para>
+      </note>
     </section>
     <section xml:id="contractVersion">
       <title>Cloud Queuing Contract Version</title>
@@ -1113,8 +1122,15 @@ Content-Type: application/json
 }</programlisting>
       </example>
       <para>Error information for each operation is included with the
-        description in xref to chapter 4???? .</para>
+        description in <xref linkend="API_Operations_dle001"/>.</para>
     </section> 
+  </chapter>
+  <chapter xml:id="API_Operations_dle001" >
+    <title>API Operations</title>
+    <para>This chapter describes the Cloud Queuing API operations. </para>
+    <remark>Reviewer: This chapter will be built by the docTools using
+      the WADL that the tech writer is developing from the Marconi
+      specs.</remark>
   </chapter>
 
 

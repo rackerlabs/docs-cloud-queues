@@ -36,7 +36,7 @@
     </copyright>
     <releaseinfo>API v1.0 Preview</releaseinfo>
     <productname>Cloud Queuing</productname>
-    <pubdate>2013-06-26</pubdate>
+    <pubdate>2013-07-07</pubdate>
     <legalnotice role="rs-api">
       <annotation>
         <remark>Copyright details are filled in by the
@@ -45,6 +45,18 @@
     </legalnotice>
     <revhistory>
       <revision>
+        <date>2013-07-07</date>
+        <revdescription>
+          <itemizedlist spacing="compact">
+            <listitem>
+              <para>Because Cloud Queuing now has SSL certification,
+                -k was removed from cURL examples, and the endpoint
+                information at <xref linkend="core_concepts"/> and
+                  <xref linkend="access-api-2"/> was updated.</para>
+            </listitem>
+          </itemizedlist>
+        </revdescription>
+      </revision> <revision>
         <date>2013-06-26</date>
         <revdescription>
           <itemizedlist spacing="compact">
@@ -88,7 +100,9 @@
     <para>This guide explains how to access and get started using the
       API so you can begin using Cloud Queuing for your applications.
       Instructions are given for how to properly enter the necessary
-      URLs, using cURL, in order to set up Cloud Queuing. <!-- for
+      URLs, using cURL, in order to set up and use a basic set of
+      Cloud Queuing operations.
+      <!-- for
         <trademark>Cloud Servers</trademark>. You can find additional
       details about Rackspace Cloud Queuing in the <citetitle>Cloud
         Queuing Developer Guide</citetitle> at <link
@@ -126,6 +140,13 @@
           </listitem>
         </itemizedlist>
       </para>
+      <para>The endpoint for the Preview environment is:</para>
+      <itemizedlist>
+        <listitem>
+          <para>https://preview.queue.api.rackspacecloud.com:443</para>
+        </listitem>
+      </itemizedlist>
+ <!--
       <para>The endpoints for the Preview environment are:</para>
       <itemizedlist>
         <listitem>
@@ -142,7 +163,9 @@
         work only if you turn cert verification off. Following is the
         cURL command to do this is:</para>
       <programlisting>curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 101010" </programlisting>
-      <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Preview
+
+-->
+       <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Preview
         Program has some limitations. By using the Cloud Queuing API,
         you agree and understand that:<itemizedlist spacing="compact">
           <listitem>
@@ -370,9 +393,14 @@
       <title>Accessing the API</title>
       <para xmlns:svg="http://www.w3.org/2000/svg"
         xmlns:m="http://www.w3.org/1998/Math/MathML"
-        xmlns:html="http://www.w3.org/1999/xhtml">The endpoints for
-        the Preview environment are:</para>
-      <itemizedlist xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:html="http://www.w3.org/1999/xhtml">The endpoint for the
+        Preview environment is: </para>
+      <itemizedlist>
+        <listitem>
+          <para>https://preview.queue.api.rackspacecloud.com:443</para>
+        </listitem>
+      </itemizedlist>
+   <!--   <itemizedlist xmlns:svg="http://www.w3.org/2000/svg"
         xmlns:m="http://www.w3.org/1998/Math/MathML"
         xmlns:html="http://www.w3.org/1999/xhtml">
         <listitem>
@@ -395,7 +423,8 @@
         turn cert verification off. Following is the cURL command to
         do this is:</para>
       <programlisting>curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 101010" </programlisting>
-    <!--
+ -->
+      <!--
       <para>To access the Rackspace Cloud Queuing API use the
         following URL:</para>
       <para>https://queue.api.rackspacecloud.com/v1.0/ 1234</para>
@@ -1067,7 +1096,7 @@
         next:</para>
       <example>
         <title>cURL Create Queue Request</title>
-        <programlisting>curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 101010" </programlisting>
+        <programlisting>curl -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 101010" </programlisting>
       </example>
       <example>
         <title>Create Queue Response</title>
@@ -1117,7 +1146,7 @@ Location: /v1/queues/samplequeue</programlisting>
         given next:</para>
       <example>
         <title>cURL Insert Messages Request</title>
-        <programlisting>curl -k -i -X POST https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/messages -d '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 101010" </programlisting>
+        <programlisting>curl -i -X POST https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/messages -d '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 101010" </programlisting>
       </example>
       <example>
         <title>Insert Messages Response </title>
@@ -1183,7 +1212,7 @@ Content-Type: application/json
         next:</para>
       <example>
         <title>cURL Claim Messages Request</title>
-        <programlisting>curl -k -i -X POST https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/claims -d '{"ttl": 300,"grace":300}' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 101010"
+        <programlisting>curl -i -X POST https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/claims -d '{"ttl": 300,"grace":300}' -H "Content-type: application/json" -H "Client-ID: QClient" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 101010"
 </programlisting>
       </example>
       <example>
@@ -1217,7 +1246,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         given next:</para>
       <example>
         <title>cURL Delete Messages Request</title>
-        <programlisting>curl -k -i -X DELETE https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "Client-ID: QClient"  -H "X-Project-Id: 101010"</programlisting>
+        <programlisting>curl -i -X DELETE https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "Client-ID: QClient"  -H "X-Project-Id: 101010"</programlisting>
       </example>
       <example>
         <title>Delete Messages Response</title>
@@ -1240,7 +1269,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         next:</para>
       <example>
         <title>cURL Delete Claim Request</title>
-        <programlisting>curl -k -i -X DELETE https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "Client-ID: QClient"  -H "X-Project-Id: 101010"</programlisting>
+        <programlisting>curl -i -X DELETE https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "Client-ID: QClient"  -H "X-Project-Id: 101010"</programlisting>
       </example>
       <example>
         <title>Delete Claim Response</title>
