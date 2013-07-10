@@ -19,7 +19,7 @@
     xmlns:xi="http://www.w3.org/2001/XInclude"
     version="5.0-extension RaxBook-2.0"    
     xml:id="cq-gettingstarted">
-  <title>Cloud Queuing Getting Started Guide</title>
+  <title>Cloud Queues Getting Started Guide</title>
   <?rax title.font.size="30px" 
       pdf.url="../../cq-gettingstarted-latest.pdf" 
       status.bar.text.font.size="40px"
@@ -27,16 +27,16 @@
       canonical.url.base="http://docs.rackspace.com/queuing/api/v1.0/cs-gettingstarted/content"?>
   <titleabbrev xmlns:svg="http://www.w3.org/2000/svg"
     xmlns:m="http://www.w3.org/1998/Math/MathML"
-    xmlns:html="http://www.w3.org/1999/xhtml">Cloud Queuing
-    Getting Started Guide</titleabbrev>
+    xmlns:html="http://www.w3.org/1999/xhtml">Cloud Queues Getting
+    Started Guide</titleabbrev>
   <info>
     <copyright>
       <year>2013</year>
       <holder>Rackspace US, Inc.</holder>
     </copyright>
     <releaseinfo>API v1.0 Preview</releaseinfo>
-    <productname>Cloud Queuing</productname>
-    <pubdate>2013-07-07</pubdate>
+    <productname>Cloud Queues</productname>
+    <pubdate>2013-07-10</pubdate>
     <legalnotice role="rs-api">
       <annotation>
         <remark>Copyright details are filled in by the
@@ -45,12 +45,23 @@
     </legalnotice>
     <revhistory>
       <revision>
+        <date>2013-07-10</date>
+        <revdescription>
+          <itemizedlist>
+            <listitem>
+              <para>Changed name from Cloud Queuing to Cloud
+                Queues.</para>
+            </listitem>
+          </itemizedlist>
+        </revdescription>
+      </revision>
+      <revision>
         <date>2013-07-07</date>
         <revdescription>
           <itemizedlist spacing="compact">
             <listitem>
-              <para>Because Cloud Queuing now has SSL certification,
-                -k was removed from cURL examples, and the endpoint
+              <para>Because Cloud Queues now has SSL certification, -k
+                was removed from cURL examples, and the endpoint
                 information at <xref linkend="core_concepts"/> and
                   <xref linkend="access-api-2"/> was updated.</para>
             </listitem>
@@ -71,40 +82,47 @@
         xmlns:raxm="http://docs.rackspace.com/api/metadata">
       <raxm:displayname>Getting Started Guide</raxm:displayname>
       <raxm:product version="v1.0">queuing</raxm:product>
-      <raxm:priority>1</raxm:priority>
+      <raxm:priority>1 </raxm:priority>
     </raxm:metadata>
   </info>
+  <chapter xml:id="doc-change-history">
+    <title>Document Change History</title>
+    <para>This version of the Getting Started replaces and obsoletes
+      all previous versions. The most recent changes are described in
+      the table below: </para>
+    <?rax revhistory?>
+  </chapter>
   <chapter xml:id="DB_Overview" xmlns:svg="http://www.w3.org/2000/svg"
     xmlns:m="http://www.w3.org/1998/Math/MathML"
     xmlns:html="http://www.w3.org/1999/xhtml">
     <title>Overview</title>
-    <para>Rackspace Cloud Queuing is an API-based message and
+    <para>Rackspace Cloud Queues is an API-based message and
       notification service. A message queueing service is a vital
-      component of big, complex web applications. Cloud Queuing from
-      Rackspace is designed to fill this need. Cloud Queuing is based
-      on the OpenStack Marconi project.</para>
+      component of big, complex web applications. Cloud Queues is
+      designed to fill this need. Cloud Queues is based on the
+      OpenStack Marconi project.</para>
     <para>As you develop more complex web applications, you often have
       multiple servers set up to complete a set of tasks for that
       application. These tasks can be anything from creating users to
-      deleting blocks of storage. Cloud Queuing is a service that owns
+      deleting blocks of storage. Cloud Queues is a service that owns
       the lists of tasks, but not necessarily the order or workflow of
       the tasks. Many applications handle the workflow at a higher
       level.</para>
-    <para>Cloud Queuing creates an open alternative to the
+    <para>Cloud Queues creates an open alternative to the
       producer-consumer and the publish-subscribe (pub-sub) messaging
       patterns for use in applications that run on OpenStack clouds. </para>
-    <para>The Cloud Queuing RESTful API uses a modular architecture
-      and supports unified pub-sub and job-queuing semantics. You can
-      customize Cloud Queuing to achieve a wide range of performance,
+    <para>The Cloud Queues RESTful API uses a modular architecture and
+      supports unified pub-sub and job-queuing semantics. You can
+      customize Cloud Queues to achieve a wide range of performance,
       durability, availability, and efficiency goals. </para>
     <para>This guide explains how to access and get started using the
-      API so you can begin using Cloud Queuing for your applications.
+      API so you can begin using Cloud Queues for your applications.
       Instructions are given for how to properly enter the necessary
       URLs, using cURL, in order to set up and use a basic set of
-      Cloud Queuing operations.
+      Cloud Queues operations.
       <!-- for
         <trademark>Cloud Servers</trademark>. You can find additional
-      details about Rackspace Cloud Queuing in the <citetitle>Cloud
+      details about Rackspace Cloud Queues in the <citetitle>Cloud
         Queuing Developer Guide</citetitle> at <link
         xlink:href="http://docs.rackspace.com/"
         >http://docs.rackspace.com/</link> and at <link
@@ -115,7 +133,7 @@
       <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Preview
         program enables customers and Rackers, by invitation, to test
         an early version of the product and provide feedback of the
-        product and capabilities. The Cloud Queuing Preview Program is
+        product and capabilities. The Cloud Queues Preview Program is
         a pre-production service offering covered by the Beta Services
         terms (<link
           xlink:href="http://www.rackspace.com/information/legal/testterms/"
@@ -166,7 +184,7 @@
 
 -->
        <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Preview
-        Program has some limitations. By using the Cloud Queuing API,
+        Program has some limitations. By using the Cloud Queues API,
         you agree and understand that:<itemizedlist spacing="compact">
           <listitem>
             <para>There is no charge for this service during the
@@ -194,8 +212,8 @@
       </para>
     </section>
     <section xml:id="how_cq_works">
-      <title>How Cloud Queuing Works</title>
-      <para>Here is an overview of the Cloud Queuing workflow: </para>
+      <title>How Cloud Queues Works</title>
+      <para>Here is an overview of the Cloud Queues workflow: </para>
       <orderedlist>
         <listitem>
           <para>You create a queue to which producers post
@@ -215,17 +233,17 @@
             wrong.</para>
         </listitem>
       </orderedlist>
-      <para>For the majority of use cases, Cloud Queuing itself will
+      <para>For the majority of use cases, Cloud Queues itself will
         not be responsible for the ordering of messages. If there is
         only a single producer, however, Cloud Queueing guarantees
         that messages are handled in a First In, First Out (FIFO)
         order. </para>
       <para>See the <xref linkend="glossary-d1e018"/> for terms that
-        are key to understanding how Cloud Queuing works.</para>
+        are key to understanding how Cloud Queues works.</para>
     </section>
     <section xml:id="operating_modes">
       <title>Operating Modes</title>
-      <para>Cloud Queuing uses the operating modes described in the
+      <para>Cloud Queues uses the operating modes described in the
         following sections. </para>
       <section xml:id="producer_consumer">
         <title>Producer-Consumer</title>
@@ -277,9 +295,9 @@
       </section>
     </section>
     <section xml:id="cloud-queuing-actions" >
-      <title>Cloud Queuing Requests</title>
+      <title>Cloud Queues Requests</title>
       <para>This section provides a list of requests that are possible
-        using the Cloud Queuing API. </para>
+        using the Cloud Queues API. </para>
       <section xml:id="queue-actions">
         <title>Queues </title>
         <para>The following requests are available for queues: </para>
@@ -344,7 +362,7 @@
     </section>
     <section xml:id="use_cases" >
       <title>Use Cases</title>
-      <para>Following are some possible use cases for Cloud Queuing: </para>
+      <para>Following are some possible use cases for Cloud Queues: </para>
       <itemizedlist>
         <listitem>
           <para> To distribute tasks among multiple workers
@@ -372,13 +390,13 @@
   <chapter xml:id="prerequisites" >
     <title>Prerequisites</title>
     <para>This section describes the prerequisities for working with
-      Cloud Queuing.</para>
+      Cloud Queues.</para>
     <section xml:id="cloud-account">
       <title>Open a Rackspace Cloud Account</title>
       <para xmlns:svg="http://www.w3.org/2000/svg"
         xmlns:m="http://www.w3.org/1998/Math/MathML"
         xmlns:html="http://www.w3.org/1999/xhtml">In order to use the
-        Cloud Queuing API, you must have the following prerequisites:
+        Cloud Queues API, you must have the following prerequisites:
           <itemizedlist spacing="compact">
           <listitem>
             <para>Rackspace Cloud account</para>
@@ -425,7 +443,7 @@
       <programlisting>curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H "X-Project-Id: 101010" </programlisting>
  -->
       <!--
-      <para>To access the Rackspace Cloud Queuing API use the
+      <para>To access the Rackspace Cloud Queues API use the
         following URL:</para>
       <para>https://queue.api.rackspacecloud.com/v1.0/ 1234</para>
       <note>
@@ -441,7 +459,7 @@
     </section>
     <section xml:id="authentication-1">
       <title>Authentication</title>
-      <para> Every ReST request against the Cloud Queuing requires the
+      <para> Every ReST request against the Cloud Queues requires the
         inclusion of a specific authorization token, supplied by the
           <code>X-Auth-Token</code> HTTP header. Customers obtain this
         token by first using the Rackspace Cloud Authentication
@@ -569,7 +587,7 @@
       <para>The following example demonstrates how to use cURL to
         obtain the authentication token and the account number. You
         will need to supply the authentication token and account
-        number when making subsequent Cloud Queuing API calls.</para>
+        number when making subsequent Cloud Queues API calls.</para>
       <para>Remember to replace the names in the Authenticate Request
         examples below with their respective values:<itemizedlist
           spacing="compact">
@@ -761,30 +779,30 @@
           </listitem>
         </itemizedlist>
       </note>
-      <para>The <code>publicURL</code> endpoints for Cloud Queuing (for
+      <para>The <code>publicURL</code> endpoints for Cloud Queues (for
         example <code>https://
           ord.queue.api.rackspacecloud.com/v1.0/1100111</code>) are
         also returned in the response. </para>
       <para>You will find the actual account number after the final
         '/' in the <code>publicURL</code> field. In this example, you
         can see that the account number is 1100111. You need to
-        specify your account number on most of the Cloud Queuing API
+        specify your account number on most of the Cloud Queues API
         calls, wherever you see the field <code>your_acct_id</code>
         specified in the examples in this guide.</para>
       <para>After authentication, you can use cURL to perform GET ,
-        DELETE , and POST requests for the Cloud Queuing </para>
+        DELETE , and POST requests for the Cloud Queues </para>
         -->
       <!--
     </section>
     <section xml:id="endpoints" >
       <title>Endpoints</title>
-      <para>The endpoint to use for your Cloud Queuing API calls for
+      <para>The endpoint to use for your Cloud Queues API calls for
         the Preview program is:</para>
       <para><code>https://ord.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </para>
       <para>or</para>
       <para><code>https://snet-ord.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </para>
 
-      <para>The endpoints to use for your Cloud Queuing API calls are
+      <para>The endpoints to use for your Cloud Queues API calls are
         summarized in the table below.</para>
       
       <para>
@@ -866,7 +884,7 @@
         actual account number wherever you see the field <emphasis
           role="bold">your_acct_id</emphasis> specified in this guide.
         Refer to <xref linkend="authentication-1"/>. </para>
-      <para>When making a Cloud Queuing API call, place the endpoint
+      <para>When making a Cloud Queues API call, place the endpoint
         at the beginning of the request URL, for example:
           (<code>https://ord.queue.api.rackspacecloud.com/v1.0/your_acct_id/</code>.</para>
 -->
@@ -1059,14 +1077,14 @@
       xmlns:html="http://www.w3.org/1999/xhtml">Working with Your
       First Message Queue </title>
     <para>This chapter contains a simple exercise that will help you
-      become familiar with some basic Cloud Queuing requests. The
+      become familiar with some basic Cloud Queues requests. The
       requests included in this exercise are ones you would commonly
       use. Example requests are provided in cURL, followed by the
-      response.  </para>
-    <para>For a complete list of requests available for Cloud Queuing,
+      response. </para>
+    <para>For a complete list of requests available for Cloud Queues,
       see <xref linkend="cloud-queuing-actions"/>. Each request
       available will be fully described in the <emphasis role="italic"
-        >Cloud Queuing Developer Guide</emphasis>.</para>
+        >Cloud Queues Developer Guide</emphasis>, coming soon.</para>
     <section xml:id="create_queue">
       <title>Create Queue</title>
       <para><code>Create Queue</code> creates a queue and sets its
@@ -1133,7 +1151,7 @@ Location: /v1/queues/samplequeue</programlisting>
         document that constitutes the body of the message being sent.
         The size of this body, including characters and whitespace, is
         limited to 256 KB. The document <emphasis role="italic"
-          >must</emphasis> be valid JSON. (Cloud Queuing validates
+          >must</emphasis> be valid JSON. (Cloud Queues validates
         it.)</para>
       <para><tag class="attribute">ttl</tag> is how long the server
         should wait before expiring and removing the message from the
@@ -1164,7 +1182,7 @@ Location: /v1/queues/samplequeue/messages?ids=51ca00a0c508f154c912b85c,51ca00a0c
       <para><code>Claims Messages</code> claims a set of messages (up
         to <tag class="attribute">limit</tag>) from oldest to newest
         and skips any that are already claimed. If no unclaimed
-        messages are available, Cloud Queuing returns <code>204 No
+        messages are available, Cloud Queues returns <code>204 No
           Content</code>. </para>
       <para>The Claim Messages template is:</para>
       <programlisting>POST {base_url}/queues/{queue_name}/claims{?limit}
@@ -1322,13 +1340,6 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         xlink:href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"
         >www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</link>.
     </para>
-  </chapter>
-  <chapter xml:id="doc-change-history">
-    <title>Document Change History</title>
-    <para>This version of the Getting Started replaces and obsoletes
-      all previous versions. The most recent changes are described in
-      the table below: </para>
-    <?rax revhistory?>
   </chapter>
   <glossary xml:id="glossary-d1e018">
     <title>Glossary</title>

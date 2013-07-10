@@ -21,10 +21,10 @@
 	    </goals>
 	    <phase>generate-sources</phase>
 	    <configuration>
-	    	<security>internal</security>	    	
+	    	<security>internal</security> 	
 	      <includes>
-	      	<!--	      cq-devguide.xml,  -->
-          cq-gettingstarted.xml <!--, 
+	      cq-devguide.xml<!--,
+          cq-gettingstarted.xml,
 	      cq-releasenotes.xml  -->
 	      </includes>
 	    </configuration>

@@ -116,7 +116,7 @@
       level.</para>
     <para>Cloud Queuing creates an open alternative to the
       producer-consumer and the publish-subscribe (pub-sub) messaging
-      patterns for use in applications that run on OpenStack clouds. </para>
+      patterns for use in applications that run on OpenStack clouds.  </para>
     <para>The Cloud Queuing API uses a modular architecture and
       supports unified pub-sub and job-queuing semantics. You can
       customize Cloud Queuing to achieve a wide range of performance,
@@ -1127,10 +1127,27 @@ Content-Type: application/json
   </chapter>
   <chapter xml:id="API_Operations_dle001" >
     <title>API Operations</title>
-    <para>This chapter describes the Cloud Queuing API operations. </para>
-    <remark>Reviewer: This chapter will be built by the docTools using
-      the WADL that the tech writer is developing from the Marconi
-      specs.</remark>
+    <para>This chapter describes each of the Cloud Queuing
+      operations.</para>
+    <section xml:id="API_Test">
+      <title>Queues </title>
+      <para>This section describes queue requests that are supported
+        by the Cloud Queuing API. </para>
+      <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
+          <wadl:method href="createQueue"/>
+        </wadl:resource>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
+          <wadl:method href="setQueueMetadata"/>
+        </wadl:resource>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
+          <wadl:method href="getQueueMetadata"/>
+        </wadl:resource>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
+          <wadl:method href="deleteQueue"/>
+        </wadl:resource>       
+      </wadl:resources>
+    </section>   
   </chapter>
 
 
