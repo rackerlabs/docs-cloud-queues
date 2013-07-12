@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+Content-Length: 53
+Content-Type: application/json; charset=utf-8
+Content-Location: /v1/queues/demoqueue/stats
+
+{
+  "messages": {
+    "claimed": 0,
+    "free": 0
+  },
+  "actions": 0
+}

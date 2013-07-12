@@ -1,0 +1,10 @@
+HTTP/1.1 201 CreatedContent-Length: 153Content-Type: application/json; charset=utf-8Location: /v1/queues/samplequeue/messages?ids=51ca00a0c508f154c912b85c,51ca00a0c508f154c912b85d
+
+
+{
+    "resources": [
+        "/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c",
+        "/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85d"
+    ],
+    "partial": false
+}

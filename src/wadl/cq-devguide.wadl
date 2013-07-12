@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- (C) 2012 OpenStack LLC., All Rights Reserved  -->
+
+<!DOCTYPE application [
+    <!ENTITY % common  SYSTEM "../common/common.ent">
+    %common;
+    
+    
+]>
+
+
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:wadl="http://wadl.dev.java.net/2009/02"
+	         xmlns:xlink="http://www.w3.org/1999/xlink"
+             xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
+	         xmlns:raxapi="http://docs.rackspace.com/volume/api/v1"
+	         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	         xmlns:dbaas="http://docs.openstack.org/database/api/v1.0"
+	         xmlns:queues="http://docs.openstack.org/database/api/v1.0">
+	
+	
+<!--*******************************************************-->
+<!--             Grammars                                  -->
+<!--*******************************************************-->
+<!-- What do I need here for Cloud Queues  - after talking with 
+		David, because CQ is not use Repose, probably don't need 
+		grammars defined.
+	<grammars>
+		<include href="../common/xsd/api.xsd"/> 
+		<include href="../common/xsd/api-common.xsd"/>
+		<include href="dbaas.xsd" />
+	</grammars>
+-->
+	
+<!--*******************************************************-->
+<!--             All Resources                             -->
+<!--*******************************************************-->
+	
+	
+	<resources base="https://ord.queue.api.rackspacecloud.com/">
+		<resource id="version" path="{versions}">
+			<!--	Project ID in in the Header not in the URL		
+				<resource id="projectID" path="{projectId}">
+				<param name="projectId" style="template" type="xsd:string"> 
+				<doc>The project ID of the owner of the specified
+				queue. </doc></param>
+			-->						
+			<resource id="queues" path="queues">
+				<method href="#listQueues" />	
+				
+				<resource id="queue" path="{queue_name}">
+					<param name="queue_name" style="template" type="xsd:string">
+						<doc>Specifies the name of the queue.</doc></param>
+					<method href="#createQueue"/>
+					<method href="#setQueueMetadata"/>							
+					<method href="#getQueueMetadata"/>
+					<method href="#deleteQueue"/>
+					
+					<resource id="stats" path="stats">
+						<method href="#getQueueStats" />
+					</resource>	
+					<resource id="messages" path="messages">
+						<method href="#postMessage" />
+						<method href="#getMessages" />
+						<method href="getSetMessagesByID" />
+						<resource id="message" path="{messageId}">
+							<param name="messageId" style="template" type="xsd:string"> 
+								<doc>Specifies the message ID.
+									queue.</doc></param>
+							<method href="#getSpecificMessage" />
+							<method href="deleteMessage" />
+						</resource>	
+					</resource>		
+				</resource>
+			</resource>
+		</resource>			
+	</resources>
+	
+<!--*******************************************************-->
+<!--               All Methods                             -->
+<!--*******************************************************-->
+
+<!--*******************************************************-->
+<!--              Queues Methods                           -->
+<!--*******************************************************-->	
+	
+<!--*******************************************************-->	
+<!--              Create Queue: createQueue                -->	  
+<!--*******************************************************-->		
+		<method name="PUT" id="createQueue">
+			<wadl:doc xml:lang="EN" title="Create Queue" xmlns="http://docbook.org/ns/docbook">
+				<para role="shortdesc">Creates a queue and sets its metadata.</para>  
+				<para>This operation creates a new queue and sets its metadata.</para>
+				<para>The body of the PUT is a document that can contain arbitrary metadata to be associated with the queue, up to 256 KB (configurable) when serialized as JSON, including whitespace. Top-level field names MUST NOT start with an underscore. Such names are reserved for future use.</para>				
+				<note> <para>queue_name is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens. If the specified queue already exists, the existing queue's metadata will be overwritten with the provided document.</para>
+				</note>	
+			</wadl:doc>
+			<request>
+				<representation mediaType="application/json" element="queues:Queue" >
+					<doc>
+						<xsdxt:code href="../wadl/samples/cq-createQueue_request.json"/>
+					</doc>
+				</representation>
+			</request>
+			<response status="201">		
+				<representation mediaType="application/json" >
+					<doc>
+						<xsdxt:code href="../wadl/samples/cq-createQueue_response.json"/>
+					</doc>
+				</representation>
+			</response>
+			&commonFaults;
+			&getFaults;
+		</method>
+	
+<!--*******************************************************-->
+<!--               List Queues: listQueues                 -->	
+<!--*******************************************************-->	
+
+	<method name="GET" id="listQueues" >
+		<wadl:doc xml:lang="EN" title="List Queues" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Lists queues.</para>  
+			<para>This operation lists queues for the project, sorting the queues alphabetically by name. </para>
+			<para>The following table lists the query attributes optionally available for List Queues:</para>
+			<table rules="all">
+				<caption>Attributes for List Queues</caption>
+				<tbody>
+					<tr>
+						<td colspan="1">limit</td>
+						<td colspan="3"><para>Specifies up to 20 (configurable) queues to return. If not specified, limit defaults to 10. Forward-only paging is supported via "next" link.</para></td>
+						<td colspan="1">No</td>
+					</tr>
+					<tr>
+						<td colspan="1">marker</td>
+						<td colspan="3">Specifies the name of the last queue received in a previous request, or none to get the first page of results. </td>
+						<td colspan="1">No</td>
+					</tr>
+					<tr>
+						<td colspan="1">detailed</td>
+						<td colspan="3">Specifies a boolean value ("true" or "false") that determines whether queue metadata is included in the response. If "false", the metadata field is excluded from the results. Defaults to "false".</td>
+						<td colspan="1">No </td>
+					</tr>
+				</tbody>
+			</table>
+
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-listQueues_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="200">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-listQueues_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&getFaults;
+	</method>
+
+	
+<!--*******************************************************-->	
+<!--       Set Queue Metadata: setQueueMetadata *****      -->
+<!--*******************************************************-->
+	<method name="PUT" id="setQueueMetadata">
+		<wadl:doc xml:lang="EN" title="Set Queue Metadata" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Sets queue metadata.</para>  
+			<para>This operation sets metadata for the queue.</para>
+			<para>If PUT is used, this document will replace the existing metadata document in it's entirety, so you need to be careful that you do not accidentally delete fields.</para>					
+			<note> <para>queue_name is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens. If the specified queue already exists, the existing queue's metadata will be overwritten with the provided document.</para>
+			</note>		
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-setQueueMetadata_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="204">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-setQueueMetadata_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&getFaults;
+	</method>
+	
+<!--*******************************************************-->	
+<!--       Get Queue Metadata: getQueueMetadata *****      -->
+<!--*******************************************************-->
+	<method name="GET" id="getQueueMetadata">
+		<wadl:doc xml:lang="EN" title="Get Queue Metadata" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Returns queue metadata.</para>  
+			<para>This operation returns metadata, such as message TTL, for the queue.</para>				
+			<note> <para>queue_name is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens. If the specified queue already exists, the existing queue's metadata will be overwritten with the provided document.</para>
+			</note>	
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-getQueueMetadata_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="204">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-getQueueMetadata_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&getFaults;
+	</method>	
+
+<!--*******************************************************-->
+<!--          Get Queue Stats: getQueueStats               -->
+<!--*******************************************************-->
+	<method name="GET" id="getQueueStats">
+		<wadl:doc xml:lang="EN" title="Get Queue Stats" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Returns queue statistics.</para>  
+			<para>This operation returns queue statistics including how many messages are in the queue, broken out by status.</para>
+			<note> <para>queue_name is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens. If the specified queue already exists, the existing queue's metadata will be overwritten with the provided document.</para>
+			</note>	
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-getQueueStats_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="200">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-getQueueStats_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&getFaults;
+	</method>
+	
+<!--*******************************************************-->						
+<!--              Delete Queue: deleteQueue                -->
+<!--*******************************************************-->		
+	<method name="DELETE" id="deleteQueue">
+		<wadl:doc xml:lang="EN" title="Delete Queue" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Deletes the queue. </para>  
+			<para>This operation immediately deletes a queue along with all its messages (if any). </para>
+			<note> <para>queue_name is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens. If the specified queue already exists, the existing queue's metadata will be overwritten with the provided document.</para>
+			</note>		
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-deleteQueue_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="204">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-deleteQueue_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&getFaults;
+	</method>	
+
+<!--*******************************************************-->
+<!--               Messages Methods                        -->
+<!--*******************************************************-->	
+	
+<!--*******************************************************-->						
+<!--           Post Message: postMessage                   -->
+<!--*******************************************************-->			
+	<method name="POST" id="postMessage">
+		<wadl:doc xml:lang="EN" title="Post Message" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Posts the specified message or messages. </para>  
+			<para>This operation posts the specified message or messages. </para>
+			<para>You can submit up to 20 messages (configurable) in a single request, but you must always encapsulate the messages in a collection container (an array in JSON). The resulting value of the Location header or response body may be used to retrieve the created messages for further processing, if needed. </para>
+			<para>The client only specifies the body and TTL for the message. The server will insert metadata, such as ID and age.</para>
+			<para>The response body contains a list of resource paths corresponding to each message submitted in the request, in the same order. In the case of a server-side error part-way through the processing of the submitted messages, a partial list will be returned, partial will be true, and the client will need to retry posting the remaining messages. If no messages could be enqueued, the server will return 503 Service Unavailable. </para>
+			<para>body specifies an arbitrary document which constitutes the body of the message being sent. The size of this body, in characters and including whitespace, is 256 KiB (configurable). The document MUST be valid JSON (Cloud Queues will validate it). </para>
+			<para>ttl is how long the server should wait before expiring and removing the message from the queue. Value MUST be between 60 and 1209600 seconds (14 days, configurable), inclusive. Note that the server may not actually delete the message until it's age has reached up to (ttl + 60) seconds, to allow for flexibility in storage implementations. </para>
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-postMessage_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="201">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-postMessage_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&getFaults;
+	</method>	
+	
+<!--*******************************************************-->						
+<!--           Get Messages: getMessages                   -->
+<!--*******************************************************-->			
+	<method name="GET" id="getMessages">
+		<wadl:doc xml:lang="EN" title="Get Messages" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Gets the message or messages in the specified queue. </para>  
+			<para>This operation gets the message or messages in the specified queue. </para>
+			<para>Message IDs and markers are opaque strings. Clients should make no assumptions about their format or length. Furthermore, clients should assume that there is no relationship between markers and message IDs (that is, one cannot be derived from the other). This allows for a wide variety of storage driver implementations. </para>
+			<para>Results are ordered by age, oldest message first. </para>
+			<para>limit specifies up to 20 messages (configurable) to return. If not specified, limit defaults to 10. When more messages are available than can be returned in a single request, the client can pick up the next batch by simply using the URI template parameters returned from the previous call in the "next" field.  </para>
+			<para>marker is an opaque string that the client can use to request the next batch of messages. It communicates to the server which messages the client has already received. <note>If marker is not specified, the API will return all messages at the head of the queue (up to limit).</note></para>
+			<para>echo is a boolean ("true" or "false") that determines whether or not the API will return a client's own messages, as determined by the uuid portion of the User-Agent header. If not specified, echo defaults to "false".  </para>
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-getMessages_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="200">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-getMessages_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&getFaults;
+	</method>
+	
+<!--*******************************************************-->						
+<!--      Get a Specific Message: getSpecificMessage       -->
+<!--*******************************************************-->			
+	<method name="GET" id="getSpecificMessage">
+		<wadl:doc xml:lang="EN" title="Get a Specific Message" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Gets the specified message from the specified queue. </para>  
+			<para>This operation gets the specified message from the specified queue. </para>
+			<para>Message fields are defined as follows:<itemizedlist><listitem><para>href is an opaque relative URI that the client can use to uniquely identify a message resource, and interact with it. </para></listitem><listitem><para>ttl is the ttl set on the message when it was posted. The message will expire after (ttl - age) seconds. </para></listitem><listitem><para>age number of seconds since ts, relative to the server's clock.</para></listitem><listitem><para>body Arbitrary document submitted along with the original request to post the message. </para></listitem></itemizedlist></para>
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-getSpecificMessage_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="200">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-getSpecificMessage_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&getFaults;
+	</method>
+
+<!--*******************************************************-->						
+<!--     Get a Set of Messages by ID: getSetMessagesByID   -->
+<!--*******************************************************-->			
+	<method name="GET" id="getSetMessagesByID">
+		<wadl:doc xml:lang="EN" title="Get a Set of Messages by ID" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Gets a set of messages specified by ID from the specified queue. </para>  
+			<para>This operation provides a more efficient way to query multiple messages, rather than having to do so in a series of individual GETs.  </para>
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-getSetMessagesByID_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="200">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-getSetMessagesByID_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&getFaults;
+	</method>
+	
+<!--*******************************************************-->						
+<!--           Delete Message: deleteMessage               -->
+<!--*******************************************************-->			
+	<method name="DELETE" id="deleteMessage">
+		<wadl:doc xml:lang="EN" title="Delete Message" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Deletes a message. </para>  
+			<para>This operation immediately deletes the specified message. </para>
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-deleteMessage_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="204">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-deleteMessage_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&getFaults;
+	</method>	
+	
+<!--*******************************************************-->	
+<!--                 CLAIMS METHODS                        -->
+<!--*******************************************************-->		
+	
+	<!--*******************************************************-->						
+	<!--            Claim Messages: claimMessages              -->
+	<!--*******************************************************-->			
+	<method name="POST" id="claimMessages">
+		<wadl:doc xml:lang="EN" title="Claim Messages" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Claims a set of messages from the specified queue. </para>  
+			<para>This operation claims a set of messages, up to <code>limit</code>, from oldest to newest, skipping any that are already claimed. If no unclaimed messages are available, the API returns <code>204 No Content</code>. </para>
+			<para>The client should delete the message when it has finished processing it, before the claim expires, to ensure the message is processed only once. As part of the delete operation, all worker clients should specify the claim ID (this is best done by simply using the provided href). That way, the server can return an error if the claim just expired (notifying the client of the race condition), giving the worker a chance to roll back its own processing of the given message, since another worker will likely claim the message and process it. </para>
+			<para>Just as with a message's age, the age given for the claim is relative to the server's clock, and is useful for determining how quickly messages are getting processed, and whether a given message's claim is about to expire. </para>
+			<para>When a claim expires, it is removed, allowing another client worker to claim the message in the case that the original worker fails to process it. </para>
+			<para><code>limit</code> specifies up to 20 messages (configurable) to claim. If not specified, <code>limit</code> defaults to 10. Note that claim creation is best-effort, meaning the server may claim and return less than the requested number of messages. </para>
+			<para><code>ttl</code> is how long the server should wait before releasing the claim. The <code>ttl</code> value MUST be between 60 and 43200 seconds (12 hours, configurable). </para>
+			<para><code>grace</code>is the message grace period in seconds. Value MUST be between 60 and 43200 seconds (12 hours, configurable). The server will extend the lifetime of claimed messages to be at least as long as the lifetime of the claim itself, plus a specified grace period to deal with crashed workers (up to 1209600 or 14 days including claim lifetime). If a claimed message would normally live longer than the grace period, it's expiration will not be adjusted.  </para>
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-claimMessages_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="200">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-claimMessages_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&getFaults;
+	</method>		
+<!--*******************************************************-->						
+<!--               Query Claim: queryClaim                 -->
+<!--*******************************************************-->			
+	<method name="GET" id="queryClaim">
+		<wadl:doc xml:lang="EN" title="Query Claim" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Queries the specified claim for the specified queue. </para>  
+			<para>This operation queries the specified claim for the specified queue. </para>
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-queryClaim_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="200">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-queryClaim_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&getFaults;
+	</method>	
+
+<!--*******************************************************-->						
+<!--               Update Claim: updateClaim                 -->
+<!--*******************************************************-->			
+	<method name="PATCH" id="updateClaim">
+		<wadl:doc xml:lang="EN" title="Update Claim" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Updates the specified claim for the specified queue. </para>  
+			<para>This operation updates the specified message for the specified queue. </para>
+			<para>Clients should periodically renew claims during long-running batches of work to avoid loosing a claim in the middle of processing a message. This is done by issuing a PATCH to a specific claim resource and including a new TTL for the claim (which may be different from the original TTL). The server will reset the age of the claim and apply the new TTL</para>
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-updateClaim_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="204">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-updateClaim_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&getFaults;
+	</method>		
+	
+<!--*******************************************************-->						
+<!--               Release Claim: releaseClaim                 -->
+<!--*******************************************************-->			
+	<method name="DELETE" id="releaseClaim">
+		<wadl:doc xml:lang="EN" title="Release Claim" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Releases the specified claim for the specified queue. </para>  
+			<para>This operation immediately releases a claim, making any (remaining, non-deleted) messages associated with the claim available to other workers. </para>
+			<para>This operation is useful when a worker is performing a graceful shutdown, fails to process one or more messages, or is taking longer than expected to process messages, and wishes to make the remainder available to other workers. </para>
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-releaseClaim_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="204">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-releaseClaim_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&getFaults;
+	</method>		
+		
+
+		<!--               from example WADL from David Cramer's work        
+			<resource id="version" path="v1">
+      <resource id="tenant_id" path="{tenant_id}">
+	<param name="tenant_id" style="template">
+	  <wadl:doc  xmlns="http://docbook.org/ns/docbook">
+	    <para>
+	      The unique identifier of the tenant or account.
+	    </para>
+	  </wadl:doc>
+	</param>
+	<?rax start-sections?>
+	<resource id="volumes" path="volumes">
+	  <wadl:doc title="Volumes"/>   
+	  <method href="#createVolume" />
+	  <method href="#getVolumesSimple" />
+
+	  <resource path="{volume_id}" id="volume_id">
+	    <param name="volume_id" style="template" required="true">
+	      <wadl:doc xmlns="http://docbook.org/ns/docbook"><para>
+		The unique identifier of an existing Volume.
+	      </para></wadl:doc>
+	    </param>
+	    
+	    <method href="#getVolume" />
+	    <method href="#deleteVolume" />
+	    
+	  </resource>
+	</resource>
+	
+	<resource id="volume_types" path="/types">
+	  <wadl:doc title="Volume types"/>
+	  <method href="#getVolumeTypes" />
+
+	  <resource path="{volume_type_id}" id="volume_type_id">
+	    <param name="volume_type_id" style="template" required="true">
+	      <wadl:doc xmlns="http://docbook.org/ns/docbook"><para>
+		The unique identifier of an existing Volume Type.
+	      </para></wadl:doc>
+	    </param>
+
+	    <method href="#getVolumeType" />
+	  </resource>
+	</resource>
+
+	<resource id="snapshots" path="snapshots">
+	  <wadl:doc title="Snapshots"/>
+	  <method href="#createSnapshot" />
+	  <method href="#getSnapshotsSimple" />
+
+	  <resource path="{snapshot_id}" id="snapshot_id">
+	    <param name="snapshot_id" style="template" required="true">
+	      <wadl:doc  xmlns="http://docbook.org/ns/docbook"><para>
+		The unique identifier of an existing Snapshot.
+	      </para></wadl:doc>
+	    </param>
+
+	    <method href="#getSnapshot" />
+	    <method href="#deleteSnapshot" />
+
+	  </resource>
+	</resource>
+
+      </resource>
+    </resource>
+  </resources>
+
+  <method name="POST" id="createVolume">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" title="Create Volume">
+      <para role="shortdesc">Creates the volume.</para>
+		<para>
+	The below example creates a SATA volume called "vol-001" that has a size of 100 GB.
+      </para>
+    </wadl:doc>
+    <request>
+      <param name="volume" style="query" type="string" required="true">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>A partial representation of a volume used in the creation process.</para>
+	</wadl:doc>
+      </param>
+      <param name="size" style="query" type="string" required="true">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>The size (in GB) of the volume.</para>
+	</wadl:doc>
+      </param>
+      <param name="display_description" style="query" type="string" required="false">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>A description of the volume.</para>
+	</wadl:doc>
+      </param>
+      <param name="display_name" style="query" type="string" required="false">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>The name of the volume.</para>
+	</wadl:doc>
+      </param>
+      <param name="snapshot_id" style="query" type="string" required="false">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>The optional snapshot from which to create a volume.</para>
+	</wadl:doc>
+      </param>
+      <param name="volume_type" style="query" type="string" required="false">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>The type of volume to create, either SATA or SSD. If not defined,
+	  then the default, SATA, is used.</para>
+	</wadl:doc>
+      </param>
+      
+      <representation mediaType="application/xml" element="raxapi:volume">
+	
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_create.xml" />
+	</wadl:doc>                            
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_create.json" />
+	</wadl:doc>
+      </representation>
+    </request>
+
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:volume">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_show.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_show.json" />
+	</wadl:doc>
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>Note that you use the <code>os-volume_attachments</code> API call 
+	  (<code>/servers/{server_id}/os-volume_attachments</code>) to attach 
+	  the new volume to your Next Generation Cloud Server (with 
+	  the specified {server_id}). 
+	  Refer to the <citetitle>Next Generation Cloud Servers Developer Guide</citetitle> 
+	  at <link xlink:href="http://docs.rackspace.com/api">docs.rackspace.com</link> for details 
+	  of the call. Once the volume is attached, the new volume will appear 
+	  as another device on the Next Generation Cloud Server. It can 
+	  then be partitioned, formatted, and mounted for use on the system. </para>
+	</wadl:doc>
+	
+
+	
+      </representation>
+    </response>
+  </method>
+
+  <method name="GET" id="getVolumesSimple">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" title="List Volumes">
+      <para xmlns="http://docbook.org/ns/docbook">View a list of volumes.</para>
+    </wadl:doc>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:volumes">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_list_simple.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_list_simple.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
+
+  <method name="GET" id="getVolumesDetail">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en"
+	      title="List Volumes (Detailed)">
+      <para xmlns="http://docbook.org/ns/docbook">View a list of detailed Volume entities.</para>
+
+    </wadl:doc>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:volumes">
+	<wadl:doc xml:lang="en">
+	  
+	  <xsdxt:code href="samples/volume_list_simple.xml" />
+	  
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_list_simple.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
+
+  <method name="GET" id="getVolume">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" title="Show Volume">
+      <para xmlns="http://docbook.org/ns/docbook">View all information about a single Volume.</para>
+    </wadl:doc>
+    <request>
+    </request>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:volume">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_show.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_show.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
+
+
+  <method name="DELETE" id="deleteVolume">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" title="Delete Volume">
+      <para xmlns="http://docbook.org/ns/docbook">Delete a single Volume.</para>
+	  <para>Due to a limitatin in the OpenStack source, it is not currently (October, 2012) possible
+	to delete a Volume once you have created a snapshot from it.</para>   
+    </wadl:doc>
+    <response status="202" />
+  </method>
+
+  <method name="GET" id="getVolumeTypes">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" title="List Volume Types">
+      <para xmlns="http://docbook.org/ns/docbook">Request a list of Volume Types.</para>
+    </wadl:doc>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:volume_types">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_type_list.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_type_list.json" />
+	</wadl:doc>
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>Note that two storage types are currently supported: SATA 
+	  and SSD. SATA is the standard performance storage option 
+	  and SSD is the high performance option.</para>
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
+
+  <method name="GET" id="getVolumeType">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" title="Describe Volume Type">
+      <para xmlns="http://docbook.org/ns/docbook">Request a single Volume Type.</para>
+
+    </wadl:doc>
+    
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:volume_type">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_type_show.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_type_show.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
+
+  <method name="POST" id="createSnapshot">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" 
+	      title="Create Snapshot">
+      <para role="shortdesc">Create a Snapshot.</para>
+    </wadl:doc>
+    
+    <wadl:doc xmlns="http://docbook.org/ns/docbook">
+      <para>Creating a snapshot makes a point-in-time copy of the
+      volume. All writes to the volume should be flushed <emphasis>before</emphasis>
+      creating the snapshot, either by un-mounting any file systems on the
+      volume, or by detaching the volume before creating the snapshot.
+      Snapshots are incremental, so each time you create a new snapshot, you are
+      appending the incremental changes for the new snapshot to the previous
+      one. The previous snapshot is still available. Note that you can
+      create a new volume from the snapshot if desired.</para>
+    </wadl:doc>
+    <request>
+      <param name="snapshot" style="query" type="string" required="true">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook"><para>
+	  A partial representation of a snapshot used in the creation process.
+	</para>
+	</wadl:doc>
+      </param>
+      <param name="volume_id" style="query" type="string" required="true">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook"><para>
+	  The ID of the volume to snapshot.
+	</para>
+	</wadl:doc>
+      </param>
+      <param name="force" style="query" type="string" required="false">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook"><para>
+	  [True/False] Indicate whether to snapshot, even if the volume is attached. 
+	  Default==False.
+	</para>
+	</wadl:doc>
+      </param>            
+      <param name="display_name" style="query" type="string" required="false">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook"><para>
+	  Name of the snapshot. Default==None.
+	</para>
+	</wadl:doc>
+      </param>
+      <param name="display_description" style="query" type="string" required="false">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook"><para>
+	  Description of snapshot. Default==None.
+	</para>
+	</wadl:doc>
+      </param>
+      
+      
+      <representation mediaType="application/xml" element="raxapi:snapshot">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_create.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_create.json" />
+	</wadl:doc>
+      </representation>
+    </request>
+    <response status="201">
+      <representation mediaType="application/xml" element="raxapi:snapshot">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_show.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_show.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
+
+  <method name="GET" id="getSnapshotsSimple">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" 
+	      title="List Snapshots">
+      <para>View a list of simple Snapshot entities.</para>
+    </wadl:doc>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:snapshots">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_list_simple.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_list_simple.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
+
+  <method name="GET" id="getSnapshotsDetail">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" 
+	      title="List Snapshots (Detailed)">
+      <para xmlns="http://docbook.org/ns/docbook">View a list of detailed Snapshot entities.</para>
+    </wadl:doc>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:snapshots">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_list_simple.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_list_simple.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
+
+  <method name="GET" id="getSnapshot">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" 
+	      title="Show Snapshot">
+      <para xmlns="http://docbook.org/ns/docbook">
+	View all information about a single Snapshot.
+      </para>
+    </wadl:doc>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:snapshot">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_show.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_show.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
+
+  <method name="DELETE" id="deleteSnapshot">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" 
+	      title="Delete Snapshot">
+      <para xmlns="http://docbook.org/ns/docbook">Delete a single Snapshot.</para>
+    </wadl:doc>
+    <response status="202" />
+  </method>
+-->
+</application>

@@ -1,0 +1,21 @@
+POST /v1/queues/demoqueue/messages HTTP/1.1
+Host: ord.queue.api.rackspacecloud.com
+Content-type: application/json
+Client-ID: QClient
+X-Auth-Token: 0f6e9f63600142f0a970911583522217
+X-Project-Id: 101010
+
+[
+  {
+    "ttl": 300,
+    "body": {
+      "event": "BackupStarted"
+    }
+  },
+  {
+    "ttl": 60,
+    "body": {
+      "play": "hockey"
+    }
+  }
+]

@@ -61,7 +61,7 @@
     </copyright>
     <releaseinfo>API v1.0</releaseinfo>
     <productname>Rackspace Cloud Queues</productname><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
-    <pubdate>2013-07-15</pubdate>
+    <pubdate/>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically. -->
     <legalnotice role="rs-api">
       <annotation>
@@ -77,7 +77,7 @@
  
     <revhistory>
       <revision>
-        <date>2013-07-15</date>
+        <date>2013-07-29</date>
         <revdescription>
           <itemizedlist>
             <listitem>
@@ -811,8 +811,6 @@
               <td colspan="5"
                   ><code>https://ord-snet.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
             </tr>
-            <tr/>
-            <tr/>
             <tr align="left">
               <td colspan="2" rowspan="2">London (LON)</td>
               <td colspan="5"
@@ -1114,7 +1112,9 @@ Content-Type: application/json
         description in <xref linkend="API_Operations_dle001"/>.</para>
     </section> 
   </chapter>
-  <chapter xml:id="API_Operations_dle001" >
+  <chapter xml:id="API_Operations_dle001" 
+    xmlns="http://docbook.org/ns/docbook"
+    role="api-reference">
     <title>API Operations</title>
     <para>This chapter describes each of the Cloud Queues
       operations.</para>
@@ -1123,43 +1123,22 @@ Content-Type: application/json
       <para>This section describes queue requests that are supported
         by the Cloud Queues API. </para>
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
-          <wadl:method href="createQueue"/>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queues">
+          <wadl:method href="listQueues"/>
         </wadl:resource>
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
-          <wadl:method href="setQueueMetadata"/>
-        </wadl:resource>
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
-          <wadl:method href="getQueueMetadata"/>
-        </wadl:resource>
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
-          <wadl:method href="getQueueStats"/>
-        </wadl:resource>
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
-          <wadl:method href="deleteQueue"/>
-        </wadl:resource>       
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue"/>        
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#stats"/>
       </wadl:resources>
     </section>
     <section xml:id="message-operations-dle001" >
       <title>Messages </title>
       <para>This section describes message requests that are supported
         by the Cloud Queues API. </para>
-      <!--
-      <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
-          <wadl:method href="createQueue"/>
-        </wadl:resource>
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
-          <wadl:method href="setQueueMetadata"/>
-        </wadl:resource>
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
-          <wadl:method href="getQueueMetadata"/>
-        </wadl:resource>
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
-          <wadl:method href="deleteQueue"/>
-        </wadl:resource>
+      <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">     
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#messages"/>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#message"/>  
       </wadl:resources>
-      -->
+
     </section>
     <section xml:id="claims-operations-dle001" >
       <title>Claims </title>
@@ -1167,19 +1146,8 @@ Content-Type: application/json
         by the Cloud Queues API. </para>
       <!--
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
-          <wadl:method href="createQueue"/>
-        </wadl:resource>
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
-          <wadl:method href="setQueueMetadata"/>
-        </wadl:resource>
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
-          <wadl:method href="getQueueMetadata"/>
-        </wadl:resource>
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
-          <wadl:method href="deleteQueue"/>
-        </wadl:resource>
-      </wadl:resources>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#claims">
+      <wadl:resources>
     </section> 
     --></section>
   </chapter>
