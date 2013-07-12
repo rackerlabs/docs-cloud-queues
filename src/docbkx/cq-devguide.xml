@@ -1138,19 +1138,17 @@ Content-Type: application/json
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#messages"/>
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#message"/>  
       </wadl:resources>
-
     </section>
     <section xml:id="claims-operations-dle001" >
       <title>Claims </title>
       <para>This section describes claim requests that are supported
         by the Cloud Queues API. </para>
-      <!--
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#claims">
-      <wadl:resources>
-    </section> 
-    --></section>
-  </chapter>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#claims"/>
+          <wadl:resource href="../../src/wadl/cq-devguide.wadl#claim"/>  
+      </wadl:resources>
+ </section>
+ </chapter>
 
 
 
