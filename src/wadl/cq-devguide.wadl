@@ -64,13 +64,13 @@
 					<resource id="messages" path="messages">
 						<method href="#postMessage" />
 						<method href="#getMessages" />
-						<method href="getSetMessagesByID" />
+						<method href="#getSetMessagesByID" />
 						<resource id="message" path="{messageId}">
 							<param name="messageId" style="template" type="xsd:string"> 
 								<doc>Specifies the message ID.
 									queue.</doc></param>
 							<method href="#getSpecificMessage" />
-							<method href="deleteMessage" />
+							<method href="#deleteMessage" />
 						</resource>	
 					</resource>		
 				</resource>
@@ -323,7 +323,7 @@
 			<para>Message IDs and markers are opaque strings. Clients should make no assumptions about their format or length. Furthermore, clients should assume that there is no relationship between markers and message IDs (that is, one cannot be derived from the other). This allows for a wide variety of storage driver implementations. </para>
 			<para>Results are ordered by age, oldest message first. </para>
 			<para>limit specifies up to 20 messages (configurable) to return. If not specified, limit defaults to 10. When more messages are available than can be returned in a single request, the client can pick up the next batch by simply using the URI template parameters returned from the previous call in the "next" field.  </para>
-			<para>marker is an opaque string that the client can use to request the next batch of messages. It communicates to the server which messages the client has already received. <note>If marker is not specified, the API will return all messages at the head of the queue (up to limit).</note></para>
+			<para>marker is an opaque string that the client can use to request the next batch of messages. It communicates to the server which messages the client has already received. <note><para>If marker is not specified, the API will return all messages at the head of the queue (up to limit).</para></note></para>
 			<para>echo is a boolean ("true" or "false") that determines whether or not the API will return a client's own messages, as determined by the uuid portion of the User-Agent header. If not specified, echo defaults to "false".  </para>
 		</wadl:doc>
 		<request>
