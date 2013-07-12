@@ -5,7 +5,7 @@
     xmlns:xi="http://www.w3.org/2001/XInclude"
     version="5.0-extension RaxBook-2.0"
     xml:id="cq-releasenotes">
-  <?rax canonical.url.base="http://docs.rackspace.com/queuing/api/v1.0/cs-releasenotes/content"?>
+  <?rax canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-releasenotes/content"?>
   <title>Cloud Queuing Release Notes</title>
   <info>
     <author>
@@ -48,7 +48,7 @@
     </revhistory>
     <raxm:metadata xmlns:raxm="http://docs.rackspace.com/api/metadata">
       <raxm:displayname>Release Notes</raxm:displayname>
-      <raxm:product version="v1.0">queuing</raxm:product>
+      <raxm:product version="v1.0">queues</raxm:product>
       <raxm:priority>30</raxm:priority>
     </raxm:metadata>
   </info>

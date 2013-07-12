@@ -24,7 +24,7 @@
       pdf.url="../../cq-gettingstarted-latest.pdf" 
       status.bar.text.font.size="40px"
       status.bar.text="Preview" 
-      canonical.url.base="http://docs.rackspace.com/queuing/api/v1.0/cs-gettingstarted/content"?>
+      canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-gettingstarted/content"?>
   <titleabbrev xmlns:svg="http://www.w3.org/2000/svg"
     xmlns:m="http://www.w3.org/1998/Math/MathML"
     xmlns:html="http://www.w3.org/1999/xhtml">Cloud Queues Getting
@@ -81,8 +81,8 @@
     <raxm:metadata
         xmlns:raxm="http://docs.rackspace.com/api/metadata">
       <raxm:displayname>Getting Started Guide</raxm:displayname>
-      <raxm:product version="v1.0">queuing</raxm:product>
-      <raxm:priority>1 </raxm:priority>
+      <raxm:product version="v1.0">queues</raxm:product>
+      <raxm:priority>10</raxm:priority>
     </raxm:metadata>
   </info>
   <chapter xml:id="doc-change-history">
