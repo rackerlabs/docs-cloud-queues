@@ -43,9 +43,8 @@
     xml:id="cq-devguide">
   <?rax canonical.url.base="http://docs.rackspace.com/queuing/api/v1.0/cs-devguide/content"?>
   <?rax title.font.size="35px" subtitle.font.size="20px"?>
-  <title>Rackspace Cloud Queuing Developer Guide</title>
-  <titleabbrev>Rackspace Cloud Queuing Developer
-    Guide</titleabbrev>
+  <title>Rackspace Cloud Queues Developer Guide</title>
+  <titleabbrev>Rackspace Cloud Queues Developer Guide</titleabbrev>
   <info>
     <author>
       <personname>
@@ -61,7 +60,7 @@
       <holder>Rackspace US, Inc.</holder>
     </copyright>
     <releaseinfo>API v1.0</releaseinfo>
-    <productname>Rackspace Cloud Queuing</productname><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
+    <productname>Rackspace Cloud Queues</productname><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <pubdate>2013-07-15</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically. -->
     <legalnotice role="rs-api">
@@ -72,8 +71,8 @@
     <abstract >
       <para>This document is intended for software developers
         interested in developing applications using the Rackspace
-        Cloud Queuing Application Programming Interface
-          (<abbrev>API</abbrev>).  </para>
+        Cloud Queues Application Programming Interface
+          (<abbrev>API</abbrev>). </para>
     </abstract>  
  
     <revhistory>
@@ -102,33 +101,33 @@
   </info>
   <chapter xml:id="overview">
     <title>Overview</title>
-    <para>Rackspace Cloud Queuing is an API-based message and
+    <para>Rackspace Cloud Queues is an API-based message and
       notification service. A message queueing service is a vital
-      component of big, complex web applications. Cloud Queuing from
-      Rackspace is designed to fill this need. Cloud Queuing is based
-      on the OpenStack Marconi project. </para>
+      component of big, complex web applications. Cloud Queues is
+      designed to fill this need. Cloud Queues is based on the
+      OpenStack Marconi project. </para>
     <para>As you develop more complex web applications, you often have
       multiple servers set up to complete a set of tasks for that
       application. These tasks can be anything from creating users to
-      deleting blocks of storage. Cloud Queuing is a service that owns
+      deleting blocks of storage. Cloud Queues is a service that owns
       the lists of tasks, but not necessarily the order or workflow of
       the tasks. Many applications handle the workflow at a higher
       level.</para>
-    <para>Cloud Queuing creates an open alternative to the
+    <para>Cloud Queues creates an open alternative to the
       producer-consumer and the publish-subscribe (pub-sub) messaging
-      patterns for use in applications that run on OpenStack clouds.  </para>
-    <para>The Cloud Queuing API uses a modular architecture and
+      patterns for use in applications that run on OpenStack clouds. </para>
+    <para>The Cloud Queues API uses a modular architecture and
       supports unified pub-sub and job-queuing semantics. You can
-      customize Cloud Queuing to achieve a wide range of performance,
+      customize Cloud Queues to achieve a wide range of performance,
       durability, availability, and efficiency goals. </para>
-    <para>Interactions with Cloud Queuing occur programmatically via
-      the Cloud Queuing API as described in this developer
+    <para>Interactions with Cloud Queues occur programmatically via
+      the Cloud Queues API as described in this developer
       guide.</para>
     <remark security="reviewer">Reviewer: do you want to replace the
       marketing info above with something more technical? Please give
-      me your suggestions. We could also add a diagram of Cloud
-      Queuing infrastructure / architecture if you can give it to me.
-      For an example, see the DB diagram at <link
+      me your suggestions. We could also add a diagram of Cloud Queues
+      infrastructure / architecture if you can give it to me. For an
+      example, see the DB diagram at <link
         xlink:href="http://docs.rackspace.com/cdb/api/v1.0/cdb-devguide/content/overview.html"
         >
         http://docs.rackspace.com/cdb/api/v1.0/cdb-devguide/content/overview.html</link>.</remark> 
@@ -136,7 +135,7 @@
       <title>Intended Audience</title>
       <para>This document is intended for software developers who are
         interested in developing applications that use the Rackspace
-        Cloud Queuing API. We assume you have the following
+        Cloud Queues API. We assume you have the following
         skills:</para>
       <itemizedlist>
         <listitem>
@@ -160,7 +159,7 @@
     <section xml:id="Additional_Resources-d1e532">
       <title>Additional Resources</title>
       <!--
-      <para>Description information about Cloud Queuing is also
+      <para>Description information about Cloud Queues is also
         published in its Web Application Description Language (WADL).
         You are welcome to read this information here:
         <link xlink:href="http://docs.rackspace.com/cdb/api/v1.0/cdb.wadl">http://docs.rackspace.com/cdb/api/v1.0/cdb.wadl
@@ -170,29 +169,29 @@
         API-related documents from <link
           xlink:href="http://docs.rackspace.com/"
           >http://docs.rackspace.com/</link>.</para>
-      <para> For more details about Cloud Queuing, refer to ??? (link
+      <para> For more details about Cloud Queues, refer to ??? (link
         to www.rackspace.com/cloud/queue???) . This site also offers
         links to Rackspace's official support channels, including
         knowledge base articles, forums, phone, chat, and
         email.</para>
       <remark security="reviewer">Reviewer: do you have a
-        corresponding link for the Cloud Queuing
-        landing page on rackspace.com/cloud? If so, can you please
-        give it to me?</remark>
+        corresponding link for the Cloud Queues landing page on
+        rackspace.com/cloud? If so, can you please give it to
+        me?</remark>
       <para>Using the API document and your Rackspace Cloud account,
         you can get started whenever you'd like. See the
-          <citetitle>Cloud Queuing Getting Started Guide</citetitle>
+          <citetitle>Cloud Queues Getting Started Guide</citetitle>
         for information about getting started using the API. </para>
       <para>Email all support questions to:
           <email>cbdteam@rackspace.com</email>. </para>
       <remark security="reviewer">Reviewer: do you have a
-        corresponding email distribution list for the Cloud Queuing
+        corresponding email distribution list for the Cloud Queues
         team to provide initial product support? If so, can you please
         give it to me?</remark>
       <para>Please visit our <link
           xlink:href="http://feedback.rackspace.com/forums/71021-product-feedback/category/6841-cloud-sites"
           >Product Feedback Forum</link> and let us know what you
-        think about Cloud Queuing.</para>
+        think about Cloud Queues.</para>
       <para>You can follow Rackspace updates and announcements via
         twitter at: <link
           xlink:href="http://www.twitter.com/rackspace"
@@ -212,30 +211,30 @@
     </section>
     <section xml:id="Pricing_SLA-d1e1362">
       <title>Pricing and Service Level</title>
-      <para>Cloud Queuing is part of the Rackspace Cloud and your use
+      <para>Cloud Queues is part of the Rackspace Cloud and your use
         through the API will be billed as per the pricing schedule at
           <link
           xlink:href="http://www.rackspace.com/cloud/sites/pricing/"
           >http://www.rackspace.com/cloud/sites/pricing/</link>.</para>
       <remark security="reviewer">Reviewer: Questions about pricing
-        for Cloud Queuing... seems to be up in the air... not charge
-        or billed? Please let me know.</remark>
-      <para>The Service Level Agreement (SLA) for Cloud Queuing is
+        for Cloud Queues... seems to be up in the air... not charge or
+        billed? Please let me know.</remark>
+      <para>The Service Level Agreement (SLA) for Cloud Queues is
         available at <link
           xlink:href="http://www.rackspace.com/cloud/legal/sla/#cloud_sites"
           >http://www.rackspace.com/cloud/legal/sla/#cloud_sites</link>.</para>
       <remark security="reviewer">Reviewer: do you have a
-        corresponding link for SLA for the Cloud Queuing? If so, can
+        corresponding link for SLA for the Cloud Queues? If so, can
         you please give it to me?</remark>
     </section>
   </chapter>
   <chapter xml:id="Concepts-dle001">
     <title>Concepts</title>
-    <para> To use the Cloud Queuing API effectively, you should
+    <para> To use the Cloud Queues API effectively, you should
       understand several key concepts: </para>
     <section xml:id="Site-d1e588">
-      <title>Cloud Queuing Workflow</title>
-      <para>Here is an overview of the Cloud Queuing workflow: </para>
+      <title>Cloud Queues Workflow</title>
+      <para>Here is an overview of the Cloud Queues workflow: </para>
       <orderedlist>
         <listitem>
           <para>You create a queue to which producers post
@@ -258,17 +257,17 @@
             wrong. </para>
         </listitem>
       </orderedlist>
-      <para>For the majority of use cases, Cloud Queuing itself will
+      <para>For the majority of use cases, Cloud Queues itself will
         not be responsible for the ordering of messages. If there is
         only a single producer, however, Cloud Queueing guarantees
         that messages are handled in a First In, First Out (FIFO)
         order. </para>
       <para>See the <xref linkend="glossary_1"/> for terms that are
-        key to understanding how Cloud Queuing works.</para>
+        key to understanding how Cloud Queues works.</para>
     </section>
     <section xml:id="OperatingModes-d1e588">
       <title>Operating Modes</title>
-      <para>Cloud Queuing uses the operating modes described in the
+      <para>Cloud Queues uses the operating modes described in the
         following sections. </para>
       <section xml:id="producer_consumer">
         <title>Producer-Consumer</title>
@@ -320,9 +319,9 @@
       </section>
     </section>
     <section xml:id= "cloud-queuing-actions-1">
-      <title>Cloud Queuing Requests</title>
+      <title>Cloud Queues Requests</title>
       <para>This section provides a list of requests that are possible
-        using the Cloud Queuing API.</para>
+        using the Cloud Queues API.</para>
       <section xml:id="queue-actions1" >
         <title>Queues</title>
         <para>The following requests are available for queues: </para>
@@ -388,7 +387,7 @@
     <section xml:id="use_cases"> 
       <title>Use Cases</title>
       <para>Following are some possible use cases for Cloud
-        Queuing:</para>
+        Queues:</para>
       <itemizedlist>
         <listitem>
           <para> To distribute tasks among multiple workers
@@ -415,9 +414,9 @@
   </chapter>
   <chapter xml:id="Gen_API_Info-de01">
     <title>General API Information</title>
-    <para>The Cloud Queuing API is implemented using a ReSTful web
+    <para>The Cloud Queues API is implemented using a ReSTful web
       service interface. Like other products in the Rackspace Cloud
-      suite, Cloud Queuing shares a common token-based authentication
+      suite, Cloud Queues shares a common token-based authentication
       system that allows seamless access between products and
       services.</para>
     <note>
@@ -427,7 +426,7 @@
     </note>
     <section xml:id="Authentication-d1e647">
       <title>Authentication</title>
-      <para> Every ReST request for Cloud Queuing requires the
+      <para> Every ReST request for Cloud Queues requires the
         inclusion of a specific authorization token, supplied by the
           <code>X-Auth-Token</code> HTTP header. Customers obtain this
         token by first using the Rackspace Cloud Authentication
@@ -786,12 +785,12 @@
     <section xml:id="serviceEndpoints">
       <title>Service Access/Endpoints</title>
       <para/>
-      <para>Cloud Queuing is a regionalized service. The user of the
+      <para>Cloud Queues is a regionalized service. The user of the
         service is therefore responsible for appropriate replication,
-        caching, and overall maintenance of Cloud Queuing data across
-        regional boundaries to other Cloud Queuing servers.</para>
+        caching, and overall maintenance of Cloud Queues data across
+        regional boundaries to other Cloud Queues servers.</para>
       <para>You can find the available service access/endpoints for
-        Cloud Queuing summarized in the table below.</para>
+        Cloud Queues summarized in the table below.</para>
       <?rax-fo keep-with-next?>
       <para>
         <table rules="all">
@@ -804,27 +803,24 @@
           </thead>
           <tbody>
             <tr align="left">
-              <td colspan="2">Chicago (ORD)</td>
+              <td colspan="2" rowspan="2">Chicago (ORD)</td>
               <td colspan="5"
-                  ><code>https://ord.queuing.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
-              </td>
+                  ><code>https://ord.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
             </tr>
-            <tr align="left">
-              <td colspan="2">Dallas/Ft. Worth (DFW)</td>
+            <tr>
               <td colspan="5"
-                  ><code>https://dfw.queuing.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
-              </td>
+                  ><code>https://ord-snet.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
             </tr>
+            <tr/>
+            <tr/>
             <tr align="left">
-              <td colspan="2">London (LON)</td>
-              <td colspan="5">
-                <code>https://lon.queuing.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
-              </td>
+              <td colspan="2" rowspan="2">London (LON)</td>
+              <td colspan="5"
+                  ><code>https://lon.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
             </tr>
-            <tr align="left">
-              <td colspan="2">Sydney (SYD)</td>
-              <td colspan="5">
-                <code>https://syd.queuing.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
+            <tr>
+              <td colspan="5"
+                  ><code>https://lon-snet.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
               </td>
             </tr>
           </tbody>
@@ -843,18 +839,17 @@
           role="bold">1100111</emphasis>") that the account number is
         1100111. </para>
       <note>
-        <para>Cloud Queuing uses the term project ID rather than
+        <para>Cloud Queues uses the term project ID rather than
           account ID, which is used in other Rackspace documentation.
           Both refer to your Rackspace account number, which you can
-          find in your Cloud Control Panel at
-          <link
+          find in your Cloud Control Panel at <link
             xlink:href="https://mycloud.rackspace.com/"
             >mycloud.rackspace.com</link>.</para>
       </note>
     </section>
     <section xml:id="contractVersion">
-      <title>Cloud Queuing Contract Version</title>
-      <para> The Cloud Queuing version defines the contract and build
+      <title>Cloud Queues Contract Version</title>
+      <para> The Cloud Queues version defines the contract and build
         information for the API. </para>
       <para> The contract version denotes the data model and behavior
         that the API supports. The requested contract version is
@@ -872,7 +867,7 @@
     </section>
     <section xml:id="Request_Response_Types-d1e903">
       <title>Request/Response Types</title>
-      <para>The Cloud Queuing API supports JSON data serialization
+      <para>The Cloud QueuesAPI supports JSON data serialization
         formats. The request format is specified using the
           <code>Content-Type</code> header and is <emphasis
           role="italic">required</emphasis> for calls that have a
@@ -898,12 +893,6 @@
             <td>.json</td>
             <td>Yes</td>
           </tr>
-          <tr security="writeronly">
-            <td>XML</td>
-            <td>application/xml</td>
-            <td>.xml</td>
-            <td>No</td>
-          </tr>
         </tbody>
       </table> 
     </section>
@@ -911,7 +900,7 @@
     <section xml:id="Limits-d1e1208">
       <title>Limits</title>
       <remark>Reviewer: Do you need both Rate Limits and Absolute
-        Limits for Cloud Queuing... the section below was pulled from
+        Limits for Cloud Queues... the section below was pulled from
         Cloud Databases.</remark>
       <para>
         All accounts, by default, have a preconfigured set of
@@ -1087,7 +1076,7 @@
     </section>
     <section xml:id="faults-dle101">
       <title>Faults</title>
-      <para>If any Cloud Queuing request results in an error, the
+      <para>If any Cloud Queues request results in an error, the
         queuing service returns an appropriate 4xx or 5xx HTTP status
         code, as well as the following information in the body: </para>
       <itemizedlist>
@@ -1127,12 +1116,35 @@ Content-Type: application/json
   </chapter>
   <chapter xml:id="API_Operations_dle001" >
     <title>API Operations</title>
-    <para>This chapter describes each of the Cloud Queuing
+    <para>This chapter describes each of the Cloud Queues
       operations.</para>
-    <section xml:id="API_Test">
+    <section xml:id="queue-operations-dle001">
       <title>Queues </title>
       <para>This section describes queue requests that are supported
-        by the Cloud Queuing API. </para>
+        by the Cloud Queues API. </para>
+      <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
+          <wadl:method href="createQueue"/>
+        </wadl:resource>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
+          <wadl:method href="setQueueMetadata"/>
+        </wadl:resource>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
+          <wadl:method href="getQueueMetadata"/>
+        </wadl:resource>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
+          <wadl:method href="getQueueStats"/>
+        </wadl:resource>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
+          <wadl:method href="deleteQueue"/>
+        </wadl:resource>       
+      </wadl:resources>
+    </section>
+    <section xml:id="message-operations-dle001" >
+      <title>Messages </title>
+      <para>This section describes message requests that are supported
+        by the Cloud Queues API. </para>
+      <!--
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
           <wadl:method href="createQueue"/>
@@ -1145,63 +1157,35 @@ Content-Type: application/json
         </wadl:resource>
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
           <wadl:method href="deleteQueue"/>
-        </wadl:resource>       
+        </wadl:resource>
       </wadl:resources>
-    </section>   
+      -->
+    </section>
+    <section xml:id="claims-operations-dle001" >
+      <title>Claims </title>
+      <para>This section describes claim requests that are supported
+        by the Cloud Queues API. </para>
+      <!--
+      <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
+          <wadl:method href="createQueue"/>
+        </wadl:resource>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
+          <wadl:method href="setQueueMetadata"/>
+        </wadl:resource>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
+          <wadl:method href="getQueueMetadata"/>
+        </wadl:resource>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue">
+          <wadl:method href="deleteQueue"/>
+        </wadl:resource>
+      </wadl:resources>
+    </section> 
+    --></section>
   </chapter>
 
 
-  <!-- chapter that uses WADL   
-    <chapter xml:id="APIO_Reference" role="api-reference">
-      <title>API Operations</title>
-    <para>This chapter should use the WADL</para>
 
-      <para>For more information on how this section works, see <link
-        xlink:href="http://docs-internal.rackspace.com/writers-guide/content/ch_wadl.html"
-        >Generating an API reference from a WADL file</link>. </para>
-
-      <resources xmlns="http://wadl.dev.java.net/2009/02" href="../wadl/example.wadl"/>
-    <section xml:id="queues_details-01">
-      <title>Queues</title>
-      <para>This section describes the actions on queues that are
-        supported for the Cloud Queuing API.</para>
-      <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
-        <wadl:resource href="../../../xsd/dbaas.wadl##createQueue" >
-          <wadl:method href="#listQueues"/>
-          <wadl:method href="#setQueueMetadata"/>
-          <wadl:method href="#getQueueMetadata"/>
-          <wadl:method href="#getQueueStats"/>
-          <wadl:method href="#deleteQueue"/>
-        </wadl:resource>
-      </wadl:resources> 
-    </section>
-    <section xml:id="messages_details-01">
-      <title>Messages</title>
-      <para>This section describes the actions on messages that are supported for the Cloud Queuing API.</para>
-        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
-          <wadl:resource href="../../../xsd/dbaas.wadl##postMessages" >
-            <wadl:method href="#getMessages"/>
-            <wadl:method href="#getSpecificMessage"/>
-            <wadl:method href="#claimMessages"/>
-            <wadl:method href="#deleteMessages"/>
-          </wadl:resource>
-        </wadl:resources>     
-    </section>
-    <section xml:id="claims_details-01">
-      <title>Claims</title>
-      <para>This section describes the actions on claims that are
-        supported for the Cloud Queuing API. </para>
-      <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
-        <wadl:resource href="../../../xsd/dbaas.wadl##queryClaim" >
-          <wadl:method href="#updateClaim"/>
-          <wadl:method href="#releaseClaim"/>
-        </wadl:resource>
-      </wadl:resources> 
-    </section>     
-
-    <para>End of WADL chapter</para>   
-    </chapter>
-     -->
     
   <glossary>
     <title>Glossary</title>
