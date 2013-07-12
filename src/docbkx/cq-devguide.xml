@@ -41,7 +41,7 @@
     xmlns:html="http://www.w3.org/1999/xhtml"    
     version="5.0-extension RaxBook-2.0"    
     xml:id="cq-devguide">
-  <?rax canonical.url.base="http://docs.rackspace.com/queuing/api/v1.0/cs-devguide/content"?>
+  <?rax canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-devguide/content"?>
   <?rax title.font.size="35px" subtitle.font.size="20px"?>
   <title>Rackspace Cloud Queues Developer Guide</title>
   <titleabbrev>Rackspace Cloud Queues Developer Guide</titleabbrev>
@@ -95,7 +95,7 @@
     -->
       <raxm:metadata xmlns:raxm="http://docs.rackspace.com/api/metadata">
         <raxm:displayname>API Developer Guide</raxm:displayname>
-        <raxm:product version="v1.0">queuing</raxm:product>
+        <raxm:product version="v1.0">queues</raxm:product>
         <raxm:priority>20</raxm:priority>
       </raxm:metadata>
   </info>
