@@ -824,7 +824,7 @@
           </tbody>
         </table>
       </para>
-      <para>Replace the sample project ID number,
+      <para>Replace the sample account ID number,
           <parameter>1234</parameter>, with your actual account number
         returned as part of the authentication service
         response.</para>
@@ -837,10 +837,8 @@
           role="bold">1100111</emphasis>") that the account number is
         1100111. </para>
       <note>
-        <para>Cloud Queues uses the term project ID rather than
-          account ID, which is used in other Rackspace documentation.
-          Both refer to your Rackspace account number, which you can
-          find in your Cloud Control Panel at <link
+        <para>Account ID refers to your Rackspace account number,
+          which you can also find in your Cloud Control Panel at <link
             xlink:href="https://mycloud.rackspace.com/"
             >mycloud.rackspace.com</link>.</para>
       </note>
@@ -1011,17 +1009,84 @@
         </table>
       </section>
     </section>
+    <section xml:id="commonHeaders" >
+      <title>Common Headers</title>
+      <para>Each request to the  Cloud Queues API must include certain
+        standard and extended HTTP headers. These headers provide
+        host, agent, authentication, and other pertinent information
+        to the server.</para>
+      <table frame="void">
+        <caption>Common Headers</caption>
+        <col width="30%"/>
+        <col width="70%"/>
+        <thead>
+          <tr>
+            <th>Header</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Host</td>
+            <td>Host name of the API</td>
+          </tr>
+          <tr>
+            <td>Date</td>
+            <td>Current date and time</td>
+          </tr>
+          <tr>
+            <td>Accept</td>
+            <td>Media type desired; initially, only
+                <code>application/json</code> is supported</td>
+          </tr>
+          <tr>
+            <td>Accept-Encoding</td>
+            <td>Specifies that the agent accepts gzip-encoded response
+              bodies</td>
+          </tr>
+          <tr>
+            <td>Content-Type</td>
+            <td><code>application/json</code>
+            </td>
+          </tr>
+          <tr>
+            <td>Content-Length</td>
+            <td>For <command>POST</command> or <command>PUT</command>
+              requests, the length in bytes of the message document
+              being submitted</td>
+          </tr>
+          <tr>
+            <td>X-Auth-Token</td>
+            <td>Auth token</td>
+          </tr>
+          <tr>
+            <td>X-Project-Id</td>
+            <td>An ID for a project to which the value of X-Auth-Token
+              grants access. Queues will be created under this
+              project.</td>
+          </tr>
+          <tr>
+            <td>Client-ID</td>
+            <td>A unique ID for each client instance. This is used to
+              avoid echoing a sender's messages back tot he same
+              instance and my be logged by the server for furture use.
+              Client-ID is generated once and persists between
+              restarts of the client.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
     <section xml:id="datetimeformat">
       <title>Date/Time Format</title>
-      <para> The Queuing service uses an ISO-8601 compliant date
+      <para> The Cloud Queues service uses an ISO-8601 compliant date
         format for the display and consumption of date/time values. </para>
       <example>
         <title>Service Date/Time Format</title>
         <programlisting>yyyy-MM-dd'T'HH:mm:ss.SSSZ</programlisting>
         <para>See the table below for a description of the date/time format codes.</para>
-        <para>May 19th, 2011 at 8:07:08 AM, GMT-5 would have the following
-          format:</para>
-        <programlisting>2011-05-19T08:07:08-05:00</programlisting>
+        <para>May 19th, 2013 at 8:07:08 AM, GMT-5 would have the
+          following format:</para>
+        <programlisting>2013-05-19T08:07:08-05:00</programlisting>
       </example>
       <table rules="all">
         <caption>Explanation of Date/Time Format Codes</caption>

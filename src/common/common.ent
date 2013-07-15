@@ -6,6 +6,7 @@
 <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
 <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
 <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+<!ENTITY PATCH '<command xmlns="http://docbook.org/ns/docbook">PATCH</command>'>
 
      <!--
          A collection of common faults, these are pretty much expected
@@ -14,13 +15,20 @@
      <!ENTITY commonFaults
            '
         <response status="400" xmlns="http://wadl.dev.java.net/2009/02">
-            <representation mediaType="application/xml" element="dbaas:badRequest"/>
+            <representation mediaType="application/xml" element="queues:badRequest"/>
             <representation mediaType="application/json"/>
         </response>
         <response status="401" xmlns="http://wadl.dev.java.net/2009/02">
-            <representation mediaType="application/xml" element="dbaas:unauthorized"/>
+            <representation mediaType="application/xml" element="queues:unauthorized"/>
             <representation mediaType="application/json"/>
         </response>
+        <response status="406" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:unauthorized"/>
+            <representation mediaType="application/json"/>
+        </response>
+
+
+        <!--
         <response status="403" xmlns="http://wadl.dev.java.net/2009/02">
             <representation mediaType="application/xml" element="dbaas:forbidden"/>
             <representation mediaType="application/json"/>
@@ -49,6 +57,9 @@
             <representation mediaType="application/xml" element="dbaas:serviceUnavailable"/>
             <representation mediaType="application/json"/>
         </response>
+        -->
+        
+        
            '>
       <!--
           Faults on GET
@@ -56,17 +67,39 @@
      <!ENTITY getFaults
            '
         <response status="404" xmlns="http://wadl.dev.java.net/2009/02">
-            <representation mediaType="application/xml" element="dbaas:itemNotFound"/>
+            <representation mediaType="application/xml" element="queues:itemNotFound"/>
             <representation mediaType="application/json"/>
         </response>
            '>
       <!--
-          Faults on POST/PUT
+          Faults on POST/PATCH
       -->
-     <!ENTITY postPutFaults
+     <!ENTITY postPatchFaults
            '
-        <response status="415" xmlns="http://wadl.dev.java.net/2009/02">
-            <representation mediaType="application/xml" element="dbaas:badMediaType"/>
+        <response status="404" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:itemNotFound"/>
+            <representation mediaType="application/json"/>
+        </response>
+           '>      
+           
+      <!--
+          Faults on DELETE
+      -->
+     <!ENTITY deleteFaults
+           '
+        <response status="403" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:forbidden"/>
             <representation mediaType="application/json"/>
         </response>
            '>
+           
+               <!--
+          Faults on POST
+      -->
+     <!ENTITY postFaults
+           '
+        <response status="503" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:serviceUnavailable"/>
+            <representation mediaType="application/json"/>
+        </response>
+           '> 
