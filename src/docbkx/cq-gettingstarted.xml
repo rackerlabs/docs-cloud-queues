@@ -1089,7 +1089,7 @@
         HTTP headers. These headers provide host, agent,
         authentication, and other pertinent information to the
         server.</para>
-      <table frame="void" xmlns:svg="http://www.w3.org/2000/svg"
+      <table rules="all" xmlns:svg="http://www.w3.org/2000/svg"
         xmlns:m="http://www.w3.org/1998/Math/MathML"
         xmlns:html="http://www.w3.org/1999/xhtml">
         <caption>Common Headers</caption>
@@ -1135,7 +1135,7 @@
             <td>Auth token</td>
           </tr>
           <tr>
-            <td>X-Project-Id</td>
+            <td>X-Project-ID</td>
             <td>An ID for a project to which the value of X-Auth-Token
               grants access. Queues will be created under this
               project.</td>

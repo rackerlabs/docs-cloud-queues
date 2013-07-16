@@ -102,8 +102,8 @@
 			<wadl:doc xml:lang="EN" title="Create Queue" xmlns="http://docbook.org/ns/docbook">
 				<para role="shortdesc">Creates a queue and sets its metadata.</para>  
 				<para>This operation creates a new queue and sets its metadata.</para>
-				<para>The body of the PUT is a document that can contain arbitrary metadata to be associated with the queue, up to 256 KB (configurable) when serialized as JSON, including whitespace. Top-level field names MUST NOT start with an underscore. Such names are reserved for future use.</para>				
-				<note> <para>queue_name is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens. If the specified queue already exists, the existing queue's metadata will be overwritten with the provided document.</para>
+				<para>The body of the <command>PUT</command> is a document that can contain arbitrary metadata to be associated with the queue, up to 256 KB (configurable) when serialized as JSON, including whitespace. Top-level field names MUST NOT start with an underscore. Such names are reserved for future use.</para>				
+				<note> <para><code>queue_name</code> is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens. If the specified queue already exists, the existing queue's metadata will be overwritten with the provided document.</para>
 				</note>	
 			</wadl:doc>
 			<request>
@@ -131,6 +131,9 @@
 		<wadl:doc xml:lang="EN" title="List Queues" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Lists queues.</para>  
 			<para>This operation lists queues for the project, sorting the queues alphabetically by name. </para>
+			<para>If you do not specify the <code>limit</code> query parameter shown in the following table, it defaults to 10. Forward-only paging is supported via "next" link. </para>
+			<para>The <code>detailed</code> query parameter, shown in the following table, defaults to <code>false</code>, which excludes the metadata field from the results. </para>
+			<!--
 			<para>The following table lists the query attributes optionally available for List Queues:</para>
 			<table rules="all">
 				<caption>Attributes for List Queues</caption>
@@ -152,9 +155,24 @@
 					</tr>
 				</tbody>
 			</table>
-
+-->
 		</wadl:doc>
 		<request>
+			<param name="marker" style="query" type="xsd:string" required="false">
+				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
+				Specifies the name of the last queue received in a previous request, or none to get the first page of results. 
+				</wadl:doc>
+			</param>
+			<param name="limit" style="query" type="xsd:integer" required="false">
+				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
+				Specifies up to 20 (configurable) queues to return. 
+				</wadl:doc>
+			</param>
+			<param name="detailed" style="query" type="xsd:boolean" required="false">
+				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
+				Determines whether queue metadata is included in the response. 
+				</wadl:doc>
+			</param>		
 			<representation mediaType="application/json" element="queues:Queue" >
 				<doc>
 					<xsdxt:code href="../wadl/samples/cq-listQueues_request.json"/>
@@ -180,8 +198,8 @@
 		<wadl:doc xml:lang="EN" title="Set Queue Metadata" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Sets queue metadata.</para>  
 			<para>This operation sets metadata for the queue.</para>
-			<para>If PUT is used, this document will replace the existing metadata document in it's entirety, so you need to be careful that you do not accidentally delete fields.</para>					
-			<note> <para>queue_name is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens. If the specified queue already exists, the existing queue's metadata will be overwritten with the provided document.</para>
+			<para>If <command>PUT</command> is used, this document will replace the existing metadata document in it's entirety, so you need to be careful that you do not accidentally delete fields.</para>					
+			<note> <para><code>queue_name</code> is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens. If the specified queue already exists, the existing queue's metadata will be overwritten with the provided document.</para>
 			</note>		
 		</wadl:doc>
 		<request>
@@ -359,9 +377,14 @@
 		<wadl:doc xml:lang="EN" title="Get a Specific Message" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Gets the specified message from the specified queue. </para>  
 			<para>This operation gets the specified message from the specified queue. </para>
-			<para>Message fields are defined as follows:<itemizedlist><listitem><para>href is an opaque relative URI that the client can use to uniquely identify a message resource, and interact with it. </para></listitem><listitem><para>ttl is the ttl set on the message when it was posted. The message will expire after (ttl - age) seconds. </para></listitem><listitem><para>age number of seconds since ts, relative to the server's clock.</para></listitem><listitem><para>body Arbitrary document submitted along with the original request to post the message. </para></listitem></itemizedlist></para>
+			<para>Message fields are defined as follows:<itemizedlist><listitem><para><code>href</code> is an opaque relative URI that the client can use to uniquely identify a message resource, and interact with it. </para></listitem><listitem><para><code>ttl</code> is the ttl set on the message when it was posted. The message expires after (ttl - age) seconds. </para></listitem><listitem><para><code>age</code> is the number of seconds since ts, relative to the server's clock.</para></listitem><listitem><para><code>body</code> is the arbitrary document submitted along with the original request to post the message. </para></listitem></itemizedlist></para>
 		</wadl:doc>
 		<request>
+			<param name="claim_id" style="query" type="xsd:string" required="false">
+				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
+					Filters on claim_id. 
+				</wadl:doc>
+			</param>
 			<representation mediaType="application/json" element="queues:Queue" >
 				<doc>
 					<xsdxt:code href="../wadl/samples/cq-getSpecificMessage_request.json"/>
@@ -384,10 +407,11 @@
 <!--*******************************************************-->			
 	<method name="GET" id="getSetMessagesByID">
 		<wadl:doc xml:lang="EN" title="Get a Set of Messages by ID" xmlns="http://docbook.org/ns/docbook">
-			<para role="shortdesc">Gets a set of messages specified by ID from the specified queue. </para>  
+			<para role="shortdesc">Gets a set of messages specified from the specified queue. </para>  
 			<para>This operation provides a more efficient way to query multiple messages, rather than having to do so in a series of individual GETs.  </para>
 			<para>Unlike message listing, a client's own messages are always returned in this approach. </para>
-			<para>The <code>echo</code> query parameter is ignored when using the <code>ids</code> parameter.</para>
+			<para>Message fields are defined as follows:<itemizedlist><listitem><para><code>href</code> is an opaque relative URI that the client can use to uniquely identify a message resource, and interact with it. </para></listitem><listitem><para><code>ttl</code> is the ttl set on the message when it was posted. The message expires after (ttl - age) seconds. </para></listitem><listitem><para><code>age</code> is the number of seconds since ts, relative to the server's clock.</para></listitem><listitem><para><code>body</code> is the arbitrary document submitted along with the original request to post the message. </para></listitem></itemizedlist></para>
+			<para>When you use the <code>ids</code> parameter, the <code>echo</code> query parameter is not used and is ignored if it is given.</para>
 		</wadl:doc>
 		<request>
 			<param name="ids" style="query" type="xsd:string" required="false">
@@ -397,7 +421,7 @@
 			</param>
 			<param name="claim_id" style="query" type="xsd:string" required="false">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
-					Idenfities the claim. 
+					Identifies the claim. 
 				</wadl:doc>
 			</param>
 			<representation mediaType="application/json" element="queues:Queue" >

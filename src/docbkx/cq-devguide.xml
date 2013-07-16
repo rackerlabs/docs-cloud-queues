@@ -1015,7 +1015,7 @@
         standard and extended HTTP headers. These headers provide
         host, agent, authentication, and other pertinent information
         to the server.</para>
-      <table frame="void">
+      <table rules="all">
         <caption>Common Headers</caption>
         <col width="30%"/>
         <col width="70%"/>
@@ -1060,7 +1060,7 @@
             <td>Auth token</td>
           </tr>
           <tr>
-            <td>X-Project-Id</td>
+            <td>X-Project-ID</td>
             <td>An ID for a project to which the value of X-Auth-Token
               grants access. Queues will be created under this
               project.</td>
