@@ -77,7 +77,7 @@
  
     <revhistory>
       <revision>
-        <date>2013-07-29</date>
+        <date>2013-07-26</date>
         <revdescription>
           <itemizedlist>
             <listitem>
@@ -1181,8 +1181,13 @@ Content-Type: application/json
     xmlns="http://docbook.org/ns/docbook"
     role="api-reference">
     <title>API Operations</title>
-    <para>This chapter describes each of the Cloud Queues
-      operations.</para>
+    <para>This chapter describes each of the Cloud Queues operations. </para>
+    <note>
+      <para>When used in the Cloud Queues API operations,
+          <code>queue_name</code> is the name of the queue. The name
+        MUST NOT exceed 64 bytes in length, and is limited to US-ASCII
+        letters, digits, underscores, and hyphens. </para>
+    </note>
     <section xml:id="queue-operations-dle001">
       <title>Queues </title>
       <para>This section describes queue requests that are supported
@@ -1218,7 +1223,7 @@ Content-Type: application/json
 
 
     
-  <glossary>
+  <glossary xml:id="glossary_1" >
     <title>Glossary</title>
     <info>
       <raxm:metadata
@@ -1228,7 +1233,7 @@ Content-Type: application/json
         <raxm:priority>50</raxm:priority>
       </raxm:metadata>
     </info>
-    <glossentry xml:id="glossary_1">
+    <glossentry >
       <glossterm>Claim</glossterm>
       <glossdef>
         <para> A worker claims or checks out a message to perform a
