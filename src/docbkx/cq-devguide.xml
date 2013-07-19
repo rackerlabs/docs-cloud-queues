@@ -101,6 +101,30 @@
   </info>
   <chapter xml:id="overview">
     <title>Overview</title>
+    <para linkend="OperatingModes-d1e588">Cloud Queues is an open
+      source, scalable, and highly available message and notifications
+      service. Users of this service can create and manage a
+      producer-consumer or a publisher-subscriber model (<xref
+        linkend="OperatingModes-d1e588"/>) from one simple API.
+      Unlimited queues and messages give Cloud Queues users the
+      flexibility they need to create powerful web applications in the
+      cloud.</para>
+    <para>Cloud Queues is made up of a few basic components: queues,
+      messages, claims, and stats. In the producer-consumer model,
+      users create queues where producers can post messages. Workers,
+      or consumers, may then claim those messages and delete them once
+      complete. A single claim may contain multiple messages, and
+      administrators are given the ability to query claims for status. </para>
+    <para>In the publisher-subscriber model, messages are posted to a
+      queue like above, but messages are never claimed. Instead,
+      subscribers, or watchers, simply send <command>GET</command>
+      requests to pull all messages since their last request. In this
+      model, a message will remain in the queue, unclaimed, until the
+      message's time to live (TTL) has expired. </para>
+    <para>In both of the models above, admininstrators can get queue
+      stats that will display most recent and oldest messages, the
+      number of unclaimed messages, and more. </para>
+    <!--
     <para>Rackspace Cloud Queues is an API-based message and
       notification service. A message queueing service is a vital
       component of big, complex web applications. Cloud Queues is
@@ -123,11 +147,10 @@
     <para>Interactions with Cloud Queues occur programmatically via
       the Cloud Queues API as described in this developer
       guide.</para>
-    <remark security="reviewer">Reviewer: do you want to replace the
-      marketing info above with something more technical? Please give
-      me your suggestions. We could also add a diagram of Cloud Queues
-      infrastructure / architecture if you can give it to me. For an
-      example, see the DB diagram at <link
+      -->
+    <remark security="reviewer">Reviewer: Do you want to add a diagram
+      of Cloud Queues infrastructure / architecture if you can give it
+      to me. For an example, see the DB diagram at <link
         xlink:href="http://docs.rackspace.com/cdb/api/v1.0/cdb-devguide/content/overview.html"
         >
         http://docs.rackspace.com/cdb/api/v1.0/cdb-devguide/content/overview.html</link>.</remark> 
@@ -169,6 +192,7 @@
         API-related documents from <link
           xlink:href="http://docs.rackspace.com/"
           >http://docs.rackspace.com/</link>.</para>
+      <!--
       <para> For more details about Cloud Queues, refer to ??? (link
         to www.rackspace.com/cloud/queue???) . This site also offers
         links to Rackspace's official support channels, including
@@ -178,16 +202,13 @@
         corresponding link for the Cloud Queues landing page on
         rackspace.com/cloud? If so, can you please give it to
         me?</remark>
+        -->
       <para>Using the API document and your Rackspace Cloud account,
         you can get started whenever you'd like. See the
           <citetitle>Cloud Queues Getting Started Guide</citetitle>
         for information about getting started using the API. </para>
       <para>Email all support questions to:
-          <email>cbdteam@rackspace.com</email>. </para>
-      <remark security="reviewer">Reviewer: do you have a
-        corresponding email distribution list for the Cloud Queues
-        team to provide initial product support? If so, can you please
-        give it to me?</remark>
+          <email>cloudqueues@rackspace.com</email>. </para>
       <para>Please visit our <link
           xlink:href="http://feedback.rackspace.com/forums/71021-product-feedback/category/6841-cloud-sites"
           >Product Feedback Forum</link> and let us know what you
@@ -211,21 +232,15 @@
     </section>
     <section xml:id="Pricing_SLA-d1e1362">
       <title>Pricing and Service Level</title>
-      <para>Cloud Queues is part of the Rackspace Cloud and your use
-        through the API will be billed as per the pricing schedule at
-          <link
-          xlink:href="http://www.rackspace.com/cloud/sites/pricing/"
-          >http://www.rackspace.com/cloud/sites/pricing/</link>.</para>
-      <remark security="reviewer">Reviewer: Questions about pricing
-        for Cloud Queues... seems to be up in the air... not charge or
-        billed? Please let me know.</remark>
-      <para>The Service Level Agreement (SLA) for Cloud Queues is
-        available at <link
-          xlink:href="http://www.rackspace.com/cloud/legal/sla/#cloud_sites"
-          >http://www.rackspace.com/cloud/legal/sla/#cloud_sites</link>.</para>
-      <remark security="reviewer">Reviewer: do you have a
-        corresponding link for SLA for the Cloud Queues? If so, can
-        you please give it to me?</remark>
+      <para>During Early Access (EA), there is no charge for Cloud
+        Queues. When Cloud Queues moves to unlimited availability
+        (GA), customers will be billed for outbound bandwidth.</para>
+      <para>While Cloud Queues is in EA, it is subject to the
+        Rackspace test terms at <link
+          xlink:href="http://www.rackspace.com/information/legal/testterms"
+          >www.rackspace.com/information/legal/testterms</link>. When
+        Cloud Queues moves to GA, the Service Level Agreement (SLA)
+        will be available.</para>
     </section>
   </chapter>
   <chapter xml:id="Concepts-dle001">
@@ -1191,12 +1206,13 @@ Content-Type: application/json
     <section xml:id="queue-operations-dle001">
       <title>Queues </title>
       <para>This section describes queue requests that are supported
-        by the Cloud Queues API. </para>
+        by the Cloud Queues API.  </para>
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#queues">
           <wadl:method href="listQueues"/>
         </wadl:resource>
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue"/>        
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue"/>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#metadata"/>        
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#stats"/>
       </wadl:resources>
     </section>

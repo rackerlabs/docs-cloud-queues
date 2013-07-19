@@ -44,7 +44,7 @@
 				<resource id="projectID" path="{projectId}">
 				<param name="projectId" style="template" type="xsd:string"> 
 				<doc>The project ID of the owner of the specified
-				queue. </doc></param>
+				queue. </doc></param> 
 			-->						
 			<resource id="queues" path="queues">
 				<method href="#listQueues" />	
@@ -53,10 +53,11 @@
 					<param name="queue_name" style="template" type="xsd:string">
 						<doc>Specifies the name of the queue.</doc></param>
 					<method href="#createQueue"/>
-					<method href="#setQueueMetadata"/>							
-					<method href="#getQueueMetadata"/>
 					<method href="#deleteQueue"/>
-					
+					<resource id="metadata" path="metadata">
+					   <method href="#setQueueMetadata"/>							
+					   <method href="#getQueueMetadata"/>
+					</resource>
 					<resource id="stats" path="stats">
 						<method href="#getQueueStats" />
 					</resource>	
@@ -101,7 +102,7 @@
 			<wadl:doc xml:lang="EN" title="Create Queue" xmlns="http://docbook.org/ns/docbook">
 				<para role="shortdesc">Creates a queue and sets its metadata.</para>  
 				<para>This operation creates a new queue and sets its metadata.</para>
-				<para>The body of the <command>PUT</command> is a document that can contain arbitrary metadata to be associated with the queue, up to 256 KB (configurable) when serialized as JSON, including whitespace. Top-level field names MUST NOT start with an underscore. Such names are reserved for future use.</para>				
+				<para>The body of the <command>PUT</command> is empty.</para>				
 				<note> <para><code>queue_name</code> is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens. If the specified queue already exists, the existing queue's metadata will be overwritten with the provided document.</para>
 				</note>	
 			</wadl:doc>
@@ -345,7 +346,8 @@
 			<para>Results are ordered by age, oldest message first. </para>
 			<note><para>If <code>limit</code> is not specified, it defaults to 10. When more messages are available than can be returned in a single request, the client can pick up the next batch by simply using the URI template parameters returned from the previous call in the "next" field.</para>
 			<para><code>marker</code> communicates to the server which messages the client has already received. If marker is not specified, the API will return all messages at the head of the queue (up to limit).</para>
-			<para><code>echo</code> is a boolean value (<code>true</code> or <code>false</code>) that determines whether the API returns a client's own messages, as determined by the <code>uuid</code> portion of the User-Agent header. If not specified, <code>echo</code>echo defaults to <code>false</code>.</para>
+			<para><code>echo</code> is a boolean value (<code>true</code> or <code>false</code>) that determines whether the API returns a client's own messages, as determined by the <code>uuid</code> portion of the User-Agent header. If not specified, <code>echo</code> defaults to <code>false</code>.</para>
+			<para><code>include_claimed</code> is a boolean value (<code>true</code> or <code>false</code>) that determines whether the API returns claimed messages as well as unclaimed messages. If not specified, <code>include_claimed</code> defaults to <code>true</code> to support pub-sub semantics.</para>
 			</note>
 		</wadl:doc>
 		<request>
@@ -363,7 +365,12 @@
 				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
 					Determines whether the API returns a client's own messages. 
 				</wadl:doc>
-			</param>			
+			</param>	
+			<param name="include_claimed" style="query" type="xsd:boolean" required="false">
+				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
+					Determines whether the API returns claimed messages as well as unclaimed messages. 
+				</wadl:doc>
+			</param>					
 			<representation mediaType="application/json" element="queues:Queue" >
 				<doc>
 					<xsdxt:code href="../wadl/samples/cq-getMessages_request.json"/>
