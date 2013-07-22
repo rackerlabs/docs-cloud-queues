@@ -23,7 +23,7 @@
   <?rax title.font.size="30px" 
       pdf.url="../../cq-gettingstarted-latest.pdf" 
       status.bar.text.font.size="40px"
-      status.bar.text="Preview" 
+      status.bar.text="Draft" 
       canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-gettingstarted/content"?>
   <titleabbrev xmlns:svg="http://www.w3.org/2000/svg"
     xmlns:m="http://www.w3.org/1998/Math/MathML"
@@ -34,7 +34,7 @@
       <year>2013</year>
       <holder>Rackspace US, Inc.</holder>
     </copyright>
-    <releaseinfo>API v1.0 Preview</releaseinfo>
+    <releaseinfo>API v1.0 Early Access</releaseinfo>
     <productname>Cloud Queues</productname>
     <pubdate/>
     <legalnotice role="rs-api">
@@ -44,6 +44,16 @@
       </annotation>
     </legalnotice>
     <revhistory>
+      <revision>
+        <date>2013-07-26</date>
+        <revdescription>
+          <itemizedlist>
+            <listitem>
+              <para>Initial Early Access release.</para>
+            </listitem>
+          </itemizedlist>
+        </revdescription>
+      </revision>
       <revision>
         <date>2013-07-10</date>
         <revdescription>
@@ -139,18 +149,18 @@
         xlink:href="http://www.rackspace.com/cloud/cloud_hosting_products/dns/"
         >http://www.rackspace.com/cloud/</link>. --></para>
     <section xml:id="core_concepts">
-      <title>Preview Program</title>
-      <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Preview
-        program enables customers and Rackers, by invitation, to test
-        an early version of the product and provide feedback of the
-        product and capabilities. The Cloud Queues Preview Program is
-        a pre-production service offering covered by the Beta Services
-        terms (<link
+      <title>Early Access Program</title>
+      <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Early
+        Access program enables customers and Rackers, by invitation,
+        to test an early version of the product and provide feedback
+        of the product and capabilities. The Cloud Queues Early Access
+        Program is a pre-production service offering covered by the
+        Beta Services terms (<link
           xlink:href="http://www.rackspace.com/information/legal/testterms/"
           > rackspace.com/information/legal/testterms/</link>) in our
         Rackspace Cloud Terms of Service.</para>
-      <para xmlns:wadl="http://wadl.dev.java.net/2009/02"> Preview
-        users must meet the following criteria: <itemizedlist
+      <para xmlns:wadl="http://wadl.dev.java.net/2009/02"> Early
+        Access users must meet the following criteria: <itemizedlist
           spacing="compact">
           <listitem>
             <para>A Rackspace Cloud account.</para>
@@ -168,51 +178,85 @@
           </listitem>
         </itemizedlist>
       </para>
-      <para>The endpoint for the Preview environment is:</para>
-      <itemizedlist>
-        <listitem>
-          <para>https://preview.queue.api.rackspacecloud.com:443</para>
-        </listitem>
-      </itemizedlist>
- <!--
-      <para>The endpoints for the Preview environment are:</para>
-      <itemizedlist>
-        <listitem>
-          <para>http://preview.queue.api.rackspacecloud.com:80</para>
-        </listitem>
-        <listitem>
-          <para>
-            https://preview.queue.api.rackspacecloud.com:443</para>
-        </listitem>
-      </itemizedlist>
-      <para>A valid certificate is not yet available.  Once the
-        certificate is available, the http link will go away. </para>
-      <para>Until the certificate is available, the https URL will
-        work only if you turn cert verification off. Following is the
-        cURL command to do this is:</para>
-      <programlisting>curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H  </programlisting>
-
--->
-       <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Preview
-        Program has some limitations. By using the Cloud Queues API,
-        you agree and understand that:<itemizedlist spacing="compact">
+      <section xml:id="serviceEndpoints">
+        <title>Service Endpoints</title>
+        <para>Cloud Queues is a regionalized service. The user of the
+          service is therefore responsible for appropriate
+          replication, caching, and overall maintenance of Cloud
+          Queues data across regional boundaries to other Cloud Queues
+          servers.</para>
+        <para>You can find the available service access/endpoints for
+          the Early Access program for Cloud Queues summarized in the
+          table below.</para>
+        <?rax-fo keep-with-next?>
+        <para>
+          <table rules="all">
+            <caption>Regionalized Service Endpoints</caption>
+            <thead>
+              <tr align="center">
+                <td colspan="2">Region</td>
+                <td colspan="5">Endpoint</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr align="left">
+                <td colspan="2" rowspan="2">Chicago (ORD)</td>
+                <td colspan="5"
+                    ><code>https://ord.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5"
+                    ><code>https://ord-snet.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
+              </tr>
+              <tr align="left">
+                <td colspan="2" rowspan="2">London (LON)</td>
+                <td colspan="5"
+                    ><code>https://lon.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5"
+                    ><code>https://lon-snet.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </para>
+        <para>Replace the sample account ID number,
+            <parameter>1234</parameter>, with your actual account
+          number returned as part of the authentication service
+          response.</para>
+        <note>
+          <para>Account ID refers to your Rackspace account number,
+            which you can also find in your Cloud Control Panel at
+              <link xlink:href="https://mycloud.rackspace.com/"
+              >mycloud.rackspace.com</link>.</para>
+        </note>
+      </section>
+      <section xml:id="early_access_program_limitations">
+        <title>Early Access Program Limitations</title>
+       <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Early
+        Access  Program has some limitations. By using the Cloud
+        Queues API, you agree and understand that:<itemizedlist
+          spacing="compact">
           <listitem>
-            <para>There is no charge for this service during the
-              Preview period.</para>
+            <para>There is no charge for this service during the Early
+                Access period.</para>
           </listitem>
           <listitem>
-            <para>If you participate in this Preview Program, you will
-              receive a notification prior to general availability.
-            </para>
+            <para>If you participate in this Early Access Program, you
+                will receive a notification prior to general
+                availability. </para>
           </listitem>
           <listitem>
             <para>There is no Service Level Agreement. </para>
           </listitem>
           <listitem>
             <para>The API contract is not locked and may change during
-              the Preview Program. Rackspace will notify customers in
-              Release Notes when and if the contract does
-              change.</para>
+                the Early Access Program. Rackspace will notify
+                customers in Release Notes when and if the contract
+                does change.</para>
           </listitem>
           <listitem>
             <para>Support is available from 8 AM – 5 PM (Central Time)
@@ -396,6 +440,7 @@
         </listitem>
       </itemizedlist>
     </section>
+    </section>
   </chapter>
   <chapter xml:id="prerequisites" >
     <title>Prerequisites</title>
@@ -419,43 +464,12 @@
     </section>
     <section xml:id="access-api-2" >
       <title>Accessing the API</title>
-      <para xmlns:svg="http://www.w3.org/2000/svg"
-        xmlns:m="http://www.w3.org/1998/Math/MathML"
-        xmlns:html="http://www.w3.org/1999/xhtml">The endpoint for the
-        Preview environment is: </para>
-      <itemizedlist>
-        <listitem>
-          <para>https://preview.queue.api.rackspacecloud.com:443</para>
-        </listitem>
-      </itemizedlist>
-   <!--   <itemizedlist xmlns:svg="http://www.w3.org/2000/svg"
-        xmlns:m="http://www.w3.org/1998/Math/MathML"
-        xmlns:html="http://www.w3.org/1999/xhtml">
-        <listitem>
-          <para>http://preview.queue.api.rackspacecloud.com:80</para>
-        </listitem>
-        <listitem>
-          <para>
-            https://preview.queue.api.rackspacecloud.com:443</para>
-        </listitem>
-      </itemizedlist>
-      <para xmlns:svg="http://www.w3.org/2000/svg"
-        xmlns:m="http://www.w3.org/1998/Math/MathML"
-        xmlns:html="http://www.w3.org/1999/xhtml">A valid certificate
-        is not yet available. Once the certificate is available, the
-        http link will go away. </para>
-      <para xmlns:svg="http://www.w3.org/2000/svg"
-        xmlns:m="http://www.w3.org/1998/Math/MathML"
-        xmlns:html="http://www.w3.org/1999/xhtml">Until the
-        certificate is available, the https URL will work only if you
-        turn cert verification off. Following is the cURL command to
-        do this is:</para>
-      <programlisting>curl -k -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -d '{"metadata": "Awesome Queue"}' -H "Content-type: application/json" -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H  </programlisting>
- -->
-      <!--
-      <para>To access the Rackspace Cloud Queues API use the
-        following URL:</para>
-      <para>https://queue.api.rackspacecloud.com/v1.0/ 1234</para>
+      <para>To access the Rackspace Cloud Queues API use the following
+        URL:</para>
+      <para>&lt;code>https://ord.queue.api.rackspacecloud.com/v1.0/&lt;/code>&lt;parameter>1234&lt;/parameter>/ </para>
+      <para>or</para>
+      <para>
+        &lt;code>https://snet-ord.queue.api.rackspacecloud.com/v1.0/&lt;/code>&lt;parameter>1234&lt;/parameter>/</para>
       <note>
         <para>1234 represents your account number and is used as a
           placeholder. (The account number is also sometimes shown as
@@ -465,7 +479,7 @@
           part of the Authentication response. See <xref
             linkend="authentication-1"/> .</para>
       </note>
-      -->
+      
     </section>
     <section xml:id="authentication-1">
       <title>Authentication</title>
@@ -687,18 +701,31 @@
       <example>
         <title>cURL Authentication Request with Username and API
           Key</title>
-        <programlisting>curl -X POST https://identity.api.rackspacecloud.com/v2.0/tokens -d 
-'{ "auth":{ "RAX-KSKEY:apiKeyCredentials":{ "username":"theUserName", "apiKey":"00a00000a000a0000000a000a00aaa0a" } } }' -H 
-"Content-type: application/json" | python -mjson.tool</programlisting>
+        <programlisting>curl -X POST https://identity.api.rackspacecloud.com/v2.0/tokens -d \
+'{ "auth":{ "RAX-KSKEY:apiKeyCredentials":{ "username":"theUserName", "apiKey":"00a00000a000a0000000a000a00aaa0a" } } }' \ 
+-H "Accept: application/json" \
+-H "Content-type: application/json" | python -mjson.tool</programlisting>
       </example>
       <para>You can also request a token by providing your username
         and your password as shown in the next example.</para>
       <example>
         <title>cURL Authentication Request with Username and
           Password</title>
-        <programlisting>curl -X POST https://identity.api.rackspacecloud.com/v2.0/tokens -d 
-'{"auth":{"passwordCredentials":{"username":"theUserName","password":"thePassword"}}}' -H 
-"Content-type: application/json" | python -mjson.tool</programlisting>
+        <programlisting>curl -X POST https://identity.api.rackspacecloud.com/v2.0/tokens -d \
+'{"auth":{"passwordCredentials":{"username":"theUserName","password":"thePassword"}}}' \ 
+-H "Accept: application/json" \
+-H "Content-type: application/json" | python -mjson.tool</programlisting>
+      </example>
+      <para>Extract the token ID from the response to the above
+        requests, which will be similar to the following
+        example:</para>
+      <example>
+        <title>Example Token ID</title>
+        <programlisting>token": {
+            "expires": "2013-06-20T15:19:40.664-05:00", 
+            "id": "xxxxxxxxxx864402ea5904f80324307a4", 
+            "tenant": { ...
+</programlisting>
       </example>
       <!--
       <para>The following example shows only the service catalog
@@ -810,11 +837,7 @@
     </section>
     <section xml:id="endpoints" >
       <title>Endpoints</title>
-      <para>The endpoint to use for your Cloud Queues API calls for
-        the Preview program is:</para>
-      <para><code>https://ord.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </para>
-      <para>or</para>
-      <para><code>https://snet-ord.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </para>
+     
 
       <para>The endpoints to use for your Cloud Queues API calls are
         summarized in the table below.</para>
@@ -1200,10 +1223,11 @@
         next:</para>
       <example>
         <title>cURL Create Queue Request</title>
-        <programlisting>curl -i -X PUT https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -d 
-'{"metadata": "Awesome Queue"}' -H 
-"Content-type: application/json" -H 
-"X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H </programlisting>
+        <programlisting>curl -i -X PUT https://ord.queue.api.rackspacecloud.com/v1/queues/samplequeue -d \
+'{"metadata": "Awesome Queue"}' \
+-H "Content-type: application/json" \
+-H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \
+-H "Accept: application/json" </programlisting>
       </example>
       <example>
         <title>Create Queue Response</title>
@@ -1253,11 +1277,12 @@ Location: /v1/queues/samplequeue</programlisting>
         given next:</para>
       <example>
         <title>cURL Insert Messages Request</title>
-        <programlisting>curl -i -X POST https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/messages -d 
-'[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' -H 
-"Content-type: application/json" -H 
-"Client-ID: QClient" -H 
-"X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H </programlisting>
+        <programlisting>curl -i -X POST https://ord.queue.api.rackspacecloud.com/v1/queues/samplequeue/messages -d \
+'[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' \
+-H "Content-type: application/json" \
+-H "Client-ID: QClient" \
+-H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \
+-H "Accept: application/json" </programlisting>
       </example>
       <example>
         <title>Insert Messages Response </title>
@@ -1323,12 +1348,12 @@ Content-Type: application/json
         next:</para>
       <example>
         <title>cURL Claim Messages Request</title>
-        <programlisting>curl -i -X POST https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/claims -d 
-'{"ttl": 300,"grace":300}' -H 
-"Content-type: application/json" -H 
-"Client-ID: QClient" -H 
-"X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H 
-</programlisting>
+        <programlisting>curl -i -X POST https://ord.queue.api.rackspacecloud.com/v1/queues/samplequeue/claims -d \
+'{"ttl": 300,"grace":300}' \
+-H "Content-type: application/json" \ 
+-H "Client-ID: QClient" \ 
+-H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \
+-H "Accept: application/json" </programlisting>
       </example>
       <example>
         <title>Claim Messages Response</title>
@@ -1361,10 +1386,11 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         given next:</para>
       <example>
         <title>cURL Delete Messages Request</title>
-        <programlisting>curl -i -X DELETE https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 -H 
-"Content-type: application/json" -H 
-"X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H 
-"Client-ID: QClient"  -H </programlisting>
+        <programlisting>curl -i -X DELETE https://ord.queue.api.rackspacecloud.com/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 \ 
+-H "Content-type: application/json" \
+-H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \ 
+-H "Client-ID: QClient" \
+-H "Accept: application/json"</programlisting>
       </example>
       <example>
         <title>Delete Messages Response</title>
@@ -1387,10 +1413,11 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         next:</para>
       <example>
         <title>cURL Delete Claim Request</title>
-        <programlisting>curl -i -X DELETE https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 -H 
-"Content-type: application/json" -H 
-"X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" -H 
-"Client-ID: QClient"  -H </programlisting>
+        <programlisting>curl -i -X DELETE https://ord.queue.api.rackspacecloud.com/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 \ 
+-H "Content-type: application/json" \ 
+-H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \ 
+-H "Client-ID: QClient"  \
+-H "Accept: application/json" </programlisting>
       </example>
       <example>
         <title>Delete Claim Response</title>
@@ -1407,9 +1434,10 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         next:</para>
       <example>
         <title>cURL Delete Queue Request</title>
-        <programlisting>curl -i -X DELETE https://preview.queue.api.rackspacecloud.com:443/v1/queues/samplequeue -H 
-"Content-type: application/json" -H 
-"X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4"  -H</programlisting>
+        <programlisting>curl -i -X DELETE https://ord.queue.api.rackspacecloud.com/v1/queues/samplequeue \ 
+-H "Content-type: application/json" \ 
+-H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" \
+-H "Accept: application/json"</programlisting>
       </example>
       <example>
         <title>Delete Queue Response</title>

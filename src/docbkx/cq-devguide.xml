@@ -59,7 +59,7 @@
       <year>2013</year>
       <holder>Rackspace US, Inc.</holder>
     </copyright>
-    <releaseinfo>API v1.0</releaseinfo>
+    <releaseinfo>API v1.0 Early Access</releaseinfo>
     <productname>Rackspace Cloud Queues</productname><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <pubdate/>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically. -->
@@ -799,7 +799,6 @@
       </section>  </section>
     <section xml:id="serviceEndpoints">
       <title>Service Access/Endpoints</title>
-      <para/>
       <para>Cloud Queues is a regionalized service. The user of the
         service is therefore responsible for appropriate replication,
         caching, and overall maintenance of Cloud Queues data across
