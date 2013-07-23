@@ -23,7 +23,7 @@
   <?rax title.font.size="30px" 
       pdf.url="../../cq-gettingstarted-latest.pdf" 
       status.bar.text.font.size="40px"
-      status.bar.text="Draft" 
+      status.bar.text="DRAFT" 
       canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-gettingstarted/content"?>
   <titleabbrev xmlns:svg="http://www.w3.org/2000/svg"
     xmlns:m="http://www.w3.org/1998/Math/MathML"
@@ -45,11 +45,11 @@
     </legalnotice>
     <revhistory>
       <revision>
-        <date>2013-07-26</date>
+        <date>2013-08-01</date>
         <revdescription>
           <itemizedlist>
             <listitem>
-              <para>Initial Early Access release.</para>
+              <para>Initial Early Access (EA) release.</para>
             </listitem>
           </itemizedlist>
         </revdescription>
@@ -178,6 +178,34 @@
           </listitem>
         </itemizedlist>
       </para>
+      <para>The Early Access Program has some limitations. </para>
+      <para>By using the Cloud Queues API, you agree and understand
+        that:</para>
+      <itemizedlist>
+        <listitem>
+          <para>There is no charge for this service during the Early
+            Access period.</para>
+        </listitem>
+        <listitem>
+          <para>If you participate in this Early Access Program, you
+            will receive a notification prior to general
+            availability.</para>
+        </listitem>
+        <listitem>
+          <para>There is no Service Level Agreement.</para>
+        </listitem>
+        <listitem>
+          <para>The API contract is not locked and may change during
+            the Early Access Program. Rackspace will notify customers
+            in Release Notes when and if the contract does change.
+          </para>
+        </listitem>
+        <listitem>
+          <para>Support is available from 8 AM - 5 PM (Central Time)
+            Monday - Friday.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
       <section xml:id="serviceEndpoints">
         <title>Service Endpoints</title>
         <para>Cloud Queues is a regionalized service. The user of the
@@ -234,213 +262,183 @@
               >mycloud.rackspace.com</link>.</para>
         </note>
       </section>
-      <section xml:id="early_access_program_limitations">
-        <title>Early Access Program Limitations</title>
-       <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Early
-        Access  Program has some limitations. By using the Cloud
-        Queues API, you agree and understand that:<itemizedlist
-          spacing="compact">
+      <section xml:id="how_cq_works">
+        <title>How Cloud Queues Works</title>
+        <para>Here is an overview of the Cloud Queues workflow: </para>
+        <orderedlist>
           <listitem>
-            <para>There is no charge for this service during the Early
-                Access period.</para>
+            <para>You create a queue to which producers post
+              messages.</para>
           </listitem>
           <listitem>
-            <para>If you participate in this Early Access Program, you
-                will receive a notification prior to general
-                availability. </para>
+            <para>Workers claim messages from the queue, complete the
+              work in that message, and delete the message.</para>
+            <para>If a worker plans to be offline before its message
+              completes, the worker can retire the claim Time To Live
+              (TTL), putting the message back into the queue for
+              another worker to claim. </para>
           </listitem>
           <listitem>
-            <para>There is no Service Level Agreement. </para>
+            <para>Subscribers monitor the claims of these queues to
+              keep track of activity and help troubleshoot if things
+              go wrong.</para>
           </listitem>
-          <listitem>
-            <para>The API contract is not locked and may change during
-                the Early Access Program. Rackspace will notify
-                customers in Release Notes when and if the contract
-                does change.</para>
-          </listitem>
-          <listitem>
-            <para>Support is available from 8 AM – 5 PM (Central Time)
-              Monday–Friday.</para>
-          </listitem>
-        </itemizedlist>
-      </para>
-    </section>
-    <section xml:id="how_cq_works">
-      <title>How Cloud Queues Works</title>
-      <para>Here is an overview of the Cloud Queues workflow: </para>
-      <orderedlist>
-        <listitem>
-          <para>You create a queue to which producers post
-            messages.</para>
-        </listitem>
-        <listitem>
-          <para>Workers claim messages from the queue, complete the
-            work in that message, and delete the message.</para>
-          <para>If a worker plans to be offline before its message
-            completes, the worker can retire the claim Time To Live
-            (TTL), putting the message back into the queue for another
-            worker to claim. </para>
-        </listitem>
-        <listitem>
-          <para>Subscribers monitor the claims of these queues to keep
-            track of activity and help troubleshoot if things go
-            wrong.</para>
-        </listitem>
-      </orderedlist>
-      <para>For the majority of use cases, Cloud Queues itself will
-        not be responsible for the ordering of messages. If there is
-        only a single producer, however, Cloud Queueing guarantees
-        that messages are handled in a First In, First Out (FIFO)
-        order. </para>
-      <para>See the <xref linkend="glossary-d1e018"/> for terms that
-        are key to understanding how Cloud Queues works.</para>
-    </section>
-    <section xml:id="operating_modes">
-      <title>Operating Modes</title>
-      <para>Cloud Queues uses the operating modes described in the
-        following sections. </para>
-      <section xml:id="producer_consumer">
-        <title>Producer-Consumer</title>
-        <para>Characteristics of the Producer-Consumer mode
-          are:</para>
+        </orderedlist>
+        <para>For the majority of use cases, Cloud Queues itself will
+          not be responsible for the ordering of messages. If there is
+          only a single producer, however, Cloud Queueing guarantees
+          that messages are handled in a First In, First Out (FIFO)
+          order. </para>
+        <para>See the <xref linkend="glossary-d1e018"/> for terms that
+          are key to understanding how Cloud Queues works.</para>
+      <section xml:id="operating_modes">
+        <title>Operating Modes</title>
+        <para>Cloud Queues uses the operating modes described in the
+          following sections. </para>
+        <section xml:id="producer_consumer">
+          <title>Producer-Consumer</title>
+          <para>Characteristics of the Producer-Consumer mode
+            are:</para>
+          <itemizedlist>
+            <listitem>
+              <para>The worker acts on <emphasis role="italic">only
+                  one message</emphasis>.</para>
+            </listitem>
+            <listitem>
+              <para>The worker must delete the message when work is
+                done.</para>
+            </listitem>
+            <listitem>
+              <para>TTL restores a message to an unclaimed state if
+                the worker never finishes.</para>
+            </listitem>
+            <listitem>
+              <para>This mode is ideal for dispatching jobs to
+                multiple processors.</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+        <section xml:id="publish_subscribe">
+          <title>Publish-Subscribe</title>
+          <para>Characteristics of the Publish-Subscribe mode
+            are:</para>
+          <itemizedlist>
+            <listitem>
+              <para>All subscribers listen to the messages in the
+                queue. </para>
+            </listitem>
+            <listitem>
+              <para>Messages are not claimed.</para>
+            </listitem>
+            <listitem>
+              <para>Subscribers can send a marker/cursor to skip
+                messages already seen. </para>
+            </listitem>
+            <listitem>
+              <para>TTL eventually deletes messages. </para>
+            </listitem>
+            <listitem>
+              <para>This mode is ideal for notification of events to
+                multiple listeners at once.</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+      <section xml:id="cloud-queuing-actions">
+        <title>Cloud Queues Requests</title>
+        <para>This section provides a list of requests that are
+          possible using the Cloud Queues API. </para>
+        <section xml:id="queue-actions">
+          <title>Queues </title>
+          <para>The following requests are available for queues: </para>
+          <itemizedlist>
+            <listitem>
+              <para>Create Queue</para>
+            </listitem>
+            <listitem>
+              <para>List Queues</para>
+            </listitem>
+            <listitem>
+              <para>Set Queue Metadata</para>
+            </listitem>
+            <listitem>
+              <para>Get Queue Metadata</para>
+            </listitem>
+            <listitem>
+              <para>Get Queue Stats</para>
+            </listitem>
+            <listitem>
+              <para>Delete Queue</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+        <section xml:id="message-actions">
+          <title>Messages</title>
+          <para>The following requests are available for
+            messages:</para>
+          <itemizedlist>
+            <listitem>
+              <para>Post Message(s)</para>
+            </listitem>
+            <listitem>
+              <para>Get Messages</para>
+            </listitem>
+            <listitem>
+              <para>Get a Specific Message</para>
+            </listitem>
+            <listitem>
+              <para>Claim Messages</para>
+            </listitem>
+            <listitem>
+              <para>Delete Message(s)</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+        <section xml:id="claim-actions">
+          <title>Claims</title>
+          <para>The following requests are available for
+            claims:</para>
+          <itemizedlist>
+            <listitem>
+              <para>Query Claim</para>
+            </listitem>
+            <listitem>
+              <para>Update Claim</para>
+            </listitem>
+            <listitem>
+              <para>Release Claim</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+ 
+      <section xml:id="use_cases">
+        <title>Use Cases</title>
+        <para>Following are some possible use cases for Cloud Queues: </para>
         <itemizedlist>
           <listitem>
-            <para>The worker acts on <emphasis role="italic">only one
-                message</emphasis>.</para>
+            <para> To distribute tasks among multiple workers
+              (transactional job queues). </para>
           </listitem>
           <listitem>
-            <para>The worker must delete the message when work is
-              done.</para>
+            <para>To forward events to data collectors (transactional
+              event queues).</para>
           </listitem>
           <listitem>
-            <para>TTL restores a message to an unclaimed state if the
-              worker never finishes.</para>
+            <para>To publish events to any number of subscribers
+              (publish-subscribe).</para>
           </listitem>
           <listitem>
-            <para>This mode is ideal for dispatching jobs to multiple
-              processors.</para>
+            <para>To send commands to one or more agents
+              (point-to-point or publish-subscribe).</para>
+          </listitem>
+          <listitem>
+            <para>To request an action or get information from a
+              Remote Procedure Call (RPC) agent.</para>
           </listitem>
         </itemizedlist>
       </section>
-      <section xml:id="publish_subscribe">
-        <title>Publish-Subscribe</title>
-        <para>Characteristics of the Publish-Subscribe mode
-          are:</para>
-        <itemizedlist>
-          <listitem>
-            <para>All subscribers listen to the messages in the queue.
-            </para>
-          </listitem>
-          <listitem>
-            <para>Messages are not claimed.</para>
-          </listitem>
-          <listitem>
-            <para>Subscribers can send a marker/cursor to skip
-              messages already seen. </para>
-          </listitem>
-          <listitem>
-            <para>TTL eventually deletes messages. </para>
-          </listitem>
-          <listitem>
-            <para>This mode is ideal for notification of events to
-              multiple listeners at once.</para>
-          </listitem>
-        </itemizedlist>
-      </section>
-    </section>
-    <section xml:id="cloud-queuing-actions" >
-      <title>Cloud Queues Requests</title>
-      <para>This section provides a list of requests that are possible
-        using the Cloud Queues API. </para>
-      <section xml:id="queue-actions">
-        <title>Queues </title>
-        <para>The following requests are available for queues: </para>
-        <itemizedlist>
-          <listitem>
-            <para>Create Queue</para>
-          </listitem>
-          <listitem>
-            <para>List Queues</para>
-          </listitem>
-          <listitem>
-            <para>Set Queue Metadata</para>
-          </listitem>
-          <listitem>
-            <para>Get Queue Metadata</para>
-          </listitem>
-          <listitem>
-            <para>Get Queue Stats</para>
-          </listitem>
-          <listitem>
-            <para>Delete Queue</para>
-          </listitem>
-        </itemizedlist>
-      </section>
-      <section xml:id="message-actions">
-        <title>Messages</title>
-        <para>The following requests are available for
-          messages:</para>
-        <itemizedlist>
-          <listitem>
-            <para>Post Message(s)</para>
-          </listitem>
-          <listitem>
-            <para>Get Messages</para>
-          </listitem>
-          <listitem>
-            <para>Get a Specific Message</para>
-          </listitem>
-          <listitem>
-            <para>Claim Messages</para>
-          </listitem>
-          <listitem>
-            <para>Delete Message(s)</para>
-          </listitem>
-        </itemizedlist>
-      </section>
-      <section xml:id="claim-actions">
-        <title>Claims</title>
-        <para>The following requests are available for claims:</para>
-        <itemizedlist>
-          <listitem>
-            <para>Query Claim</para>
-          </listitem>
-          <listitem>
-            <para>Update Claim</para>
-          </listitem>
-          <listitem>
-            <para>Release Claim</para>
-          </listitem>
-        </itemizedlist>
-      </section>
-    </section>
-    <section xml:id="use_cases" >
-      <title>Use Cases</title>
-      <para>Following are some possible use cases for Cloud Queues: </para>
-      <itemizedlist>
-        <listitem>
-          <para> To distribute tasks among multiple workers
-            (transactional job queues). </para>
-        </listitem>
-        <listitem>
-          <para>To forward events to data collectors (transactional
-            event queues).</para>
-        </listitem>
-        <listitem>
-          <para>To publish events to any number of subscribers
-            (publish-subscribe).</para>
-        </listitem>
-        <listitem>
-          <para>To send commands to one or more agents (point-to-point
-            or publish-subscribe).</para>
-        </listitem>
-        <listitem>
-          <para>To request an action or get information from a Remote
-            Procedure Call (RPC) agent.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-    </section>
+      </section>       
   </chapter>
   <chapter xml:id="prerequisites" >
     <title>Prerequisites</title>
@@ -480,6 +478,114 @@
             linkend="authentication-1"/> .</para>
       </note>
       
+    </section>
+    <section xml:id="using_curl">
+      <title>Sending API Requests Using cURL</title>
+      <para>cURL is a command-line tool that is available on most
+        UNIX®-like environments and Mac OS X® and can be downloaded
+        for Windows® in order to interact with the ReST interfaces.
+        For more information on cURL, visit <link
+          xlink:href="http://curl.haxx.se/"
+          >http://curl.haxx.se/</link>. </para>
+      <para>cURL allows you to transmit and receive HTTP requests and
+        responses from the command-line or from within a shell script.
+        This makes it possible to work with the ReST API directly
+        without using one of the client APIs.</para>
+      <para>The following cURL command-line options will be used in
+        this guide to run the examples:</para>
+      <table rules="all">
+        <caption>cURL Command-Line Options</caption>
+        <col width="30%"/>
+        <col width="70%"/>
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>-d</code></td>
+            <td>Sends the specified data in a post request to the HTTP
+              server.</td>
+          </tr>
+          <tr>
+            <td><code>-i</code></td>
+            <td>Includes the HTTP header in the output.</td>
+          </tr>
+          <tr>
+            <td><code>-H HEADER</code></td>
+            <td>Specify an HTTP header in the request.</td>
+          </tr>
+          <tr>
+            <td><code>-x</code></td>
+            <td>Specifies the request method to use when communicating
+              with the HTTP server. The specified request is used
+              instead of the default method, which is GET. For
+              example, -X PUT specifies to use the PUT request
+              method.</td>
+          </tr>
+        </tbody>
+      </table>
+      <note>
+        <para>If you have <command>json.tool</command> in your python
+          distribution, you can run the cURL JSON request examples
+          with the following options to format the output from cURL:
+            <command>&lt;curl JSON request example> | python
+            -mjson.tool</command>.</para>
+      </note>
+      <para>To run the cURL request examples shown in this guide
+          (<xref linkend="stepping_through_the_api"/>) on Linux or Mac
+        systems, copy and paste each example from the HTML version of
+        this guide into an ASCII editor (for example
+          <command>vi</command> or <command>TextEdit</command>). Then
+        modify each example with your required account information and
+        so forth, as detailed in this guide.</para>
+      <note>
+        <para>The carriage returns in the cURL request examples that
+          are part of the cURL syntax are escaped with a backslash
+          ('\') in order to avoid prematurely terminating the command.
+          However you should not escape carriage returns inside the
+          json message within the command.</para>
+      </note>
+      <para>Consider the following cURL Authentication Request: JSON
+        example that is described in detail in <xref
+          linkend="authentication-1"/>:</para>
+      <para>
+        <example>
+          <title>cURL Authentication Request with Username and API
+            Key</title>
+          <programlisting>curl -X POST https://identity.api.rackspacecloud.com/v2.0/tokens -d \
+'{
+  "auth": {
+    "RAX-KSKEY:apiKeyCredentials": {
+      "username": "your_username",
+      "apiKey": "your_api_key"
+    }
+  }
+}' \ 
+-H "Accept: application/json" \
+-H "Content-type: application/json" | python -mjson.tool</programlisting>
+        </example>
+      </para>
+      <para>You can see that the lines that are part of the cURL
+        command syntax have all been escaped with a backslash ('\') to
+        indicate that the command continues on the next line. However
+        the lines within the JSON portion of the message are not
+        escaped with a backslash ('\') in order to avoid issues with
+        the JSON processing. The final line of the JSON message is
+        escaped since the backslash lies outside the JSON message and
+        continues the cURL command to the next line.  </para>
+      <para>After you are finished modifying the text for the cURL
+        request example with your information (for example,
+          <literal>your_username</literal> and
+          <literal>your_api_key</literal>), paste it into your
+        terminal window. Then execute the cURL command by pressing
+        Enter.</para>
+      <para>If you have trouble copying and pasting the examples as
+        described, try typing the entire example on one long line,
+        removing all the backslash line continuation
+        characters.</para>
     </section>
     <section xml:id="authentication-1">
       <title>Authentication</title>
@@ -1140,7 +1246,8 @@
           <tr>
             <td>Accept</td>
             <td>Media type desired; initially, only
-                <code>application/json</code> is supported</td>
+                <code>application/json</code> is supported. The
+                <code>Accept</code> header is required.</td>
           </tr>
           <tr>
             <td>Accept-Encoding</td>
@@ -1237,14 +1344,14 @@ Location: /v1/queues/samplequeue</programlisting>
       </example>
     </section>
     <section xml:id="insert_messages" >
-      <title>Insert Messages</title>
-      <para><code>Insert Messages</code> places messages in a queue. </para>
+      <title>Post Messages</title>
+      <para><code>Post Messages</code> places messages in a queue. </para>
       <para>You can submit up to 10 messages in a single request, but
         you must encapsulate them in a collection container (an array
         in JSON). You can use the resulting value of the location
         header or response body to retrieve the created messages for
         further processing if needed. </para>
-      <para>The Insert Messages template
+      <para>The Post Messages template
         is:<programlisting>POST {base_url}/queues/{queue_name}/messages</programlisting></para>
       <para>The client specifies only the <tag class="attribute"
           >body</tag> and <tag class="attribute">ttl</tag> for the
@@ -1273,10 +1380,10 @@ Location: /v1/queues/samplequeue</programlisting>
         implementations, the server might not actually delete the
         message until its age reachs up to <tag class="attribute">(ttl
           + 60)</tag> seconds.</para>
-      <para>Examples of an Insert Messages request and response are
-        given next:</para>
+      <para>Examples of a Post Messages request and response are given
+        next:</para>
       <example>
-        <title>cURL Insert Messages Request</title>
+        <title>cURL Post Messages Request</title>
         <programlisting>curl -i -X POST https://ord.queue.api.rackspacecloud.com/v1/queues/samplequeue/messages -d \
 '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' \
 -H "Content-type: application/json" \
@@ -1285,7 +1392,7 @@ Location: /v1/queues/samplequeue</programlisting>
 -H "Accept: application/json" </programlisting>
       </example>
       <example>
-        <title>Insert Messages Response </title>
+        <title>Post Messages Response </title>
         <programlisting>HTTP/1.1 201 Created
 Content-Length: 153
 Content-Type: application/json; charset=utf-8
@@ -1522,7 +1629,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
       <glossterm>Worker</glossterm>
       <glossdef>
         <para>A worker is a server that claims a messages and performs
-          the necessary task.</para>
+          the necessary task. </para>
       </glossdef>
     </glossentry>
   </glossary>

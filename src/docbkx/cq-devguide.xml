@@ -77,11 +77,11 @@
  
     <revhistory>
       <revision>
-        <date>2013-07-26</date>
+        <date>2013-08-01</date>
         <revdescription>
           <itemizedlist>
             <listitem>
-              <para>Initial Early Access release.</para>
+              <para>Initial Early Access (EA) release.</para>
             </listitem>
           </itemizedlist>
         </revdescription>
@@ -121,7 +121,7 @@
       requests to pull all messages since their last request. In this
       model, a message will remain in the queue, unclaimed, until the
       message's time to live (TTL) has expired. </para>
-    <para>In both of the models above, admininstrators can get queue
+    <para>In both of the models above, administrators can get queue
       stats that will display most recent and oldest messages, the
       number of unclaimed messages, and more. </para>
     <!--
@@ -226,7 +226,7 @@
     <section xml:id="API_Contract_Changes-d1e363">
       <title>API Contract Changes</title>
       <para>The API contract is not locked and may change during the
-        Early Access Program.</para>
+        Early Access (EA) Program.</para>
       <para>Rackspace will notify customers in Release Notes when and
         if the contract does change.</para>
     </section>

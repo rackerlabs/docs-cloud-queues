@@ -2,3 +2,4 @@ GET /v1/queues/demoqueue/metadata HTTP/1.1
 Host: ord.queue.api.rackspacecloud.com
 Content-type: application/json
 X-Auth-Token: 0f6e9f63600142f0a970911583522217
+Accept: application/json
