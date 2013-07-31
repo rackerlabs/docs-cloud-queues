@@ -62,7 +62,7 @@
     <releaseinfo>API v1.0 Early Access</releaseinfo>
     <productname>Rackspace Cloud Queues</productname><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <pubdate/>
-    <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically. -->
+    <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
     <legalnotice role="rs-api">
       <annotation>
         <remark>Copyright details are filled in by the build system.</remark>
@@ -77,11 +77,25 @@
  
     <revhistory>
       <revision>
-        <date>2013-08-01</date>
+        <date>2013-08-12</date>
         <revdescription>
           <itemizedlist>
             <listitem>
               <para>Initial Early Access (EA) release.</para>
+            </listitem>
+          </itemizedlist>
+        </revdescription>
+      </revision>
+      <revision>
+        <date>2013-07-31</date>
+        <revdescription>
+          <itemizedlist>
+            <listitem>
+              <para>Updated endpoints from queue to queues.</para>
+            </listitem>
+            <listitem>
+              <para>Changed metadata to endpoing in API
+                operations.</para>
             </listitem>
           </itemizedlist>
         </revdescription>
@@ -819,21 +833,20 @@
             <tr align="left">
               <td colspan="2" rowspan="2">Chicago (ORD)</td>
               <td colspan="5"
-                  ><code>https://ord.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+                  ><code>https://ord.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
             </tr>
             <tr>
               <td colspan="5"
-                  ><code>https://ord-snet.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
+                  ><code>https://ord-snet.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
             </tr>
             <tr align="left">
               <td colspan="2" rowspan="2">London (LON)</td>
               <td colspan="5"
-                  ><code>https://lon.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+                  ><code>https://lon.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
             </tr>
             <tr>
               <td colspan="5"
-                  ><code>https://lon-snet.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
-              </td>
+                  ><code>https://lon-snet.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
             </tr>
           </tbody>
         </table>

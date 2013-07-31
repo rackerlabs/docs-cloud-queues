@@ -45,11 +45,22 @@
     </legalnotice>
     <revhistory>
       <revision>
-        <date>2013-08-01</date>
+        <date>2013-08-12</date>
         <revdescription>
           <itemizedlist>
             <listitem>
               <para>Initial Early Access (EA) release.</para>
+            </listitem>
+          </itemizedlist>
+        </revdescription>
+      </revision>
+      <revision>
+        <date>2013-07-31</date>
+        <revdescription>
+          <itemizedlist>
+            <listitem>
+              <para>Updated service endpoint from queue to queues
+                throughout this document.</para>
             </listitem>
           </itemizedlist>
         </revdescription>
@@ -230,23 +241,20 @@
               <tr align="left">
                 <td colspan="2" rowspan="2">Chicago (ORD)</td>
                 <td colspan="5"
-                    ><code>https://ord.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
-                </td>
+                  ><code>https://ord.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
               </tr>
               <tr>
                 <td colspan="5"
-                    ><code>https://ord-snet.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
+                  ><code>https://ord-snet.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
               </tr>
               <tr align="left">
                 <td colspan="2" rowspan="2">London (LON)</td>
                 <td colspan="5"
-                    ><code>https://lon.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
-                </td>
+                  ><code>https://lon.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
               </tr>
               <tr>
                 <td colspan="5"
-                    ><code>https://lon-snet.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
-                </td>
+                  ><code>https://lon-snet.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
               </tr>
             </tbody>
           </table>
@@ -464,10 +472,10 @@
       <title>Accessing the API</title>
       <para>To access the Rackspace Cloud Queues API use the following
         URL:</para>
-      <para>&lt;code>https://ord.queue.api.rackspacecloud.com/v1.0/&lt;/code>&lt;parameter>1234&lt;/parameter>/ </para>
+      <para>&lt;code>https://ord.queues.api.rackspacecloud.com/v1.0/&lt;/code>&lt;parameter>1234&lt;/parameter>/ </para>
       <para>or</para>
       <para>
-        &lt;code>https://snet-ord.queue.api.rackspacecloud.com/v1.0/&lt;/code>&lt;parameter>1234&lt;/parameter>/</para>
+        &lt;code>https://snet-ord.queues.api.rackspacecloud.com/v1.0/&lt;/code>&lt;parameter>1234&lt;/parameter>/</para>
       <note>
         <para>1234 represents your account number and is used as a
           placeholder. (The account number is also sometimes shown as
@@ -928,7 +936,7 @@
       </note>
       <para>The <code>publicURL</code> endpoints for Cloud Queues (for
         example <code>https://
-          ord.queue.api.rackspacecloud.com/v1.0/1100111</code>) are
+          ord.queues.api.rackspacecloud.com/v1.0/1100111</code>) are
         also returned in the response. </para>
       <para>You will find the actual account number after the final
         '/' in the <code>publicURL</code> field. In this example, you
@@ -961,44 +969,44 @@
             <tr align="left">
               <td colspan="2">Chicago (ORD)</td>
               <td colspan="5"
-                  ><code>https://ord.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+                  ><code>https://ord.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
             </tr>
             <tr>
               <td colspan="2"/>
               <td colspan="5"
-                  ><code>https://snet-ord.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
+                  ><code>https://snet-ord.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
               </td>
             </tr>
             <tr align="left">
               <td colspan="2">Dallas/Ft. Worth (DFW)</td>
               <td colspan="5"
-                  ><code>https://dfw.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+                  ><code>https://dfw.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
             </tr>
             <tr>
               <td colspan="2"/>
               <td colspan="5"
-                  ><code>https://snet-dfw.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
+                  ><code>https://snet-dfw.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
             </tr>
             <tr align="left">
               <td colspan="2">London (LON)</td>
               <td colspan="5">
-                <code>https://lon.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+                <code>https://lon.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
             </tr>
             <tr>
               <td colspan="2"/>
               <td colspan="5"
-                  ><code>https://snet-lon.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
+                  ><code>https://snet-lon.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
               </td>
             </tr>
             <tr align="left">
               <td colspan="2">Sydney (SYD)</td>
               <td colspan="5">
-                <code>https://syd.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+                <code>https://syd.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
             </tr>
             <tr>
               <td colspan="2"/>
               <td colspan="5"
-                  ><code>https://snet-syd.queue.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
+                  ><code>https://snet-syd.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/
               </td>
             </tr>
           </tbody>
@@ -1029,7 +1037,7 @@
         Refer to <xref linkend="authentication-1"/>. </para>
       <para>When making a Cloud Queues API call, place the endpoint
         at the beginning of the request URL, for example:
-          (<code>https://ord.queue.api.rackspacecloud.com/v1.0/your_acct_id/</code>.</para>
+          (<code>https://ord.queues.api.rackspacecloud.com/v1.0/your_acct_id/</code>.</para>
 -->
       <!--
       <section xml:id="using-curl">
@@ -1330,7 +1338,7 @@
         next:</para>
       <example>
         <title>cURL Create Queue Request</title>
-        <programlisting>curl -i -X PUT https://ord.queue.api.rackspacecloud.com/v1/queues/samplequeue -d \
+        <programlisting>curl -i -X PUT https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue -d \
 '{"metadata": "Awesome Queue"}' \
 -H "Content-type: application/json" \
 -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \
@@ -1384,7 +1392,7 @@ Location: /v1/queues/samplequeue</programlisting>
         next:</para>
       <example>
         <title>cURL Post Messages Request</title>
-        <programlisting>curl -i -X POST https://ord.queue.api.rackspacecloud.com/v1/queues/samplequeue/messages -d \
+        <programlisting>curl -i -X POST https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages -d \
 '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' \
 -H "Content-type: application/json" \
 -H "Client-ID: QClient" \
@@ -1455,7 +1463,7 @@ Content-Type: application/json
         next:</para>
       <example>
         <title>cURL Claim Messages Request</title>
-        <programlisting>curl -i -X POST https://ord.queue.api.rackspacecloud.com/v1/queues/samplequeue/claims -d \
+        <programlisting>curl -i -X POST https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims -d \
 '{"ttl": 300,"grace":300}' \
 -H "Content-type: application/json" \ 
 -H "Client-ID: QClient" \ 
@@ -1493,7 +1501,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         given next:</para>
       <example>
         <title>cURL Delete Messages Request</title>
-        <programlisting>curl -i -X DELETE https://ord.queue.api.rackspacecloud.com/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 \ 
+        <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 \ 
 -H "Content-type: application/json" \
 -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \ 
 -H "Client-ID: QClient" \
@@ -1520,7 +1528,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         next:</para>
       <example>
         <title>cURL Delete Claim Request</title>
-        <programlisting>curl -i -X DELETE https://ord.queue.api.rackspacecloud.com/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 \ 
+        <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 \ 
 -H "Content-type: application/json" \ 
 -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \ 
 -H "Client-ID: QClient"  \
@@ -1541,7 +1549,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         next:</para>
       <example>
         <title>cURL Delete Queue Request</title>
-        <programlisting>curl -i -X DELETE https://ord.queue.api.rackspacecloud.com/v1/queues/samplequeue \ 
+        <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \ 
 -H "Content-type: application/json" \ 
 -H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" \
 -H "Accept: application/json"</programlisting>
