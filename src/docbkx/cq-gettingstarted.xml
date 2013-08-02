@@ -1394,7 +1394,7 @@ Location: /v1/queues/samplequeue</programlisting>
     <section xml:id="insert_messages" >
       <title>Post Message</title>
       <para><code>Post Message</code> places messages in a queue. </para>
-      <para>You can submit up to 10 messages in a single request, but
+      <para>You can submit up to 20 messages in a single request, but
         you must encapsulate them in a collection container (an array
         in JSON). You can use the resulting value of the location
         header or response body to retrieve the created messages for

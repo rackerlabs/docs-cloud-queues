@@ -1023,9 +1023,21 @@
         <title>Absolute Limits</title>
         <remark>Reviewer:  Please provide any additional limits that
           need to be mentioned in this section.</remark>
-        <para>For Cloud Queues, the maximum total payload size for
-          message <command>POST</command>s (adding up the lengths of
-          all bodies in a post) cannot exceed 256K.</para>
+        <para>Cloud Queues has the following limits:</para>
+        <itemizedlist>
+          <listitem>
+            <para>The maximum total payload size for message
+                <command>POST</command>s (adding up the lengths of all
+              bodies in a post) cannot exceed 256 KB.</para>
+          </listitem>
+          <listitem>
+            <para>TTLs cannot be longer than 14 days.</para>
+          </listitem>
+          <listitem>
+            <para>A request cannot contain more than 20
+              messages.</para>
+          </listitem>
+        </itemizedlist>
       <!--  <para>Refer to the following table for the absolute
           limits that are set.</para>
         <table rules="all">
