@@ -1,48 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book [
-<!-- Some useful entities borrowed from HTML -->
-        <!ENTITY ndash "&#x2013;">
-        <!ENTITY mdash "&#x2014;">
+        <!-- Some useful entities borrowed from HTML -->
+        <!ENTITY ndash  "&#x2013;">
+        <!ENTITY mdash  "&#x2014;">
         <!ENTITY hellip "&#x2026;">
-   
- 
+        
+        <!-- Useful for describing APIs -->
+        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
         
         <!-- changing authentication endpoints; define entities for US & UK rather than maintaining in text -->
+        <!ENTITY ENDPOINT-US "https://identity.api.rackspacecloud.com/v1.1/">
+        <!ENTITY ENDPOINT-UK "https://lon.identity.api.rackspacecloud.com/v1.1/">
         <!ENTITY ENDPOINT-US-20 "https://identity.api.rackspacecloud.com/v2.0/">
         <!ENTITY ENDPOINT-UK-20 "https://lon.identity.api.rackspacecloud.com/v2.0/">
- 
+        
+        <!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject>
+                  <imagedata fileref="img/Check_mark_23x20_02.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+              </inlinemediaobject>'>
+              
+        <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject>
+                  <imagedata fileref="img/Arrow_east.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+              </inlinemediaobject>'>
 ]>
 
 <book
     xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml"    
     version="5.0-extension RaxBook-2.0"    
     xml:id="cq-gettingstarted">
-  <title>Cloud Queues Getting Started Guide</title>
-  <?rax title.font.size="30px" 
+ 
+  <?rax title.font.size="35px" 
       pdf.url="../../cq-gettingstarted-latest.pdf" 
       status.bar.text.font.size="40px"
-      status.bar.text="DRAFT" 
+      status.bar.text="Early Access" 
       canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-gettingstarted/content"?>
-  <titleabbrev xmlns:svg="http://www.w3.org/2000/svg"
-    xmlns:m="http://www.w3.org/1998/Math/MathML"
-    xmlns:html="http://www.w3.org/1999/xhtml">Cloud Queues Getting
-    Started Guide</titleabbrev>
+  
+  <title>Rackspace Cloud Queues Getting Started Guide</title> 
+  <titleabbrev>Rackspace Cloud Queues Getting Started Guide</titleabbrev>
   <info>
+    <author>
+      <personname>
+        <firstname/>
+        <surname/>
+      </personname>
+      <affiliation>
+        <orgname>Rackspace Cloud</orgname>
+      </affiliation>
+    </author>
     <copyright>
       <year>2013</year>
       <holder>Rackspace US, Inc.</holder>
     </copyright>
     <releaseinfo>API v1.0 Early Access</releaseinfo>
-    <productname>Cloud Queues</productname>
+    <productname>Rackspace Cloud Queues</productname>
     <pubdate/>
+    <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
     <legalnotice role="rs-api">
       <annotation>
-        <remark>Copyright details are filled in by the
-        template. </remark>
+        <remark>Copyright details are filled in by the build system. </remark>
       </annotation>
     </legalnotice>
+    <abstract >
+      <para>This document is intended for software developers
+        interested in developing applications using the Rackspace
+        Cloud Queues Application Programming Interface
+        (<abbrev>API</abbrev>). </para>
+    </abstract>
+    
     <revhistory>
       <revision>
         <date>2013-08-12</date>
@@ -386,7 +423,7 @@
             messages:</para>
           <itemizedlist>
             <listitem>
-              <para>Post Message(s)</para>
+              <para>Post Message</para>
             </listitem>
             <listitem>
               <para>Get Messages</para>
@@ -395,10 +432,10 @@
               <para>Get a Specific Message</para>
             </listitem>
             <listitem>
-              <para>Claim Messages</para>
+              <para>Get a Set of Messages by ID</para>
             </listitem>
             <listitem>
-              <para>Delete Message(s)</para>
+              <para>Delete Message</para>
             </listitem>
           </itemizedlist>
         </section>
@@ -408,13 +445,16 @@
             claims:</para>
           <itemizedlist>
             <listitem>
+              <para>Claim Messages</para>
+            </listitem>
+            <listitem>
               <para>Query Claim</para>
             </listitem>
             <listitem>
               <para>Update Claim</para>
             </listitem>
             <listitem>
-              <para>Release Claim</para>
+              <para>Delete Claim</para>
             </listitem>
           </itemizedlist>
         </section>
@@ -1308,7 +1348,7 @@
     <para>For a complete list of requests available for Cloud Queues,
       see <xref linkend="cloud-queuing-actions"/>. Each request
       available will be fully described in the <emphasis role="italic"
-        >Cloud Queues Developer Guide</emphasis>, coming soon.</para>
+        >Cloud Queues Developer Guide</emphasis>.</para>
     <section xml:id="create_queue">
       <title>Create Queue</title>
       <para><code>Create Queue</code> creates a queue and sets its
@@ -1319,7 +1359,7 @@
         Top-level field names <emphasis role="italic">must
           not</emphasis> start with an underscore. Such names are
         reserved for future use.</para>
-      <para>The Create Queue template is:</para>
+      <para>The <code>Create Queue</code> template is:</para>
       <para>
         <programlisting>PUT {base_url}/queues/{queue_name}
 
@@ -1334,8 +1374,8 @@
         US-ASCII letters, digits, underscores, and hyphens. If the
         specified queue already exists, the existing queue's metadata
         is overwritten with the provided document.</para>
-      <para>Examples of a Create Queue request and response are given
-        next:</para>
+      <para>Examples of a <code>Create Queue</code> request and
+        response are given next:</para>
       <example>
         <title>cURL Create Queue Request</title>
         <programlisting>curl -i -X PUT https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue -d \
@@ -1352,14 +1392,14 @@ Location: /v1/queues/samplequeue</programlisting>
       </example>
     </section>
     <section xml:id="insert_messages" >
-      <title>Post Messages</title>
-      <para><code>Post Messages</code> places messages in a queue. </para>
+      <title>Post Message</title>
+      <para><code>Post Message</code> places messages in a queue. </para>
       <para>You can submit up to 10 messages in a single request, but
         you must encapsulate them in a collection container (an array
         in JSON). You can use the resulting value of the location
         header or response body to retrieve the created messages for
         further processing if needed. </para>
-      <para>The Post Messages template
+      <para>The <code>Post Messages</code> template
         is:<programlisting>POST {base_url}/queues/{queue_name}/messages</programlisting></para>
       <para>The client specifies only the <tag class="attribute"
           >body</tag> and <tag class="attribute">ttl</tag> for the
@@ -1388,10 +1428,10 @@ Location: /v1/queues/samplequeue</programlisting>
         implementations, the server might not actually delete the
         message until its age reachs up to <tag class="attribute">(ttl
           + 60)</tag> seconds.</para>
-      <para>Examples of a Post Messages request and response are given
-        next:</para>
+      <para>Examples of a <code>Post Message</code> request and
+        response are given next:</para>
       <example>
-        <title>cURL Post Messages Request</title>
+        <title>cURL Post Message Request</title>
         <programlisting>curl -i -X POST https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages -d \
 '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' \
 -H "Content-type: application/json" \
@@ -1400,7 +1440,7 @@ Location: /v1/queues/samplequeue</programlisting>
 -H "Accept: application/json" </programlisting>
       </example>
       <example>
-        <title>Post Messages Response </title>
+        <title>Post Message Response </title>
         <programlisting>HTTP/1.1 201 Created
 Content-Length: 153
 Content-Type: application/json; charset=utf-8
@@ -1417,7 +1457,7 @@ Location: /v1/queues/samplequeue/messages?ids=51ca00a0c508f154c912b85c,51ca00a0c
         and skips any that are already claimed. If no unclaimed
         messages are available, Cloud Queues returns <code>204 No
           Content</code>. </para>
-      <para>The Claim Messages template is:</para>
+      <para>The <code>Claim Messages</code> template is:</para>
       <programlisting>POST {base_url}/queues/{queue_name}/claims{?limit}
 Content-Type: application/json
 
@@ -1459,8 +1499,8 @@ Content-Type: application/json
         long as the lifetime of the claim itself, plus a specified
         grace period. If a claimed message normally lives longer than
         the grace period, its expiration is not adjusted.</para>
-      <para>Examples of a Claim Messages request and response are given
-        next:</para>
+      <para>Examples of a <code>Claim Messages</code> request and
+        response are given next:</para>
       <example>
         <title>cURL Claim Messages Request</title>
         <programlisting>curl -i -X POST https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims -d \
@@ -1481,9 +1521,9 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
       </example>
     </section>
     <section xml:id="Delete_messages">
-      <title>Delete Messages with Claim ID</title>
-      <para><code>Delete Messages</code> deletes messages.</para>
-      <para>The Delete Messages template
+      <title>Delete Message with Claim ID</title>
+      <para><code>Delete Message</code> deletes messages.</para>
+      <para>The <code>Delete Message</code> template
         is:<programlisting>DELETE {base_url}/queues/{queue_name}/messages/{message_id}{?claim_id}
 </programlisting></para>
       <para><tag class="attribute">message_id</tag> specifies the
@@ -1497,10 +1537,10 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         must roll back any actions it took based on that message since
         another worker can now claim and process the same
         message.</para>
-      <para>Examples of a Delete Messages request and response are
-        given next:</para>
+      <para>Examples of a <code>Delete Message</code> request and
+        response are given next:</para>
       <example>
-        <title>cURL Delete Messages Request</title>
+        <title>cURL Delete Message Request</title>
         <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 \ 
 -H "Content-type: application/json" \
 -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \ 
@@ -1508,7 +1548,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
 -H "Accept: application/json"</programlisting>
       </example>
       <example>
-        <title>Delete Messages Response</title>
+        <title>Delete Message Response</title>
         <programlisting>HTTP/1.1 204 No Content</programlisting>
       </example>
     </section>
@@ -1517,15 +1557,15 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
       <para><code>Delete Claim</code> immediately releases a claim
         making any (remaining, non-deleted) messages associated with
         the claim available to other workers. </para>
-      <para>The Delete Claim template is:</para>
+      <para>The <code>Delete Claim</code> template is:</para>
       <programlisting>DELETE {base_url}/queues/{queue_name}/claims/{claim_id}</programlisting>
       <para><code>Delete Claim</code> is useful when a worker is
         performing a graceful shutdown, fails to process one or more
         messages, or is taking longer than expected to process
         messages and wishes to make the remainder of the messages
         available to other workers. </para>
-      <para>Examples of a Delete Claim request and response are given
-        next:</para>
+      <para>Examples of a <code>Delete Claim</code> request and
+        response are given next:</para>
       <example>
         <title>cURL Delete Claim Request</title>
         <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 \ 
@@ -1541,12 +1581,12 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
     </section>
     <section xml:id="Delete_queue">
       <title>Delete Queue </title>
-      <para>Delete Queue immediately deletes a queue along with all of
-        its messages (if any exists).</para>
-      <para>The Delete Queue template
+      <para><code>Delete Queue</code> immediately deletes a queue
+        along with all of its messages (if any exists).</para>
+      <para>The <code>Delete Queue</code> template
         is:<programlisting>DELETE {base_url}/queues/{queue_name}</programlisting></para>
-      <para>Examples of a Delete Queue request and response are given
-        next:</para>
+      <para>Examples of a <code>Delete Queue</code> request and
+        response are given next:</para>
       <example>
         <title>cURL Delete Queue Request</title>
         <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \ 
@@ -1563,6 +1603,15 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
   </chapter>
   <chapter xml:id="additional-resources" >
     <title>Additional Resources</title>
+    <para>Using this guide, the <citetitle>Cloud Queues Developer
+        Guide</citetitle>, and your Rackspace Cloud account, you can
+      get started whenever you'd like. </para>
+    <para>Email all support questions to:
+        <email>cloudqueues@rackspace.com</email>. </para>
+    <para>Please visit our <link
+        xlink:href="http://feedback.rackspace.com/forums/71021-product-feedback/category/6841-cloud-sites"
+        >Product Feedback Forum</link> and let us know what you think
+      about Cloud Queues.</para>
     <!--
     <para>You can download the most current versions of the
       API-related documents from <link
@@ -1574,7 +1623,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         <link
         xlink:href="https://wiki.openstack.org/wiki/Marconi/specs/api/v1"
         >wiki.openstack.org/wiki/Marconi/specs/api/v1</link>.</para>
-    <para> For information about Rackspace Cloud products, refer to
+    <para>For information about Rackspace Cloud products, refer to
         <link xlink:href="http://www.rackspace.com/cloud/">
         www.rackspace.com/cloud</link>. This site also offers links to
       Rackspace's official support channels, including knowledge base
