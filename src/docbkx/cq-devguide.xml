@@ -70,7 +70,7 @@
     </copyright>
     <releaseinfo>API v1.0 Early Access</releaseinfo>
     <productname>Rackspace Cloud Queues</productname><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
-    <pubdate/>
+    <pubdate>2013-08-12</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
     <legalnotice role="rs-api">
       <annotation>
@@ -95,6 +95,7 @@
           </itemizedlist>
         </revdescription>
       </revision>
+ <!--
       <revision>
         <date>2013-07-31</date>
         <revdescription>
@@ -109,6 +110,7 @@
           </itemizedlist>
         </revdescription>
       </revision>
+ -->
     </revhistory>
 
     <!-- 
@@ -285,9 +287,9 @@
           <para>Workers claim messages from the queue, complete the
             work in that message, and delete the message.</para>
           <para>If a worker plans to be offline before its message
-            completes, the worker can retire the claim Time To Live
-            (TTL), putting the message back into the queue for another
-            worker to claim. </para>
+            completes, the worker can retire the claim TTL, putting
+            the message back into the queue for another worker to
+            claim. </para>
         </listitem>
         <listitem>
           <para>Subscribers monitor the claims of these queues to keep
@@ -831,9 +833,9 @@
         regional boundaries to other Cloud Queues servers.</para>
       <para>You can find the available service access/endpoints for
         Cloud Queues summarized in the table below.</para>
-      <?rax-fo keep-with-next?>
       <para>
         <table rules="all">
+          <?rax-fo keep-together?>
           <caption>Regionalized Service Endpoints</caption>
           <thead>
             <tr align="center">
@@ -934,9 +936,6 @@
     <?hard-pagebreak?>
     <section xml:id="Limits-d1e1208">
       <title>Limits</title>
-      <remark>Reviewer: Do you need both Rate Limits and Absolute
-        Limits for Cloud Queues... the section below was pulled from
-        Cloud Databases.</remark>
       <para>
         All accounts, by default, have a preconfigured set of
         thresholds (or limits) to manage capacity and prevent
@@ -1021,49 +1020,58 @@
       </section>
       <section xml:id="Absolute_Limits-d1e1397">
         <title>Absolute Limits</title>
-        <remark>Reviewer:  Please provide any additional limits that
-          need to be mentioned in this section.</remark>
         <para>Cloud Queues has the following limits:</para>
         <itemizedlist>
           <listitem>
-            <para>The maximum total payload size for message
-                <command>POST</command>s (adding up the lengths of all
-              bodies in a post) cannot exceed 256 KB.</para>
+            <para>There is a per message limit of 256 KB, excluding
+              whitespace, on the size of the message body. If multiple
+              messages are included in the request, this limit also
+              applies to the sum of the message bodies added
+              together.</para>
+            <para>For example, you may have one message body of 256
+              KB, or up to 10 messages for which the sum of the
+              message bodies is 256 KB. A 400 error is triggered if a
+              single message body or the sum of multiple message
+              bodies exceed 256 KB in a single request.</para>
           </listitem>
           <listitem>
-            <para>TTLs cannot be longer than 14 days.</para>
-          </listitem>
-          <listitem>
-            <para>A request cannot contain more than 20
+            <para>A request cannot contain more than 10
               messages.</para>
           </listitem>
+          <listitem>
+            <para>A TTL cannot be longer than 14 days.</para>
+          </listitem>
         </itemizedlist>
-      <!--  <para>Refer to the following table for the absolute
+        <para>Refer to the following table for the absolute
           limits that are set.</para>
         <table rules="all">
           <caption>Absolute Limits</caption>
           <thead>
             <tr>
-              <td colspan="1">Name</td>
+              <td colspan="1">Type of Limit</td>
               <td colspan="3">Description</td>
               <td colspan="1">Limit</td>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td colspan="1"/>
-              <td colspan="3">Maximum number of ??? allowed for your
-                account</td>
-              <td colspan="1"/>
+              <td colspan="1">Message </td>
+              <td colspan="3">Maximum size of message body or the sum
+                of message bodies </td>
+              <td colspan="1">256 KB</td>
             </tr>
             <tr>
-              <td colspan="1"/>
-              <td colspan="3">Maximum volume of ??? size per instance
-                in gigabytes (GB) for your account</td>
-              <td colspan="1"/>
+              <td colspan="1">Request</td>
+              <td colspan="3">Maximum number of messages in a request </td>
+              <td colspan="1">10</td>
+            </tr>
+            <tr>
+              <td colspan="1">TTL</td>
+              <td colspan="3">Maximum length of TTL</td>
+              <td colspan="1">14 days</td>
             </tr>
           </tbody>
-        </table> -->
+        </table>
       </section>
     </section>
     <section xml:id="commonHeaders" >
@@ -1213,7 +1221,10 @@
           <para>Link to more information</para>
         </listitem>
       </itemizedlist>
-      <para>An example of an error message follows. </para>
+
+      <para><?rax-fo keep-with-next?> An example of an error message
+        follows. </para>
+
       <example>
         <title>Error Message Example</title>
         <programlisting>HTTP/1.1 400 Bad Request
@@ -1245,6 +1256,18 @@ Content-Type: application/json
         MUST NOT exceed 64 bytes in length, and is limited to US-ASCII
         letters, digits, underscores, and hyphens. </para>
     </note>
+    <section xml:id="homeDocument-operation">
+      <title>Home Document</title>
+      <para>The section describes how to get the Home Document for
+        Cloud Queues.</para>
+      <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#version">
+          <wadl:method href="getHomeDocument"/>
+        </wadl:resource>
+      </wadl:resources>
+ 
+    </section>
+    
     <section xml:id="queue-operations-dle001">
       <title>Queues </title>
       <para>This section describes queue requests that are supported

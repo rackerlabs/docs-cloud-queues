@@ -5,8 +5,17 @@ Content-Location: /v1/queues/demoqueue/stats
 
 {
   "messages": {
-    "claimed": 0,
-    "free": 0
-  },
-  "actions": 0
+    "free": 146929,
+    "claimed": 2409,
+    "total": 149338,
+    "oldest": {
+        "href": "/v1/queues/fizbit/messages/50b68a50d6f5b8c8a7c62b01",
+        "age": 63,
+        "created": "2013-08-12T20:44:55Z"
+    },
+    "newest": {
+        "href": "/v1/queues/fizbit/messages/50b68a50d6f5b8c8a7c62b01",
+        "age": 12,
+        "created": "2013-08-12T20:45:46Z"
+    }
 }

@@ -45,7 +45,8 @@
 				<param name="projectId" style="template" type="xsd:string"> 
 				<doc>The project ID of the owner of the specified
 				queue. </doc></param> 
-			-->						
+			-->	
+			<method href="#getHomeDocument"/>
 			<resource id="queues" path="queues">
 				<method href="#listQueues" />	
 				
@@ -65,6 +66,7 @@
 						<method href="#postMessage" />
 						<method href="#getMessages" />
 						<method href="#getSetMessagesByID" />
+						<method href="#deleteMessages" />
 						<resource id="message" path="{messageId}">
 							<param name="messageId" style="template" type="xsd:string"> 
 								<doc>Specifies the message ID.</doc></param>
@@ -93,6 +95,33 @@
 <!--*******************************************************-->
 
 <!--*******************************************************-->
+<!--               Get Home Document                       -->
+<!--*******************************************************-->
+	<method name="GET" id="getHomeDocument">
+		<wadl:doc xml:lang="EN" title="Get Home Document" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Gets the home document.</para>  
+			<para>This operation gets the home document.</para>
+			<para>The entire API is discoverable from a single starting point - the home document. You do not need to know any more than this one URI in order to explore the entire API. This document is cacheable. </para>
+			<para>The home document lets you write clients using a "follow-your-nose" style so clients do not have to construct their own URLs. You can click through and view the JSON doc in your browser.  </para>
+			<para>For more information about home documents, see <link xlink:href="http://tools.ietf.org/html/draft-nottingham-json-home-02"
+				>http://tools.ietf.org/html/draft-nottingham-json-home-02</link>.</para>
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-getHomeDocument_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="200">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-getHomeDocument_response.json"/>
+				</doc>
+			</representation>
+		</response>
+	</method>
+<!--*******************************************************-->
 <!--              Queues Methods                           -->
 <!--*******************************************************-->	
 	
@@ -104,7 +133,7 @@
 				<para role="shortdesc">Creates a queue and sets its metadata.</para>  
 				<para>This operation creates a new queue and sets its metadata.</para>
 				<para>The body of the <command>PUT</command> is empty.</para>				
-				<note> <para><code>queue_name</code> is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens. If the specified queue already exists, the existing queue's metadata will be overwritten with the provided document.</para>
+				<note> <para><code>queue_name</code> is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens.</para>
 				</note>	
 			</wadl:doc>
 			<request>
@@ -135,29 +164,8 @@
 			<note><para>If you do not specify the <code>limit</code> query parameter, it defaults to 10. Forward-only paging is supported via "next" link. </para>  
 				<para>The <code>detailed</code> query parameter defaults to <code>false</code>, which excludes the metadata field from the results. </para>	
 			</note>	
-			<!--
-			<para>The following table lists the query attributes optionally available for List Queues:</para>
-			<table rules="all">
-				<caption>Attributes for List Queues</caption>
-				<tbody>
-					<tr>
-						<td colspan="1">limit</td>
-						<td colspan="3"><para>Specifies up to 20 (configurable) queues to return. If not specified, limit defaults to 10. Forward-only paging is supported via "next" link.</para></td>
-						<td colspan="1">No</td>
-					</tr>
-					<tr>
-						<td colspan="1">marker</td>
-						<td colspan="3">Specifies the name of the last queue received in a previous request, or none to get the first page of results. </td>
-						<td colspan="1">No</td>
-					</tr>
-					<tr>
-						<td colspan="1">detailed</td>
-						<td colspan="3">Specifies a boolean value ("true" or "false") that determines whether queue metadata is included in the response. If "false", the metadata field is excluded from the results. Defaults to "false".</td>
-						<td colspan="1">No </td>
-					</tr>
-				</tbody>
-			</table>
--->
+			
+
 		</wadl:doc>
 		<request>
 			<param name="marker" style="query" type="xsd:string" required="false">
@@ -167,7 +175,7 @@
 			</param>
 			<param name="limit" style="query" type="xsd:integer" required="false">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
-				Specifies up to 20 (configurable) queues to return. 
+				Specifies up to 20 (the default, but configurable) queues to return. 
 				</wadl:doc>
 			</param>
 			<param name="detailed" style="query" type="xsd:boolean" required="false">
@@ -200,8 +208,10 @@
 		<wadl:doc xml:lang="EN" title="Set Queue Metadata" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Sets queue metadata.</para>  
 			<para>This operation sets metadata for the queue.</para>
+			<para>The request body has a limit of 256 KB (excluding whitespace).</para>
 			<para>If <command>PUT</command> is used, this document replaces the existing metadata document in its entirety, so you need to be careful that you do not accidentally delete fields.</para>					
-			<note> <para><code>queue_name</code> is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens. If the specified queue already exists, the existing queue's metadata will be overwritten with the provided document.</para>
+			<para>The body of the request is an arbitrary document that allows storing contextual information about the way a particular application should interact with the queue. The maximum size of this body is 256 KB, excluding whitespace (when re-serialized as JSON). The document MUST be valid JSON. (Cloud Queues will validate.)</para>
+			<note> <para><code>queue_name</code> is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens.</para>
 			</note>		
 		</wadl:doc>
 		<request>
@@ -254,7 +264,8 @@
 	<method name="GET" id="getQueueStats">
 		<wadl:doc xml:lang="EN" title="Get Queue Stats" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Returns queue statistics.</para>  
-			<para>This operation returns queue statistics including how many messages are in the queue, broken out by status.</para>	
+			<para>This operation returns queue statistics including how many messages are in the queue, broken out by status.</para>
+			<note><para>If <code>total</code> is 0, then <code>oldest</code> and <code>newest</code> message statistics are not included in the response.</para></note>
 		</wadl:doc>
 		<request>
 			<representation mediaType="application/json" element="queues:Queue" >
@@ -310,11 +321,11 @@
 		<wadl:doc xml:lang="EN" title="Post Message" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Posts the message or messages for the specified queue. </para>  
 			<para>This operation posts the specified message or messages. </para>
-			<para>You can submit up to 20 messages (configurable) in a single request, but you must always encapsulate the messages in a collection container (an array in JSON). The resulting value of the Location header or response body may be used to retrieve the created messages for further processing, if needed. </para>
+			<para>You can submit up to 10 messages (default, but configurable) in a single request, but you must always encapsulate the messages in a collection container (an array in JSON). The resulting value of the Location header or response body may be used to retrieve the created messages for further processing, if needed. </para>
 			<para>The client only specifies the body and TTL for the message. The server will insert metadata, such as ID and age.</para>
 			<note><para>The response body contains a list of resource paths corresponding to each message submitted in the request, in the same order. In the case of a server-side error part-way through the processing of the submitted messages, a partial list will be returned, <code>partial</code> will be <code>true</code>, and the client will need to retry posting the remaining messages. If no messages can be enqueued, the server returns <code>503 Service Unavailable</code>. </para>
-			<para><code>body</code> specifies an arbitrary document which constitutes the body of the message being sent. The size of this body, in characters and including whitespace, is 256 KB (configurable). The document MUST be valid JSON (Cloud Queues will validate it). </para>
-			<para><code>ttl</code> is how long the server should wait before expiring and removing the message from the queue. The value of <code>ttl</code> MUST be between 60 and 1209600 seconds (14 days, configurable), inclusive. Note that the server may not actually delete the message until its age has reached up to (ttl + 60) seconds, to allow for flexibility in storage implementations. </para>
+			<para><code>body</code> specifies an arbitrary document which constitutes the body of the message being sent. The size of this body is limited to 256 KB, excluding whitespace. The document MUST be valid JSON. (Cloud Queues will validate it.)</para>
+			<para><code>ttl</code> is how long the server should wait before expiring and removing the message from the queue. The value of <code>ttl</code> MUST be between 60 and 1209600 seconds (14 days is the default but is configurable), inclusive. Note that the server may not actually delete the message until its age has reached up to (ttl + 60) seconds, to allow for flexibility in storage implementations. </para>
 			</note>
 		</wadl:doc>
 		<request>
@@ -342,13 +353,14 @@
 	<method name="GET" id="getMessages">
 		<wadl:doc xml:lang="EN" title="Get Messages" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Gets the message or messages in the specified queue. </para>  
+			<para>A request to list messages when the queue is not found or when messages are not found returns a 204 error because there was no information to send back.</para>
 			<para>This operation gets the message or messages in the specified queue. </para>
 			<para>Message IDs and markers are opaque strings. Clients should make no assumptions about their format or length. Furthermore, clients should assume that there is no relationship between markers and message IDs (that is, one cannot be derived from the other). This allows for a wide variety of storage driver implementations. </para>
-			<para>Results are ordered by age, oldest message first. </para>
+			<para>Results are ordered by age, oldest message first. </para>		
 			<note><para>If <code>limit</code> is not specified, it defaults to 10. When more messages are available than can be returned in a single request, the client can pick up the next batch by simply using the URI template parameters returned from the previous call in the "next" field.</para>
 			<para><code>marker</code> communicates to the server which messages the client has already received. If marker is not specified, the API will return all messages at the head of the queue (up to limit).</para>
 			<para><code>echo</code> is a boolean value (<code>true</code> or <code>false</code>) that determines whether the API returns a client's own messages, as determined by the <code>uuid</code> portion of the User-Agent header. If not specified, <code>echo</code> defaults to <code>false</code>.</para>
-			<para><code>include_claimed</code> is a boolean value (<code>true</code> or <code>false</code>) that determines whether the API returns claimed messages as well as unclaimed messages. If not specified, <code>include_claimed</code> defaults to <code>true</code> to support pub-sub semantics.</para>
+			<para><code>include_claimed</code> is a boolean value (<code>true</code> or <code>false</code>) that determines whether the API returns claimed messages as well as unclaimed messages. If not specified, <code>include_claimed</code> defaults to <code>faslse</code> (only unclaimed messages are returned).</para>
 			</note>
 		</wadl:doc>
 		<request>
@@ -359,7 +371,7 @@
 			</param>
 			<param name="limit" style="query" type="xsd:integer" required="false">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
-					Specifies up to 20 (configurable) queues to return. 
+					Specifies up to 20 (the default but is configurable) queues to return. 
 				</wadl:doc>
 			</param>
 			<param name="echo" style="query" type="xsd:boolean" required="false">
@@ -386,7 +398,7 @@
 			</representation>
 		</response>
 		&commonFaults;
-		&getFaults;
+		&getListFaults;
 	</method>
 	
 <!--*******************************************************-->						
@@ -491,6 +503,37 @@
 		</response>
 		&commonFaults;
 		&deleteFaults;
+	</method>
+
+	<!--*******************************************************-->						
+	<!--           Delete Messages: deleteMessages               -->
+	<!--*******************************************************-->			
+	<method name="DELETE" id="deleteMessages">
+		<wadl:doc xml:lang="EN" title="Delete Messages" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Provides a bulk delete for messages. </para>  
+			<para>This operation immediately deletes the specified messages, providing a means for bulk deletes. </para>
+		</wadl:doc>
+		<request>
+			<param name="ids" style="query" type="xsd:string" required="false">
+				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
+					Specifies the messages to delete. 
+				</wadl:doc>	
+			</param>	
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-deleteMessages_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="204">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-deleteMessages_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&commonFaults;
+		&deleteFaults;
 	</method>	
 	
 <!--*******************************************************-->	
@@ -508,14 +551,14 @@
 			<para>Just as with a message's age, the age given for the claim is relative to the server's clock, and is useful for determining how quickly messages are getting processed, and whether a given message's claim is about to expire. </para>
 			<para>When a claim expires, it is removed, allowing another client worker to claim the message in the case that the original worker fails to process it. </para>
 			<note><para>If <code>limit</code> is not specified, <code>limit</code> defaults to 10. Note that claim creation is best-effort, meaning the server may claim and return less than the requested number of messages. </para>
-			<para><code>ttl</code> is how long the server should wait before releasing the claim. The <code>ttl</code> value MUST be between 60 and 43200 seconds (12 hours, configurable). </para>
-			<para><code>grace</code> is the message grace period in seconds. The value of <code>grace</code> MUST be between 60 and 43200 seconds (12 hours, configurable). The server extends the lifetime of claimed messages to be at least as long as the lifetime of the claim itself, plus a specified grace period to deal with crashed workers (up to 1209600 or 14 days including claim lifetime). If a claimed message would normally live longer than the grace period, it's expiration will not be adjusted.  </para>
+			<para><code>ttl</code> is how long the server should wait before releasing the claim. The <code>ttl</code> value MUST be between 60 and 43200 seconds (12 hours is the default but is configurable). </para>
+			<para><code>grace</code> is the message grace period in seconds. The value of <code>grace</code> MUST be between 60 and 43200 seconds (12 hours the default, but configurable). The server extends the lifetime of claimed messages to be at least as long as the lifetime of the claim itself, plus a specified grace period to deal with crashed workers (up to 1209600 or 14 days including claim lifetime). If a claimed message would normally live longer than the grace period, it's expiration will not be adjusted.  </para>
 			</note>		
 		</wadl:doc>
 		<request>
 			<param name="limit" style="query" type="xsd:integer" required="false">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
-					Specifies up to 20 (configurable) queues to return. 
+					Specifies up to 20 (the default, but configurable) queues to return. 
 				</wadl:doc>
 			</param>
 			<representation mediaType="application/json" element="queues:Queue" >

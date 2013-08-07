@@ -21,8 +21,8 @@
 	    </goals>
 	    <phase>generate-sources</phase>
 	    <configuration>
-       	  <security>reviewer</security>   	
-<!--	    	<security>internal</security>  -->	
+<!--       	  <security>reviewer</security>   -->	
+	      <security>internal</security> 	
 	      <includes>
 	       cq-devguide.xml,
            cq-gettingstarted.xml,

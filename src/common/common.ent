@@ -61,6 +61,16 @@
         
         
            '>
+     <!--
+          Faults on LIST MESSAGES
+      -->
+     <!ENTITY getListFaults
+           '
+        <response status="204" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:noContent"/>
+            <representation mediaType="application/json"/>
+        </response>
+           '>      
       <!--
           Faults on GET
       -->
