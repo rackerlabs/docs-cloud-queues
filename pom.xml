@@ -37,7 +37,12 @@
 	  </execution>
 	</executions>
 	<configuration>
+<<<<<<< Updated upstream
 	  <enableDisqus>internet</enableDisqus>
+=======
+	  <enableDisqus>intranet</enableDisqus>
+	  <socialIcons>1</socialIcons>
+>>>>>>> Stashed changes
 	  <feedbackEmail>catherine.richardson@rackspace.com</feedbackEmail>	  
 	  <branding>rackspace</branding>
 	  <showXslMessages>true</showXslMessages>
