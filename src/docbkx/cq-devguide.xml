@@ -1459,21 +1459,9 @@ Content-Type: application/json
           <wadl:resource href="../../src/wadl/cq-devguide.wadl#claim"/>  
       </wadl:resources>
  </section>
- </chapter>
-
-
-
-    
+ </chapter>    
   <glossary xml:id="glossary_1" >
     <title>Glossary</title>
-    <info>
-      <raxm:metadata
-        xmlns:raxm="http://docs.rackspace.com/api/metadata">
-        <raxm:type>concept</raxm:type>
-        <raxm:product version="v1.0">cdns</raxm:product>
-        <raxm:priority>50</raxm:priority>
-      </raxm:metadata>
-    </info>
     <glossentry >
       <glossterm>Claim</glossterm>
       <glossdef>
