@@ -66,7 +66,7 @@
     </copyright>
     <releaseinfo>API v1.0 Early Access</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate/>
+    <pubdate>2013-08-12</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
     <legalnotice role="rs-api">
       <annotation>
@@ -91,6 +91,7 @@
           </itemizedlist>
         </revdescription>
       </revision>
+   <!--
       <revision>
         <date>2013-07-31</date>
         <revdescription>
@@ -145,6 +146,7 @@
           </itemizedlist>
         </revdescription>
       </revision>
+  -->
     </revhistory>
     <raxm:metadata
         xmlns:raxm="http://docs.rackspace.com/api/metadata">
@@ -1408,13 +1410,16 @@ Location: /v1/queues/samplequeue</programlisting>
           Unavailable</code>.</para>
       <para><tag class="attribute">body</tag> specifies an arbitrary
         document that constitutes the body of the message being sent.
-        The limit on the size of this body, per message, is 256 KiB,
-        not including whitespace. There is also a total limit, with
-        all message bodies added together, of 256 KiB. For example,
-        you may have one message at 256 KiB, or up to 10 messages with
-        the sum of their message bodies equal to 256 KiB. The document
-          <emphasis role="italic">must</emphasis> be valid JSON.
-        (Cloud Queues validates it.)</para>
+        There is a per message limit of 256 KB, excluding whitespace,
+        on the size of the message body. If multiple messages are
+        included in the request, this limit also applies to the sum of
+        the message bodies added together. For example, you may have
+        one message body of 256 KB, or up to 10 messages for which the
+        sum of the message bodies is 256 KB. A 400 error is triggered
+        if a single message body or the sum of multiple message bodies
+        exceed 256 KB in a single request. The document <emphasis
+          role="italic">must</emphasis> be valid JSON. (Cloud Queues
+        validates it.)</para>
       <para><tag class="attribute">ttl</tag> is how long the server
         should wait before expiring and removing the message from the
         queue. Valid values are between 60 and 1209600 seconds (14
