@@ -118,7 +118,7 @@
        Work with the Cloud Doc Tools team to find out what to put here. Once established, you should not change these
        values without first consulting with the CDT team.
     -->
-      <raxm:metadata xmlns:raxm="http://docs.rackspace.com/api/metadata">
+      <raxm:metadata role="hidden" xmlns:raxm="http://docs.rackspace.com/api/metadata">
         <raxm:displayname>API Developer Guide</raxm:displayname>
         <raxm:product version="v1.0">queues</raxm:product>
         <raxm:priority>20</raxm:priority>
