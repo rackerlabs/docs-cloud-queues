@@ -13,7 +13,7 @@
       <plugin>
 	<groupId>com.rackspace.cloud.api</groupId>
 	<artifactId>clouddocs-maven-plugin</artifactId>
-	<version>1.8.0</version>
+	<version>1.8.1-SNAPSHOT</version>
 	<executions>
 	  <execution>
 	    <goals>
@@ -21,18 +21,23 @@
 	    </goals>
 	    <phase>generate-sources</phase>
 	    <configuration>
+<<<<<<< HEAD
 <!--       	  <security>reviewer</security>   -->	
 	      <security>external</security> 	
+=======
+	      <security>external</security> 
+	      <metaRobots>1</metaRobots>
+>>>>>>> 3a9a4fb97740c6d137f7d7a127072fcddaea173d
 	      <includes>
 	       cq-devguide.xml,
-           cq-gettingstarted.xml,
+               cq-gettingstarted.xml,
 	       cq-releasenotes.xml
 	      </includes>
 	    </configuration>
 	  </execution>
 	</executions>
 	<configuration>
-	  <enableDisqus>intranet</enableDisqus>
+	  <enableDisqus>internet</enableDisqus>
 	  <feedbackEmail>catherine.richardson@rackspace.com</feedbackEmail>	  
 	  <branding>rackspace</branding>
 	  <showXslMessages>true</showXslMessages>

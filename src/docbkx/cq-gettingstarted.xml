@@ -149,6 +149,7 @@
   -->
     </revhistory>
     <raxm:metadata
+	role="hidden"
         xmlns:raxm="http://docs.rackspace.com/api/metadata">
       <raxm:displayname>Getting Started Guide</raxm:displayname>
       <raxm:product version="v1.0">queues</raxm:product>
@@ -1655,13 +1656,6 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
   </chapter>
   <glossary xml:id="glossary-d1e018">
     <title>Glossary</title>
-    <info>
-      <raxm:metadata xmlns:raxm="http://docs.rackspace.com/api/metadata">
-        <raxm:type>concept</raxm:type>
-        <raxm:product version="v1.0">cdns</raxm:product>
-        <raxm:priority>50</raxm:priority>
-      </raxm:metadata> 
-    </info>
     <glossentry xml:id="claim-d1e017">
       <glossterm>Claim</glossterm>
       <glossdef>

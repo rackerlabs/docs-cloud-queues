@@ -118,7 +118,7 @@
        Work with the Cloud Doc Tools team to find out what to put here. Once established, you should not change these
        values without first consulting with the CDT team.
     -->
-      <raxm:metadata xmlns:raxm="http://docs.rackspace.com/api/metadata">
+      <raxm:metadata role="hidden" xmlns:raxm="http://docs.rackspace.com/api/metadata">
         <raxm:displayname>API Developer Guide</raxm:displayname>
         <raxm:product version="v1.0">queues</raxm:product>
         <raxm:priority>20</raxm:priority>
@@ -1459,21 +1459,9 @@ Content-Type: application/json
           <wadl:resource href="../../src/wadl/cq-devguide.wadl#claim"/>  
       </wadl:resources>
  </section>
- </chapter>
-
-
-
-    
+ </chapter>    
   <glossary xml:id="glossary_1" >
     <title>Glossary</title>
-    <info>
-      <raxm:metadata
-        xmlns:raxm="http://docs.rackspace.com/api/metadata">
-        <raxm:type>concept</raxm:type>
-        <raxm:product version="v1.0">cdns</raxm:product>
-        <raxm:priority>50</raxm:priority>
-      </raxm:metadata>
-    </info>
     <glossentry >
       <glossterm>Claim</glossterm>
       <glossdef>
