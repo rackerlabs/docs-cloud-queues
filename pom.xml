@@ -22,7 +22,7 @@
 	    <phase>generate-sources</phase>
 	    <configuration>
 <!--       	  <security>reviewer</security>   -->	
-	      <security>internal</security> 	
+	      <security>external</security> 	
 	      <includes>
 	       cq-devguide.xml,
            cq-gettingstarted.xml,

@@ -1302,7 +1302,7 @@ Content-Type: application/json
               <td>Create Queue</td>
               <td>X</td>
               <td/>
-              <td/>
+              <td>X</td>
             </tr>
             <tr>
               <td>List Queues</td>
@@ -1337,13 +1337,13 @@ Content-Type: application/json
             <tr>
               <td>Get Messages</td>
               <td>X</td>
-              <td/>
+              <td>X</td>
               <td>X</td>
             </tr>
             <tr>
               <td>Get a Specific Message</td>
               <td>X</td>
-              <td/>
+              <td>X</td>
               <td>X</td>
             </tr>
             <tr>
@@ -1373,13 +1373,13 @@ Content-Type: application/json
             <tr>
               <td>Claim Messages</td>
               <td>X</td>
-              <td/>
+              <td>X</td>
               <td>X</td>
             </tr>
             <tr>
               <td>Query Claim</td>
               <td>X</td>
-              <td>X</td>
+              <td/>
               <td>X</td>
             </tr>
             <tr>

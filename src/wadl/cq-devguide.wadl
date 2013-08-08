@@ -55,6 +55,7 @@
 						<doc>Specifies the name of the queue.</doc></param>
 					<method href="#createQueue"/>
 					<method href="#deleteQueue"/>
+					<method href="#checkQueueExists" />
 					<resource id="metadata" path="metadata">
 					   <method href="#setQueueMetadata"/>							
 					   <method href="#getQueueMetadata"/>
@@ -310,6 +311,32 @@
 		&commonFaults;
 	</method>	
  
+	<!--*******************************************************-->						
+	<!--              Delete Queue: checkQueueExists            -->
+	<!--*******************************************************-->		
+	<method name="GET" id="checkQueueExists">
+		<wadl:doc xml:lang="EN" title="Check Queue Existence" xmlns="http://docbook.org/ns/docbook">
+			<para role="shortdesc">Checks to see if queue exists.  </para>  
+			<para>This operation checks to see if the specified queue exists. </para>
+			<para> You can also use HEAD instead of GET for the verb.</para>
+		</wadl:doc>
+		<request>
+			<representation mediaType="application/json" element="queues:Queue" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-checkQueueExists_request.json"/>
+				</doc>
+			</representation>
+		</request>
+		<response status="204">		
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-checkQueueExists_response.json"/>
+				</doc>
+			</representation>
+		</response>
+		&getFaults;
+	</method>	
+
 <!--*******************************************************-->
 <!--               Messages Methods                        -->
 <!--*******************************************************-->	

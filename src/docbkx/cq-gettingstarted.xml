@@ -67,7 +67,7 @@
     <releaseinfo>API v1.0 Early Access</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
     <pubdate>2013-08-12</pubdate>
-    <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
+    <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
       <annotation>
         <remark>Copyright details are filled in by the build system. </remark>
@@ -395,6 +395,16 @@
         <title>Cloud Queues Requests</title>
         <para>This section provides a list of requests that are
           possible using the Cloud Queues API. </para>
+        <section xml:id="homeDocument">
+          <title>Home Document</title>
+          <para>The following request is available for the home
+            document:</para>
+          <itemizedlist>
+            <listitem>
+              <para>Get Home Document</para>
+            </listitem>
+          </itemizedlist>
+        </section>
         <section xml:id="queue-actions">
           <title>Queues </title>
           <para>The following requests are available for queues: </para>
@@ -404,6 +414,9 @@
             </listitem>
             <listitem>
               <para>List Queues</para>
+            </listitem>
+            <listitem>
+              <para>Check Queue Existence</para>
             </listitem>
             <listitem>
               <para>Set Queue Metadata</para>
@@ -438,6 +451,9 @@
             </listitem>
             <listitem>
               <para>Delete Message</para>
+            </listitem>
+            <listitem>
+              <para>Delete Messages</para>
             </listitem>
           </itemizedlist>
         </section>
