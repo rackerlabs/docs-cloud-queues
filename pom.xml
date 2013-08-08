@@ -21,13 +21,8 @@
 	    </goals>
 	    <phase>generate-sources</phase>
 	    <configuration>
-<<<<<<< HEAD
-<!--       	  <security>reviewer</security>   -->	
-	      <security>external</security> 	
-=======
 	      <security>external</security> 
 	      <metaRobots>1</metaRobots>
->>>>>>> 3a9a4fb97740c6d137f7d7a127072fcddaea173d
 	      <includes>
 	       cq-devguide.xml,
                cq-gettingstarted.xml,
@@ -37,12 +32,8 @@
 	  </execution>
 	</executions>
 	<configuration>
-<<<<<<< Updated upstream
-	  <enableDisqus>internet</enableDisqus>
-=======
 	  <enableDisqus>intranet</enableDisqus>
-	  <socialIcons>1</socialIcons>
->>>>>>> Stashed changes
+	  <socialIcons>0</socialIcons>
 	  <feedbackEmail>catherine.richardson@rackspace.com</feedbackEmail>	  
 	  <branding>rackspace</branding>
 	  <showXslMessages>true</showXslMessages>
