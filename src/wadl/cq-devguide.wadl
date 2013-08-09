@@ -29,7 +29,7 @@
 	<grammars>
 		<include href="../common/xsd/api.xsd"/> (identity grammars)
 		<include href="../common/xsd/api-common.xsd"/> (identity grammars)
-		<include href="dbaas.xsd" /> (databases grammars)
+		<include href="dbaas.xsd" /> (databases grammars) 
 	</grammars>
 -->
 	
@@ -39,7 +39,7 @@
 	
 	
 	<resources base="https://ord.queues.api.rackspacecloud.com/">
-		<resource id="version" path="{versions}">
+		<resource id="version" path="{version}">
 			<!--	Project ID was in the Header not in the URL but has recently been removed from header.	
 				<resource id="projectID" path="{projectId}">
 				<param name="projectId" style="template" type="xsd:string"> 
@@ -594,7 +594,7 @@
 				</doc>
 			</representation>
 		</request>
-		<response status="200">		
+		<response status="201">		
 			<representation mediaType="application/json" >
 				<doc>
 					<xsdxt:code href="../wadl/samples/cq-claimMessages_response.json"/>

@@ -876,11 +876,11 @@
         are thresholds that are reset after a certain amount
         of time passes. Absolute limits are fixed.
       </para>
-      <section xml:id="Rate_Limits-d1e1222" security="reviewer">
+      <section xml:id="Rate_Limits-d1e1222" >
         <title>Rate Limits</title>
-        <remark>Reviewer: Need to update this entire section. What is
+        <para>Reviewer: Need to update this entire section. What is
           here is from Cloud Databases. Please give me your
-          updates.</remark>
+          updates.</para>
         <para> Rate limits are specified in terms of both a
           human-readable wild-card URI and a
           machine-processable regular expression. The
@@ -1175,8 +1175,7 @@ Content-Type: application/json
       <para>Error information for each operation is included with the
         description in <xref linkend="API_Operations_dle001"/>.</para>
     </section>
-    <section 
-      security="reviewer" xml:id="RBAC">
+    <section xml:id="RBAC">
       <title>Role Based Access Control (RBAC)</title>
       <remark>Reviewer: This common text is still under review and is
         not schedule to be published externally for RBAC until 8/21.
@@ -1241,13 +1240,13 @@ Content-Type: application/json
         </note>
       </section>
       <section xml:id="rolesAvailable">
-        <title>Roles Available to Cloud Queues</title>
+        <title>Roles Available to Cloud Queues </title>
         <para>Currently there are three roles that can be used to
           access the Cloud Queues API. These three roles, creator,
           observer, and admin, are global roles and apply across all
           Rackspace Cloud Services. The table below itemizes these
           roles and their capabilities. </para>
-        <table frame="void">
+        <table rules="all">
           <caption>Cloud Queues Roles and Capabilities</caption>
           <col width="50%"/>
           <col width="50%"/>
@@ -1277,7 +1276,7 @@ Content-Type: application/json
         </table>
         <para>The table below summarizes the roles available to each
           Cloud Queues API operation.</para>
-        <table frame="void">
+        <table rules="all">
           <caption>Cloud Queues Operations and Their Roles</caption>
           <col width="25%"/>
           <col width="25%"/>
