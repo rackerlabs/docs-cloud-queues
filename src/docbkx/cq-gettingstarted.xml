@@ -532,7 +532,7 @@
   </chapter>
   <chapter xml:id="prerequisites" >
     <title>Prerequisites</title>
-    <para>This section describes the prerequisities for working with
+    <para>This section describes the prerequisites for working with
       Cloud Queues.</para>
     <section xml:id="cloud-account">
       <title>Open a Rackspace Cloud Account</title>
@@ -1341,7 +1341,7 @@
           </tr>
           <tr>
             <td>Accept-Encoding</td>
-            <td>Specifies that the agent accepts gzip-encoded resoibse
+            <td>Specifies that the agent accepts gzip-encoded response
               bodies</td>
           </tr>
           <tr>
@@ -1368,7 +1368,7 @@
             <td>Client-ID</td>
             <td>A unique ID for each client instance. This is used to
               avoid echoing a sender's messages back tot he same
-              instance and my be logged by the server for furture use.
+              instance and my be logged by the server for future use.
               Client-ID is generated once and persists between
               restarts of the client.</td>
           </tr>
@@ -1465,8 +1465,8 @@ Location: /v1/queues/samplequeue</programlisting>
         queue. Valid values are between 60 and 1209600 seconds (14
         days), inclusive. Note: To allow for flexibility in storage
         implementations, the server might not actually delete the
-        message until its age reachs up to <tag class="attribute">(ttl
-          + 60)</tag> seconds.</para>
+        message until its age reaches up to <tag class="attribute"
+          >(ttl + 60)</tag> seconds.</para>
       <para>Examples of a <code>Post Message</code> request and
         response are given next:</para>
       <example>

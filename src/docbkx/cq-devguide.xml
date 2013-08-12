@@ -859,7 +859,7 @@
     </section>
     <section xml:id="Request_Response_Types-d1e903">
       <title>Request/Response Types</title>
-      <para>The Cloud QueuesAPI supports JSON data serialization
+      <para>The Cloud Queues API supports JSON data serialization
         formats. The request format is specified using the
           <code>Content-Type</code> header and is <emphasis
           role="italic">required</emphasis> for calls that have a
@@ -1086,7 +1086,7 @@
             <td>Client-ID</td>
             <td>A unique ID for each client instance. This is used to
               avoid echoing a sender's messages back tot he same
-              instance and my be logged by the server for furture use.
+              instance and my be logged by the server for future use.
               Client-ID is generated once and persists between
               restarts of the client.</td>
           </tr>
