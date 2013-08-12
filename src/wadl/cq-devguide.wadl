@@ -658,10 +658,10 @@
 	</method>		
 	
 <!--*******************************************************-->						
-<!--               Delete Claim: deleteClaim                 -->
+<!--               Release Claim: deleteClaim              -->
 <!--*******************************************************-->			
 	<method name="DELETE" id="deleteClaim">
-		<wadl:doc xml:lang="EN" title="Delete Claim" xmlns="http://docbook.org/ns/docbook">
+		<wadl:doc xml:lang="EN" title="Release Claim" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Releases the specified claim for the specified queue. </para>  
 			<para>This operation immediately releases a claim, making any (remaining, non-deleted) messages associated with the claim available to other workers. </para>
 			<para>This operation is useful when a worker is performing a graceful shutdown, fails to process one or more messages, or is taking longer than expected to process messages, and wishes to make the remainder available to other workers. </para>

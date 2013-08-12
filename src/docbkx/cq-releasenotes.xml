@@ -5,8 +5,11 @@
     xmlns:xi="http://www.w3.org/2001/XInclude"
     version="5.0-extension RaxBook-2.0"
     xml:id="cq-releasenotes">
-  <?rax canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-releasenotes/content"?>
-  <title>Cloud Queuing Release Notes</title>
+<!-- <?rax canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-releasenotes/content"?>  -->
+<!--  <?rax title.font.size="30px" subtitle.font.size="20px"?> -->
+  <title>Cloud Queues™ Release Notes</title>
+  <titleabbrev>Cloud Queues™ Release Notes</titleabbrev>  <?rax title.font.size="37px" pdf.url="../../cn-releasenotes.pdf" canonical.url.base="http://docs.rackspace.com/servers/api/v2/cn-releasenotes/content"?>  
+ 
   <info>
     <author>
       <personname>
@@ -22,25 +25,28 @@
       <holder>Rackspace US, Inc.</holder>
     </copyright>
     <releaseinfo>API v1.0</releaseinfo>
-    <productname>Cloud Queuing</productname>
-    <pubdate></pubdate>
+    <productname>Cloud Queues™</productname>
+    <pubdate>2013-09-12</pubdate>
     <legalnotice role="rs-api">
       <annotation>
-        <remark>Copyright details are filled in by the
-          template.</remark>
+        <remark>Copyright details are filled in by the template.</remark>
       </annotation>
     </legalnotice>
     <abstract>
-      <para>This document is intended for software developers who want
-        to develop applications by using...</para>
+      <para>This document is intended for software developers who are
+        interested in developing applications using the Rackspace
+        Cloud Queues Application Programming Interface (<abbrev>API</abbrev>).  The
+        document is for informational purposes only and is provided
+        "AS IS." </para>
     </abstract>
     <revhistory>
       <revision>
-        <date>2013-06-17</date>
+        <date>2013-09-12</date>
         <revdescription>
           <itemizedlist>
             <listitem xmlns:db="http://docbook.org/ns/docbook">
-              <para>Ipsum lorem.</para>
+              <para>Initial Unlimited Availability (UA)
+                release.</para>
             </listitem>
           </itemizedlist>
         </revdescription>
@@ -57,12 +63,17 @@
     xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
     xml:id="preface">
     <title>Preface</title>
-    <para>Ipsum lorem</para>
-    <para>This document describes new features, changes, known issues,
-      supported images, and a summary of differences between first
-      generation and next generation Cloud Servers APIs. </para>
+    <para>This document describes new features and changes for the
+      Cloud Queues API. </para>
     <para>We welcome feedback, comments, and bug reports at <link
         xlink:href="mailto:support@rackspacecloud.com"
         >support@rackspacecloud.com</link>. </para>
   </preface>
+  <chapter xml:id="sept12">
+    <?dbhtml stop-chunking?>
+    <title>September 12, 2013</title>
+    <para>This release is the initial Unlimited Availability (UA) release of the Cloud Queues API.</para>
+ 
+  </chapter>
+   
 </book>

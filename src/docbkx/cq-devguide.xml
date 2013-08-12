@@ -762,9 +762,32 @@
         service is therefore responsible for appropriate replication,
         caching, and overall maintenance of Cloud Queues data across
         regional boundaries to other Cloud Queues servers.</para>
-      <para>You can find the available service access/endpoints for
+     <para>You can find the available service access/endpoints for
         Cloud Queues summarized in the table below.</para>
-      <para>
+        <para>
+        <table rules="all">
+          <?rax-fo keep-together?>
+          <caption>Regionalized Service Endpoints</caption>
+          <thead>
+            <tr align="center">
+              <td colspan="2">Region</td>
+              <td colspan="5">Endpoint</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr align="left">
+              <td colspan="2" rowspan="2">Chicago (ORD)</td>
+              <td colspan="5"
+                  ><code>https://ord.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+            </tr>
+            <tr>
+              <td colspan="5"
+                  ><code>https://snet-ord.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
+            </tr>
+          </tbody>
+        </table>
+      </para>
+      <!--     <para>
         <table rules="all">
           <?rax-fo keep-together?>
           <caption>Regionalized Service Endpoints</caption>
@@ -796,6 +819,7 @@
           </tbody>
         </table>
       </para>
+      -->
       <para>Replace the sample account ID number,
           <parameter>1234</parameter>, with your actual account number
         returned as part of the authentication service
@@ -865,7 +889,7 @@
       </table> 
     </section>
     <?hard-pagebreak?>
-    <section xml:id="Limits-d1e1208">
+ <!--   <section xml:id="Limits-d1e1208">
       <title>Limits</title>
       <para>
         All accounts, by default, have a preconfigured set of
@@ -874,13 +898,10 @@
         of limits: <firstterm>rate limits</firstterm> and
         <firstterm>absolute limits</firstterm>. Rate limits
         are thresholds that are reset after a certain amount
-        of time passes. Absolute limits are fixed.
+        of time passes. Absolute limits are fixed. 
       </para>
       <section xml:id="Rate_Limits-d1e1222" >
         <title>Rate Limits</title>
-        <para>Reviewer: Need to update this entire section. What is
-          here is from Cloud Databases. Please give me your
-          updates.</para>
         <para> Rate limits are specified in terms of both a
           human-readable wild-card URI and a
           machine-processable regular expression. The
@@ -948,7 +969,7 @@
           returned with a <code>Retry-After</code> header to
           notify the client when it can attempt to try
           again. </para>
-      </section>
+      </section> -->
       <section xml:id="Absolute_Limits-d1e1397">
         <title>Absolute Limits</title>
         <para>Cloud Queues has the following limits:</para>
@@ -1004,7 +1025,7 @@
           </tbody>
         </table>
       </section>
-    </section>
+<!--    </section>  -->
     <section xml:id="commonHeaders" >
       <title>Common Headers</title>
       <para>Each request to the  Cloud Queues API must include certain
@@ -1175,6 +1196,7 @@ Content-Type: application/json
       <para>Error information for each operation is included with the
         description in <xref linkend="API_Operations_dle001"/>.</para>
     </section>
+    <!--
     <section xml:id="RBAC">
       <title>Role Based Access Control (RBAC)</title>
       <remark>Reviewer: This common text is still under review and is
@@ -1240,7 +1262,7 @@ Content-Type: application/json
         </note>
       </section>
       <section xml:id="rolesAvailable">
-        <title>Roles Available to Cloud Queues </title>
+        <title>Roles Available to Cloud Queues  </title>
         <para>Currently there are three roles that can be used to
           access the Cloud Queues API. These three roles, creator,
           observer, and admin, are global roles and apply across all
@@ -1388,7 +1410,7 @@ Content-Type: application/json
               <td>X</td>
             </tr>
             <tr>
-              <td>Delete Claim</td>
+              <td>Release Claim</td>
               <td>X</td>
               <td/>
               <td>X</td>
@@ -1403,6 +1425,7 @@ Content-Type: application/json
         </note>
       </section>
     </section> 
+    -->
   </chapter>
   <chapter xml:id="API_Operations_dle001" 
     xmlns="http://docbook.org/ns/docbook"
@@ -1499,8 +1522,8 @@ Content-Type: application/json
     <glossentry xml:id="worker-d1e018">
       <glossterm>Worker</glossterm>
       <glossdef>
-        <para>A worker is a server that claims a messages and performs
-          the necessary task.</para>
+        <para>A worker is a client that claims messages and performs
+          actions based on those messages. </para>
       </glossdef>
     </glossentry>
   </glossary>

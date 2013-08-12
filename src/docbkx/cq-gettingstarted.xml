@@ -200,7 +200,7 @@
         xlink:href="http://www.rackspace.com/cloud/cloud_hosting_products/dns/"
         >http://www.rackspace.com/cloud/</link>. --></para>
     <section xml:id="core_concepts">
-      <title>Early Access Program</title>
+      <title>Early Access Program </title>
       <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Early
         Access program enables customers and Rackers, by invitation,
         to test an early version of the product and provide feedback
@@ -285,6 +285,28 @@
               </tr>
               <tr>
                 <td colspan="5"
+                  ><code>https://snet-ord.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
+              </tr>
+            </tbody>
+          </table>
+        </para>
+   <!--     <para>
+          <table rules="all">
+            <caption>Regionalized Service Endpoints</caption>
+            <thead>
+              <tr align="center">
+                <td colspan="2">Region</td>
+                <td colspan="5">Endpoint</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr align="left">
+                <td colspan="2" rowspan="2">Chicago (ORD)</td>
+                <td colspan="5"
+                  ><code>https://ord.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+              </tr>
+              <tr>
+                <td colspan="5"
                   ><code>https://ord-snet.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
               </tr>
               <tr align="left">
@@ -298,7 +320,8 @@
               </tr>
             </tbody>
           </table>
-        </para>
+        </para>  
+        -->
         <para>Replace the sample account ID number,
             <parameter>1234</parameter>, with your actual account
           number returned as part of the authentication service
@@ -473,7 +496,7 @@
               <para>Update Claim</para>
             </listitem>
             <listitem>
-              <para>Delete Claim</para>
+              <para>Release Claim</para>
             </listitem>
           </itemizedlist>
         </section>
@@ -1569,21 +1592,21 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
       </example>
     </section>
     <section xml:id="Delete_claim">
-      <title>Delete Claim </title>
-      <para><code>Delete Claim</code> immediately releases a claim
+      <title>Release Claim </title>
+      <para><code>Release Claim</code> immediately releases a claim
         making any (remaining, non-deleted) messages associated with
         the claim available to other workers. </para>
-      <para>The <code>Delete Claim</code> template is:</para>
+      <para>The <code>Release Claim</code> template is:</para>
       <programlisting>DELETE {base_url}/queues/{queue_name}/claims/{claim_id}</programlisting>
-      <para><code>Delete Claim</code> is useful when a worker is
+      <para><code>Release Claim</code> is useful when a worker is
         performing a graceful shutdown, fails to process one or more
         messages, or is taking longer than expected to process
         messages and wishes to make the remainder of the messages
         available to other workers. </para>
-      <para>Examples of a <code>Delete Claim</code> request and
+      <para>Examples of a <code>Release Claim</code> request and
         response are given next:</para>
       <example>
-        <title>cURL Delete Claim Request</title>
+        <title>cURL Release Claim Request</title>
         <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 \ 
 -H "Content-type: application/json" \ 
 -H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \ 
@@ -1591,7 +1614,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
 -H "Accept: application/json" </programlisting>
       </example>
       <example>
-        <title>Delete Claim Response</title>
+        <title>Release Claim Response</title>
         <programlisting>HTTP/1.1 204 No Content</programlisting>
       </example>
     </section>
@@ -1694,8 +1717,8 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
     <glossentry xml:id="worker-d1e018" >
       <glossterm>Worker</glossterm>
       <glossdef>
-        <para>A worker is a server that claims a messages and performs
-          the necessary task. </para>
+        <para>A worker is a client that claims messages and performs
+          actions based on those messages.  </para>
       </glossdef>
     </glossentry>
   </glossary>
