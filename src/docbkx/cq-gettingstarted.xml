@@ -66,7 +66,7 @@
     </copyright>
     <releaseinfo>API v1.0 Early Access</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2013-08-12</pubdate>
+    <pubdate>2013-08-15</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
       <annotation>
@@ -81,6 +81,17 @@
     </abstract>
     
     <revhistory>
+      <revision>
+        <date>2013-08-15</date>
+        <revdescription>
+          <itemizedlist>
+            <listitem>
+              <para>Updated the service access endpoints to include
+                London in  <xref linkend="serviceEndpoints"/>.</para>
+            </listitem>
+          </itemizedlist>
+        </revdescription>
+      </revision>
       <revision>
         <date>2013-08-12</date>
         <revdescription>
@@ -268,7 +279,7 @@
           the Early Access program for Cloud Queues summarized in the
           table below.</para>
         <?rax-fo keep-with-next?>
-        <para>
+ <!--       <para>
           <table rules="all">
             <caption>Regionalized Service Endpoints</caption>
             <thead>
@@ -289,8 +300,8 @@
               </tr>
             </tbody>
           </table>
-        </para>
-   <!--     <para>
+        </para>  -->
+       <para>
           <table rules="all">
             <caption>Regionalized Service Endpoints</caption>
             <thead>
@@ -303,25 +314,41 @@
               <tr align="left">
                 <td colspan="2" rowspan="2">Chicago (ORD)</td>
                 <td colspan="5"
-                  ><code>https://ord.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+                  ><code>https://ord.queues.api.rackspacecloud.com/v1/</code></td>
               </tr>
               <tr>
                 <td colspan="5"
-                  ><code>https://ord-snet.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
+                  ><code>https://snet-ord.queues.api.rackspacecloud.com/v1/</code></td>
               </tr>
               <tr align="left">
                 <td colspan="2" rowspan="2">London (LON)</td>
                 <td colspan="5"
-                  ><code>https://lon.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+                  ><code>https://lon.queues.api.rackspacecloud.com/v1/</code></td>
               </tr>
               <tr>
                 <td colspan="5"
-                  ><code>https://lon-snet.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+                  ><code>https://snet-lon.queues.api.rackspacecloud.com/v1/</code></td>
               </tr>
             </tbody>
           </table>
-        </para>  
-        -->
+        </para>
+      <note>
+        <para>You should copy the base URLs directly from the catalog
+          rather than trying to construct them manually.</para>
+        <para>Rackspace Cloud Identity returns an endpoint with your
+          account ID. You do not have to provide the account ID for
+          the Cloud Queues API. If you have the X-Project-ID header
+          set, the Cloud Queues API works with or without this ID
+          specified. Without the X-Project-ID header, you receive an
+          auth error if the account ID is not in the URL. If the
+          account ID is in the URL, the Cloud Queues API will use that
+          ID in place of the X-Project-ID header.</para>
+        <para>Account ID refers to your Rackspace account number,
+          which you can also find in your Cloud Control Panel at <link
+            xlink:href="https://mycloud.rackspace.com/"
+            >mycloud.rackspace.com</link>.</para>
+      </note>  
+<!--
         <para>Replace the sample account ID number,
             <parameter>1234</parameter>, with your actual account
           number returned as part of the authentication service
@@ -331,7 +358,7 @@
             which you can also find in your Cloud Control Panel at
               <link xlink:href="https://mycloud.rackspace.com/"
               >mycloud.rackspace.com</link>.</para>
-        </note>
+        </note> -->
       </section>
       <section xml:id="how_cq_works">
         <title>How Cloud Queues Works</title>

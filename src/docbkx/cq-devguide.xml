@@ -70,7 +70,7 @@
     </copyright>
     <releaseinfo>API v1.0 Early Access</releaseinfo>
     <productname>Rackspace Cloud Queues</productname><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
-    <pubdate>2013-08-12</pubdate>
+    <pubdate>2013-08-15</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
     <legalnotice role="rs-api">
       <annotation>
@@ -85,6 +85,21 @@
     </abstract>  
  
     <revhistory>
+      <revision>
+        <date>2013-08-15</date>
+        <revdescription>
+          <itemizedlist>
+            <listitem>
+              <para>Updated the service access endpoints to include
+                London in  <xref linkend="serviceEndpoints"/>.</para>
+            </listitem>
+            <listitem>
+              <para>Updated and added additional absolute limits in
+                  <xref linkend="Absolute_Limits-d1e1397"/>.</para>
+            </listitem>
+          </itemizedlist>
+        </revdescription>
+      </revision>
       <revision>
         <date>2013-08-12</date>
         <revdescription>
@@ -764,7 +779,7 @@
         regional boundaries to other Cloud Queues servers.</para>
      <para>You can find the available service access/endpoints for
         Cloud Queues summarized in the table below.</para>
-        <para>
+ <!--       <para>        
         <table rules="all">
           <?rax-fo keep-together?>
           <caption>Regionalized Service Endpoints</caption>
@@ -787,7 +802,8 @@
           </tbody>
         </table>
       </para>
-      <!--     <para>
+      -->
+    <para>
         <table rules="all">
           <?rax-fo keep-together?>
           <caption>Regionalized Service Endpoints</caption>
@@ -801,25 +817,43 @@
             <tr align="left">
               <td colspan="2" rowspan="2">Chicago (ORD)</td>
               <td colspan="5"
-                  ><code>https://ord.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+                  ><code>https://ord.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="5"
-                  ><code>https://ord-snet.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
+                  ><code>https://snet-ord.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr align="left">
               <td colspan="2" rowspan="2">London (LON)</td>
               <td colspan="5"
-                  ><code>https://lon.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+                  ><code>https://lon.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="5"
-                  ><code>https://lon-snet.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+                  ><code>https://snet-lon.queues.api.rackspacecloud.com/v1/</code>
+              </td>
             </tr>
           </tbody>
         </table>
       </para>
-      -->
+      <note>
+        <para>You should copy the base URLs directly from the catalog
+          rather than trying to construct them manually.</para>
+        <para>Rackspace Cloud Identity returns an endpoint with your
+          account ID. You do not have to provide the account ID for
+          the Cloud Queues API. If you have the X-Project-ID header
+          set, the Cloud Queues API works with or without this ID
+          specified. Without the X-Project-ID header, you receive an
+          auth error if the account ID is not in the URL. If the
+          account ID is in the URL, the Cloud Queues API will use that
+          ID in place of the X-Project-ID header. </para>
+        
+        <para>Account ID refers to your Rackspace account number,
+          which you can also find in your Cloud Control Panel at <link
+            xlink:href="https://mycloud.rackspace.com/"
+            >mycloud.rackspace.com</link>.</para>
+      </note>
+<!--<
       <para>Replace the sample account ID number,
           <parameter>1234</parameter>, with your actual account number
         returned as part of the authentication service
@@ -838,6 +872,7 @@
             xlink:href="https://mycloud.rackspace.com/"
             >mycloud.rackspace.com</link>.</para>
       </note>
+      -->
     </section>
     <section xml:id="contractVersion">
       <title>Cloud Queues Contract Version</title>
@@ -972,7 +1007,7 @@
       </section> -->
       <section xml:id="Absolute_Limits-d1e1397">
         <title>Absolute Limits</title>
-        <para>Cloud Queues has the following limits:</para>
+ <!--       <para>Cloud Queues has the following limits:</para>
         <itemizedlist>
           <listitem>
             <para>There is a per message limit of 256 KB, excluding
@@ -994,8 +1029,90 @@
             <para>A TTL cannot be longer than 14 days.</para>
           </listitem>
         </itemizedlist>
-        <para>Refer to the following table for the absolute
-          limits that are set.</para>
+        -->
+        <para>The following table provides details about the absolute
+        limits for the Cloud Queues API.</para>
+      <table rules="all">
+        <caption>Absolute Limits</caption>
+        <col width="30%"/>
+        <col width="40%"/>
+        <col width="30%"/>
+        <thead>
+          <tr>
+            <th>Type of Limit</th>
+            <th>Description</th>
+            <th>Limit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="6">Limits on Messages and Queues per Request </td>
+            <td>Maximum number of queue records per page of results
+              when listing queues</td>
+            <td>1 - 10 </td>
+          </tr>
+          <tr>
+            <td>Maximum number of messages per page of results when
+              listing messages</td>
+            <td>1 - 10 </td>
+          </tr>
+          <tr>
+            <td>Maximum number of messages that can be posted in a
+              single request </td>
+            <td>1 - 10 </td>
+          </tr>
+          <tr>
+            <td>Maximum number of messages that can be claimed at one
+              time</td>
+            <td>1 - 10 </td>
+          </tr>
+          <tr>
+            <td>Maximum number of messages that can be deleted in a
+              single bulk delete request</td>
+            <td>1 - 10 </td>
+          </tr>
+          <tr>
+            <td>Maximum number of messages that can be requested in a
+              bulk get by ID</td>
+            <td>1 - 10 </td>
+          </tr>
+          <tr>
+            <td rowspan="3">Time Limits</td>
+            <td>Valid range for a message TTL</td>
+            <td>60 - 1209600 seconds (1 minute to 14 days)</td>
+          </tr>
+          <tr>
+            <td>Valid range for a claim TTL</td>
+            <td>60 - 43200 seconds (1 minute to 12 hours)</td>
+          </tr>
+          <tr>
+            <td>Valid range for claim grace period</td>
+            <td>60 - 43200 seconds (1 minute to 12 hours)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Data Limits</td>
+            <td>Queue metadata JSON</td>
+            <td>Cannot exceed 65536 bytes, excluding whitespace (64
+              KB)</td>
+          </tr>
+          <tr>
+            <td>Message body JSON</td>
+            <td>Cannot exceed 262144 bytes, excluding whitespace (256
+              KB)</td>
+          </tr>
+        </tbody>
+      </table>
+      <note>
+        <para>For the 256 KB data limit for the message body JSON, if
+          multiple messages are included in the request, this limit
+          also applies to the sum of the message bodies added
+          together. For example, you may have one message body of 256
+          KB, or up to 10 messages for which the sum of the message
+          bodies is 256 KB. A 400 error is triggered if a single
+          message body or the sum of multiple message bodies exceed
+          256 KB in a single request.</para>
+      </note>
+<!--
         <table rules="all">
           <caption>Absolute Limits</caption>
           <thead>
@@ -1024,14 +1141,16 @@
             </tr>
           </tbody>
         </table>
+ -->       
       </section>
 <!--    </section>  -->
     <section xml:id="commonHeaders" >
       <title>Common Headers</title>
-      <para>Each request to the  Cloud Queues API must include certain
+      <para>Each request to the Cloud Queues API must include certain
         standard and extended HTTP headers. These headers provide
         host, agent, authentication, and other pertinent information
-        to the server.</para>
+        to the server. The following table provides the common headers
+        used by the API.</para>
       <table rules="all">
         <caption>Common Headers</caption>
         <col width="30%"/>
@@ -1196,7 +1315,7 @@ Content-Type: application/json
       <para>Error information for each operation is included with the
         description in <xref linkend="API_Operations_dle001"/>.</para>
     </section>
-    <!--
+<!--
     <section xml:id="RBAC">
       <title>Role Based Access Control (RBAC)</title>
       <remark>Reviewer: This common text is still under review and is
@@ -1425,7 +1544,7 @@ Content-Type: application/json
         </note>
       </section>
     </section> 
-    -->
+-->
   </chapter>
   <chapter xml:id="API_Operations_dle001" 
     xmlns="http://docbook.org/ns/docbook"
