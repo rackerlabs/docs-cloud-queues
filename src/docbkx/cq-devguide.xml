@@ -1348,15 +1348,15 @@ Content-Type: application/json
         <itemizedlist>
           <listitem>
             <para>Create account users (refer to <link
-                xlink:href="http://docs-internal.rackspace.com/auth/api/v2.0/auth-admin-devguide/content/POST_addUser_v2.0_users_.html"
+                xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_addUser_v2.0_users_.html"
                 >
-                http://docs-internal.rackspace.com/auth/api/v2.0/auth-admin-devguide/content/POST_addUser_v2.0_users_.html</link>)</para>
+                http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_addUser_v2.0_users_.html</link>)</para>
           </listitem>
           <listitem>
             <para>Assign roles to account users (refer to <link
-                xlink:href="http://docs-internal.rackspace.com/auth/api/v2.0/auth-admin-devguide/content/POST_addRole_v2.0_OS-KSADM_roles_.html"
+                xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_addRole_v2.0_OS-KSADM_roles_.html"
                 >
-                http://docs-internal.rackspace.com/auth/api/v2.0/auth-admin-devguide/content/POST_addRole_v2.0_OS-KSADM_roles_.html</link>)</para>
+                http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_addRole_v2.0_OS-KSADM_roles_.html</link>)</para>
           </listitem>
         </itemizedlist>
         <note>
@@ -1386,18 +1386,18 @@ Content-Type: application/json
           <tbody>
            
               <tr>
-                <td>admin</td>
+                <td>cq:admin</td>
                 <td>Create, Read, Update, and Delete permissions
                 across a specific product, where access is
                 granted</td>
               </tr>
             <tr>
-              <td>creator</td>
+              <td>cq:creator</td>
               <td>Create, Read, and Update permissions across a
                 specific product, where access is granted</td>
             </tr>
             <tr>
-              <td>observer</td>
+              <td>ocq:bserver</td>
               <td>Read permission across a specific product, where
                 access is granted</td>
             </tr>
@@ -1420,25 +1420,18 @@ Content-Type: application/json
           </thead>
           <tbody>
             <tr>
-              <td>Full Access</td>
+              <td>admin</td>
               <td>Create, Read, Update, and Delete permissions across
                 multiple products, where access is granted</td>
             </tr>
             <tr>
-              <td>Read-only Access</td>
+              <td>observer</td>
               <td>Read permission across multiple products, where
                 access is granted</td>
             </tr>
           </tbody>
         </table>
-        <para><note>
-            <para>Although more than one role can be assigned to a
-              given account user of an account, we recommend assigning
-              only <emphasis role="italic">one</emphasis> role per
-              account user to clearly delineate the responsibilities
-              of the account user.</para>
-          </note>The table below summarizes the roles available to
-          each Cloud Queues API operation.</para>
+       
       </section>
       <section xml:id="operationsRoles">
         <title>Cloud Queues Operations and Their Roles</title>
