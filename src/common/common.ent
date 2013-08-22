@@ -26,6 +26,10 @@
             <representation mediaType="application/xml" element="queues:unauthorized"/>
             <representation mediaType="application/json"/>
         </response>
+        <response status="429" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:tooManyRequests"/>
+            <representation mediaType="application/json"/>too
+        </response>
 
 
         <!--
@@ -66,7 +70,7 @@
       -->
      <!ENTITY getListFaults
            '
-        <response status="204" xmlns="http://wadl.dev.java.net/2009/02">
+        <response status=" 204" xmlns="http://wadl.dev.java.net/2009/02">
             <representation mediaType="application/xml" element="queues:noContent"/>
             <representation mediaType="application/json"/>
         </response>

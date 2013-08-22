@@ -53,24 +53,14 @@
   <?rax title.font.size="35px" subtitle.font.size="20px"?>
  --> 
   <title>Rackspace Cloud Queues Developer Guide</title>
-  <titleabbrev>Rackspace Cloud Queues Developer Guide</titleabbrev>
   <info>
-    <author>
-      <personname>
-        <firstname/>
-        <surname/>
-      </personname>
-      <affiliation>
-        <orgname>Rackspace Cloud</orgname>
-      </affiliation>
-    </author>
     <copyright>
       <year>2013</year>
       <holder>Rackspace US, Inc.</holder>
     </copyright>
     <releaseinfo>API v1.0 Early Access</releaseinfo>
-    <productname>Rackspace Cloud Queues</productname><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
-    <pubdate>2013-08-15</pubdate>
+    <productname>Rackspace Cloud Queues</productname>
+    <pubdate>2013-08-22</pubdate><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
     <legalnotice role="rs-api">
       <annotation>
@@ -85,6 +75,34 @@
     </abstract>  
  
     <revhistory>
+      <revision>
+        <date>2013-08-22</date>
+        <revdescription>
+          <itemizedlist>
+            <listitem>
+              <para>Updated absolute limits in <xref
+                  linkend="Absolute_Limits-d1e1397"/> to increase
+                limits for queues and messages.</para>
+            </listitem>
+            <listitem>
+              <para>Updated information for bulk
+                  <command>GET</command> and <command>DELETE</command>
+                operations to include the following information:
+                "Malformed IDs or messages that are not found by ID
+                are  ignored."</para>
+            </listitem>
+            <listitem>
+              <para>Updated information about Home Document to
+                indicate the schema might change (<xref
+                  linkend="homeDocument-operation"/>).</para>
+            </listitem>
+            <listitem>
+              <para>Added error 429 to each API operation
+                description.</para>
+            </listitem>
+          </itemizedlist>
+        </revdescription>
+      </revision>
       <revision>
         <date>2013-08-15</date>
         <revdescription>
@@ -1049,32 +1067,32 @@
             <td rowspan="6">Limits on Messages and Queues per Request </td>
             <td>Maximum number of queue records per page of results
               when listing queues</td>
-            <td>1 - 10 </td>
+            <td>1 - 1000</td>
           </tr>
           <tr>
             <td>Maximum number of messages per page of results when
               listing messages</td>
-            <td>1 - 10 </td>
+            <td>1 - 25 </td>
           </tr>
           <tr>
             <td>Maximum number of messages that can be posted in a
               single request </td>
-            <td>1 - 10 </td>
+            <td>1 - 25 </td>
           </tr>
           <tr>
             <td>Maximum number of messages that can be claimed at one
               time</td>
-            <td>1 - 10 </td>
+            <td>1 - 25 </td>
           </tr>
           <tr>
             <td>Maximum number of messages that can be deleted in a
               single bulk delete request</td>
-            <td>1 - 10 </td>
+            <td>1 - 25 </td>
           </tr>
           <tr>
             <td>Maximum number of messages that can be requested in a
               bulk get by ID</td>
-            <td>1 - 10 </td>
+            <td>1 - 25 </td>
           </tr>
           <tr>
             <td rowspan="3">Time Limits</td>
@@ -1386,18 +1404,18 @@ Content-Type: application/json
           <tbody>
            
               <tr>
-                <td>cq:admin</td>
+                <td>queues:admin</td>
                 <td>Create, Read, Update, and Delete permissions
                 across a specific product, where access is
                 granted</td>
               </tr>
             <tr>
-              <td>cq:creator</td>
+              <td>queues:creator</td>
               <td>Create, Read, and Update permissions across a
                 specific product, where access is granted</td>
             </tr>
             <tr>
-              <td>ocq:bserver</td>
+              <td>queues:observer</td>
               <td>Read permission across a specific product, where
                 access is granted</td>
             </tr>
@@ -1427,7 +1445,7 @@ Content-Type: application/json
             <tr>
               <td>observer</td>
               <td>Read permission across multiple products, where
-                access is granted</td>
+                access is granted </td>
             </tr>
           </tbody>
         </table>
@@ -1575,6 +1593,10 @@ Content-Type: application/json
       <title>Home Document</title>
       <para>The section describes how to get the Home Document for
         Cloud Queues.</para>
+      <note>
+        <para>The Home Document schema is currently not ratified in
+          OpenStack and  may change. </para>
+      </note>
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#version">
           <wadl:method href="getHomeDocument"/>
