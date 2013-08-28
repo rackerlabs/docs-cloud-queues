@@ -60,7 +60,7 @@
     </copyright>
     <releaseinfo>API v1.0 Early Access</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2013-08-22</pubdate><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
+    <pubdate/><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
     <legalnotice role="rs-api">
       <annotation>
@@ -76,6 +76,25 @@
  
     <revhistory>
       <revision>
+        <date>2013-08-27</date>
+        <revdescription>
+          <itemizedlist>
+            <listitem>
+              <para>Updated <xref linkend="commonHeaders"/> and <xref
+                  linkend="message-operations-dle001"/> to include a
+                note that the Client-ID header is required for
+                message-related operations. </para>
+            </listitem>
+            <listitem>
+              <para>Added information that you must specify
+                  <code>client_id</code> to delete a claimed message
+                to the Delete Message description in  <xref
+                  linkend="message-operations-dle001"/>.</para>
+            </listitem>
+          </itemizedlist>
+        </revdescription>
+      </revision>
+      <revision>
         <date>2013-08-22</date>
         <revdescription>
           <itemizedlist>
@@ -90,6 +109,12 @@
                 operations to include the following information:
                 "Malformed IDs or messages that are not found by ID
                 are  ignored."</para>
+            </listitem>
+            <listitem>
+              <para>Updated information for claims operations to
+                include the following information: "Claims with
+                malformed IDs or claims that are not found by ID are
+                ignored."</para>
             </listitem>
             <listitem>
               <para>Updated information about Home Document to
@@ -1222,10 +1247,14 @@
           <tr>
             <td>Client-ID</td>
             <td>A unique ID for each client instance. This is used to
-              avoid echoing a sender's messages back tot he same
-              instance and my be logged by the server for future use.
+              avoid echoing a sender's messages back to the same
+              instance and may be logged by the server for future use.
               Client-ID is generated once and persists between
-              restarts of the client.</td>
+              restarts of the client. Note: All message-related
+              operations require Client-ID to be included in the
+              headers. This is to ensure that messages are not echoed
+              back to the client that posted them unless the client
+              explicitly requests this.  </td>
           </tr>
         </tbody>
       </table>
@@ -1622,6 +1651,12 @@ Content-Type: application/json
       <title>Messages </title>
       <para>This section describes message requests that are supported
         by the Cloud Queues API. </para>
+      <note>
+        <para>All message-related operations require that Client-Id be
+          included in the headers. This is to ensure that messages are
+          not echoed back to the client that posted them unless the
+          client explicitly requests this.</para>
+      </note>
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">     
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#messages"/>
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#message"/>  

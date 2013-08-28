@@ -230,6 +230,7 @@
 			</representation>
 		</response>
 		&commonFaults;
+		&getListFaults;
 	</method>
 
 	
@@ -309,6 +310,7 @@
 			</representation>
 		</response>
 		&commonFaults;
+		&getListFaults;
 	</method>	
  
 	<!--*******************************************************-->						
@@ -335,6 +337,7 @@
 			</representation>
 		</response>
 		&getFaults;
+		&getListFaults;
 	</method>	
 
 <!--*******************************************************-->
@@ -417,7 +420,7 @@
 				</doc>
 			</representation>
 		</request>
-		<response status="200">		
+		<response status="200 204">		
 			<representation mediaType="application/json" >
 				<doc>
 					<xsdxt:code href="../wadl/samples/cq-getMessages_response.json"/>
@@ -425,6 +428,7 @@
 			</representation>
 		</response>
 		&commonFaults;
+		&getListFaults;
 		&getFaults;
 		&postFaults;
 	</method>
@@ -436,6 +440,7 @@
 		<wadl:doc xml:lang="EN" title="Get a Specific Message" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Gets the specified message from the specified queue. </para>  
 			<para>This operation gets the specified message from the specified queue. </para>
+			<para>If either the message ID or the claim ID is malformed or nonexistent, no message is returned.</para>
 			<para>Message fields are defined as follows:<itemizedlist><listitem><para><code>href</code> is an opaque relative URI that the client can use to uniquely identify a message resource, and interact with it. </para></listitem><listitem><para><code>ttl</code> is the ttl set on the message when it was posted. The message expires after (ttl - age) seconds. </para></listitem><listitem><para><code>age</code> is the number of seconds since ts, relative to the server's clock.</para></listitem><listitem><para><code>body</code> is the arbitrary document submitted along with the original request to post the message. </para></listitem></itemizedlist></para>
 		</wadl:doc>
 		<request>
@@ -467,7 +472,7 @@
 	<method name="GET" id="getSetMessagesByID">
 		<wadl:doc xml:lang="EN" title="Get a Set of Messages by ID" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Gets a set of messages specified from the specified queue. </para>  
-			<para>This operation provides a more efficient way to query multiple messages, rather than having to do so in a series of individual <command>GET</command>s. Messages with malformed IDs or messages that are not found by ID are ignored.</para>
+			<para>This operation provides a more efficient way to query multiple messages, rather than having to do so in a series of individual <command>GET</command>s. If a malformed ID or a nonexistent message ID is provided, it is ignored, and the remaining messages are returned. </para>
 			<para>Unlike the message listing, a client's own messages are always returned in this approach. </para>
 			<para>Message fields are defined as follows:<itemizedlist><listitem><para><code>href</code> is an opaque relative URI that the client can use to uniquely identify a message resource, and interact with it. </para></listitem><listitem><para><code>ttl</code> is the TTL set on the message when it was posted. The message expires after (ttl - age) seconds. </para></listitem><listitem><para><code>age</code> is the number of seconds since ts, relative to the server's clock.</para></listitem><listitem><para><code>body</code> is the arbitrary document submitted along with the original request to post the message. </para></listitem></itemizedlist></para>
 			<note><para>When you use the <code>ids</code> parameter, the <code>echo</code> query parameter is not used and is ignored if it is given.</para>
@@ -508,7 +513,8 @@
 		<wadl:doc xml:lang="EN" title="Delete Message" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Deletes the specified message from the specified queue. </para>  
 			<para>This operation immediately deletes the specified message. </para>
-			<note><para><code>claim_id</code> specifies that the message should be deleted only if it has the specified claim ID, and that claim has not expired. This is useful for ensuring only one agent processes any given message. Whenever a worker client's claim expires before it has a chance to delete a message it has processed, the worker must roll back any actions it took based on that message because another worker will now be able to claim and process the same message. </para></note>
+			<note><para><code>claim_id</code> specifies that the message should be deleted only if it has the specified claim ID, and that claim has not expired. This is useful for ensuring only one agent processes any given message. Whenever a worker client's claim expires before it has a chance to delete a message it has processed, the worker must roll back any actions it took based on that message because another worker will now be able to claim and process the same message. </para>
+				<para>If you do not specify <code>claim_id</code>, but the message is claimed, the operation fails. You can only delete claimed messages by providing an appropriate <code>claim_id</code>.</para></note>
 		</wadl:doc>
 		<request>
 			<param name="claim_id" style="query" type="xsd:string" required="false">
@@ -537,9 +543,9 @@
 	<!--           Delete Messages: deleteMessages               -->
 	<!--*******************************************************-->			
 	<method name="DELETE" id="deleteMessages">
-		<wadl:doc xml:lang="EN" title="Delete Messages" xmlns="http://docbook.org/ns/docbook">
+		<wadl:doc xml:lang="EN" title="Delete a Set of Messages by ID" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Provides a bulk delete for messages. </para>  
-			<para>This operation immediately deletes the specified messages, providing a means for bulk deletes. Messages with malformed IDs or messages that are not found by ID are ignored. </para>
+			<para>This operation immediately deletes the specified messages, providing a means for bulk deletes. If any of the message IDs are malformed or non-existent, they are ignored. The remaining valid messages IDs are deleted.</para>
 		</wadl:doc>
 		<request>
 			<param name="ids" style="query" type="xsd:string" required="false">
@@ -586,7 +592,7 @@
 		<request>
 			<param name="limit" style="query" type="xsd:integer" required="false">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
-					Specifies up to 20 (the default, but configurable) queues to return. 
+					Specifies up to 20 queues to return. If <code>limit</code> is not specified, <code>limit</code> defaults to 10.
 				</wadl:doc>
 			</param>
 			<representation mediaType="application/json" element="queues:Queue" >
@@ -595,7 +601,7 @@
 				</doc>
 			</representation>
 		</request>
-		<response status="201">		
+		<response status="201 204">		
 			<representation mediaType="application/json" >
 				<doc>
 					<xsdxt:code href="../wadl/samples/cq-claimMessages_response.json"/>
@@ -603,6 +609,7 @@
 			</representation>
 		</response>
 		&commonFaults;
+		&getListFaults;
 		&getFaults;
 	</method>		
 <!--*******************************************************-->						
@@ -655,6 +662,7 @@
 			</representation>
 		</response>
 		&commonFaults;
+		&getListFaults;
 		&getFaults;
 	</method>		
 	
@@ -682,6 +690,7 @@
 			</representation>
 		</response>
 		&commonFaults;
+		&getListFaults;
 		&getFaults;
 	</method>		
 

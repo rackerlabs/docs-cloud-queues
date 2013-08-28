@@ -7,12 +7,12 @@ Server: WSGIServer/0.1 Python/2.7.3
 
 {
     "resources": {
-        "http://docs.openstack-marconi.org/rel/queues": {
+        "http://yourEnpointHere/rel/queues": {
             "href-template": "/queues{?marker,limit,detailed}", 
             "href-vars": {
-                "marker": "http://docs.openstack-marconi.org/param/marker", 
-                "detailed": "http://docs.openstack-marconi.org/param/detailed", 
-                "limit": "http://docs.openstack-marconi.org/param/queue_limit"
+                "marker": "http://yourEnpointHere/param/marker", 
+                "detailed": "http://yourEnpointHere/param/detailed", 
+                "limit": "http://yourEnpointHere/param/queue_limit"
             }, 
             "hints": {
                 "allow": [
@@ -23,10 +23,10 @@ Server: WSGIServer/0.1 Python/2.7.3
                 }
             }
         }, 
-        "http://docs.openstack-marconi.org/rel/queue-stats": {
+        "http://yourEnpointHere/rel/queue-stats": {
             "href-template": "/queues/{queue_name}/stats", 
             "href-vars": {
-                "queue_name": "http://docs.openstack-marconi.org/param/queue_name"
+                "queue_name": "http://yourEnpointHere/param/queue_name"
             }, 
             "hints": {
                 "allow": [
@@ -37,10 +37,10 @@ Server: WSGIServer/0.1 Python/2.7.3
                 }
             }
         }, 
-        "http://docs.openstack-marconi.org/rel/post-messages": {
+        "http://yourEnpointHere/rel/post-messages": {
             "href-template": "/v1/queues/{queue_name}/messages", 
             "href-vars": {
-                "queue_name": "http://docs.openstack-marconi.org/param/queue_name"
+                "queue_name": "http://yourEnpointHere/param/queue_name"
             }, 
             "hints": {
                 "accept-post": [
@@ -54,10 +54,10 @@ Server: WSGIServer/0.1 Python/2.7.3
                 }
             }
         }, 
-        "http://docs.openstack-marconi.org/rel/queue": {
+        "http://yourEnpointHere/rel/queue": {
             "href-template": "/queues/{queue_name}", 
             "href-vars": {
-                "queue_name": "http://docs.openstack-marconi.org/param/queue_name"
+                "queue_name": "http://yourEnpointHere/param/queue_name"
             }, 
             "hints": {
                 "allow": [
@@ -69,14 +69,14 @@ Server: WSGIServer/0.1 Python/2.7.3
                 }
             }
         }, 
-        "http://docs.openstack-marconi.org/rel/messages": {
+        "http://yourEnpointHere/rel/messages": {
             "href-template": "/queues/{queue_name}/messages{?marker,limit,echo,include_claimed}", 
             "href-vars": {
-                "marker": "http://docs.openstack-marconi.org/param/marker", 
-                "include_claimed": "http://docs.openstack-marconi.org/param/include_claimed", 
-                "queue_name": "http://docs.openstack-marconi.org/param/queue_name", 
-                "limit": "http://docs.openstack-marconi.org/param/messages_limit", 
-                "echo": "http://docs.openstack-marconi.org/param/echo"
+                "marker": "http://yourEnpointHere/param/marker", 
+                "include_claimed": "http://yourEnpointHere/param/include_claimed", 
+                "queue_name": "http://yourEnpointHere/param/queue_name", 
+                "limit": "http://yourEnpointHere/param/messages_limit", 
+                "echo": "http://yourEnpointHere/param/echo"
             }, 
             "hints": {
                 "allow": [
@@ -87,11 +87,11 @@ Server: WSGIServer/0.1 Python/2.7.3
                 }
             }
         }, 
-        "http://docs.openstack-marconi.org/rel/claim": {
+        "http://yourEnpointHere/rel/claim": {
             "href-template": "/v1/queues/{queue_name}/claims{?limit}", 
             "href-vars": {
-                "queue_name": "http://docs.openstack-marconi.org/param/queue_name", 
-                "limit": "http://docs.openstack-marconi.org/param/claim_limit"
+                "queue_name": "http://yourEnpointHere/param/queue_name", 
+                "limit": "http://yourEnpointHere/param/claim_limit"
             }, 
             "hints": {
                 "accept-post": [
@@ -105,7 +105,7 @@ Server: WSGIServer/0.1 Python/2.7.3
                 }
             }
         }, 
-        "http://docs.openstack-marconi.org/rel/health": {
+        "http://yourEnpointHere/rel/health": {
             "href": "/health", 
             "hints": {
                 "allow": [
@@ -114,10 +114,10 @@ Server: WSGIServer/0.1 Python/2.7.3
                 ]
             }
         }, 
-        "http://docs.openstack-marconi.org/rel/queue-metadata": {
+        "http://yourEnpointHere/rel/queue-metadata": {
             "href-template": "/queues/{queue_name}/metadata", 
             "href-vars": {
-                "queue_name": "http://docs.openstack-marconi.org/param/queue_name"
+                "queue_name": "http://yourEnpointHere/param/queue_name"
             }, 
             "hints": {
                 "allow": [

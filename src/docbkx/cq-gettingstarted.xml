@@ -84,22 +84,14 @@
       <revision>
         <date>2013-08-15</date>
         <revdescription>
-          <itemizedlist>
-            <listitem>
-              <para>Updated the service access endpoints to include
-                London in  <xref linkend="serviceEndpoints"/>.</para>
-            </listitem>
-          </itemizedlist>
+          <para>Updated the service access endpoints to include London
+            in <xref linkend="serviceEndpoints"/>.</para>
         </revdescription>
       </revision>
       <revision>
         <date>2013-08-12</date>
         <revdescription>
-          <itemizedlist>
-            <listitem>
-              <para>Initial Early Access (EA) release.</para>
-            </listitem>
-          </itemizedlist>
+          <para>Released initial Early Access (EA) document.</para>
         </revdescription>
       </revision>
    <!--
@@ -169,9 +161,9 @@
   </info>
   <chapter xml:id="doc-change-history">
     <title>Document Change History</title>
-    <para>This version of the Getting Started replaces and obsoletes
-      all previous versions. The most recent changes are described in
-      the table below: </para>
+    <para>This version of the document replaces and obsoletes all
+      earlier versions. The most recent changes are described in the
+      following table: </para>
     <?rax revhistory?>
   </chapter>
   <chapter xml:id="DB_Overview" xmlns:svg="http://www.w3.org/2000/svg"
@@ -179,29 +171,29 @@
     xmlns:html="http://www.w3.org/1999/xhtml">
     <title>Overview</title>
     <para>Rackspace Cloud Queues is an API-based message and
-      notification service. A message queueing service is a vital
+      notification service. A message queuing service is a vital
       component of big, complex web applications. Cloud Queues is
       designed to fill this need. Cloud Queues is based on the
       OpenStack Marconi project.</para>
     <para>As you develop more complex web applications, you often have
-      multiple servers set up to complete a set of tasks for that
-      application. These tasks can be anything from creating users to
-      deleting blocks of storage. Cloud Queues is a service that owns
-      the lists of tasks, but not necessarily the order or workflow of
-      the tasks. Many applications handle the workflow at a higher
-      level.</para>
+      multiple servers set up to complete sets of tasks for those
+      applications. These tasks can be anything from creating users to
+      deleting blocks of storage. Cloud Queues is a service that
+      handles the lists of tasks, but it does not necessarily manage
+      the order or workflow of the tasks. Many applications handle the
+      workflow at a higher level.</para>
     <para>Cloud Queues creates an open alternative to the
-      producer-consumer and the publish-subscribe (pub-sub) messaging
-      patterns for use in applications that run on OpenStack clouds. </para>
+      producer-consumer and the publish-subscribe messaging patterns
+      that are used in applications that run on OpenStack clouds. </para>
     <para>The Cloud Queues RESTful API uses a modular architecture and
-      supports unified pub-sub and job-queuing semantics. You can
-      customize Cloud Queues to achieve a wide range of performance,
-      durability, availability, and efficiency goals. </para>
-    <para>This guide explains how to access and get started using the
-      API so you can begin using Cloud Queues for your applications.
+      supports unified publish-subscribe and job-queuing semantics.
+      You can customize Cloud Queues to achieve a wide range of
+      performance, durability, availability, and efficiency goals. </para>
+    <para>This guide explains how to access and start using the API so
+      that you can begin to use Cloud Queues for your applications.
       Instructions are given for how to properly enter the necessary
-      URLs, using cURL, in order to set up and use a basic set of
-      Cloud Queues operations.
+      URLs, using cURL, to set up and use a basic set of Cloud Queues
+      operations.
       <!-- for
         <trademark>Cloud Servers</trademark>. You can find additional
       details about Rackspace Cloud Queues in the <citetitle>Cloud
@@ -215,41 +207,40 @@
       <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Early
         Access program enables customers and Rackers, by invitation,
         to test an early version of the product and provide feedback
-        of the product and capabilities. The Cloud Queues Early Access
-        Program is a pre-production service offering covered by the
-        Beta Services terms (<link
+        about the product and its capabilities. The Cloud Queues Early
+        Access program is a preproduction service offering covered by
+        the Beta Services terms (<link
           xlink:href="http://www.rackspace.com/information/legal/testterms/"
-          > rackspace.com/information/legal/testterms/</link>) in our
+          >rackspace.com/information/legal/testterms/</link>) in the
         Rackspace Cloud Terms of Service.</para>
-      <para xmlns:wadl="http://wadl.dev.java.net/2009/02"> Early
-        Access users must meet the following criteria: <itemizedlist
+      <para xmlns:wadl="http://wadl.dev.java.net/2009/02">Following
+        are requirements for Early Access users:<itemizedlist
           spacing="compact">
           <listitem>
-            <para>A Rackspace Cloud account.</para>
+            <para>A Rackspace Cloud account</para>
           </listitem>
           <listitem>
-            <para>Prior knowledge of HTTP/1.1 conventions.</para>
+            <para>Prior knowledge of HTTP/1.1 conventions</para>
           </listitem>
           <listitem>
-            <para>Basic familiarity with Cloud and RESTful
-              APIs.</para>
+            <para>Basic familiarity with Cloud and RESTful APIs</para>
           </listitem>
           <listitem>
-            <para>A willingness to provide feedback to Rackspace’s
-              Product and Product Marketing functions.</para>
+            <para>A willingness to provide feedback to the Rackspace
+              Product and Product Marketing functions</para>
           </listitem>
         </itemizedlist>
       </para>
-      <para>The Early Access Program has some limitations. </para>
-      <para>By using the Cloud Queues API, you agree and understand
-        that:</para>
+      <para>The Early Access program has some limitations. By using
+        the Cloud Queues API, you agree to and understand the
+        following conditions:</para>
       <itemizedlist>
         <listitem>
           <para>There is no charge for this service during the Early
             Access period.</para>
         </listitem>
         <listitem>
-          <para>If you participate in this Early Access Program, you
+          <para>If you participate in this Early Access program, you
             will receive a notification prior to general
             availability.</para>
         </listitem>
@@ -257,14 +248,13 @@
           <para>There is no Service Level Agreement.</para>
         </listitem>
         <listitem>
-          <para>The API contract is not locked and may change during
-            the Early Access Program. Rackspace will notify customers
-            in Release Notes when and if the contract does change.
-          </para>
+          <para>The API contract is not locked and might change during
+            the Early Access period. Rackspace will notify customers
+            in release notes when and if the contract changes. </para>
         </listitem>
         <listitem>
-          <para>Support is available from 8 AM - 5 PM (Central Time)
-            Monday - Friday.</para>
+          <para>Support is available Monday through Friday from 8 A.M.
+            to 5 P.M. Central Time.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -275,9 +265,9 @@
           replication, caching, and overall maintenance of Cloud
           Queues data across regional boundaries to other Cloud Queues
           servers.</para>
-        <para>You can find the available service access/endpoints for
-          the Early Access program for Cloud Queues summarized in the
-          table below.</para>
+        <para>The following table shows the available service
+        endpoints for the Early Access program for Cloud
+        Queues.</para>
         <?rax-fo keep-with-next?>
  <!--       <para>
           <table rules="all">
@@ -337,12 +327,13 @@
           rather than trying to construct them manually.</para>
         <para>Rackspace Cloud Identity returns an endpoint with your
           account ID. You do not have to provide the account ID for
-          the Cloud Queues API. If you have the X-Project-ID header
-          set, the Cloud Queues API works with or without this ID
-          specified. Without the X-Project-ID header, you receive an
-          auth error if the account ID is not in the URL. If the
-          account ID is in the URL, the Cloud Queues API will use that
-          ID in place of the X-Project-ID header.</para>
+          the Cloud Queues API. If you have the
+            <code>X-Project-ID</code> header set, the Cloud Queues API
+          works with or without this ID specified. Without the
+            <code>X-Project-ID</code> header, you receive an auth
+          error if the account ID is not in the URL. If the account ID
+          is in the URL, the Cloud Queues API will use that ID in
+          place of the <code>X-Project-ID</code> header.</para>
         <para>Account ID refers to your Rackspace account number,
           which you can also find in your Cloud Control Panel at <link
             xlink:href="https://mycloud.rackspace.com/"
@@ -362,41 +353,38 @@
       </section>
       <section xml:id="how_cq_works">
         <title>How Cloud Queues Works</title>
-        <para>Here is an overview of the Cloud Queues workflow: </para>
+        <para>Following is an overview of the Cloud Queues workflow.
+        For definitions of Cloud Queues terms, see the <xref
+          linkend="glossary-d1e018"/>.</para>
         <orderedlist>
           <listitem>
             <para>You create a queue to which producers post
               messages.</para>
           </listitem>
           <listitem>
-            <para>Workers claim messages from the queue, complete the
-              work in that message, and delete the message.</para>
-            <para>If a worker plans to be offline before its message
-              completes, the worker can retire the claim Time To Live
-              (TTL), putting the message back into the queue for
-              another worker to claim. </para>
+            <para>Workers claim a message from the queue, complete the
+            work in that message, and delete the message.</para>
+            <para>If a worker will be offline before it completes the
+            work in a message, the worker can retire the claim's time
+            to live (TTL), putting the message back into the queue for
+            another worker to claim. </para>
           </listitem>
           <listitem>
-            <para>Subscribers monitor the claims of these queues to
-              keep track of activity and help troubleshoot if things
-              go wrong.</para>
+            <para>Subscribers monitor the claims from these queues to
+            track activity and help troubleshoot errors.</para>
           </listitem>
         </orderedlist>
-        <para>For the majority of use cases, Cloud Queues itself will
-          not be responsible for the ordering of messages. If there is
-          only a single producer, however, Cloud Queueing guarantees
-          that messages are handled in a First In, First Out (FIFO)
-          order. </para>
-        <para>See the <xref linkend="glossary-d1e018"/> for terms that
-          are key to understanding how Cloud Queues works.</para>
+        <para>For the majority of use cases, Cloud Queues itself is
+        not responsible for the ordering of messages. If there is only
+        a single producer, however, Cloud Queueing ensures that
+        messages are handled in a First In, First Out (FIFO) order. </para>
       <section xml:id="operating_modes">
         <title>Operating Modes</title>
-        <para>Cloud Queues uses the operating modes described in the
-          following sections. </para>
+        <para>Cloud Queues uses the following operating modes. </para>
         <section xml:id="producer_consumer">
           <title>Producer-Consumer</title>
-          <para>Characteristics of the Producer-Consumer mode
-            are:</para>
+          <para>The producer-consumer mode has the following
+            characteristics:</para>
           <itemizedlist>
             <listitem>
               <para>The worker acts on <emphasis role="italic">only
@@ -410,11 +398,9 @@
               <para>TTL restores a message to an unclaimed state if
                 the worker never finishes.</para>
             </listitem>
-            <listitem>
-              <para>This mode is ideal for dispatching jobs to
-                multiple processors.</para>
-            </listitem>
           </itemizedlist>
+          <para>This mode is ideal for dispatching jobs to multiple
+            processors.</para>
         </section>
         <section xml:id="publish_subscribe">
           <title>Publish-Subscribe</title>
@@ -429,7 +415,7 @@
               <para>Messages are not claimed.</para>
             </listitem>
             <listitem>
-              <para>Subscribers can send a marker/cursor to skip
+              <para>Subscribers can send a marker or cursor to skip
                 messages already seen. </para>
             </listitem>
             <listitem>
