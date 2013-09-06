@@ -60,7 +60,7 @@
     </copyright>
     <releaseinfo>API v1.0 Early Access</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate/><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
+    <pubdate>2013-09-06</pubdate><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
     <legalnotice role="rs-api">
       <annotation>
@@ -75,6 +75,33 @@
     </abstract>  
  
     <revhistory>
+      <revision>
+        <date>2013-09-06</date>
+        <revdescription>
+          <itemizedlist>
+            <listitem>
+              <para>Added section with response codes and descriptions
+                  (<xref linkend="error_Codes_And_Explanations"
+                />).</para>
+            </listitem>
+            <listitem>
+              <para>Updated home document response example to show
+                relative URIs (<xref linkend="homeDocument-operation"
+                />).</para>
+            </listitem>
+            <listitem>
+              <para>Updated <xref linkend="Authentication-d1e647"/> to
+                state that the token ID shown in the authentication
+                response is the same as the X-Auth-Token header that
+                you supply with your API calls.</para>
+            </listitem>
+            <listitem>
+              <para>Added TTL items to the <xref linkend="glossary_1"
+                />.</para>
+            </listitem>
+          </itemizedlist>
+        </revdescription>
+      </revision>
       <revision>
         <date>2013-08-27</date>
         <revdescription>
@@ -245,7 +272,7 @@
         skills:</para>
       <itemizedlist>
         <listitem>
-          <para>ReSTful web services</para>
+          <para>RESTful web services</para>
         </listitem>
         <listitem>
           <para>HTTP/1.1 conventions</para>
@@ -446,7 +473,7 @@
   </chapter>
   <chapter xml:id="Gen_API_Info-de01">
     <title>General API Information</title>
-    <para>The Cloud Queues API is implemented using a ReSTful web
+    <para>The Cloud Queues API is implemented using a RESTful web
       service interface. Like other products in the Rackspace Cloud
       suite, Cloud Queues shares a common token-based authentication
       system that allows seamless access between products and
@@ -458,16 +485,20 @@
     </note>
     <section xml:id="Authentication-d1e647">
       <title>Authentication</title>
-      <para> Every ReST request for Cloud Queues requires the
-        inclusion of a specific authorization token, supplied by the
-          <code>X-Auth-Token</code> HTTP header. Customers obtain this
-        token by first using the Rackspace Cloud Authentication
-        Service and supplying a valid username and API access key. </para>
+      <para>In order to use the Cloud Queues API, you must first
+        supply a valid username and API key to the Rackspace Cloud
+        Authentication Service. The service returns an authentication
+        token in the <parameter>token id</parameter> parameter (see
+          <xref linkend="authResponseXML"/> and <xref
+          linkend="auth-response-example-json"/>). Then, for every
+        REST request you make using the Cloud Queues API, you supply
+        the <parameter>token id</parameter> in the
+          <code>X-Auth-Token</code> HTTP header. </para>
       <section xml:id="Geographic_Endpoints">
         <title>Geographic Endpoints</title>
-        <para> The Rackspace Cloud Authentication Service
-          serves as the entry point to all Rackspace Cloud
-          APIs and is itself a ReSTful web service. </para>
+        <para> The Rackspace Cloud Authentication Service serves as
+          the entry point to all Rackspace Cloud APIs and is itself a
+          RESTful web service. </para>
         <para> You can use either of the following endpoints
           to access the Authentication Service, regardless
           of US or UK identities: </para>
@@ -577,7 +608,7 @@
                 >Control Panel Login</link>). </para>
           </callout>
         </calloutlist>
-        <example>
+        <example xml:id="authResponseXML">
           <title>Auth Response for US Endpoint: XML</title>
           
           <programlistingco>
@@ -634,7 +665,7 @@
             <para> </para>
           </callout>
           <callout arearefs="response.xml.token">
-            <para> This token can be presented to a service as evidence of authentication.
+            <para> Present this token in the X-Auth-Token HTTP header of your request.
               Tokens are valid for a finite duration; a token's default lifespan is twenty-four hours.
             </para>
             <para> The token's <code>expires</code> attribute denotes the time
@@ -1216,7 +1247,8 @@
           <tr>
             <td>Accept</td>
             <td>Media type desired; initially, only
-                <code>application/json</code> is supported</td>
+                <code>application/json</code> is supported. The
+                <code>Accept</code> header is required.</td>
           </tr>
           <tr>
             <td>Accept-Encoding</td>
@@ -1241,7 +1273,7 @@
           <tr>
             <td>X-Project-ID</td>
             <td>An ID for a project to which the value of X-Auth-Token
-              grants access. Queues will be created under this
+              grants access. Queues are created under this
               project.</td>
           </tr>
           <tr>
@@ -1251,10 +1283,10 @@
               instance and may be logged by the server for future use.
               Client-ID is generated once and persists between
               restarts of the client. Note: All message-related
-              operations require Client-ID to be included in the
+              operations require that Client-ID is included in the
               headers. This is to ensure that messages are not echoed
               back to the client that posted them unless the client
-              explicitly requests this.  </td>
+              explicitly requests this. </td>
           </tr>
         </tbody>
       </table>
@@ -1359,8 +1391,1013 @@ Content-Type: application/json
   }
 }</programlisting>
       </example>
-      <para>Error information for each operation is included with the
-        description in <xref linkend="API_Operations_dle001"/>.</para>
+      <para>Error information for each operation is included and with
+        the description in <xref linkend="API_Operations_dle001"
+        />.</para>
+      <section xml:id="error_Codes_And_Explanations">
+        <title>Response Codes and Explanations</title>
+        <para>This section includes response codes and explanations
+          for each of the Cloud Queues API operations. The operations
+          are described in <xref linkend="API_Operations_dle001"
+          />.</para>
+        <section xml:id="create_Queue_Codes">
+          <title>Create Queue</title>
+          <para>The following table describes the response codes for
+            the <command>Create Queue</command> operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Create Queue Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>201</td>
+                <td>Success (created)</td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Success (already exists)</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Queue has a long name (greater than 64 bytes)</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Request header has missing fields</td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Request header has invalid auth token</td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>To many requests</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section xml:id="list_Queues_Codes" >
+          <title>List Queues</title>
+          <para>The following table describes the response codes for
+            the <command>List Queues</command> operation.</para>
+          <table rules="all">
+            <caption>Descriptions of List Queues Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>200</td>
+                <td>Success</td>
+              </tr>
+              <tr>
+                <td>200</td>
+                <td>URI has invalid parameter (something other than
+                    <parameter>limit</parameter>,
+                    <parameter>marker</parameter>, or
+                    <parameter>metadata</parameter>)</td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Request with non-existing value for
+                    <parameter>marker</parameter></td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Request with negative value for
+                    <parameter>limit</parameter></td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Request with zero value for
+                    <parameter>limit</parameter></td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Request with non-boolean value for
+                    <parameter>metadata</parameter></td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Header has missing fields</td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Request header has invalid auth token</td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Request a non-existing queue</td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Header has Accept != "application/json"</td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section xml:id="delete_Queue_Codes">
+          <title>Delete Queue</title>
+          <para>The following table describes the response codes for
+            the <command>Delete Queue</command> operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Delete Queue Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>200</td>
+                <td>URI has invalid parameters</td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Success</td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Delete a non-existing queue</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Header has missing fields</td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Request header has invalid auth token</td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Header has Accept != "application/json"</td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section xml:id="check_Queue_Exists_Codes" >
+          <title>Check Queue Existence</title>
+          <para>The following table describes the response codes for
+            the <command>Check Queue Existence</command>
+            operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Check Queue Existence Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>204</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td/>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section xml:id="set_Queue_Metadata_Codes">
+          <title>Set Queue Metadata</title>
+          <para>The following table describes the response codes for
+            the <command>Set Queue Metadata</command>
+            operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Set Queue Metadata Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>204</td>
+                <td>Success</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Request body is empty</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Request body is greater than 64 KB</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Request body has malformed JSON</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Request with non-JSON body</td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Request header has Accept !=
+                  "application/json"</td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests</td>
+              </tr>
+              <tr>
+                <td/>
+                <td>Request with UTF-16 char JSON body</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section xml:id="get_Queue_Metadata_Codes">
+          <title>Get Queue Metadata</title>
+          <para>The following table describes the response codes for
+            the <command>Get Queue Metadata</command>
+            operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Get Queue Metadata Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>200</td>
+                <td>Success</td>
+              </tr>
+              <tr>
+                <td>200</td>
+                <td>No metadata exists for the queue</td>
+              </tr>
+              <tr>
+                <td>200</td>
+                <td>URI has invalid parameters</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Header has missing fields</td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Request header has invalid auth token</td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Request metadata for a non-existing queue</td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Header has Accept != "application/json"</td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section xml:id="get_Queue_Stats_Codes" >
+          <title>Get Queue Stats</title>
+          <para>The following table describes the response codes for
+            the <command>Get Queue Stats</command> operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Get Queue Stats Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>200</td>
+                <td>Success</td>
+              </tr>
+              <tr>
+                <td>200</td>
+                <td>URI has invalid parameters</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Header has missing fields</td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Request header has invalid auth token</td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Request stats for a non-existing queue</td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Header has Accept != "application/json"</td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      <section xml:id="post_Message_Codes" >
+          <title>Post Message</title>
+          <para>The following table describes the response codes for
+            the <command>Post Message</command> operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Post Message Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>200</td>
+                <td>URI has invalid parameters </td>
+              </tr>
+              <tr>
+                <td>201</td>
+                <td>Success</td>
+              </tr>
+              <tr>
+                <td>201</td>
+                <td>Post multiple messages in a single request, few of
+                  them succeed (with <parameter>"partial":
+                    true</parameter>)</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Post greater than 100 messages with a single
+                  request </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Post with request body greater than  4 KB </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Post with invalid JSON request body</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Post with non-JSON request body </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Post with non-JSON message </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Post with TTL less than 60 </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Post with TTL greater than 1209600 </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Post with non-integer value of TTL</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Post with negative value of TTL </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Post without TTL in request body</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Post without <parameter>"body"</parameter> in
+                  request body</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Post with no request body</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Post with messages encapsulated in multiple
+                  arrays</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Header has missing fields </td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Header has invalid auth token</td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Post message to a non-existing queue </td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Header has Accept != "application/json" </td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests</td>
+              </tr>
+              <tr>
+                <td>503</td>
+                <td>Post multiple messages in a single request and all
+                  of them fail</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      <section xml:id="get_Messages_Codes">
+          <title>Get Messages</title>
+          <para>The following table describes the response codes for
+            the <command>Get Messages</command> operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Get Messages Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>200</td>
+                <td>Success (query matched 1 or more messages)</td>
+              </tr>
+              <tr>
+                <td>200</td>
+                <td>Request message with invalid parameter (something
+                  other than <parameter>marker</parameter>,
+                    <parameter>limit</parameter>, or
+                    <parameter>echo</parameter>) </td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Success (query has no match) </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Request message with limit greater than 100  </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Post with request body greater than  4 KB </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Request message with limit less than or equal to 0
+                </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Request message with non-boolean value for
+                    <parameter>echo</parameter>
+                </td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Header has invalid auth token </td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Request message from a non-existing queue</td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Header has Accept != "application/json" </td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests</td>
+              </tr>
+              <tr>
+                <td>503</td>
+                <td>Request message with non-existing
+                    <parameter>marker</parameter>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      <section xml:id="get_Set_Of_Messages_Codes">
+          <title>Get a Set of Messages by ID</title>
+          <para>The following table describes the response codes for
+            the <command>Get a Set of Messages by ID</command>
+            operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Get a Set  of Messages by ID
+              Response Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>200</td>
+                <td>Success</td>
+              </tr>
+              <tr>
+                <td>200</td>
+                <td>URI has invalid parameters  </td>
+              </tr>
+              <tr>
+                <td> </td>
+                <td>Partial success  </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Request message with limit greater than 100  </td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Post with request body greater than  4 KB </td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Request message with limit less than or equal to 0
+                </td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Request message with non-boolean value for
+                    <parameter>echo</parameter>
+                </td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Header has invalid auth token </td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      <section xml:id="delete_Set_Of_Messages_Codes">
+          <title>Delete a Set of Messages by ID</title>
+          <para>The following table describes the response codes for
+            the <command>Delete a Set of Messages by ID</command>
+            operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Delete a Set  of Messages by ID
+              Response Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>204</td>
+                <td>Success  </td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Delete message from a non-existing queue  </td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Delete a non-existing message </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Header has missing fields  </td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Header has invalid auth token</td>
+              </tr>
+              <tr>
+                <td>403</td>
+                <td>Delete with expired claim ID </td>
+              </tr>
+              <tr>
+                <td>403</td>
+                <td>Delete with non-existing claim ID </td>
+              </tr>
+              <tr>
+                <td>403</td>
+                <td>Delete claimed message without providing a claim
+                  ID</td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Header has Accept != "application/json" </td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      <section xml:id="Get_Specific_Message_Codes" >
+          <title>Get a Specific Message</title>
+          <para>The following table describes the response codes for
+            the <command>Get a Specific Message</command>
+            operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Get a Specific Message Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>200</td>
+                <td>Success(query matched the message)  </td>
+              </tr>
+              <tr>
+                <td>200</td>
+                <td>URI has invalid parameters  </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Header has missing fields </td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Header has invalid auth token</td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Request message from a non-existing queue</td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Request a non-existing message </td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Request an expired message </td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Header has Accept != "application/json" </td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section xml:id="delete_Message_Codes">
+          <title>Delete Message</title>
+          <para>The following table describes the response codes for
+            the <command>Delete Message</command> operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Delete Message Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>200</td>
+                <td>URI has invalid parameters  </td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Success  </td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Delete message from a non-existing queue  </td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Delete a non-existing message </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Header has missing fields  </td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Header has invalid auth token</td>
+              </tr>
+              <tr>
+                <td>403</td>
+                <td>Delete with expired claim ID </td>
+              </tr>
+              <tr>
+                <td>403</td>
+                <td>Delete with non-existing claim ID </td>
+              </tr>
+              <tr>
+                <td>403</td>
+                <td>Delete claimed message without providing a claim
+                  ID</td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Header has Accept != "application/json" </td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section xml:id="claim_Messages_Codes">
+          <title>Claim Messages</title>
+          <para>The following table describes the response codes for
+            the <command>Claim Messages</command> operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Claim Messages Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>201</td>
+                <td>Success</td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Success (empty queue with no messages to
+                  claim)</td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Claim message from a non-existing queue  </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Claim message with invalid value for
+                    <parameter>limit</parameter> (non-integer, or less
+                  than or equal to 0)</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Claim message with <parameter>limit</parameter>
+                  greater than 100) </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Claim message with no request body </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Claim message with no TTL field </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Claim message with invalid TTL value (non-integer,
+                  or less than or equal to 0) </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Claim message with invalid JSON </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Claim message with non-JSON request body </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Claim message with missing header fields </td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Claim message with invalid auth token </td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Item not found</td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Header has Accept != "application/json" </td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section xml:id="query_Claim_Codes">
+          <title>Query Claim</title>
+          <para>The following table describes the response codes for
+            the <command>Query Claim</command> operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Query Claim Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>200</td>
+                <td>Success</td>
+              </tr>
+              <tr>
+                <td>200</td>
+                <td>Query claim with invalid URI parameters </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Query claim with missing header fields</td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Query claim with invalid auth token </td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Query expired claim </td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Query claim from a non-existing queue </td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Query claim with non-existing claim ID </td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Header has Accept != "application/json"</td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section xml:id="update_Claim_Codes">
+          <title>Update Claim</title>
+          <para>The following table describes the response codes for
+            the <command>Update Claim</command> operation.</para>
+          <table rules="all">
+            <caption>Descriptions of Update Claim Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>200</td>
+                <td>Update claim with invalid URI parameters</td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Success</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Update claim with no request body </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Update claim with invalid JSON in request body
+                </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Update claim with non-JSON request body </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Update claim with missing header fields </td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Update claim with invalid auth token </td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Update expired claim </td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Update claim on a non-existing queue </td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Update a non-existing claim </td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Update claim with content-type !=
+                  application/json-patch</td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section xml:id="release_Claim_Codes">
+          <title>Release Claim</title>
+          <para>The following table describes the response codes for
+            the <command>Release Claim</command> operation. </para>
+          <table rules="all">
+            <caption>Descriptions of Release Claim Response
+              Codes</caption>
+            <thead>
+              <tr>
+                <td>HTTP Response Code</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>200</td>
+                <td>Release claim with invalid URI parameters</td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Success </td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Release expired claim</td>
+              </tr>
+              <tr>
+                <td>204</td>
+                <td>Release a non-existing claim </td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Release claim with missing header fields</td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Release claim with invalid auth token</td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Release claim from a non-existing queue</td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>Header has Accept != "application/json"</td>
+              </tr>
+              <tr>
+                <td>429</td>
+                <td>Too many requests</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </section>
     </section>
 <!--
     <section xml:id="RBAC">
@@ -1677,16 +2714,31 @@ Content-Type: application/json
     <glossentry >
       <glossterm>Claim</glossterm>
       <glossdef>
-        <para> A worker claims or checks out a message to perform a
+        <para>A worker claims or checks out a message to perform a
           task. Doing so prevents other workers from attempting to
-          perform the same task.</para>
+          process the same messages.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry>
+      <glossterm>Claim TTL</glossterm>
+      <glossdef>
+        <para>Defines how long a message will be in claimed state. A
+          message can be claimed by one worker at a time.</para>
       </glossdef>
     </glossentry>
     <glossentry xml:id="message-d1e016">
       <glossterm>Message</glossterm>
       <glossdef>
-        <para>A message is a task, a notification, or anything else
-          that gets posted to the queue.</para>
+        <para>A message is a task, a notification, or any meaningful
+          data that gets posted to the queue. A message exists until
+          it is deleted by a recipient or automatically by the system
+          based on a TTL (time-to-live) value. </para>
+      </glossdef>
+    </glossentry>
+    <glossentry>
+      <glossterm>Message TTL</glossterm>
+      <glossdef>
+        <para>Defines how long a message will be accessible. </para>
       </glossdef>
     </glossentry>
     <glossentry xml:id="producer-d1e020">
@@ -1696,10 +2748,31 @@ Content-Type: application/json
           queue.</para>
       </glossdef>
     </glossentry>
+    <glossentry>
+      <glossterm>Producer - Consumer</glossterm>
+      <glossdef>
+        <para>A pattern where each worker application that reads the
+          queue has to claim the message in order to prevent duplicate
+          processing. Later, when work is done, worker is responsible
+          for deleting the message. If message is not deleted in a
+          predefined time, it can be claimed by other workers.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry>
+      <glossterm>Publisher - Subscriber</glossterm>
+      <glossdef>
+        <para>A pattern where all worker applications have access to
+          all messages in the queue. Workers cannot delete or update
+          messages. </para>
+      </glossdef>
+    </glossentry>
     <glossentry xml:id="queue-d1e019">
       <glossterm>Queue</glossterm>
       <glossdef>
-        <para>A queue holds messages.</para>
+        <para>A queue holds messages. Ideally, a queue is created per
+          work type. For example, if you want to compress files, you
+          would create a queue dedicated to this job. Any application
+          that reads from this queue would only compress files. </para>
       </glossdef>
     </glossentry>
     <glossentry xml:id="subscriber-d1e018">
@@ -1709,11 +2782,17 @@ Content-Type: application/json
           feed, but does not claim any messages.</para>
       </glossdef>
     </glossentry>
+    <glossentry>
+      <glossterm>TTL</glossterm>
+      <glossdef>
+        <para>Time-to-live value.</para>
+      </glossdef>
+    </glossentry>
     <glossentry xml:id="worker-d1e018">
       <glossterm>Worker</glossterm>
       <glossdef>
-        <para>A worker is a client that claims messages and performs
-          actions based on those messages. </para>
+        <para>A worker is a client that claims messages from the queue
+          and performs actions based on those messages. </para>
       </glossdef>
     </glossentry>
   </glossary>

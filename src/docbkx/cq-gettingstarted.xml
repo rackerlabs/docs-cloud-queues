@@ -66,7 +66,7 @@
     </copyright>
     <releaseinfo>API v1.0 Early Access</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2013-08-15</pubdate>
+    <pubdate>2013-09-06</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
       <annotation>
@@ -81,6 +81,16 @@
     </abstract>
     
     <revhistory>
+      <revision>
+        <date>2013-09-06</date>
+        <revdescription>
+          <para>Updated value for <code>X-Auth-Token</code> in the
+            request examples in <xref
+              linkend="stepping_through_the_api"/> to be the template
+              <code>your_auth_token</code> rather than an actual
+            value.</para>
+        </revdescription>
+      </revision>
       <revision>
         <date>2013-08-15</date>
         <revdescription>
@@ -193,15 +203,13 @@
       that you can begin to use Cloud Queues for your applications.
       Instructions are given for how to properly enter the necessary
       URLs, using cURL, to set up and use a basic set of Cloud Queues
-      operations.
-      <!-- for
-        <trademark>Cloud Servers</trademark>. You can find additional
-      details about Rackspace Cloud Queues in the <citetitle>Cloud
-        Queuing Developer Guide</citetitle> at <link
-        xlink:href="http://docs.rackspace.com/"
+      operations. </para>
+    <para>You can find additional details about Rackspace Cloud Queues
+      in the <citetitle>Cloud Queues Developer Guide</citetitle> at
+        <link xlink:href="http://docs.rackspace.com/"
         >http://docs.rackspace.com/</link> and at <link
         xlink:href="http://www.rackspace.com/cloud/cloud_hosting_products/dns/"
-        >http://www.rackspace.com/cloud/</link>. --></para>
+        >http://www.rackspace.com/cloud/</link>. </para>
     <section xml:id="core_concepts">
       <title>Early Access Program </title>
       <para xmlns:wadl="http://wadl.dev.java.net/2009/02">The Early
@@ -1163,7 +1171,7 @@
           </listitem>
           <listitem>
             <para>You can also download and install rest-client, a
-              Java application to test ReSTful web services, from
+              Java application to test RESTful web services, from
                 <link
                 xlink:href="http://code.google.com/p/rest-client/"
                 >http://code.google.com/p/rest-client/</link>. </para>
@@ -1323,8 +1331,9 @@
         xmlns:html="http://www.w3.org/1999/xhtml">Each request to the
         Cloud Queues API must include certain standard and extended
         HTTP headers. These headers provide host, agent,
-        authentication, and other pertinent information to the
-        server.</para>
+        authentication, and other pertinent information to the server.
+        The following table provides the common headers used by the
+        API.</para>
       <table rules="all" xmlns:svg="http://www.w3.org/2000/svg"
         xmlns:m="http://www.w3.org/1998/Math/MathML"
         xmlns:html="http://www.w3.org/1999/xhtml">
@@ -1374,7 +1383,7 @@
           <tr>
             <td>X-Project-ID</td>
             <td>An ID for a project to which the value of X-Auth-Token
-              grants access. Queues will be created under this
+              grants access. Queues are created under this
               project.</td>
           </tr>
           <tr>
@@ -1383,7 +1392,11 @@
               avoid echoing a sender's messages back tot he same
               instance and my be logged by the server for future use.
               Client-ID is generated once and persists between
-              restarts of the client.</td>
+              restarts of the client. Note: All message-related
+              operations require that Client-ID is included in the
+              headers. This is to ensure that messages are not echoed
+              back to the client that posted them unless the client
+              explicitly requests this.</td>
           </tr>
         </tbody>
       </table>
@@ -1427,7 +1440,7 @@
         <programlisting>curl -i -X PUT https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue -d \
 '{"metadata": "Awesome Queue"}' \
 -H "Content-type: application/json" \
--H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \
+-H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \
 -H "Accept: application/json" </programlisting>
       </example>
       <example>
@@ -1488,7 +1501,7 @@ Location: /v1/queues/samplequeue</programlisting>
 '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' \
 -H "Content-type: application/json" \
 -H "Client-ID: QClient" \
--H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \
+-H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \
 -H "Accept: application/json" </programlisting>
       </example>
       <example>
@@ -1559,7 +1572,7 @@ Content-Type: application/json
 '{"ttl": 300,"grace":300}' \
 -H "Content-type: application/json" \ 
 -H "Client-ID: QClient" \ 
--H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \
+-H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \
 -H "Accept: application/json" </programlisting>
       </example>
       <example>
@@ -1595,7 +1608,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         <title>cURL Delete Message Request</title>
         <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 \ 
 -H "Content-type: application/json" \
--H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \ 
+-H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \ 
 -H "Client-ID: QClient" \
 -H "Accept: application/json"</programlisting>
       </example>
@@ -1622,7 +1635,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         <title>cURL Release Claim Request</title>
         <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 \ 
 -H "Content-type: application/json" \ 
--H "X-Auth-Token: 68d94fd912cc4b2bb5c2fe956de46d46" \ 
+-H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \ 
 -H "Client-ID: QClient"  \
 -H "Accept: application/json" </programlisting>
       </example>
@@ -1643,7 +1656,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         <title>cURL Delete Queue Request</title>
         <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \ 
 -H "Content-type: application/json" \ 
--H "X-Auth-Token: 15eb3ad0f864402ea5904f80324307a4" \
+-H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \
 -H "Accept: application/json"</programlisting>
       </example>
       <example>
@@ -1664,13 +1677,13 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
         xlink:href="http://feedback.rackspace.com/forums/71021-product-feedback/category/6841-cloud-sites"
         >Product Feedback Forum</link> and let us know what you think
       about Cloud Queues.</para>
-    <!--
+   
     <para>You can download the most current versions of the
       API-related documents from <link
         xlink:href="http://docs.rackspace.com/api/"
         >docs.rackspace.com/api/</link>. 
     </para>
-    -->
+ 
     <para>For information about the OpenStack Marconi API, refer to
         <link
         xlink:href="https://wiki.openstack.org/wiki/Marconi/specs/api/v1"
@@ -1695,16 +1708,31 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
     <glossentry xml:id="claim-d1e017">
       <glossterm>Claim</glossterm>
       <glossdef>
-        <para> A worker claims or checks out a message to perform a
+        <para>A worker claims or checks out a message to perform a
           task. Doing so prevents other workers from attempting to
-          perform the same task.</para>
+          process the same messages.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry>
+      <glossterm>Claim TTL</glossterm>
+      <glossdef>
+        <para>Defines how long a message will be in claimed state. A
+          message can be claimed by one worker at a time.</para>
       </glossdef>
     </glossentry>
     <glossentry xml:id="message-d1e016">
       <glossterm>Message</glossterm>
       <glossdef>
-        <para>A message is a task, a notification, or anything else
-          that gets posted to the queue.</para>
+        <para>A message is a task, a notification, or any meaningful
+          data that gets posted to the queue. A message exists until
+          it is deleted by a recipient or automatically by the system
+          based on a TTL (time-to-live) value.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry>
+      <glossterm>Message TTL</glossterm>
+      <glossdef>
+        <para>Defines how long a message will be accessible. </para>
       </glossdef>
     </glossentry>
     <glossentry xml:id="producer-d1e020">
@@ -1714,10 +1742,31 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
           queue.</para>
       </glossdef>
     </glossentry>
+    <glossentry>
+      <glossterm>Producer - Consumer</glossterm>
+      <glossdef>
+        <para>A pattern where each worker application that reads the
+          queue has to claim the message in order to prevent duplicate
+          processing. Later, when work is done, worker is responsible
+          for deleting the message. If message is not deleted in a
+          predefined time, it can be claimed by other workers.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry>
+      <glossterm>Publisher - Subscriber</glossterm>
+      <glossdef>
+        <para>A pattern where all worker applications have access to
+          all messages in the queue. Workers cannot delete or update
+          messages. </para>
+      </glossdef>
+    </glossentry>
     <glossentry xml:id="queue-d1e019">
       <glossterm>Queue</glossterm>
       <glossdef>
-        <para>A queue holds messages.</para>
+        <para>A queue holds messages. Ideally, a queue is created per
+          work type. For example, if you want to compress files, you
+          would create a queue dedicated to this job. Any application
+          that reads from this queue would only compress files. </para>
       </glossdef>
     </glossentry>
     <glossentry xml:id="subscriber-d1e018">
@@ -1727,11 +1776,17 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
           feed, but does not claim any messages.</para>
       </glossdef>
     </glossentry>
+    <glossentry>
+      <glossterm>TTL</glossterm>
+      <glossdef>
+        <para>Time-to-live value.</para>
+      </glossdef>
+    </glossentry>
     <glossentry xml:id="worker-d1e018" >
       <glossterm>Worker</glossterm>
       <glossdef>
-        <para>A worker is a client that claims messages and performs
-          actions based on those messages.  </para>
+        <para>A worker is a client that claims messages from the queue
+          and performs actions based on those messages. </para>
       </glossdef>
     </glossentry>
   </glossary>
