@@ -58,9 +58,9 @@
       <year>2013</year>
       <holder>Rackspace US, Inc.</holder>
     </copyright>
-    <releaseinfo>API v1.0 Early Access</releaseinfo>
+    <releaseinfo>API v1.0</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2013-09-06</pubdate><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
+    <pubdate>2013-10-09</pubdate><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
     <legalnotice role="rs-api">
       <annotation>
@@ -76,126 +76,15 @@
  
     <revhistory>
       <revision>
-        <date>2013-09-06</date>
+        <date>2013-10-09</date>
         <revdescription>
           <itemizedlist>
             <listitem>
-              <para>Added section with response codes and descriptions
-                  (<xref linkend="error_Codes_And_Explanations"
-                />).</para>
-            </listitem>
-            <listitem>
-              <para>Updated home document response example to show
-                relative URIs (<xref linkend="homeDocument-operation"
-                />).</para>
-            </listitem>
-            <listitem>
-              <para>Updated <xref linkend="Authentication-d1e647"/> to
-                state that the token ID shown in the authentication
-                response is the same as the X-Auth-Token header that
-                you supply with your API calls.</para>
-            </listitem>
-            <listitem>
-              <para>Added TTL items to the <xref linkend="glossary_1"
-                />.</para>
+              <para>Unlimited Availability (UA) release.</para>
             </listitem>
           </itemizedlist>
         </revdescription>
       </revision>
-      <revision>
-        <date>2013-08-27</date>
-        <revdescription>
-          <itemizedlist>
-            <listitem>
-              <para>Updated <xref linkend="commonHeaders"/> and <xref
-                  linkend="message-operations-dle001"/> to include a
-                note that the Client-ID header is required for
-                message-related operations. </para>
-            </listitem>
-            <listitem>
-              <para>Added information that you must specify
-                  <code>client_id</code> to delete a claimed message
-                to the Delete Message description in  <xref
-                  linkend="message-operations-dle001"/>.</para>
-            </listitem>
-          </itemizedlist>
-        </revdescription>
-      </revision>
-      <revision>
-        <date>2013-08-22</date>
-        <revdescription>
-          <itemizedlist>
-            <listitem>
-              <para>Updated absolute limits in <xref
-                  linkend="Absolute_Limits-d1e1397"/> to increase
-                limits for queues and messages.</para>
-            </listitem>
-            <listitem>
-              <para>Updated information for bulk
-                  <command>GET</command> and <command>DELETE</command>
-                operations to include the following information:
-                "Malformed IDs or messages that are not found by ID
-                are  ignored."</para>
-            </listitem>
-            <listitem>
-              <para>Updated information for claims operations to
-                include the following information: "Claims with
-                malformed IDs or claims that are not found by ID are
-                ignored."</para>
-            </listitem>
-            <listitem>
-              <para>Updated information about Home Document to
-                indicate the schema might change (<xref
-                  linkend="homeDocument-operation"/>).</para>
-            </listitem>
-            <listitem>
-              <para>Added error 429 to each API operation
-                description.</para>
-            </listitem>
-          </itemizedlist>
-        </revdescription>
-      </revision>
-      <revision>
-        <date>2013-08-15</date>
-        <revdescription>
-          <itemizedlist>
-            <listitem>
-              <para>Updated the service access endpoints to include
-                London in  <xref linkend="serviceEndpoints"/>.</para>
-            </listitem>
-            <listitem>
-              <para>Updated and added additional absolute limits in
-                  <xref linkend="Absolute_Limits-d1e1397"/>.</para>
-            </listitem>
-          </itemizedlist>
-        </revdescription>
-      </revision>
-      <revision>
-        <date>2013-08-12</date>
-        <revdescription>
-          <itemizedlist>
-            <listitem>
-              <para>Initial Early Access (EA) release.</para>
-            </listitem>
-          </itemizedlist>
-        </revdescription>
-      </revision>
- <!--
-      <revision>
-        <date>2013-07-31</date>
-        <revdescription>
-          <itemizedlist>
-            <listitem>
-              <para>Updated endpoints from queue to queues.</para>
-            </listitem>
-            <listitem>
-              <para>Changed metadata to endpoing in API
-                operations.</para>
-            </listitem>
-          </itemizedlist>
-        </revdescription>
-      </revision>
- -->
     </revhistory>
 
     <!-- 
@@ -877,9 +766,8 @@
         </table>
       </para>
       -->
-    <para>
+      <para>
         <table rules="all">
-          <?rax-fo keep-together?>
           <caption>Regionalized Service Endpoints</caption>
           <thead>
             <tr align="center">
@@ -897,6 +785,15 @@
               <td colspan="5"
                   ><code>https://snet-ord.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
+            <tr>
+              <td colspan="2" rowspan="2">Dallas/Ft. Worth (DFW)</td>
+              <td colspan="5"
+                  ><code>https://dfw.queues.api.rackspacecloud.com/v1.0/</code></td>
+            </tr>
+            <tr>
+              <td colspan="5"
+                  ><code>https://snet-dfw.queues.api.rackspacecloud.com/v1.0/</code></td>
+            </tr>
             <tr align="left">
               <td colspan="2" rowspan="2">London (LON)</td>
               <td colspan="5"
@@ -904,8 +801,26 @@
             </tr>
             <tr>
               <td colspan="5"
-                  ><code>https://snet-lon.queues.api.rackspacecloud.com/v1/</code>
-              </td>
+                  ><code>https://snet-lon.queues.api.rackspacecloud.com/v1/</code></td>
+            </tr>
+            <tr>
+              <td colspan="2" rowspan="2">Northern Virginia (IAD)</td>
+              <td colspan="5"
+                  ><code>https://iad.queues.api.rackspacecloud.com/v1.0/</code></td>
+            </tr>
+            <tr>
+              <td colspan="5"
+                  ><code>https://snet-iad.queues.api.rackspacecloud.com/v1.0/</code></td>
+            </tr>
+            <tr>
+              <td colspan="2">Sydney (SYD)</td>
+              <td colspan="5"
+                  ><code>https://syd.queues.api.rackspacecloud.com/v1.0/</code></td>
+            </tr>
+            <tr>
+              <td colspan="2"/>
+              <td colspan="5"
+                  ><code>https://snet-syd.queues.api.rackspacecloud.com/v1.0/</code></td>
             </tr>
           </tbody>
         </table>
@@ -915,12 +830,12 @@
           rather than trying to construct them manually.</para>
         <para>Rackspace Cloud Identity returns an endpoint with your
           account ID. You do not have to provide the account ID for
-          the Cloud Queues API. If you have the X-Project-ID header
+          the Cloud Queues API. If you have the X-Project-Id header
           set, the Cloud Queues API works with or without this ID
-          specified. Without the X-Project-ID header, you receive an
+          specified. Without the X-Project-Id header, you receive an
           auth error if the account ID is not in the URL. If the
           account ID is in the URL, the Cloud Queues API will use that
-          ID in place of the X-Project-ID header. </para>
+          ID in place of the X-Project-Id header. </para>
         
         <para>Account ID refers to your Rackspace account number,
           which you can also find in your Cloud Control Panel at <link
@@ -998,114 +913,48 @@
       </table> 
     </section>
     <?hard-pagebreak?>
- <!--   <section xml:id="Limits-d1e1208">
-      <title>Limits</title>
-      <para>
-        All accounts, by default, have a preconfigured set of
-        thresholds (or limits) to manage capacity and prevent
-        abuse of the system.  The system recognizes two kinds
-        of limits: <firstterm>rate limits</firstterm> and
-        <firstterm>absolute limits</firstterm>. Rate limits
-        are thresholds that are reset after a certain amount
-        of time passes. Absolute limits are fixed. 
-      </para>
-      <section xml:id="Rate_Limits-d1e1222" >
+      <section xml:id="Limits-d1e1397">
+        <title>Limits</title>
+      <para>Accounts are configured with default thresholds, or
+        limits, that manage capacity and prevent abuse of the system. </para>
+      <para>The system recognizes the following types of limits: </para>
+      <itemizedlist>
+        <listitem>
+          <para>rate limits</para>
+          <para>Rate limits are thresholds that are reset after a
+            certain amount of time passes. Rate limits control the
+            frequency at which the user can issue specific API
+            requests. For more information, see <xref
+              linkend="Rate-Limits-d1e003"/>.</para>
+        </listitem>
+        <listitem>
+          <para>absolute limits</para>
+          <para>Absolute limits are fixed. Absolute limits control the
+            total number of specific objects that the user can possess
+            simultaneously. For more information, see <xref
+              linkend="Absolute-Limits-d1e003"/>.</para>
+        </listitem>
+      </itemizedlist>
+      <note>
+        <para>If the default limits are too low for your particular
+          application, please contact Rackspace Cloud support to
+          request an increase. All requests require reasonable
+          justification.</para>
+      </note>
+      <section xml:id="Rate-Limits-d1e003">
         <title>Rate Limits</title>
-        <para> Rate limits are specified in terms of both a
-          human-readable wild-card URI and a
-          machine-processable regular expression. The
-          regular expression boundary matcher '^' takes
-          effect after the root URI path. For example, the
-          regular expression ^/v1.0/instances would match
-          the bolded portion of the following URI:
-          https://ord.databases.api.rackspacecloud.com<emphasis
-            role="bold">/v1.0/instances</emphasis>. </para>
-        <para>The following table specifies the default rate
-          limits for all API operations for all &GET;,
-          &POST;, &PUT;, and &DELETE; calls for databases
-          and database instances: </para>
-        <table rules="all">
-          <caption>Default Rate Limits</caption>
-          <thead>
-            <tr align="center">
-              <td colspan="1">Verb</td>
-              <td colspan="2">URI</td>
-              <td colspan="2">RegEx</td>
-              <td colspan="1">Default</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colspan="1">&GET; changes-since</td>
-              <td colspan="2">*/instances/*</td>
-              <td colspan="2">^/vd+.d+/instances.*</td>
-              <td colspan="1">3/minute</td>
-            </tr>
-            <tr>
-              <td colspan="1">&POST;</td>
-              <td colspan="2">*/instances/*</td>
-              <td colspan="2">^/vd+.d+/instances.*</td>
-              <td colspan="1">10/minute</td>
-            </tr>
-            <tr>
-              <td colspan="1">&POST; instances</td>
-              <td colspan="2">*/instances/*</td>
-              <td colspan="2">^/vd+.d+/instances.*</td>
-              <td colspan="1">50/day</td>
-            </tr>
-            <tr>
-              <td colspan="1">&PUT;</td>
-              <td colspan="2">*/instances/*</td>
-              <td colspan="2">^/vd+.d+/instances.*</td>
-              <td colspan="1">10/minute</td>
-            </tr>
-            <tr>
-              <td colspan="1">&DELETE;</td>
-              <td colspan="2">*/instances/*</td>
-              <td colspan="2">^/vd+.d+/instances.*</td>
-              <td colspan="1">100/minute</td>
-            </tr>
-          </tbody>
-        </table>
-        <para> Rate limits are applied in order relative to the
-          verb, going from least to most specific. For
-          example, although the threshold for &POST; to
-          /v1.0/* is 10 per minute, one cannot &POST; to
-          /v1.0/* more than 50 times within a single day. </para>
-        <para> If you exceed the thresholds established for
-          your account, a <errorcode>413 (Rate
-            Control)</errorcode> HTTP response will be
-          returned with a <code>Retry-After</code> header to
-          notify the client when it can attempt to try
-          again. </para>
-      </section> -->
-      <section xml:id="Absolute_Limits-d1e1397">
+        <para>Rate limits control the frequency at which the user can
+          issue specific API requests.</para>
+        <para>For Cloud Queues,  the rate limit is 300 requests per
+          second per project ID. </para>
+        <para>Rate limits are reset after a certain amount of time
+          passes. </para>
+      </section>
+        <section xml:id="Absolute-Limits-d1e003" >
         <title>Absolute Limits</title>
- <!--       <para>Cloud Queues has the following limits:</para>
-        <itemizedlist>
-          <listitem>
-            <para>There is a per message limit of 256 KB, excluding
-              whitespace, on the size of the message body. If multiple
-              messages are included in the request, this limit also
-              applies to the sum of the message bodies added
-              together.</para>
-            <para>For example, you may have one message body of 256
-              KB, or up to 10 messages for which the sum of the
-              message bodies is 256 KB. A 400 error is triggered if a
-              single message body or the sum of multiple message
-              bodies exceed 256 KB in a single request.</para>
-          </listitem>
-          <listitem>
-            <para>A request cannot contain more than 10
-              messages.</para>
-          </listitem>
-          <listitem>
-            <para>A TTL cannot be longer than 14 days.</para>
-          </listitem>
-        </itemizedlist>
-        -->
         <para>The following table provides details about the absolute
-        limits for the Cloud Queues API.</para>
+          limits for the Cloud Queues API.</para>
+      
       <table rules="all">
         <caption>Absolute Limits</caption>
         <col width="30%"/>
@@ -1186,7 +1035,30 @@
           message body or the sum of multiple message bodies exceed
           256 KB in a single request.</para>
       </note>
-<!--
+        </section>   
+<!--<para>Cloud Queues has the following limits:</para>
+        <itemizedlist>
+          <listitem>
+            <para>There is a per message limit of 256 KB, excluding
+              whitespace, on the size of the message body. If multiple
+              messages are included in the request, this limit also
+              applies to the sum of the message bodies added
+              together.</para>
+            <para>For example, you may have one message body of 256
+              KB, or up to 10 messages for which the sum of the
+              message bodies is 256 KB. A 400 error is triggered if a
+              single message body or the sum of multiple message
+              bodies exceed 256 KB in a single request.</para>
+          </listitem>
+          <listitem>
+            <para>A request cannot contain more than 10
+              messages.</para>
+          </listitem>
+          <listitem>
+            <para>A TTL cannot be longer than 14 days.</para>
+          </listitem>
+        </itemizedlist>
+
         <table rules="all">
           <caption>Absolute Limits</caption>
           <thead>
@@ -1215,8 +1087,10 @@
             </tr>
           </tbody>
         </table>
- -->       
-      </section>
+       
+      </section> 
+       
+        -->
 <!--    </section>  -->
     <section xml:id="commonHeaders" >
       <title>Common Headers</title>
@@ -1271,22 +1145,23 @@
             <td>Auth token</td>
           </tr>
           <tr>
-            <td>X-Project-ID</td>
+            <td>X-Project-Id</td>
             <td>An ID for a project to which the value of X-Auth-Token
               grants access. Queues are created under this
               project.</td>
           </tr>
           <tr>
             <td>Client-ID</td>
-            <td>A unique ID for each client instance. This is used to
-              avoid echoing a sender's messages back to the same
-              instance and may be logged by the server for future use.
-              Client-ID is generated once and persists between
-              restarts of the client. Note: All message-related
-              operations require that Client-ID is included in the
-              headers. This is to ensure that messages are not echoed
-              back to the client that posted them unless the client
-              explicitly requests this. </td>
+            <td>A unique ID for each client instance. The Client-ID is
+              used to avoid echoing a sender's messages back to the
+              same instance and may be logged by the server for future
+              use. The client generates the Client-ID once. It
+              persists between restarts of the client. The client
+              should reuse the same Client-ID. Note: All
+              message-related operations require that Client-ID is
+              included in the headers to ensure that messages are not
+              echoed back to the client that posted them, unless the
+              client explicitly requests this.</td>
           </tr>
         </tbody>
       </table>
@@ -1867,6 +1742,12 @@ Content-Type: application/json
                 <td>Success (query has no match) </td>
               </tr>
               <tr>
+                <td>204</td>
+                <td>Request message with non-existing
+                    <parameter>marker</parameter>
+                </td>
+              </tr>
+              <tr>
                 <td>400</td>
                 <td>Request message with limit greater than 100  </td>
               </tr>
@@ -1900,12 +1781,6 @@ Content-Type: application/json
               <tr>
                 <td>429</td>
                 <td>Too many requests</td>
-              </tr>
-              <tr>
-                <td>503</td>
-                <td>Request message with non-existing
-                    <parameter>marker</parameter>
-                </td>
               </tr>
             </tbody>
           </table>
@@ -2643,6 +2518,8 @@ Content-Type: application/json
       </section>
     </section> 
 -->
+ 
+  </section>
   </chapter>
   <chapter xml:id="API_Operations_dle001" 
     xmlns="http://docbook.org/ns/docbook"
@@ -2689,10 +2566,11 @@ Content-Type: application/json
       <para>This section describes message requests that are supported
         by the Cloud Queues API. </para>
       <note>
-        <para>All message-related operations require that Client-Id be
+        <para>All message-related operations require that Client-ID be
           included in the headers. This is to ensure that messages are
           not echoed back to the client that posted them unless the
-          client explicitly requests this.</para>
+          client explicitly requests this. For more information, see
+          Client-ID in <xref linkend="commonHeaders"/>.</para>
       </note>
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">     
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#messages"/>

@@ -131,8 +131,8 @@
 <!--*******************************************************-->		
 		<method name="PUT" id="createQueue">
 			<wadl:doc xml:lang="EN" title="Create Queue" xmlns="http://docbook.org/ns/docbook">
-				<para role="shortdesc">Creates a queue and sets its metadata.</para>  
-				<para>This operation creates a new queue and sets its metadata.</para>
+				<para role="shortdesc">Creates a queue.</para>  
+				<para>This operation creates a new queue.</para>
 				<para>The body of the <command>PUT</command> is empty.</para>				
 				<note> <para><code>queue_name</code> is the name given to the queue. The name MUST NOT exceed 64 bytes in length, and is limited to US-ASCII letters, digits, underscores, and hyphens.</para>
 				</note>	
@@ -160,7 +160,8 @@
 
 	<method name="GET" id="listQueues" >
 		<wadl:doc xml:lang="EN" title="List Queues" xmlns="http://docbook.org/ns/docbook">
-			<para role="shortdesc">Lists queues.</para>  
+			<para role="shortdesc">Lists queues.</para>
+			<para>A request to list queues when you have no queues in your account returns 204, instead of 200, because there was no information to send back.</para>	
 			<para>This operation lists queues for the project, sorting the queues alphabetically by name. </para>
 			<note><para>If you do not specify the <code>limit</code> query parameter, it defaults to 20. Forward-only paging is supported via "next" link. </para>  
 				<para>The <code>detailed</code> query parameter defaults to <code>false</code>, which excludes the metadata field from the results. </para>	
@@ -386,7 +387,7 @@
 			<para>Results are ordered by age, oldest message first. </para>		
 			<note><para>If <code>limit</code> is not specified, it defaults to 10. When more messages are available than can be returned in a single request, the client can pick up the next batch by simply using the URI template parameters returned from the previous call in the "next" field.</para>
 			<para><code>marker</code> communicates to the server which messages the client has already received. If marker is not specified, the API will return all messages at the head of the queue (up to limit).</para>
-			<para><code>echo</code> is a boolean value (<code>true</code> or <code>false</code>) that determines whether the API returns a client's own messages, as determined by the <code>uuid</code> portion of the User-Agent header. If not specified, <code>echo</code> defaults to <code>false</code>.</para>
+				<para><code>echo</code> is a boolean value (<code>true</code> or <code>false</code>) that determines whether the API returns a client's own messages, as determined by the <code>uuid</code> portion of the User-Agent header. If not specified, <code>echo</code> defaults to <code>false</code>. If you are experimenting with the API, you might want to set <code>echo=true</code> in order to see the messages that you posted.</para>
 			<para><code>include_claimed</code> is a boolean value (<code>true</code> or <code>false</code>) that determines whether the API returns claimed messages as well as unclaimed messages. If not specified, <code>include_claimed</code> defaults to <code>faslse</code> (only unclaimed messages are returned).</para>
 			</note>
 		</wadl:doc>
