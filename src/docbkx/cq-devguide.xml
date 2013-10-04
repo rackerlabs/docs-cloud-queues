@@ -45,7 +45,6 @@
   <?rax title.font.size="35px"
       pdf.url="../../cq-devguide.pdf" 
       status.bar.text.font.size="40px"
-      status.bar.text="Early Access" 
       canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-devguide/content"?>
   
   
@@ -58,7 +57,7 @@
       <year>2013</year>
       <holder>Rackspace US, Inc.</holder>
     </copyright>
-    <releaseinfo>API v1.0</releaseinfo>
+    <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
     <pubdate>2013-10-09</pubdate><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
@@ -80,7 +79,8 @@
         <revdescription>
           <itemizedlist>
             <listitem>
-              <para>Unlimited Availability (UA) release.</para>
+              <para>Initial Unlimited Availability (UA) release for
+                Rackspace Cloud Queues.</para>
             </listitem>
           </itemizedlist>
         </revdescription>
@@ -222,25 +222,29 @@
           >www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</link>.
       </para>
     </section>
-    <section xml:id="API_Contract_Changes-d1e363">
-      <title>API Contract Changes</title>
-      <para>The API contract is not locked and may change during the
-        Early Access (EA) Program.</para>
-      <para>Rackspace will notify customers in Release Notes when and
-        if the contract does change.</para>
-    </section>
+    <!-- 10/1/2013 cyr - in planning meeting today, Megan said to remove this section for now.    
     <section xml:id="Pricing_SLA-d1e1362">
       <title>Pricing and Service Level</title>
-      <para>During Early Access (EA), there is no charge for Cloud
-        Queues. When Cloud Queues moves to unlimited availability
-        (GA), customers will be billed for outbound bandwidth.</para>
-      <para>While Cloud Queues is in EA, it is subject to the
-        Rackspace test terms at <link
-          xlink:href="http://www.rackspace.com/information/legal/testterms"
-          >www.rackspace.com/information/legal/testterms</link>. When
-        Cloud Queues moves to GA, the Service Level Agreement (SLA)
-        will be available.</para>
+   <para>Cloud Queues is part of the Rackspace Cloud and your
+                use through the API will be billed as per the pricing
+                schedule at <link
+                    xlink:href="http://www.rackspace.com/cloud/public/queues/pricing"
+                    >http://www.rackspace.com/cloud/public/queues/pricing</link>.
+                Cloud Servers is also part of the Rackspace Cloud and
+                your use through the Cloud Control Panel will be
+                billed as per the pricing schedule at <link
+                    xlink:href="http://www.rackspace.com/cloud/public/servers/pricing"
+                    >http://www.rackspace.com/cloud/public/servers/pricing</link>.</para>
+            <para>The Service Level Agreements (SLAs) for Cloud Queues
+                and Cloud Servers are available at <link
+                    xlink:href="http://www.rackspace.com/cloud/legal/sla/#cloud_queues"
+                    >http://www.rackspace.com/cloud/legal/sla/#cloud_queues</link>
+                and <link
+                    xlink:href="http://www.rackspace.com/cloud/legal/sla"
+                    >http://www.rackspace.com/cloud/legal/sla</link>
+                respectively.</para>
     </section>
+-->    
   </chapter>
   <chapter xml:id="Concepts-dle001">
     <title>Concepts</title>
@@ -734,40 +738,190 @@
           service catalog. Refer to the next section for
           more information about service endpoints. </para>  
       </section>  </section>
-    <section xml:id="serviceEndpoints">
-      <title>Service Access/Endpoints</title>
-      <para>Cloud Queues is a regionalized service. The user of the
-        service is therefore responsible for appropriate replication,
-        caching, and overall maintenance of Cloud Queues data across
-        regional boundaries to other Cloud Queues servers.</para>
-     <para>You can find the available service access/endpoints for
-        Cloud Queues summarized in the table below.</para>
- <!--       <para>        
-        <table rules="all">
-          <?rax-fo keep-together?>
-          <caption>Regionalized Service Endpoints</caption>
+    <section xml:id="RBAC"
+      xmlns:wadl="http://wadl.dev.java.net/2009/02">
+      <title>Role Based Access Control</title>
+      <para>Role Based Access Control (RBAC) restricts access to the
+        capabilities of Rackspace Cloud services, including the Cloud
+        Queues API, to authorized users only. RBAC enables Rackspace
+        Cloud customers to specify which account users of their Cloud
+        account have access to which Cloud Queues API service
+        capabilities, based on roles defined by Rackspace (see <xref
+          linkend="RBAC_product_roles_table"/>). The permissions to
+        perform certain operations in Cloud Queues API – create, read,
+        update, delete – are assigned to specific roles, and these
+        roles can be assigned by the Cloud account admin user to
+        account users of the account. </para>
+      <section xml:id="Assigning-Roles-d1e001">
+        <title>Assigning Roles to Account Users</title>
+        <para>The account owner (identity:user-admin) can create
+          account users on the account and then assign roles to those
+          users. The roles grant the account users specific
+          permissions for accessing the capabilities of the Cloud
+          Queues service. Each account has only one account owner, and
+          that role is assigned by default to any Rackspace Cloud
+          account when the account is created.</para>
+        <para>See the <citetitle>Cloud Identity Client Developer
+            Guide</citetitle> for information about how to perform the
+          following tasks:</para>
+        <itemizedlist>
+          <listitem>
+            <para><link
+                xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_addUser_v2.0_users_.html"
+                > Create account users</link></para>
+          </listitem>
+          <listitem>
+            <para><link
+                xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/PUT_addUserRole_v2.0_users__userId__roles_OS-KSADM__roleId__.html"
+                > Assign roles to account users</link></para>
+          </listitem>
+          <listitem>
+            <para><link
+                xlink:href="http://docs-internal.rackspace.com/auth/api/v2.0/auth-client-devguide/content/DELETE_deleteUserRole_v2.0_users__userId__roles_OS-KSADM__roleId__.html"
+                > Delete roles from account users</link></para>
+          </listitem>
+        </itemizedlist>
+        <note>
+          <para>The account admin user (identity:user-admin) role
+            cannot hold any additional roles because it already has
+            full access to all capabilities by default.</para>
+        </note>
+      </section>
+      <section xml:id="RBAC_product_roles">
+        <title>Roles Available for Cloud Queues </title>
+        <para>Three roles (admin, creator, and observer) can be used
+          to access the Cloud Queues API specifically. The following
+          table describes these roles and their permissions.</para>
+        <table xml:id="RBAC_product_roles_table" rules="all">
+          <caption>Cloud  Queues Product Roles and
+            Capabilities</caption>
+          <col width="50%"/>
+          <col width="50%"/>
           <thead>
-            <tr align="center">
-              <td colspan="2">Region</td>
-              <td colspan="5">Endpoint</td>
+            <tr>
+              <th>Role Name</th>
+              <th>Role Permissions</th>
             </tr>
           </thead>
           <tbody>
-            <tr align="left">
-              <td colspan="2" rowspan="2">Chicago (ORD)</td>
-              <td colspan="5"
-                  ><code>https://ord.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/ </td>
+            <tr>
+              <td>queues:admin</td>
+              <td>This role provides Create, Read, Update, and Delete
+                permissions in Cloud Queues, where access is
+                granted.</td>
             </tr>
             <tr>
-              <td colspan="5"
-                  ><code>https://snet-ord.queues.api.rackspacecloud.com/v1.0/</code><parameter>1234</parameter>/</td>
+              <td>queues:creator</td>
+              <td>This role provides Create, Read and Update
+                permissions in Cloud Queues, where access is
+                granted.</td>
+            </tr>
+            <tr>
+              <td>queues:observer</td>
+              <td>This role provides Read permission in Cloud Queues,
+                where access is granted.</td>
             </tr>
           </tbody>
         </table>
-      </para>
-      -->
-      <para>
+        <para>Additionally, two multiproduct roles apply to all
+          products. Users with multiproduct roles inherit access to
+          future products when those products become RBAC-enabled. The
+          following table describes these roles and their
+          permissions.</para>
         <table rules="all">
+          <caption> Multiproduct (Global) Roles and
+            Permissions</caption>
+          <col width="50%"/>
+          <col width="50%"/>
+          <thead>
+            <tr>
+              <th>Role Name</th>
+              <th>Role Permissions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>admin</td>
+              <td>This role provides Create, Read, Update, and Delete
+                permissions in all products, where access is
+                granted.</td>
+            </tr>
+            <tr>
+              <td>observer</td>
+              <td>This role provides Read permission in all products,
+                where access is granted.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section xml:id="RBAC-Resolving-Conflicts-d1e001" version="5.0">
+        <title>Resolving Conflicts Between RBAC Multiproduct vs.
+          Custom (Product-specific) Roles</title>
+        <para>The account owner can set roles for both multiproduct
+          and Cloud Queues scope, and it is important to understand
+          how any potential conflicts among these roles are resolved.
+          When two roles appear to conflict, the role that provides
+          the more extensive permissions takes precedence. Therefore,
+          admin roles take precedence over observer and creator roles,
+          because admin roles provide more permissions. </para>
+        <para>The following table shows two examples of how potential
+          conflicts between user roles in the Control Panel are
+          resolved: </para>
+        <para>
+          <informaltable rules="all">
+            <thead>
+              <tr align="center">
+                <td>Permission Configuration</td>
+                <td>View of Permission in the Control Panel </td>
+                <td>Can the User Perform Product Admin Functions in
+                  the Control Panel?</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>User is assigned the following roles: multiproduct
+                    <emphasis role="bold">observer</emphasis> and
+                  Cloud Queues <emphasis role="bold"
+                  >admin</emphasis></td>
+                <td>Appears that the user has only the multiproduct
+                    <emphasis role="bold">observer</emphasis>
+                  role</td>
+                <td>Yes, for Cloud Queues only. The user has the
+                    <emphasis role="bold">observer</emphasis> role for
+                  the rest of the products.</td>
+              </tr>
+              <tr>
+                <td>User is assigned the following roles: multiproduct
+                    <emphasis role="bold">admin</emphasis> and Cloud
+                  Queues <emphasis role="bold"
+                  >observer</emphasis></td>
+                <td>Appears that the user has only the multiproduct
+                    <emphasis role="bold">admin</emphasis> role</td>
+                <td>Yes, for all of the products. The Cloud Queues
+                    <emphasis role="bold">observer</emphasis> role is
+                  ignored.</td>
+              </tr>
+            </tbody>
+          </informaltable>
+        </para>
+      </section>
+      <section xml:id="RBAC-Permissions-Cross-Ref-d1e001"
+        version="5.0">
+        <title>RBAC Permissions Cross-reference to Cloud Queues API
+          Operations</title>
+        <para>API operations for Cloud Queues may or may not be
+          available to all roles. To see which operations are
+          permitted to invoke which calls, please review <link
+            xlink:href="http://www.rackspace.com/knowledge_center/article/permissions-matrix-for-role-based-access-control-rbac"
+            > the Knowledge Center article</link>.</para>
+      </section>
+    </section>
+    <section xml:id="serviceEndpoints">
+      <title>Service Access/Endpoints</title>
+      <para>The endpoints to use for your Cloud Queues API calls are
+        summarized in the table below.</para>
+      <para>
+        <table xml:id="Endpoints-Table-d1e001" rules="all">
           <caption>Regionalized Service Endpoints</caption>
           <thead>
             <tr align="center">
@@ -779,69 +933,118 @@
             <tr align="left">
               <td colspan="2" rowspan="2">Chicago (ORD)</td>
               <td colspan="5"
-                  ><code>https://ord.queues.api.rackspacecloud.com/v1/</code></td>
+                ><code>https://ord.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="5"
-                  ><code>https://snet-ord.queues.api.rackspacecloud.com/v1/</code></td>
+                ><code>https://snet-ord.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
-              <td colspan="2" rowspan="2">Dallas/Ft. Worth (DFW)</td>
+              <td colspan="2" rowspan="2">Dallas/Ft. Worth
+                (DFW)</td>
               <td colspan="5"
-                  ><code>https://dfw.queues.api.rackspacecloud.com/v1.0/</code></td>
+                ><code>https://dfw.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="5"
-                  ><code>https://snet-dfw.queues.api.rackspacecloud.com/v1.0/</code></td>
+                ><code>https://snet-dfw.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr align="left">
               <td colspan="2" rowspan="2">London (LON)</td>
               <td colspan="5"
-                  ><code>https://lon.queues.api.rackspacecloud.com/v1/</code></td>
+                ><code>https://lon.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="5"
-                  ><code>https://snet-lon.queues.api.rackspacecloud.com/v1/</code></td>
+                ><code>https://snet-lon.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
-              <td colspan="2" rowspan="2">Northern Virginia (IAD)</td>
+              <td colspan="2" rowspan="2">Northern Virginia
+                (IAD)</td>
               <td colspan="5"
-                  ><code>https://iad.queues.api.rackspacecloud.com/v1.0/</code></td>
+                ><code>https://iad.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="5"
-                  ><code>https://snet-iad.queues.api.rackspacecloud.com/v1.0/</code></td>
+                ><code>https://snet-iad.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="2">Sydney (SYD)</td>
               <td colspan="5"
-                  ><code>https://syd.queues.api.rackspacecloud.com/v1.0/</code></td>
+                ><code>https://syd.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="2"/>
               <td colspan="5"
-                  ><code>https://snet-syd.queues.api.rackspacecloud.com/v1.0/</code></td>
+                ><code>https://snet-syd.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
           </tbody>
         </table>
       </para>
+      <para>If you are working with cloud servers that are in one of
+        the Rackspace data centers, using the ServiceNet endpoint
+        in the same data center has no network costs and provides
+        a faster connection. ServiceNet endpoints are prefixed
+        with <code>snet-</code> in <xref
+          linkend="Endpoints-Table-d1e001"/>. ServiceNet is the
+        data center internet network. In your authentication
+        response (see <xref
+          linkend="Authenticate-Response-JSON-d1e001"/>), it is
+        listed as <code>InternalURL</code>. </para>
+      <para> If you are working with servers that are not in one of
+        the Rackspace data centers, you must use a public endpoint
+        to connect. In your authentication response, public
+        endpoints are listed as <code>publicURL</code>. If you are
+        working with servers in multiple data centers or have a
+        mixed environment where you have servers in your data
+        centers and in Rackspace data centers, use a public
+        endpoint because it is accessible from all the servers in
+        the different environments.</para>
       <note>
-        <para>You should copy the base URLs directly from the catalog
-          rather than trying to construct them manually.</para>
-        <para>Rackspace Cloud Identity returns an endpoint with your
-          account ID. You do not have to provide the account ID for
-          the Cloud Queues API. If you have the X-Project-Id header
-          set, the Cloud Queues API works with or without this ID
-          specified. Without the X-Project-Id header, you receive an
-          auth error if the account ID is not in the URL. If the
-          account ID is in the URL, the Cloud Queues API will use that
-          ID in place of the X-Project-Id header. </para>
-        
-        <para>Account ID refers to your Rackspace account number,
-          which you can also find in your Cloud Control Panel at <link
-            xlink:href="https://mycloud.rackspace.com/"
-            >mycloud.rackspace.com</link>.</para>
+        <para>You should copy the base URLs directly from the
+          catalog rather than trying to construct them
+          manually.</para>
+        <para>Rackspace Cloud Identity returns an endpoint with
+          your account ID.  Note the following information about
+          account ID:</para>
+        <itemizedlist>
+          <listitem>
+            <para>Account ID from Cloud Identity is the same
+              as the Project ID given by the
+              <code>X-Project-ID</code> header in Cloud
+              Queues. (You might also see account ID or
+              project ID referred to as tenant ID.)</para>
+          </listitem>
+          <listitem>
+            <para>You do not have to provide the account ID
+              for the Cloud Queues API if you have the
+              <code>X-Project-ID</code> header set. (In
+              this case, the Cloud Queues API works with or
+              without the account ID specified.) </para>
+          </listitem>
+          <listitem>
+            <para>Without the <code>X-Project-ID</code>
+              header, you receive an auth error if the
+              account ID is not in the URL. </para>
+          </listitem>
+          <listitem>
+            <para>If the account ID is in the URL, the Cloud
+              Queues API will use that ID in place of the
+              <code>X-Project-ID</code> header.</para>
+          </listitem>
+          <listitem>
+            <para>Account ID and Project ID refer to your
+              Rackspace account number.</para>
+          </listitem>
+        </itemizedlist>
       </note>
+      <tip>
+        <para>If you do not know which data center you are working
+          in or your account ID, you can find them in your Cloud
+          Control Panel at <link
+            xlink:href="https://mycloud.rackspace.com/"
+            >mycloud.rackspace.com</link>. </para>
+      </tip>
 <!--<
       <para>Replace the sample account ID number,
           <parameter>1234</parameter>, with your actual account number
@@ -875,10 +1078,12 @@
       <example>
         <title>Example Request URL (contract version in <emphasis
             role="strong">bold</emphasis>)</title>
-        <programlisting>https://ord.queuing.api.rackspacecloud.com/<emphasis role="strong">v1.0</emphasis>/1234</programlisting>
+        <programlisting>https://ord.queues.api.rackspacecloud.com/<emphasis role="strong">v1</emphasis>/1234</programlisting>
       </example>
       <note>
-        <para>This document pertains to contract version 1.0.</para>
+        <para>This document pertains to contract version 1. Rackspace
+          will notify customers in Release Notes when and if the
+          contract does change.</para>
       </note>
     </section>
     <section xml:id="Request_Response_Types-d1e903">
@@ -945,10 +1150,18 @@
         <title>Rate Limits</title>
         <para>Rate limits control the frequency at which the user can
           issue specific API requests.</para>
-        <para>For Cloud Queues,  the rate limit is 300 requests per
+        <para>For Cloud Queues, the rate limit is 300 requests per
           second per project ID. </para>
-        <para>Rate limits are reset after a certain amount of time
-          passes. </para>
+        <para>If your application slightly exceeds the rate limit, the
+          Cloud Queues service throttles your requests. The requests
+          will take longer to perform and will have more latency. If
+          your application greatly exceeds the 300 request per second
+          rate limit, the API returns the HTTP response code 429 Too
+          Many Requests. If this occurs, reduce the application's
+          request rate to the Cloud Queues API by pausing slightly
+          between each request. If your application continues to hit
+          this limit and you cannot slow down the request rate, please
+          contact Rackspace Cloud support. </para>
       </section>
         <section xml:id="Absolute-Limits-d1e003" >
         <title>Absolute Limits</title>
@@ -1036,62 +1249,8 @@
           256 KB in a single request.</para>
       </note>
         </section>   
-<!--<para>Cloud Queues has the following limits:</para>
-        <itemizedlist>
-          <listitem>
-            <para>There is a per message limit of 256 KB, excluding
-              whitespace, on the size of the message body. If multiple
-              messages are included in the request, this limit also
-              applies to the sum of the message bodies added
-              together.</para>
-            <para>For example, you may have one message body of 256
-              KB, or up to 10 messages for which the sum of the
-              message bodies is 256 KB. A 400 error is triggered if a
-              single message body or the sum of multiple message
-              bodies exceed 256 KB in a single request.</para>
-          </listitem>
-          <listitem>
-            <para>A request cannot contain more than 10
-              messages.</para>
-          </listitem>
-          <listitem>
-            <para>A TTL cannot be longer than 14 days.</para>
-          </listitem>
-        </itemizedlist>
 
-        <table rules="all">
-          <caption>Absolute Limits</caption>
-          <thead>
-            <tr>
-              <td colspan="1">Type of Limit</td>
-              <td colspan="3">Description</td>
-              <td colspan="1">Limit</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colspan="1">Message </td>
-              <td colspan="3">Maximum size of message body or the sum
-                of message bodies </td>
-              <td colspan="1">256 KB</td>
-            </tr>
-            <tr>
-              <td colspan="1">Request</td>
-              <td colspan="3">Maximum number of messages in a request </td>
-              <td colspan="1">10</td>
-            </tr>
-            <tr>
-              <td colspan="1">TTL</td>
-              <td colspan="3">Maximum length of TTL</td>
-              <td colspan="1">14 days</td>
-            </tr>
-          </tbody>
-        </table>
-       
-      </section> 
-       
-        -->
-<!--    </section>  -->
+  </section> 
     <section xml:id="commonHeaders" >
       <title>Common Headers</title>
       <para>Each request to the Cloud Queues API must include certain
@@ -1145,23 +1304,22 @@
             <td>Auth token</td>
           </tr>
           <tr>
-            <td>X-Project-Id</td>
+            <td>X-Project-ID</td>
             <td>An ID for a project to which the value of X-Auth-Token
               grants access. Queues are created under this
               project.</td>
           </tr>
           <tr>
             <td>Client-ID</td>
-            <td>A unique ID for each client instance. The Client-ID is
-              used to avoid echoing a sender's messages back to the
-              same instance and may be logged by the server for future
-              use. The client generates the Client-ID once. It
-              persists between restarts of the client. The client
-              should reuse the same Client-ID. Note: All
-              message-related operations require that Client-ID is
-              included in the headers to ensure that messages are not
-              echoed back to the client that posted them, unless the
-              client explicitly requests this.</td>
+            <td>A UUID for each client instance. The UUID must be
+              submitted in its canonical form (for example,
+              3381af92-2b9e-11e3-b191-71861300734c). The client
+              generates the Client-ID once. Client-ID persists between
+              restarts of the client so the client should reuse that
+              same Client-ID. All message-related operations require
+              the use of Client-ID in the headers to ensure that
+              messages are not echoed back to the client that posted
+              them, unless the client explicitly requests this.</td>
           </tr>
         </tbody>
       </table>
@@ -2274,252 +2432,6 @@ Content-Type: application/json
         </section>
       </section>
     </section>
-<!--
-    <section xml:id="RBAC">
-      <title>Role Based Access Control (RBAC)</title>
-      <remark>Reviewer: This common text is still under review and is
-        not scheduled to be published externally for RBAC until 8/26.
-        Note that the links given below in this section are to
-        internal documentation.</remark>
-      <para>Role Based Access Control (RBAC) restricts access to the
-        capabilities of Rackspace Cloud services, including the Cloud
-        Queues API, to authorized users only. RBAC enables Rackspace
-        Cloud customers to specify which account users of their Cloud
-        account have access to which Cloud Queues API service
-        capabilities, based on roles defined by Rackspace (see <xref
-          linkend="RBAC_product_roles_table"/>). The permissions to
-        perform certain operations in Cloud Queues API – create, read,
-        update, delete – are assigned to specific roles, and these
-        roles can be assigned by the Cloud account admin user to
-        account users of the account. </para>
-      <section xml:id="assigningRoles">
-        <title>Assigning Roles to Account Users</title>
-        <para>The account admin user (identity:user-admin) can create
-          account users on the account and then assign roles to the
-          account users. The roles grant the account users specific
-          permissions for accessing the capabilities of the Cloud
-          Queues service. Only one Cloud account admin user is allowed
-          per account, and it is assigned by default to any Rackspace
-          Cloud account when the account is created. </para>
-        <para>See the <citetitle>Cloud Identity Client Developer
-            Guide</citetitle> for information about how to perform the
-          following tasks:</para>
-        <itemizedlist>
-          <listitem>
-            <para>Create account users (refer to <link
-                xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_addUser_v2.0_users_.html"
-                >
-                http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_addUser_v2.0_users_.html</link>)</para>
-          </listitem>
-          <listitem>
-            <para>Assign roles to account users (refer to <link
-                xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_addRole_v2.0_OS-KSADM_roles_.html"
-                >
-                http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_addRole_v2.0_OS-KSADM_roles_.html</link>)</para>
-          </listitem>
-        </itemizedlist>
-        <note>
-          <para>The account admin user (identity:user-admin) role
-            cannot hold any additional roles because it already has
-            full access to all capabilities by default.</para>
-        </note>
-      
-      </section>
-      <section xml:id="rolesAvailable">
-        <title>Roles Available to Cloud Queues </title>
-        <para>Currently, three roles can be used to access the Cloud
-          Queues API. These roles, admin, creator, and observer,
-          apply to this specific product. The following table
-          describes these roles and their permissions.</para>
-        <table rules="all" xml:id="RBAC_product_roles_table">
-          <caption>Cloud Queues Product Roles and
-            Capabilities</caption>
-          <col width="50%"/>
-          <col width="50%"/>
-          <thead>
-            <tr>
-              <th>Role Name</th>
-              <th>Role Permissions</th>
-            </tr>
-          </thead>
-          <tbody>
-           
-              <tr>
-                <td>queues:admin</td>
-                <td>Create, Read, Update, and Delete permissions
-                across a specific product, where access is
-                granted</td>
-              </tr>
-            <tr>
-              <td>queues:creator</td>
-              <td>Create, Read, and Update permissions across a
-                specific product, where access is granted</td>
-            </tr>
-            <tr>
-              <td>queues:observer</td>
-              <td>Read permission across a specific product, where
-                access is granted</td>
-            </tr>
-            
-          </tbody>
-        </table>
-        <para>In addition, there are global roles which apply to all
-          products. The following table describes these roles and
-          their permissions.</para>
-        <table rules="all" xml:id="RBAC_global_roles_table">
-          <caption>Cloud Queues Global Roles and
-            Capabilities</caption>
-          <col width="50%"/>
-          <col width="50%"/>
-          <thead>
-            <tr>
-              <th>Role Name</th>
-              <th>Role Permissions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>admin</td>
-              <td>Create, Read, Update, and Delete permissions across
-                multiple products, where access is granted</td>
-            </tr>
-            <tr>
-              <td>observer</td>
-              <td>Read permission across multiple products, where
-                access is granted </td>
-            </tr>
-          </tbody>
-        </table>
-       
-      </section>
-      <section xml:id="operationsRoles">
-        <title>Cloud Queues Operations and Their Roles</title>
-        <para>The following table shows the roles that each Cloud
-          Queues operation can have.</para>
-        <table rules="all">
-          <caption>Cloud Queues Operations and Their Roles</caption>
-          <col width="25%"/>
-          <col width="25%"/>
-          <col width="25%"/>
-          <col width="25%"/>
-          <thead>
-            <tr>
-              <th>API Operation</th>
-              <th>Creator</th>
-              <th>Observer</th>
-              <th>Admin</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Get Home Document</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Create Queue</td>
-              <td>X</td>
-              <td/>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>List Queues</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Set Queue Metadata</td>
-              <td>X</td>
-              <td/>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Get Queue Metadata</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Get Queue Stats</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Delete Queue</td>
-              <td/>
-              <td/>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Get Messages</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Get a Specific Message</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Set a Set of Messages by ID</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Post Message</td>
-              <td>X</td>
-              <td/>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Delete Message</td>
-              <td>X</td>
-              <td/>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Delete Messages</td>
-              <td>X</td>
-              <td/>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Claim Messages</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Query Claim</td>
-              <td>X</td>
-              <td/>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Update Claim</td>
-              <td>X</td>
-              <td/>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Release Claim</td>
-              <td>X</td>
-              <td/>
-              <td>X</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </section> 
--->
- 
-  </section>
   </chapter>
   <chapter xml:id="API_Operations_dle001" 
     xmlns="http://docbook.org/ns/docbook"

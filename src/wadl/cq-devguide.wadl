@@ -437,15 +437,11 @@
 		<wadl:doc xml:lang="EN" title="Get a Specific Message" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Gets the specified message from the specified queue. </para>  
 			<para>This operation gets the specified message from the specified queue. </para>
-			<para>If either the message ID or the claim ID is malformed or nonexistent, no message is returned.</para>
+			<para>If either the message ID is malformed or nonexistent, no message is returned.</para>
 			<para>Message fields are defined as follows:<itemizedlist><listitem><para><code>href</code> is an opaque relative URI that the client can use to uniquely identify a message resource, and interact with it. </para></listitem><listitem><para><code>ttl</code> is the ttl set on the message when it was posted. The message expires after (ttl - age) seconds. </para></listitem><listitem><para><code>age</code> is the number of seconds since ts, relative to the server's clock.</para></listitem><listitem><para><code>body</code> is the arbitrary document submitted along with the original request to post the message. </para></listitem></itemizedlist></para>
 		</wadl:doc>
 		<request>
-			<param name="claim_id" style="query" type="xsd:string" required="false">
-				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
-					Filters on claim_id. 
-				</wadl:doc>
-			</param>
+
 			<representation mediaType="application/json" element="queues:Queue" >
 				<doc>
 					<xsdxt:code href="../wadl/samples/cq-getSpecificMessage_request.json"/>

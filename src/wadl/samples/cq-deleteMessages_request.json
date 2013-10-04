@@ -2,6 +2,6 @@ DELETE /v1/queues/demoqueue/messages?ids=50b68a50d6f5b8c8a7c62b01,50b68a50d6f5b8
 Host: ord.queues.api.rackspacecloud.com
 Content-type: application/json
 X-Auth-Token: 0f6e9f63600142f0a970911583522217
-Client-ID: QClient
+Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830
 Accept: application/json
 X-Project-Id: 806067
