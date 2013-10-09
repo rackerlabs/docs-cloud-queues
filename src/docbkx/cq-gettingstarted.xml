@@ -1166,7 +1166,7 @@ which you can also find in your Cloud Control Panel at
                 response:</para>
             <example>
                 <title>cURL Create Queue Request</title>
-                <programlisting>curl -i -X PUT https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \
+                <programlisting language="bash">curl -i -X PUT https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \
 -H "Accept: application/json" \
 -H "X-Project-ID: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
@@ -1233,7 +1233,7 @@ Location: /v1/queues/samplequeue</programlisting>
                 and response:</para>
             <example>
                 <title>cURL Post Message Request</title>
-                <programlisting>curl -i -X POST https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages -d \
+                <programlisting language="bash">curl -i -X POST https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages -d \
 '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' \
 -H "Content-type: application/json" \
 -H "Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830" \
@@ -1318,7 +1318,7 @@ Content-Type: application/json
                 and response:</para>
             <example>
                 <title>cURL Claim Messages Request</title>
-                <programlisting>curl -i -X POST https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims -d \
+                <programlisting language="bash">curl -i -X POST https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims -d \
 '{"ttl": 300,"grace":300}' \
 -H "Content-type: application/json" \ 
 -H "Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830" \ 
@@ -1359,7 +1359,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
                 and response:</para>
             <example>
                 <title>cURL Delete Message Request</title>
-                <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 \ 
+                <programlisting language="bash">curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 \ 
 -H "Content-type: application/json" \
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \ 
 -H "Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830" \
@@ -1387,7 +1387,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
                 and response:</para>
             <example>
                 <title>cURL Release Claim Request</title>
-                <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 \ 
+                <programlisting language="bash">curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 \ 
 -H "Content-type: application/json" \ 
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \ 
 -H "Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830"  \
@@ -1409,7 +1409,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
                 response:</para>
             <example>
                 <title>cURL Delete Queue Request</title>
-                <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \ 
+                <programlisting language="bash">curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \ 
 -H "Content-type: application/json" \ 
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \
 -H "Accept: application/json" \
