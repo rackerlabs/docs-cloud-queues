@@ -856,7 +856,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-gettingstarted/
             specifies when the token expires. Authentication tokens
             are typically valid for 24 hours. Applications should be
             designed to re-authenticate after receiving a 401
-            (Unauthorized) response from a service endpoint.</para>
+            (Unauthorized) response from a service endpoint. </para>
         <note>
             <title>Notes</title>
             <itemizedlist spacing="compact">
@@ -1155,7 +1155,7 @@ which you can also find in your Cloud Control Panel at
             <para>The body of the PUT request is empty. </para>
             <para>The template is as follows:</para>
             <para>
-                <programlisting>PUT {endpoint}/queues/{queue_name}</programlisting>
+                <programlisting language="json">PUT {endpoint}/queues/{queue_name}</programlisting>
             </para>
             <para>The <parameter>queue_name</parameter> parameter
                 specifies the name to give the queue. The name
@@ -1166,14 +1166,14 @@ which you can also find in your Cloud Control Panel at
                 response:</para>
             <example>
                 <title>cURL Create Queue Request</title>
-                <programlisting>curl -i -X PUT https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \
+                <programlisting language="json">curl -i -X PUT https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \
 -H "Accept: application/json" \
 -H "X-Project-ID: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
             </example>
             <example>
                 <title>Create Queue Response</title>
-                <programlisting>HTTP/1.1 201 Created
+                <programlisting language="json">HTTP/1.1 201 Created
 Content-Length: 0
 Location: /v1/queues/samplequeue</programlisting>
             </example>
@@ -1189,7 +1189,7 @@ Location: /v1/queues/samplequeue</programlisting>
                 body to retrieve the created messages for further
                 processing if needed. </para>
             <para>The template is as
-                follows:<programlisting>POST {endpoint}/queues/{queue_name}/messages</programlisting></para>
+                follows:<programlisting language="json">POST {endpoint}/queues/{queue_name}/messages</programlisting></para>
             <para>The client specifies only the <tag class="attribute"
                     >body</tag> and <tag class="attribute">ttl</tag>
                 attributes for the message. Metadata, such as <tag
@@ -1233,7 +1233,7 @@ Location: /v1/queues/samplequeue</programlisting>
                 and response:</para>
             <example>
                 <title>cURL Post Message Request</title>
-                <programlisting>curl -i -X POST https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages -d \
+                <programlisting language="json">curl -i -X POST https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages -d \
 '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' \
 -H "Content-type: application/json" \
 -H "Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830" \
@@ -1243,7 +1243,7 @@ Location: /v1/queues/samplequeue</programlisting>
             </example>
             <example>
                 <title>Post Message Response </title>
-                <programlisting>HTTP/1.1 201 Created
+                <programlisting language="json">HTTP/1.1 201 Created
 Content-Length: 153
 Content-Type: application/json; charset=utf-8
 Location: /v1/queues/samplequeue/messages?ids=51ca00a0c508f154c912b85c,51ca00a0c508f154c912b85d
@@ -1262,7 +1262,7 @@ Location: /v1/queues/samplequeue/messages?ids=51ca00a0c508f154c912b85c,51ca00a0c
                 claim, the Cloud Queues service returns an HTTP
                     <code>204 No Content</code> response code. </para>
             <para>The template is as follows:</para>
-            <programlisting>POST {endpoint}/queues/{queue_name}/claims{?limit}
+            <programlisting language="json">POST {endpoint}/queues/{queue_name}/claims{?limit}
 Content-Type: application/json
 
 { 
@@ -1318,7 +1318,7 @@ Content-Type: application/json
                 and response:</para>
             <example>
                 <title>cURL Claim Messages Request</title>
-                <programlisting>curl -i -X POST https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims -d \
+                <programlisting language="json">curl -i -X POST https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims -d \
 '{"ttl": 300,"grace":300}' \
 -H "Content-type: application/json" \ 
 -H "Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830" \ 
@@ -1328,7 +1328,7 @@ Content-Type: application/json
             </example>
             <example>
                 <title>Claim Messages Response</title>
-                <programlisting>HTTP/1.1 200 OK
+                <programlisting language="json">HTTP/1.1 200 OK
 Content-Length: 164
 Content-Type: application/json; charset=utf-8
 Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
@@ -1341,7 +1341,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
             <para>The Delete Message operations deletes
                 messages.</para>
             <para>The template is as
-                follows:<programlisting>DELETE {endpoint}/queues/{queue_name}/messages/{message_id}{?claim_id}
+                follows:<programlisting language="json">DELETE {endpoint}/queues/{queue_name}/messages/{message_id}{?claim_id}
 </programlisting></para>
             <para>The <parameter>message_id</parameter> parameter
                 specifies the message to delete. </para>
@@ -1359,7 +1359,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
                 and response:</para>
             <example>
                 <title>cURL Delete Message Request</title>
-                <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 \ 
+                <programlisting language="json">curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 \ 
 -H "Content-type: application/json" \
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \ 
 -H "Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830" \
@@ -1368,7 +1368,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
             </example>
             <example>
                 <title>Delete Message Response</title>
-                <programlisting>HTTP/1.1 204 No Content</programlisting>
+                <programlisting language="json">HTTP/1.1 204 No Content</programlisting>
             </example>
         </section>
         <section xml:id="Delete_claim">
@@ -1377,7 +1377,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
                 claim, making any remaining, undeleted) messages
                 associated with the claim available to other workers. </para>
             <para>The template is as follows:</para>
-            <programlisting>DELETE {endpoint}/queues/{queue_name}/claims/{claim_id}</programlisting>
+            <programlisting language="json">DELETE {endpoint}/queues/{queue_name}/claims/{claim_id}</programlisting>
             <para>This operation is useful when a worker is performing
                 a graceful shutdown, fails to process one or more
                 messages, or is taking longer than expected to process
@@ -1387,7 +1387,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
                 and response:</para>
             <example>
                 <title>cURL Release Claim Request</title>
-                <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 \ 
+                <programlisting language="json">curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 \ 
 -H "Content-type: application/json" \ 
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \ 
 -H "Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830"  \
@@ -1396,7 +1396,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
             </example>
             <example>
                 <title>Release Claim Response</title>
-                <programlisting>HTTP/1.1 204 No Content</programlisting>
+                <programlisting language="json">HTTP/1.1 204 No Content</programlisting>
             </example>
         </section>
         <section xml:id="Delete_queue">
@@ -1404,12 +1404,12 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
             <para>The Delete Queue operation immediately deletes a
                 queue and all of its existing messages. </para>
             <para>The template is as
-                follows:<programlisting>DELETE {endpoint}/queues/{queue_name}</programlisting></para>
+                follows:<programlisting language="json">DELETE {endpoint}/queues/{queue_name}</programlisting></para>
             <para>Following are examples of a Delete Queue request and
                 response:</para>
             <example>
                 <title>cURL Delete Queue Request</title>
-                <programlisting>curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \ 
+                <programlisting language="json">curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \ 
 -H "Content-type: application/json" \ 
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \
 -H "Accept: application/json" \
@@ -1417,7 +1417,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
             </example>
             <example>
                 <title>Delete Queue Response</title>
-                <programlisting>HTTP/1.1 204 No Content
+                <programlisting language="json">HTTP/1.1 204 No Content
 </programlisting>
             </example>
         </section>
