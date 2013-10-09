@@ -3,7 +3,7 @@ Host: ord.queues.api.rackspacecloud.com
 Content-type: application/json
 X-Auth-Token: 0f6e9f63600142f0a970911583522217
 Accept: application/json
-X-Project-Id: 806067
+X-Project-ID: 806067
 
 {
     "new metadata": "Omega"

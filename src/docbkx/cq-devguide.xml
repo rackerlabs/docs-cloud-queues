@@ -179,6 +179,13 @@
         following table.</para>
       <?rax revhistory?>
     </section>
+    <section xml:id="LA-Access-d1e001">
+      <title>Access to the Limited Availability Release</title>
+      <para>To get access to the Limited Availability (LA) release of
+        Cloud Queues, complete the information <link
+          xlink:href="https://surveys.rackspace.com/Survey.aspx?s=3dc74c685f83493a9a9ef3b2c4518ac3"
+          >here</link>. </para>
+    </section>
     <section xml:id="Additional_Resources-d1e532">
       <title>Additional Resources</title>
       <!--
@@ -373,52 +380,49 @@
     <section xml:id="Use-Cases-d1e001"> 
       <title>Use Cases</title>
       <para>Queuing systems are used to coordinate tasks within an
-        application. Here are some examples of how Rackspace products
-        use a queuing service: </para>
+        application. Here are some examples: </para>
       <itemizedlist>
         <listitem>
-          <para><emphasis role="bold">Cloud Backup</emphasis>: Cloud
-            Backup uses a queuing system to connect the actions that
-            users do in the Cloud Control Panel to the customer's
-            backup agent on the server. When a customer wants to start
-            a backup, they simply choose "start backup" in their Cloud
-            Control Panel. When that happens, the Cloud Control Panel
-            (the producer), puts a "startBackup" message into the
-            queue. Every few minutes, the agent on the customers
-            server (the worker) checks the queue to see if it has any
-            new messages to act on. The agent claims the "startBackup"
-            message and kickoffs the backup on the customer's server.
-          </para>
+          <para><emphasis role="bold">Backup</emphasis>: A backup
+            application might use a queuing system to connect the
+            actions that users do in the a control panel to the
+            customer's backup agent on a server. When a customer wants
+            to start a backup, they simply choose "start backup" on a
+            panel. Doing so causes the producer to put a "startBackup"
+            message into the queue. Every few minutes, the agent on
+            the customers server (the worker) checks the queue to see
+            if it has any new messages to act on. The agent claims the
+            "startBackup" message and kicks off the backup on the
+            customer's server. </para>
         </listitem>
         <listitem>
-          <para><emphasis role="bold">Cloud Files</emphasis>: Because
-            Cloud Files is such a large distributed system, gathering
-            stats for it can be a long process. Cloud Files uses a
-            queuing system to ensure that jobs get completed, even if
-            one fails. Since messages are never deleted until after
-            the worker has completed the job, Cloud Files can make
+          <para><emphasis role="bold">Storage</emphasis>: Gathering
+            statistics for a large, distributed storage system can be
+            a long process. The storage system can use a queuing
+            system to ensure that jobs complete, even if one initially
+            fails. Since messages are not deleted until after the
+            worker has completed the job, the storage system can make
             sure that no job goes undone. If the worker fails to
-            complete the job, the message stays in the queue and be
+            complete the job, the message stays in the queue to be
             completed by another server. In this case, a worker claims
-            a message to perform a stats job, but the claim's ttl
-            expired and the message is put back into the queue once
-            the job took too long to complete (likely meaning it
-            failed). By giving the claim a TTL, applications can
-            protect themselves from workers going offline while
+            a message to perform a statistics job, but the claim's TTL
+            expired and the message is put back into the queue when
+            the job took too long to complete (meaning that it most
+            likely failed). By giving the claim a TTL, applications
+            can protect themselves from workers going offline while
             processing a message. After a claim's TTL expires, the
             message is put back into the queue for another worker to
             claim. </para>
         </listitem>
         <listitem>
-          <para><emphasis role="bold">Email and Apps</emphasis>: The
-            Email and Apps team is constantly migrating email, so they
-            developed a tool to let customers do it themselves.
-            Customers move from old versions of Exchange to newer ones
-            and from other providers to Rackspace. The migrations take
-            a long time, so they cannot be done via single API calls,
-            or by a single server. When a user starts a migration job
-            from their portal, the migration tool sends messages to
-            the queue with details of how to run the customers
+          <para><emphasis role="bold">Email</emphasis>: The team for
+            an email application is constantly migrating customer
+            email from old versions to newer ones, so they develop a
+            tool to let customers do it themselves.  The migrations
+            take a long time, so they cannot be done with single API
+            calls, or by a single server. When a user starts a
+            migration job from their portal, the migration tool sends
+            messages to the queue with details of how to run the
             migration. A set of migration engines, the consumers in
             this case, periodically check the queues for new migration
             tasks, claim the messages, perform the migration, and
@@ -1249,33 +1253,33 @@
         <tbody>
           <tr>
             <td rowspan="6">Limits on Messages and Queues per Request </td>
-            <td>Maximum number of queue records per page of results
-              when listing queues</td>
+            <td>Number of queue records per page of results when
+                listing queues</td>
             <td>1 - 1000</td>
           </tr>
           <tr>
-            <td>Maximum number of messages per page of results when
-              listing messages</td>
+            <td>Number of messages per page of results when listing
+                messages</td>
             <td>1 - 25 </td>
           </tr>
           <tr>
-            <td>Maximum number of messages that can be posted in a
-              single request </td>
+            <td>Number of messages that can be posted in a single
+                request </td>
             <td>1 - 25 </td>
           </tr>
           <tr>
-            <td>Maximum number of messages that can be claimed at one
-              time</td>
+            <td>Number of messages that can be claimed at one
+                time</td>
             <td>1 - 25 </td>
           </tr>
           <tr>
-            <td>Maximum number of messages that can be deleted in a
-              single bulk delete request</td>
+            <td>Number of messages that can be deleted in a single
+                bulk delete request</td>
             <td>1 - 25 </td>
           </tr>
           <tr>
-            <td>Maximum number of messages that can be requested in a
-              bulk get by ID</td>
+            <td>Number of messages that can be requested in a bulk get
+                by ID</td>
             <td>1 - 25 </td>
           </tr>
           <tr>
@@ -2505,19 +2509,13 @@ Content-Type: application/json
     <title>API Operations</title>
     <para>This chapter describes each of the Cloud Queues operations,
       which are summarized in the following table. </para>
-    <note>
-      <para>When used in the Cloud Queues API operations,
-          <code>queue_name</code> is the name of the queue. The name
-        must not exceed 64 bytes in length, and it is limited to
-        US-ASCII letters, digits, underscores, and hyphens. </para>
-    </note>
     <section xml:id="homeDocument-operation">
       <title>Home Document</title>
       <para>The section describes how to get the home document for
         Cloud Queues.</para>
       <note>
-        <para>The Home Document schema is currently not ratified in
-          OpenStack and  may change. </para>
+        <para>The home document schema is currently not ratified in
+          OpenStack and may change. </para>
       </note>
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#version">
@@ -2542,8 +2540,8 @@ Content-Type: application/json
     </section>
     <section xml:id="message-operations-dle001" >
       <title>Messages </title>
-      <para>This section describes message requests that are supported
-        by the Cloud Queues API. </para>
+      <para>This section describes message operations that are
+        supported by the Cloud Queues API. </para>
       <note>
         <para>All message-related operations require that Client-ID be
           included in the headers. This is to ensure that messages are
@@ -2558,7 +2556,7 @@ Content-Type: application/json
     </section>
     <section xml:id="claims-operations-dle001" >
       <title>Claims </title>
-      <para>This section describes claim requests that are supported
+      <para>This section describes claim operations that are supported
         by the Cloud Queues API. </para>
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#claims"/>

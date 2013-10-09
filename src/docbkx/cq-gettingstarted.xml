@@ -184,6 +184,14 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-gettingstarted/
         >http://docs.rackspace.com/</link> and at <link
         xlink:href="http://www.rackspace.com/cloud/cloud_hosting_products/dns/"
         >http://www.rackspace.com/cloud/</link>. </para>
+        <section xml:id="LA-Access-d1e001">
+            <title>Access to the Limited Availability Release</title>
+            <para>To get access to the Limited Availability (LA)
+                release of Cloud Queues, complete the information
+                    <link
+                    xlink:href="https://surveys.rackspace.com/Survey.aspx?s=3dc74c685f83493a9a9ef3b2c4518ac3"
+                    >here</link>. </para>
+        </section>
         <section xml:id="core_concepts">
             <title>Prerequisites for Running Examples </title>
             <para xmlns:wadl="http://wadl.dev.java.net/2009/02">In
@@ -437,76 +445,70 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-gettingstarted/
             <section xml:id="use_cases">
                 <title>Use Cases</title>
                 <para>Queuing systems are used to coordinate tasks
-                    within an application. Here are some examples of
-                    how Rackspace products use a queuing service: </para>
+                    within an application. Here are some examples: </para>
                 <itemizedlist>
                     <listitem>
-                        <para><emphasis role="bold">Cloud
-                                Backup</emphasis>: Cloud Backup uses a
-                            queuing system to connect the actions that
-                            users do in the Cloud Control Panel to the
-                            customer's backup agent on the server.
-                            When a customer wants to start a backup,
-                            they simply choose "start backup" in their
-                            Cloud Control Panel. When that happens,
-                            the Cloud Control Panel (the producer),
-                            puts a "startBackup" message into the
-                            queue. Every few minutes, the agent on the
+                        <para><emphasis role="bold">Backup</emphasis>:
+                            A backup application might use a queuing
+                            system to connect the actions that users
+                            do in the a control panel to the
+                            customer's backup agent on a server. When
+                            a customer wants to start a backup, they
+                            simply choose "start backup" on a panel.
+                            Doing so causes the producer to put a
+                            "startBackup" message into the queue.
+                            Every few minutes, the agent on the
                             customers server (the worker) checks the
                             queue to see if it has any new messages to
                             act on. The agent claims the "startBackup"
-                            message and kickoffs the backup on the
+                            message and kicks off the backup on the
                             customer's server. </para>
                     </listitem>
                     <listitem>
-                        <para><emphasis role="bold">Cloud
-                                Files</emphasis>: Because Cloud Files
-                            is such a large distributed system,
-                            gathering stats for it can be a long
-                            process. Cloud Files uses a queuing system
-                            to ensure that jobs get completed, even if
-                            one fails. Since messages are never
-                            deleted until after the worker has
-                            completed the job, Cloud Files can make
-                            sure that no job goes undone. If the
-                            worker fails to complete the job, the
-                            message stays in the queue and be
-                            completed by another server. In this case,
-                            a worker claims a message to perform a
-                            stats job, but the claim's ttl expired and
-                            the message is put back into the queue
-                            once the job took too long to complete
-                            (likely meaning it failed). By giving the
-                            claim a TTL, applications can protect
-                            themselves from workers going offline
-                            while processing a message. After a
-                            claim's TTL expires, the message is put
-                            back into the queue for another worker to
-                            claim.  </para>
+                        <para><emphasis role="bold"
+                            >Storage</emphasis>: Gathering statistics
+                            for a large, distributed storage system
+                            can be a long process. The storage system
+                            can use a queuing system to ensure that
+                            jobs complete, even if one initially
+                            fails. Since messages are not deleted
+                            until after the worker has completed the
+                            job, the storage system can make sure that
+                            no job goes undone. If the worker fails to
+                            complete the job, the message stays in the
+                            queue to be completed by another server.
+                            In this case, a worker claims a message to
+                            perform a statistics job, but the claim's
+                            TTL expired and the message is put back
+                            into the queue when the job took too long
+                            to complete (meaning that it most likely
+                            failed). By giving the claim a TTL,
+                            applications can protect themselves from
+                            workers going offline while processing a
+                            message. After a claim's TTL expires, the
+                            message is put back into the queue for
+                            another worker to claim. </para>
                     </listitem>
                     <listitem>
-                        <para><emphasis role="bold">Email and
-                                Apps</emphasis>: The Email and Apps
-                            team is constantly migrating email, so
-                            they developed a tool to let customers do
-                            it themselves. Customers move from old
-                            versions of Exchange to newer ones and
-                            from other providers to Rackspace. The
-                            migrations take a long time, so they
-                            cannot be done via single API calls, or by
-                            a single server. When a user starts a
-                            migration job from their portal, the
-                            migration tool sends messages to the queue
-                            with details of how to run the customers
-                            migration. A set of migration engines, the
-                            consumers in this case, periodically check
-                            the queues for new migration tasks, claim
-                            the messages, perform the migration, and
-                            update a database with the migration
+                        <para><emphasis role="bold">Email</emphasis>:
+                            The team for an email application is
+                            constantly migrating customer email from
+                            old versions to newer ones, so they
+                            develop a tool to let customers do it
+                            themselves.  The migrations take a long
+                            time, so they cannot be done with single
+                            API calls, or by a single server. When a
+                            user starts a migration job from their
+                            portal, the migration tool sends messages
+                            to the queue with details of how to run
+                            the migration. A set of migration engines,
+                            the consumers in this case, periodically
+                            check the queues for new migration tasks,
+                            claim the messages, perform the migration,
+                            and update a database with the migration
                             details. This process allows a set of
                             servers to work together to accomplish
-                            large migrations in a timely manner.
-                        </para>
+                            large migrations in a timely manner. </para>
                     </listitem>
                 </itemizedlist>
                 <para>Following are some generic use cases for Cloud
