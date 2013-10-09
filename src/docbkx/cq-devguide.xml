@@ -239,9 +239,7 @@
     <section xml:id="Pricing_SLA-d1e1362">
       <title>Pricing and Service Level</title>
       <para>During the Limited Access (LA) period, there is no charge
-        for Cloud Queues. When Cloud Queues moves to unlimited
-        availability (GA), customers will be billed for outbound
-        bandwidth.</para>
+        for Cloud Queues.</para>
       <para>While Cloud Queues is in LA, it is subject to the
         Rackspace test terms at <link
           xlink:href="http://www.rackspace.com/information/legal/testterms"
