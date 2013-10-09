@@ -1147,7 +1147,7 @@
         the API might be available at any given time and are not
         guaranteed to be compatible with one another. </para>
       <example>
-        <title>Sample Request URL for Contrac Version 1 </title>
+        <title>Sample Request URL for Contract Version 1 </title>
         <programlisting>https://ord.queues.api.rackspacecloud.com/<emphasis role="strong">v1</emphasis>/1234</programlisting>
       </example>
       <note>
@@ -1427,7 +1427,7 @@
           </tr>
           <tr>
             <td>dd</td>
-            <td>Two-digit day of athe month</td>
+            <td>Two-digit day of at the month</td>
           </tr>
           <tr>
             <td>T</td>

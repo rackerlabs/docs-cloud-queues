@@ -461,7 +461,7 @@
 		<wadl:doc xml:lang="EN" title="Get a Set of Messages by ID" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Gets a specified set of messages from the specified queue. </para>  
 			<para>This operation provides a more efficient way to query multiple messages compared to using a series of individual <command>GET</command>. Note that the list of IDs cannot exceed 20. If a malformed ID or a nonexistent message ID is provided, it is ignored, and the remaining messages are returned. </para>
-			<para>Unlike the Get Messages operation, a client's own messages are always returned in this operation. If you use the ids parameter, the echo parameter is not used and is ignored if it is specifed. </para>
+			<para>Unlike the Get Messages operation, a client's own messages are always returned in this operation. If you use the ids parameter, the echo parameter is not used and is ignored if it is specified. </para>
 			<para>The message attributes are defined as follows:<itemizedlist><listitem><para><code>href</code> is an opaque relative URI that the client can use to uniquely identify a message resource and interact with it. </para></listitem><listitem><para><code>ttl</code> is the TTL that was set on the message when it was posted. The message expires after (ttl - age) seconds. </para></listitem><listitem><para><code>age</code> is the number of seconds relative to the server's clock.</para></listitem><listitem><para><code>body</code> is the arbitrary document that was submitted with the original request to post the message. </para></listitem></itemizedlist></para>
 		</wadl:doc>
 		<request>
@@ -499,8 +499,8 @@
 		<wadl:doc xml:lang="EN" title="Delete Message" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Deletes the specified message from the specified queue. </para>  
 			<para>This operation immediately deletes the specified message. </para>
-			<note><para><code>claim_id</code> specifies that the message should be deleted only if it has the specified claim ID, and that claim has not expired. This is useful for ensuring only one agent processes any given message. Whenever a worker client's claim expires before it has a chance to delete a message it has processed, the worker must roll back any actions it took based on that message because another worker will now be able to claim and process the same message. </para>
-				<para>If you do not specify <code>claim_id</code>, but the message is claimed, the operation fails. You can only delete claimed messages by providing an appropriate <code>claim_id</code>.</para></note>
+			<para>The <code>claim_id</code> parameter specifies that the message is deleted only if it has the specified claim ID and that claim has not expired. This specification is useful for ensuring only one worker processes any given message. When a worker's claim expires before it can delete a message that it has processed, the worker must roll back any actions it took based on that message because another worker can now claim and process the same message. </para>
+				<para>If you do not specify <code>claim_id</code>, but the message is claimed, the operation fails. You can only delete claimed messages by providing an appropriate <code>claim_id</code>.</para>
 		</wadl:doc>
 		<request>
 			<param name="claim_id" style="query" type="xsd:string" required="false">
@@ -566,19 +566,18 @@
 	<method name="POST" id="claimMessages">
 		<wadl:doc xml:lang="EN" title="Claim Messages" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Claims a set of messages from the specified queue. </para>  
-			<para>This operation claims a set of messages, up to <code>limit</code>, from oldest to newest, skipping any that are already claimed. If no unclaimed messages are available, the API returns <code>204 No Content</code>. </para>
-			<para>The client should delete the message when it has finished processing it, before the claim expires, to ensure the message is processed only once. As part of the delete operation, all worker clients should specify the claim ID (this is best done by simply using the provided href). That way, the server can return an error if the claim just expired (notifying the client of the race condition), giving the worker a chance to roll back its own processing of the given message, since another worker will likely claim the message and process it. </para>
-			<para>Just as with a message's age, the age given for the claim is relative to the server's clock, and is useful for determining how quickly messages are getting processed, and whether a given message's claim is about to expire. </para>
-			<para>When a claim expires, it is removed, allowing another client worker to claim the message in the case that the original worker fails to process it. </para>
-			<note><para>If <code>limit</code> is not specified, <code>limit</code> defaults to 10. Note that claim creation is best-effort, meaning the server may claim and return less than the requested number of messages. </para>
-			<para><code>ttl</code> is how long the server should wait before releasing the claim. The <code>ttl</code> value MUST be between 60 and 43200 seconds (12 hours is the default but is configurable). </para>
-			<para><code>grace</code> is the message grace period in seconds. The value of <code>grace</code> MUST be between 60 and 43200 seconds (12 hours the default, but configurable). The server extends the lifetime of claimed messages to be at least as long as the lifetime of the claim itself, plus a specified grace period to deal with crashed workers (up to 1209600 or 14 days including claim lifetime). If a claimed message would normally live longer than the grace period, it's expiration will not be adjusted.  </para>
-			</note>		
+			<para>This operation claims a set of messages (up to the value of the <code>limit</code> parameter) from oldest to newest and skips any messages that are already claimed. If no unclaimed messages are available, the API returns a <code>204 No Content</code> message. </para>
+			<para>When a  client (worker) finishes processing a message, it should delete the message before the claim expires to ensure that the message is processed only once. As part of the delete operation, workers should specify the claim ID (which is best done by simply using the provided href). If workers perform these actions, then if a claim simply expires, the server can return an error and notify the worker of the race condition. This action gives the worker a chance to roll back its own processing of the given message because another worker can claim the message and process it.</para>
+			<para>The age given for a claim is relative to the server's clock. The claim's age is useful for determining how quickly messages are getting processed and whether a given message's claim is about to expire. </para>
+			<para>When a claim expires, it is released. If the original worker failed to process the message, another client worker can then claim the message. </para>
+			<note><para>Note that claim creation is best-effort, meaning the worker may claim and return less than the requested number of messages. </para></note>
+			<para>The <code>ttl</code> attribute specifies how long the server waits before releasing the claim. The ttl value must be between 60 and 43200 seconds (12 hours, which is the default).  </para>
+			<para>The <code>grace</code> attribute specifies the message grace period in seconds. The value of <code>grace</code> value must be between 60 and 43200 seconds (12 hours, which is the default). To deal with workers that have stopped responding (for up to 1209600 seconds or 14 days, including claim lifetime), the server extends the lifetime of claimed messages to be at least as long as the lifetime of the claim itself, plus the specified grace period. If a claimed message would normally live longer than the grace period, its expiration is not adjusted.  </para>		
 		</wadl:doc>
 		<request>
 			<param name="limit" style="query" type="xsd:integer" required="false">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
-					Specifies up to 20 queues to return. If <code>limit</code> is not specified, <code>limit</code> defaults to 10.
+					Specifies the number of messages to return, up to 20 messages. If <code>limit</code> is not specified, <code>limit</code> defaults to 10.
 				</wadl:doc>
 			</param>
 			<representation mediaType="application/json" element="queues:Queue" >
@@ -629,8 +628,8 @@
 	<method name="PATCH" id="updateClaim">
 		<wadl:doc xml:lang="EN" title="Update Claim" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Updates the specified claim for the specified queue. </para>  
-			<para>This operation updates the specified message for the specified queue. Claims with malformed IDs or claims that are not found by ID are ignored.</para>
-			<para>Clients should periodically renew claims during long-running batches of work to avoid loosing a claim in the middle of processing a message. This is done by issuing a <command>PATCH</command> to a specific claim resource and including a new TTL for the claim (which may be different from the original TTL). The server resets the age of the claim and applies the new TTL.</para>
+			<para>This operation updates the specified claim for the specified queue. Claims with malformed IDs or claims that are not found by ID are ignored.</para>
+			<para>Clients should periodically renew claims during long-running batches of work to avoid losing a claim while processing a message. The client can renew a claim by issuing a <command>PATCH</command> command to a specific claim resource and including a new TTL for the claim (which can be different from the original TTL). The server resets the age of the claim and applies the new TTL.</para>
 		</wadl:doc>
 		<request>
 			<representation mediaType="application/json" element="queues:Queue" >
@@ -656,8 +655,8 @@
 	<method name="DELETE" id="deleteClaim">
 		<wadl:doc xml:lang="EN" title="Release Claim" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Releases the specified claim for the specified queue. </para>  
-			<para>This operation immediately releases a claim, making any (remaining, non-deleted) messages associated with the claim available to other workers. Claims with malformed IDs or claims that are not found by ID are ignored.</para>
-			<para>This operation is useful when a worker is performing a graceful shutdown, fails to process one or more messages, or is taking longer than expected to process messages, and wishes to make the remainder available to other workers. </para>
+			<para>This operation immediately releases a claim, making any remaining, undeleted) messages that are associated with the claim available to other workers. Claims with malformed IDs or claims that are not found by ID are ignored.</para>
+			<para>This operation is useful when a worker is performing a graceful shutdown, fails to process one or more messages, or is taking longer than expected to process messages, and wants to make the remainder of the messages available to other workers. </para>
 		</wadl:doc>
 		<request>
 			<representation mediaType="application/json" element="queues:Queue" >
