@@ -65,7 +65,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-gettingstarted/
     </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2013-10-09</pubdate>
+    <pubdate>2013-10-21</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically. -->
     <legalnotice role="rs-api">
       <annotation>
@@ -80,6 +80,13 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-gettingstarted/
     </abstract>
     
     <revhistory>
+            <revision>
+                <date>2013-10-21</date>
+                <revdescription>
+                    <para>Added the HKG service endpoint to <xref
+                            linkend="Endpoints-Table-d1e001"/>.</para>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2013-10-09</date>
                 <revdescription>
@@ -979,6 +986,16 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-gettingstarted/
                         <td colspan="2"/>
                         <td colspan="5"
                                 ><code>https://snet-syd.queues.api.rackspacecloud.com/v1/</code></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Honk Kong (HKG)</td>
+                        <td colspan="5"
+                                ><code>https://hkg.queues.api.rackspacecloud.com/v1/</code></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"/>
+                        <td colspan="5"
+                                ><code>https://snet-hkg.queues.api.rackspacecloud.com/v1/</code></td>
                     </tr>
                 </tbody>
             </table>

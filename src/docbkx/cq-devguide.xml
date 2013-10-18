@@ -59,7 +59,7 @@
     </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2013-10-09</pubdate><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
+    <pubdate>2013-10-21</pubdate><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
     <legalnotice role="rs-api">
       <annotation>
@@ -74,6 +74,13 @@
     </abstract>  
  
     <revhistory>
+      <revision>
+        <date>2013-10-21</date>
+        <revdescription>
+          <para>Added the HKG service endpoint to <xref
+              linkend="Endpoints-Table-d1e001"/>.</para>
+        </revdescription>
+      </revision>
       <revision>
         <date>2013-10-09</date>
         <revdescription>
@@ -1047,6 +1054,16 @@
               <td colspan="2"/>
               <td colspan="5"
                 ><code>https://snet-syd.queues.api.rackspacecloud.com/v1/</code></td>
+            </tr>
+            <tr>
+              <td colspan="2">Honk Kong (HKG)</td>
+              <td colspan="5"
+                  ><code>https://hkg.queues.api.rackspacecloud.com/v1/</code></td>
+            </tr>
+            <tr>
+              <td colspan="2"/>
+              <td colspan="5"
+                  ><code>https://snet-hkg.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
           </tbody>
         </table>
