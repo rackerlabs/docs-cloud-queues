@@ -1078,28 +1078,27 @@
           account ID:</para>
         <itemizedlist>
           <listitem>
-            <para>Account ID from Cloud Identity is the same
-              as the Project ID given by the
-              <code>X-Project-ID</code> header in Cloud
-              Queues. (You might also see account ID or
+            <para>Account ID from Cloud Identity is the same as the
+              Project ID given by the <code>X-Project-Id</code> header
+              in Cloud Queues. (You might also see account ID or
               project ID referred to as tenant ID.)</para>
           </listitem>
           <listitem>
-            <para>You do not have to provide the account ID
-              for the Cloud Queues API if you have the
-              <code>X-Project-ID</code> header set. (In
-              this case, the Cloud Queues API works with or
-              without the account ID specified.) </para>
+            <para>You do not have to provide the account ID for the
+              Cloud Queues API if you have the
+                <code>X-Project-Id</code> header set. (In this case,
+              the Cloud Queues API works with or without the account
+              ID specified.) </para>
           </listitem>
           <listitem>
-            <para>Without the <code>X-Project-ID</code>
-              header, you receive an auth error if the
-              account ID is not in the URL. </para>
+            <para>Without the <code>X-Project-Id</code> header, you
+              receive an auth error if the account ID is not in the
+              URL. </para>
           </listitem>
           <listitem>
-            <para>If the account ID is in the URL, the Cloud
-              Queues API will use that ID in place of the
-              <code>X-Project-ID</code> header.</para>
+            <para>If the account ID is in the URL, the Cloud Queues
+              API will use that ID in place of the
+                <code>X-Project-Id</code> header.</para>
           </listitem>
           <listitem>
             <para>Account ID and Project ID refer to your
@@ -1372,7 +1371,7 @@
             <td>Auth token</td>
           </tr>
           <tr>
-            <td>X-Project-ID</td>
+            <td>X-Project-Id</td>
             <td>An ID for a project to which the value of X-Auth-Token
               grants access. Queues are created under this
               project.</td>

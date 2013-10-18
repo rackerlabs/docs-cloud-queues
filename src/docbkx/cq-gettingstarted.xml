@@ -96,7 +96,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-gettingstarted/
                             <para>Updated cURL request examples in
                                    <xref
                                    linkend="stepping_through_the_api"
-                                /> to include the X-Project-ID
+                                /> to include the X-Project-Id
                                 Header.</para>
                         </listitem>
                         <listitem>
@@ -1013,26 +1013,26 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-gettingstarted/
                 <listitem>
                     <para>Account ID from Cloud Identity is the same
                         as the Project ID given by the
-                            <code>X-Project-ID</code> header in Cloud
+                            <code>X-Project-Id</code> header in Cloud
                         Queues. (You might also see account ID or
                         project ID referred to as tenant ID.)</para>
                 </listitem>
                 <listitem>
                     <para>You do not have to provide the account ID
                         for the Cloud Queues API if you have the
-                            <code>X-Project-ID</code> header set. (In
+                            <code>X-Project-Id</code> header set. (In
                         this case, the Cloud Queues API works with or
                         without the account ID specified.) </para>
                 </listitem>
                 <listitem>
-                    <para>Without the <code>X-Project-ID</code>
+                    <para>Without the <code>X-Project-Id</code>
                         header, you receive an auth error if the
                         account ID is not in the URL. </para>
                 </listitem>
                 <listitem>
                     <para>If the account ID is in the URL, the Cloud
                         Queues API will use that ID in place of the
-                            <code>X-Project-ID</code> header.</para>
+                            <code>X-Project-Id</code> header.</para>
                 </listitem>
                 <listitem>
                     <para>Account ID and Project ID refer to your
@@ -1114,7 +1114,7 @@ which you can also find in your Cloud Control Panel at
                     <td>Authorization token</td>
                 </tr>
                 <tr>
-                    <td>X-Project-ID</td>
+                    <td>X-Project-Id</td>
                     <td>An ID for a project to which the value of
                         X-Auth-Token grants access. Queues are created
                         under this project. The project ID is the same
@@ -1169,7 +1169,7 @@ which you can also find in your Cloud Control Panel at
                 <programlisting language="bash">curl -i -X PUT https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \
 -H "Accept: application/json" \
--H "X-Project-ID: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
+-H "X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
             </example>
             <example>
                 <title>Create Queue Response</title>
@@ -1239,7 +1239,7 @@ Location: /v1/queues/samplequeue</programlisting>
 -H "Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830" \
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \
 -H "Accept: application/json" \ 
--H "X-Project-ID: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
+-H "X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
             </example>
             <example>
                 <title>Post Message Response </title>
@@ -1324,7 +1324,7 @@ Content-Type: application/json
 -H "Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830" \ 
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \
 -H "Accept: application/json" \
--H "X-Project-ID: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
+-H "X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
             </example>
             <example>
                 <title>Claim Messages Response</title>
@@ -1364,7 +1364,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \ 
 -H "Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830" \
 -H "Accept: application/json" \
--H "X-Project-ID: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
+-H "X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
             </example>
             <example>
                 <title>Delete Message Response</title>
@@ -1392,7 +1392,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \ 
 -H "Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830"  \
 -H "Accept: application/json" \
--H "X-Project-ID: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
+-H "X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
             </example>
             <example>
                 <title>Release Claim Response</title>
@@ -1413,7 +1413,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
 -H "Content-type: application/json" \ 
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \
 -H "Accept: application/json" \
--H "X-Project-ID: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
+-H "X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
             </example>
             <example>
                 <title>Delete Queue Response</title>
