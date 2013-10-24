@@ -534,9 +534,9 @@
 			<para>This operation immediately deletes the specified messages. If any of the message IDs are malformed or non-existent, they are ignored. The remaining valid messages IDs are deleted.</para>
 		</wadl:doc>
 		<request>
-			<param name="ids" style="query" type="xsd:string" required="false">
+			<param name="ids" style="query" type="xsd:string" required="true">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
-					Specifies the IDs of the messages to delete. 
+					Specifies the IDs of the messages to delete.
 				</wadl:doc>	
 			</param>	
 			<representation mediaType="application/json" element="queues:Queue" >
