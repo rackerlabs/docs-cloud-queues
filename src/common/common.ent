@@ -28,7 +28,7 @@
         </response>
         <response status="429" xmlns="http://wadl.dev.java.net/2009/02">
             <representation mediaType="application/xml" element="queues:tooManyRequests"/>
-            <representation mediaType="application/json"/>too
+            <representation mediaType="application/json"/>
         </response>
 
 
