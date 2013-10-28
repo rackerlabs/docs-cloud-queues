@@ -926,7 +926,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
             API.</para>
     </chapter>
     <chapter xml:id="Service-Access-Endpoints-d1e003">
-        <title>Service Access/Endpoints</title>
+        <title>Service Access Endpoints</title>
         <para>The endpoints to use for your Cloud Queues API calls are
             summarized in the table below.</para>
         <para>
@@ -958,6 +958,16 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                         <td colspan="5"
                                 ><code>https://snet-dfw.queues.api.rackspacecloud.com/v1/</code></td>
                     </tr>
+                    <tr>
+                        <td colspan="2" rowspan="2">Hong Kong
+                            (HKG)</td>
+                        <td colspan="5"
+                                ><code>https://hkg.queues.api.rackspacecloud.com/v1/</code></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"
+                                ><code>https://snet-hkg.queues.api.rackspacecloud.com/v1/</code></td>
+                    </tr>
                     <tr align="left">
                         <td colspan="2" rowspan="2">London (LON)</td>
                         <td colspan="5"
@@ -978,24 +988,13 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                                 ><code>https://snet-iad.queues.api.rackspacecloud.com/v1/</code></td>
                     </tr>
                     <tr>
-                        <td colspan="2">Sydney (SYD)</td>
+                        <td colspan="2" rowspan="2">Sydney (SYD)</td>
                         <td colspan="5"
                                 ><code>https://syd.queues.api.rackspacecloud.com/v1/</code></td>
                     </tr>
                     <tr>
-                        <td colspan="2"/>
                         <td colspan="5"
                                 ><code>https://snet-syd.queues.api.rackspacecloud.com/v1/</code></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">Hong Kong (HKG)</td>
-                        <td colspan="5"
-                                ><code>https://hkg.queues.api.rackspacecloud.com/v1/</code></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"/>
-                        <td colspan="5"
-                                ><code>https://snet-hkg.queues.api.rackspacecloud.com/v1/</code></td>
                     </tr>
                 </tbody>
             </table>
