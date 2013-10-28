@@ -854,7 +854,7 @@
           </listitem>
           <listitem>
             <para><link
-                xlink:href="http://docs-internal.rackspace.com/auth/api/v2.0/auth-client-devguide/content/DELETE_deleteUserRole_v2.0_users__userId__roles_OS-KSADM__roleId__.html"
+              xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/DELETE_deleteUserRole_v2.0_users__userId__roles_OS-KSADM__roleId__.html"
                 > Delete roles from account users</link></para>
           </listitem>
         </itemizedlist>

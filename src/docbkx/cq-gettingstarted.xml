@@ -45,7 +45,7 @@
   <?rax title.font.size="35px"
 pdf.url="../../cq-gettingstarted-latest.pdf"
 status.bar.text.font.size="40px"
-canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-gettingstarted/content"?>
+canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/content"?>
   
   <title>Rackspace Cloud Queues Getting Started Guide</title>
   <titleabbrev>Rackspace Cloud Queues Getting Started Guide</titleabbrev>
