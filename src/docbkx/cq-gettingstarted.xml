@@ -42,7 +42,7 @@
     version="5.0-extension RaxBook-2.0"
     xml:id="cq-gettingstarted">
  
-  <?rax title.font.size="35px"
+<?rax title.font.size="35px"
 pdf.url="../../cq-gettingstarted-latest.pdf"
 status.bar.text.font.size="40px"
 canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/content"?>
@@ -65,7 +65,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
     </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2013-10-21</pubdate>
+    <pubdate>2013-11-04</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically. -->
     <legalnotice role="rs-api">
       <annotation>
@@ -81,6 +81,15 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
     
     <revhistory>
             <revision>
+                <date>2013-11-04</date>
+                <revdescription>
+                    <para>Initial Unlimited Availability (UA) release
+                        for Rackspace Cloud Queues</para>
+                </revdescription>
+            </revision>
+        
+        <!--       
+            <revision>
                 <date>2013-10-21</date>
                 <revdescription>
                     <para>Added the HKG service endpoint to <xref
@@ -94,7 +103,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                         for Rackspace Cloud Queues</para>
                 </revdescription>
             </revision>
-<!--       
+            
             <revision>
                 <date>2013-09-26</date>
                 <revdescription>
@@ -186,19 +195,20 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
       URLs, using cURL, to set up and use a basic set of Cloud Queues
       operations. </para>
     <para>You can find additional details about Rackspace Cloud Queues
-      in the <citetitle>Cloud Queues Developer Guide</citetitle> at
-        <link xlink:href="http://docs.rackspace.com/"
-        >http://docs.rackspace.com/</link> and at <link
-        xlink:href="http://www.rackspace.com/cloud/cloud_hosting_products/dns/"
-        >http://www.rackspace.com/cloud/</link>. </para>
-        <section xml:id="LA-Access-d1e001">
-            <title>Access to the Limited Availability Release</title>
-            <para>To get access to the Limited Availability (LA)
-                release of Cloud Queues, complete the information
-                    <link
-                    xlink:href="https://surveys.rackspace.com/Survey.aspx?s=3dc74c685f83493a9a9ef3b2c4518ac3"
-                    >here</link>. </para>
-        </section>
+            in the <citetitle>Cloud Queues Developer Guide</citetitle>
+            at <link xlink:href="http://docs.rackspace.com/"
+                >http://docs.rackspace.com/</link>. <note>
+                <para>Cloud Queues is free to all customers until
+                    January 2014. </para>
+                <para>The Service Level Agreement (SLA) for Cloud
+                    Queues is available at <link
+                        xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
+                        >http://www.rackspace.com/information/legal/cloud/sla</link>. </para>
+                <para>Customers are not eligible for Cloud Queues SLA
+                    credits until billing begins in January of
+                    2014.</para>
+            </note></para>      
+        
         <section xml:id="core_concepts">
             <title>Prerequisites for Running Examples </title>
             <para xmlns:wadl="http://wadl.dev.java.net/2009/02">In
@@ -223,30 +233,18 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                 </itemizedlist>
             </para>
         </section>
-<!-- 10/1/2013 cyr - in planning meeting today, Megan said to remove this section for now.
-          
-        <section xml:id="Pricing-and-Service-Level-d1e003">
+        <section xml:id="Pricing_SLA-d1e1362">
             <title>Pricing and Service Level</title>
-            <para>Cloud Queues is part of the Rackspace Cloud and your
-                use through the API will be billed as per the pricing
-                schedule at <link
-                    xlink:href="http://www.rackspace.com/cloud/public/queues/pricing"
-                    >http://www.rackspace.com/cloud/public/queues/pricing</link>.
-                Cloud Servers is also part of the Rackspace Cloud and
-                your use through the Cloud Control Panel will be
-                billed as per the pricing schedule at <link
-                    xlink:href="http://www.rackspace.com/cloud/public/servers/pricing"
-                    >http://www.rackspace.com/cloud/public/servers/pricing</link>.</para>
-            <para>The Service Level Agreements (SLAs) for Cloud Queues
-                and Cloud Servers are available at <link
-                    xlink:href="http://www.rackspace.com/cloud/legal/sla/#cloud_queues"
-                    >http://www.rackspace.com/cloud/legal/sla/#cloud_queues</link>
-                and <link
-                    xlink:href="http://www.rackspace.com/cloud/legal/sla"
-                    >http://www.rackspace.com/cloud/legal/sla</link>
-                respectively.</para>
-        </section>
--->        
+            <para>Cloud Queues is free to all customers until January
+                2014. </para>
+            <para>The Service Level Agreement (SLA) for Cloud Queues
+                is available at <link
+                    xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
+                    >http://www.rackspace.com/information/legal/cloud/sla</link>. </para>
+            <para>Customers are not eligible for Cloud Queues SLA
+                credits until billing begins in January of
+                2014.</para>
+        </section>        
         <section xml:id="how_cq_works">
             <title>How Cloud Queues Works</title>
             <para>Following is an overview of Cloud Queues works. For
@@ -425,7 +423,8 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                             <para>Delete Message</para>
                         </listitem>
                         <listitem>
-                            <para>Delete Messages</para>
+                            <para>Delete a Set of Messages by
+                                ID</para>
                         </listitem>
                     </itemizedlist>
                 </section>
@@ -1068,12 +1067,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
 <parameter>1234</parameter>, with your actual account
 number returned as part of the authentication service
 response.</para>
-<note>
-<para>Account ID refers to your Rackspace account number,
-which you can also find in your Cloud Control Panel at
-<link xlink:href="https://mycloud.rackspace.com/"
->mycloud.rackspace.com</link>.</para>
-</note> -->
+-->
     </chapter>
     <chapter xml:id="commonHeaders">
         <title>Common Headers</title>
@@ -1579,7 +1573,7 @@ Location: /v1/queues/samplequeue/claims/51ca011c821e7250f344efd6
       <glossterm>Worker</glossterm>
       <glossdef>
         <para>A client that claims messages from the queue and
-                    performs actions based on those messages. </para>
+                    performs actions based on those messages.  </para>
       </glossdef>
     </glossentry>
   </glossary>

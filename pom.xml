@@ -32,8 +32,9 @@
 	  </execution>
 	</executions>
 	<configuration>
-	  <enableDisqus>internet</enableDisqus>
-	  <socialIcons>0</socialIcons>
+	  <enableDisqus>1</enableDisqus>
+	  <socialIcons>1</socialIcons>
+	  <enableGoogleAnalytics>1</enableGoogleAnalytics>
 	  <feedbackEmail>catherine.richardson@rackspace.com</feedbackEmail>	  
 	  <branding>rackspace</branding>
 	  <showXslMessages>true</showXslMessages>

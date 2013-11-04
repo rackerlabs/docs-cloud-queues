@@ -1,7 +1,7 @@
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=UTF-8
 Content-Length: 477
-Date: Thu, 12 Apr 2012 18:45:13 GMT
+Date: Thu, 31 Oct 2013 13:45:13 GMT
 
 {
     "access": {
@@ -138,6 +138,42 @@ Date: Thu, 12 Apr 2012 18:45:13 GMT
                 ],
                 "name": "cloudDNS",
                 "type": "rax:dns"
+            }
+            {
+                "endpoints": [
+                    {
+                        "internalURL": "https://snet-ord.queues.api.rackspacecloud.com/v1/1100111", 
+                        "publicURL": "https://ord.queues.api.rackspacecloud.com/v1/1100111", 
+                        "region": "ORD", 
+                        "tenantId": "1100111"
+                    }, 
+                    {
+                        "internalURL": "https://snet-syd.queues.api.rackspacecloud.com/v1/1100111", 
+                        "publicURL": "https://syd.queues.api.rackspacecloud.com/v1/1100111", 
+                        "region": "SYD", 
+                        "tenantId": "1100111"
+                    }, 
+                    {
+                        "internalURL": "https://snet-dfw.queues.api.rackspacecloud.com/v1/1100111", 
+                        "publicURL": "https://dfw.queues.api.rackspacecloud.com/v1/1100111", 
+                        "region": "DFW", 
+                        "tenantId": "1100111"
+                    }, 
+                    {
+                        "internalURL": "https://snet-iad.queues.api.rackspacecloud.com/v1/1100111", 
+                        "publicURL": "https://iad.queues.api.rackspacecloud.com/v1/1100111", 
+                        "region": "IAD", 
+                        "tenantId": "1100111"
+                    }, 
+                    {
+                        "internalURL": "https://snet-hkg.queues.api.rackspacecloud.com/v1/1100111", 
+                        "publicURL": "https://hkg.queues.api.rackspacecloud.com/v1/1100111", 
+                        "region": "HKG", 
+                        "tenantId": "1100111"
+                    }
+                ], 
+                "name": "cloudQueues", 
+                "type": "rax:queues"
             }
         ]
     }

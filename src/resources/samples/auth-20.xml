@@ -1,7 +1,7 @@
 HTTP/1.1 200 OK
 Content-Type: application/xml; charset=UTF-8
 Content-Length: 477
-Date: Thu, 12 Apr 2012 18:50:20 GMT
+Date: Thu, 31 Oct 2013 13:50:20 GMT
 
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <access xmlns:os-ksadm="http://docs.openstack.org/identity/api/ext/OS-KSADM/v1.0"
@@ -69,6 +69,27 @@ Date: Thu, 12 Apr 2012 18:50:20 GMT
     <service type="rax:dns" name="cloudDNS">
       <endpoint tenantId="1100111"
         publicURL="https://dns.api.rackspacecloud.com/v1.0/1100111"/>
+    </service>    
+    <service type="rax:queues" name="cloudQueues">
+      <endpoint region="ORD" tenantId="1100111" 
+        publicURL="https://ord.queues.api.rackspacecloud.com/v1/1100111" 
+        internalURL="https://snet-ord.queues.api.rackspacecloud.com/v1/1100111"/>
+      <endpoint region="SYD" 
+        tenantId="1100111" 
+        publicURL="https://syd.queues.api.rackspacecloud.com/v1/1100111" 
+        internalURL="https://snet-syd.queues.api.rackspacecloud.com/v1/1100111"/>
+      <endpoint region="DFW" 
+        tenantId="1100111" 
+        publicURL="https://dfw.queues.api.rackspacecloud.com/v1/1100111" 
+        internalURL="https://snet-dfw.queues.api.rackspacecloud.com/v1/1100111"/>
+      <endpoint region="IAD" 
+        tenantId="1100111" 
+        publicURL="https://iad.queues.api.rackspacecloud.com/v1/1100111" 
+        internalURL="https://snet-iad.queues.api.rackspacecloud.com/v1/1100111"/>
+      <endpoint region="HKG" 
+        tenantId="1100111" 
+        publicURL="https://hkg.queues.api.rackspacecloud.com/v1/1100111" 
+        internalURL="https://snet-hkg.queues.api.rackspacecloud.com/v1/1100111"/>
     </service>
   </serviceCatalog>
 </access>

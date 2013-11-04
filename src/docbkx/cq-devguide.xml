@@ -47,10 +47,6 @@
       status.bar.text.font.size="40px"
       canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-devguide/content"?>
   
-  
- <!-- <?rax canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-devguide/content"?>
-  <?rax title.font.size="35px" subtitle.font.size="20px"?>
- --> 
   <title>Rackspace Cloud Queues Developer Guide</title>
   <info>
     <copyright>
@@ -59,7 +55,7 @@
     </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2013-10-21</pubdate><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
+    <pubdate>2013-11-04</pubdate><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
     <legalnotice role="rs-api">
       <annotation>
@@ -75,6 +71,15 @@
  
     <revhistory>
       <revision>
+        <date>2013-11-04</date>
+        <revdescription>
+          <para>Initial Unlimited Availability (UA) release for
+            Rackspace Cloud Queues</para>
+        </revdescription>
+        
+<!-->        
+      </revision>
+      <revision>
         <date>2013-10-21</date>
         <revdescription>
           <para>Added the HKG service endpoint to <xref
@@ -88,6 +93,7 @@
             Rackspace Cloud Queues</para>
         </revdescription>
       </revision>
+--></revision>      
     </revhistory>
 
     <!-- 
@@ -131,36 +137,21 @@
     <para>In both of these models, administrators can get queue
       statistics that display the most recent and oldest messages, the
       number of unclaimed messages, and more. </para>
-    <!--
-    <para>Rackspace Cloud Queues is an API-based message and
-      notification service. A message queueing service is a vital
-      component of big, complex web applications. Cloud Queues is
-      designed to fill this need. Cloud Queues is based on the
-      OpenStack Marconi project. </para>
-    <para>As you develop more complex web applications, you often have
-      multiple servers set up to complete a set of tasks for that
-      application. These tasks can be anything from creating users to
-      deleting blocks of storage. Cloud Queues is a service that owns
-      the lists of tasks, but not necessarily the order or workflow of
-      the tasks. Many applications handle the workflow at a higher
-      level.</para>
-    <para>Cloud Queues creates an open alternative to the
-      producer-consumer and the publish-subscribe (pub-sub) messaging
-      patterns for use in applications that run on OpenStack clouds. </para>
-    <para>The Cloud Queues API uses a modular architecture and
-      supports unified pub-sub and job-queuing semantics. You can
-      customize Cloud Queues to achieve a wide range of performance,
-      durability, availability, and efficiency goals. </para>
-    <para>Interactions with Cloud Queues occur programmatically via
-      the Cloud Queues API as described in this developer
-      guide.</para>
-      -->
     <remark security="reviewer">Reviewer: Do you want to add a diagram
       of Cloud Queues infrastructure / architecture if you can give it
       to me. For an example, see the DB diagram at <link
         xlink:href="http://docs.rackspace.com/cdb/api/v1.0/cdb-devguide/content/overview.html"
         >
-        http://docs.rackspace.com/cdb/api/v1.0/cdb-devguide/content/overview.html</link>.</remark> 
+        http://docs.rackspace.com/cdb/api/v1.0/cdb-devguide/content/overview.html</link>.</remark>
+    <note>
+      <para>Cloud Queues is free to all customers until January 2014. </para>
+      <para>The Service Level Agreement (SLA) for Cloud Queues is
+        available at <link
+          xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
+          >http://www.rackspace.com/information/legal/cloud/sla</link>. </para>
+      <para>Customers are not eligible for Cloud Queues SLA credits
+        until billing begins in January of 2014.</para>
+    </note> 
   <section xml:id="Intended_Audience-d1e166">
       <title>Intended Audience</title>
       <para>This document is intended for software developers who are
@@ -186,20 +177,13 @@
         following table.</para>
       <?rax revhistory?>
     </section>
-    <section xml:id="LA-Access-d1e001">
-      <title>Access to the Limited Availability Release</title>
-      <para>To get access to the Limited Availability (LA) release of
-        Cloud Queues, complete the information <link
-          xlink:href="https://surveys.rackspace.com/Survey.aspx?s=3dc74c685f83493a9a9ef3b2c4518ac3"
-          >here</link>. </para>
-    </section>
     <section xml:id="Additional_Resources-d1e532">
       <title>Additional Resources</title>
       <!--
-      <para>Description information about Cloud Queues is also
+      <para>Descriptive information about Cloud Queues is also
         published in its Web Application Description Language (WADL).
         You are welcome to read this information here:
-        <link xlink:href="http://docs.rackspace.com/cdb/api/v1.0/cdb.wadl">http://docs.rackspace.com/cdb/api/v1.0/cdb.wadl
+        <link xlink:href="http://docs.rackspace.com/cq/api/v1.0/cq-devgyude.wadl">http://docs.rackspace.com/cd/api/v1.0/cq-devguide.wadl
         </link></para>
         -->
       <para>You can download the most current versions of other
@@ -238,41 +222,18 @@
     </section>
     <section xml:id="API-Contract_Changes-d1e001">
       <title>API Contract Changes</title>
-      <para>The API contract is not locked and might change during the
-        Limited Access (LA) period.</para>
       <para>Rackspace will notify customers in release notes when and
         if the contract changes.</para>
     </section>  
     <section xml:id="Pricing_SLA-d1e1362">
       <title>Pricing and Service Level</title>
-      <para>During the Limited Access (LA) period, there is no charge
-        for Cloud Queues.</para>
-      <para>While Cloud Queues is in LA, it is subject to the
-        Rackspace test terms at <link
-          xlink:href="http://www.rackspace.com/information/legal/testterms"
-          >www.rackspace.com/information/legal/testterms</link>. When
-        Cloud Queues moves to UA, the Service Level Agreement (SLA)
-        will be available.</para>
- <!--     
-   <para>Cloud Queues is part of the Rackspace Cloud and your
-                use through the API will be billed as per the pricing
-                schedule at <link
-                    xlink:href="http://www.rackspace.com/cloud/public/queues/pricing"
-                    >http://www.rackspace.com/cloud/public/queues/pricing</link>.
-                Cloud Servers is also part of the Rackspace Cloud and
-                your use through the Cloud Control Panel will be
-                billed as per the pricing schedule at <link
-                    xlink:href="http://www.rackspace.com/cloud/public/servers/pricing"
-                    >http://www.rackspace.com/cloud/public/servers/pricing</link>.</para>
-            <para>The Service Level Agreements (SLAs) for Cloud Queues
-                and Cloud Servers are available at <link
-                    xlink:href="http://www.rackspace.com/cloud/legal/sla/#cloud_queues"
-                    >http://www.rackspace.com/cloud/legal/sla/#cloud_queues</link>
-                and <link
-                    xlink:href="http://www.rackspace.com/cloud/legal/sla"
-                    >http://www.rackspace.com/cloud/legal/sla</link>
-                respectively.</para>
--->                
+      <para>Cloud Queues is free to all customers until January 2014.  </para>
+      <para>The Service Level Agreement (SLA) for Cloud Queues is
+        available at <link
+          xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
+          >http://www.rackspace.com/information/legal/cloud/sla</link>. </para>
+      <para>Customers are not eligible for Cloud Queues SLA credits
+        until billing begins in January of 2014.</para>                
     </section>
 
   </chapter>
@@ -613,7 +574,7 @@
               <area xml:id="response.xml.tenant" units="linecolumn" coords="53 66"/>
               <area xml:id="response.xml.url" units="linecolumn" coords="54 9"/>
             </areaspec>
-            <programlisting language="xml"><xi:include href="samples/auth-20.xml" parse="text"/></programlisting>
+            <programlisting language="xml"><xi:include href="../../src/resources/samples/auth-20.xml" parse="text"/></programlisting>
           </programlistingco>
         </example>
         
@@ -634,7 +595,7 @@
               <area xml:id="response.json.tenant" units="linecolumn" coords="101 24"/>
               <area xml:id="response.json.url" units="linecolumn" coords="102 24"/>
             </areaspec>	
-            <programlisting language="json"><xi:include href="samples/auth-20.json" parse="text"/>
+            <programlisting language="json"><xi:include href="../../src/resources/samples/auth-20.json" parse="text"/>
                     </programlisting>
           </programlistingco>
         </example>
@@ -1159,7 +1120,7 @@
         guaranteed to be compatible with one another. </para>
       <example>
         <title>Sample Request URL for Contract Version 1 </title>
-        <programlisting>https://ord.queues.api.rackspacecloud.com/<emphasis role="strong">v1</emphasis>/1234</programlisting>
+        <programlisting>https://ord.queues.api.rackspacecloud.com/<emphasis role="strong">v1</emphasis></programlisting>
       </example>
       <note>
         <para>This document pertains to contract version 1. Rackspace
