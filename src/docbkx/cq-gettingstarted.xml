@@ -203,6 +203,9 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                 <para>The Service Level Agreement (SLA) for Cloud
                     Queues is available at <link
                         xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
+                        >http://www.rackspace.com/information/legal/cloud/sla</link>
+                    <link
+                        xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
                         >http://www.rackspace.com/information/legal/cloud/sla</link>. </para>
                 <para>Customers are not eligible for Cloud Queues SLA
                     credits until billing begins in January of
