@@ -190,12 +190,14 @@
         API-related documents from <link
           xlink:href="http://docs.rackspace.com/"
           >http://docs.rackspace.com/</link>.</para>
-      <!--
-      <para> For more details about Cloud Queues, refer to ??? (link
-        to www.rackspace.com/cloud/queue???) . This site also offers
-        links to Rackspace's official support channels, including
-        knowledge base articles, forums, phone, chat, and
-        email.</para>
+     
+      <para>For more details about Cloud Queues, refer to <link
+          xlink:href="http://www.rackspace.com/cloud/queues/"
+          >http://www.rackspace.com/cloud/queues/</link>. This site
+        also offers links to Rackspace's official support channels,
+        including phone, chat, and email as well as Knowledge Center
+        articles.</para>
+<!--      
       <remark security="reviewer">Reviewer: do you have a
         corresponding link for the Cloud Queues landing page on
         rackspace.com/cloud? If so, can you please give it to
@@ -1322,8 +1324,10 @@
           <tr>
             <td>Accept</td>
             <td>Media type desired; initially, only
-                <code>application/json</code> is supported. The
-                <code>Accept</code> header is required.</td>
+                <code>application/json</code> is supported. <emphasis
+                role="bold">Note: The <code>Accept</code> header is
+                required.</emphasis>
+            </td>
           </tr>
           <tr>
             <td>Accept-Encoding</td>
@@ -1358,10 +1362,12 @@
               3381af92-2b9e-11e3-b191-71861300734c). The client
               generates the Client-ID once. Client-ID persists between
               restarts of the client so the client should reuse that
-              same Client-ID. All message-related operations require
-              the use of Client-ID in the headers to ensure that
-              messages are not echoed back to the client that posted
-              them, unless the client explicitly requests this.</td>
+              same Client-ID. <emphasis role="bold">Note: All
+                message-related operations require the use of
+                  <code>Client-ID</code> in the headers to ensure that
+                messages are not echoed back to the client that posted
+                them, unless the client explicitly requests
+                this.</emphasis></td>
           </tr>
         </tbody>
       </table>

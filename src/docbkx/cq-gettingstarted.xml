@@ -197,20 +197,27 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
     <para>You can find additional details about Rackspace Cloud Queues
             in the <citetitle>Cloud Queues Developer Guide</citetitle>
             at <link xlink:href="http://docs.rackspace.com/"
-                >http://docs.rackspace.com/</link>. <note>
-                <para>Cloud Queues is free to all customers until
-                    January 2014. </para>
-                <para>The Service Level Agreement (SLA) for Cloud
-                    Queues is available at <link
-                        xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
-                        >http://www.rackspace.com/information/legal/cloud/sla</link>
-                    <link
-                        xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
-                        >http://www.rackspace.com/information/legal/cloud/sla</link>. </para>
-                <para>Customers are not eligible for Cloud Queues SLA
-                    credits until billing begins in January of
-                    2014.</para>
-            </note></para>      
+                >http://docs.rackspace.com/</link>. </para>
+        <para>For more details about Cloud Queues, refer to <link
+                xlink:href="http://www.rackspace.com/cloud/queues/"
+                >http://www.rackspace.com/cloud/queues/</link>. This
+            site also offers links to Rackspace's official support
+            channels, including phone, chat, and email as well as
+            Knowledge Center articles.</para>
+        <note>
+            <para>Cloud Queues is free to all customers until January
+                2014. </para>
+            <para>The Service Level Agreement (SLA) for Cloud Queues
+                is available at <link
+                    xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
+                    >http://www.rackspace.com/information/legal/cloud/sla</link>
+                <link
+                    xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
+                    >http://www.rackspace.com/information/legal/cloud/sla</link>. </para>
+            <para>Customers are not eligible for Cloud Queues SLA
+                credits until billing begins in January of
+                2014.</para>
+        </note>      
         
         <section xml:id="core_concepts">
             <title>Prerequisites for Running Examples </title>
@@ -652,7 +659,9 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                 <listitem>
                     <para>Copy and paste each example from the HTML
                         version of this guide into an ASCII text
-                        editor (for example, vi or TextEdit).</para>
+                        editor (for example, vi or TextEdit). You can
+                        click on the small document icon to the right
+                        of each request example to select it.</para>
                 </listitem>
                 <listitem>
                     <para>Modify each example with your required
@@ -1103,8 +1112,9 @@ response.</para>
                     <td>Accept</td>
                     <td>Media type to use. Initially, only
                             <code>application/json</code> is
-                        supported. The <code>Accept</code> header is
-                        required.</td>
+                        supported. <emphasis role="bold">Note: The
+                                <code>Accept</code> header is
+                            required.</emphasis></td>
                 </tr>
                 <tr>
                     <td>Accept-Encoding</td>
@@ -1142,12 +1152,14 @@ response.</para>
                         3381af92-2b9e-11e3-b191-71861300734c). The
                         client generates the Client-ID once. Client-ID
                         persists between restarts of the client so the
-                        client should reuse that same Client-ID. All
-                        message-related operations require the use of
-                        Client-ID in the headers to ensure that
-                        messages are not echoed back to the client
-                        that posted them, unless the client explicitly
-                        requests this.</td>
+                        client should reuse that same Client-ID.
+                            <emphasis role="bold">Note: All
+                            message-related operations require the use
+                            of <code>Client-ID</code> in the headers
+                            to ensure that messages are not echoed
+                            back to the client that posted them,
+                            unless the client explicitly requests
+                            this.</emphasis></td>
                 </tr>
             </tbody>
         </table>
