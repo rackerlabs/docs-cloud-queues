@@ -324,7 +324,7 @@
 		</wadl:doc>
 		<request>
 			<representation mediaType="application/json" element="queues:Queue" >
-				<doc>Checks to
+				<doc>
 					<xsdxt:code href="../wadl/samples/cq-checkQueueExists_request.json"/>
 				</doc>
 			</representation>
