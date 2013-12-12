@@ -65,7 +65,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
     </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2013-11-04</pubdate>
+    <pubdate>2013-12-12</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically. -->
     <legalnotice role="rs-api">
       <annotation>
@@ -80,6 +80,15 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
     </abstract>
     
     <revhistory>
+            <revision>
+                <date>2013-12-12</date>
+                <revdescription>
+                    <para>Updated the instructions for locating the
+                        API Key, Tenant ID, and account number in the
+                        Cloud Control Panel in <xref
+                            linkend="Generating_Auth_Token"/>.</para>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2013-11-04</date>
                 <revdescription>
@@ -776,16 +785,59 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                 <listitem>
                     <para><emphasis role="bold"
                             >your_api_key</emphasis> &mdash; The key
-                        is your API access key. The key can be
-                        obtained from the Rackspace Cloud Control
-                        Panel in the <guimenu>&lt;Your
-                            Account></guimenu> / <guimenuitem>API
-                            Keys</guimenuitem> section (login here:
-                            <link
-                            xlink:href="http://mycloud.rackspace.com/"
-                            >Cloud Control Panel</link>).</para>
+                        is your API access key. </para>
+                    <para><emphasis role="bold">To find your API
+                            Key:</emphasis>
+                    </para>
+                    <orderedlist>
+                        <listitem>
+                            <para>Log in to the Cloud Control Panel
+                                   (<link
+                                   xlink:href="https://mycloud.rackspace.com"
+                                   >https://mycloud.rackspace.com</link>).</para>
+                        </listitem>
+                        <listitem>
+                            <para>On the upper-right side of the top
+                                navigation pane, click your
+                                username.</para>
+                        </listitem>
+                        <listitem>
+                            <para>From the menu, select
+                                   <guilabel>Account
+                                   Settings</guilabel>.</para>
+                        </listitem>
+                        <listitem>
+                            <para>In the Login Details section of the
+                                Account Settings page, locate the
+                                   <guilabel>API Key</guilabel> field
+                                and click
+                                <guibutton>Show</guibutton>.</para>
+                        </listitem>
+                        <listitem>
+                            <para> Copy the value of the API Key and
+                                paste it into a text editor of your
+                                choice.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Click <guibutton>Hide</guibutton> to
+                                hide the value of the API Key.</para>
+                        </listitem>
+                    </orderedlist>
                 </listitem>
             </itemizedlist></para>
+        <para>You also need your cloud account number. In the
+            documentation, the account number is often referred to as
+            your tenant name or tenant ID (technically, the ID is
+            different from the name, but at Rackspace, they are the
+            same thing). Together, three components—your username,
+            your API Key, and your tenant ID or cloud account
+            number—form the authentication credentials that are
+            required to connect to the Rackspace cloud.</para>
+        <para>To find your tenant ID or cloud account number, locate
+            your username on the upper-right side of the top
+            navigation pane in the Cloud Control Panel. The tenant ID
+            or account number is in parentheses just to the right of
+            your username.</para>
         <para> You can use either of the following endpoints to access
             the Authentication Service, regardless of US or UK
             identities: </para>

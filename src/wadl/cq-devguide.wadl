@@ -460,7 +460,7 @@
 	<method name="GET" id="getSetMessagesByID">
 		<wadl:doc xml:lang="EN" title="Get a Set of Messages by ID" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Gets a specified set of messages from the specified queue. </para>  
-			<para>This operation provides a more efficient way to query multiple messages compared to using a series of individual <command>GET</command>. Note that the list of IDs cannot exceed 20. If a malformed ID or a nonexistent message ID is provided, it is ignored, and the remaining messages are returned. </para>
+			<para>This operation provides a more efficient way to query multiple messages compared to using a series of individual <command>GET</command>s. Note that the list of IDs cannot exceed 20. If a malformed ID or a nonexistent message ID is provided, it is ignored, and the remaining messages are returned. </para>
 			<para>Unlike the Get Messages operation, a client's own messages are always returned in this operation. If you use the ids parameter, the echo parameter is not used and is ignored if it is specified. </para>
 			<para>The message attributes are defined as follows:<itemizedlist><listitem><para><code>href</code> is an opaque relative URI that the client can use to uniquely identify a message resource and interact with it. </para></listitem><listitem><para><code>ttl</code> is the TTL that was set on the message when it was posted. The message expires after (ttl - age) seconds. </para></listitem><listitem><para><code>age</code> is the number of seconds relative to the server's clock.</para></listitem><listitem><para><code>body</code> is the arbitrary document that was submitted with the original request to post the message. </para></listitem></itemizedlist></para>
 		</wadl:doc>
@@ -468,11 +468,6 @@
 			<param name="ids" style="query" type="xsd:string" required="false">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
 					Specifies the IDs of the messages to get. Format multiple message ID values by separating them with commas (comma-separated).
-				</wadl:doc>
-			</param>
-			<param name="claim_id" style="query" type="xsd:string" required="false">
-				<wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
-					Specifies the claim ID with which the message is associated. 
 				</wadl:doc>
 			</param>
 			<representation mediaType="application/json" element="queues:Queue" >
