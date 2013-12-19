@@ -65,7 +65,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
     </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2013-12-12</pubdate>
+    <pubdate>2013-12-19</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically. -->
     <legalnotice role="rs-api">
       <annotation>
@@ -80,6 +80,18 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
     </abstract>
     
     <revhistory>
+            <revision>
+                <date>2013-12-19</date>
+                <revdescription>
+                    <para linkend="insert_messages">Updated the Post
+                        Message description in <xref
+                            linkend="insert_messages"/> to include the
+                        information that you must include even a
+                        single message in a JSON array or you will
+                        receive the error message "Invalid request
+                        body".</para>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2013-12-12</date>
                 <revdescription>
@@ -1261,10 +1273,12 @@ Location: /v1/queues/samplequeue</programlisting>
                 messages in a queue. </para>
             <para>You can submit up to 10 messages in a single
                 request, but you must encapsulate them in a collection
-                container (an array in JSON). You can use the
-                resulting value of the location header or response
-                body to retrieve the created messages for further
-                processing if needed. </para>
+                container (an array in JSON, even for a single message
+                - without the JSON array, you receive an "Invalid body
+                request" error message). You can use the resulting
+                value of the location header or response body to
+                retrieve the created messages for further processing
+                if needed. </para>
             <para>The template is as
                 follows:<programlisting language="json">POST {endpoint}/queues/{queue_name}/messages</programlisting></para>
             <para>The client specifies only the <tag class="attribute"

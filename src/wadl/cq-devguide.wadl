@@ -14,10 +14,10 @@
              xmlns:wadl="http://wadl.dev.java.net/2009/02"
 	         xmlns:xlink="http://www.w3.org/1999/xlink"
              xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
-	         xmlns:raxapi="http://docs.rackspace.com/volume/api/v1"
+	         xmlns:raxapi="http://docs.rackspace.com/volume/api/v1" 
 	         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	         xmlns:dbaas="http://docs.openstack.org/database/api/v1.0"
+	         xmlns:dbaas="http://docs.openstack.org/database/api/v1.0"  
 	         xmlns:queues="http://docs.openstack.org/database/api/v1.0">
 	
 	
@@ -40,12 +40,12 @@
 	
 	<resources base="https://ord.queues.api.rackspacecloud.com/">
 		<resource id="version" path="{version}">
-			<!--	Project ID was in the Header not in the URL but has recently been removed from header.	
+			<!--	Project ID was in the Header not in the URL but has recently been removed from header.	.</resource>
 				<resource id="projectID" path="{projectId}">
 				<param name="projectId" style="template" type="xsd:string"> 
 				<doc>The project ID of the owner of the specified
 				queue. </doc></param> 
-			-->	
+			-->
 			<method href="#getHomeDocument"/>
 			<resource id="queues" path="queues">
 				<method href="#listQueues" />	
@@ -350,7 +350,7 @@
 		<wadl:doc xml:lang="EN" title="Post Message" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Posts the message or messages for the specified queue. </para>  
 			<para>This operation posts the specified message or messages. </para>
-			<para>You can submit up to 10 messages in a single request, but you must always encapsulate the messages in a collection container (an array in JSON). The resulting value of the Location header or response body might be used to retrieve the created messages for further processing. </para>
+			<para>You can submit up to 10 messages in a single request, but you must always encapsulate the messages in a collection container (an array in JSON, even for a single message - without the JSON array, you receive the "Invalid request body" message). The resulting value of the Location header or response body might be used to retrieve the created messages for further processing. </para>
 			<para>The client specifies only the body and TTL for the message. The server inserts metadata, such as ID and age.</para>
 			<para>The response body contains a list of resource paths that correspond to each message submitted in the request, in the order of the messages. If a server-side error occurs during the processing of the submitted messages, a partial list is returned, the partial attribute is set to true, and the client tries to post the remaining messages again. If the server cannot enqueue any messages, the server returns a <code>503 Service Unavailable</code> error message. </para>
 			<para>The <code>body</code> attribute specifies an arbitrary document that constitutes the body of the message being sent. The size of this body is limited to 256 KB, excluding whitespace. The document must be valid JSON. (Cloud Queues validates it.)</para>
