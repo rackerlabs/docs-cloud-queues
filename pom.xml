@@ -24,9 +24,9 @@
 	      <security>external</security> 
 	      <metaRobots>1</metaRobots>
 	      <includes>
-	       cq-devguide.xml,
-           cq-gettingstarted.xml,
-	       cq-releasenotes.xml
+<!--	       cq-devguide.xml, -->
+           cq-gettingstarted.xml
+<!--	       cq-releasenotes.xml  -->
 	      </includes>
 	    </configuration>
 	  </execution>
