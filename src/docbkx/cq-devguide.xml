@@ -51,11 +51,12 @@
   <info>
     <copyright>
       <year>2013</year>
+      <year>2014</year>
       <holder>Rackspace US, Inc.</holder>
     </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2013-12-19</pubdate><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
+    <pubdate>2014-01-22</pubdate><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
     <legalnotice role="rs-api">
       <annotation>
@@ -70,6 +71,17 @@
     </abstract>  
  
     <revhistory>
+      <revision>
+        <date>2014-01-22</date>
+        <revdescription>
+          <para>Updated the maximum size information for queue
+            metadata and message body the Data Limits in <xref
+              linkend="Absolute-Limits-d1e003"/>, as well as in the
+            Set Queue Metadata and Post Message operations
+            descriptions in <xref linkend="API_Operations_dle001"
+            />.</para>
+        </revdescription>
+      </revision>
       <revision>
         <date>2013-12-19</date>
         <revdescription>
@@ -1343,13 +1355,13 @@
           <tr>
             <td rowspan="2">Data Limits</td>
             <td>Queue metadata JSON</td>
-            <td>Cannot exceed 65536 bytes, excluding whitespace (64
-              KB)</td>
+            <td>Cannot exceed 262144 bytes, including whitespace (256
+                KB)</td>
           </tr>
           <tr>
             <td>Message body JSON</td>
-            <td>Cannot exceed 262144 bytes, excluding whitespace (256
-              KB)</td>
+            <td>Cannot exceed 262144 bytes, including whitespace (256
+                KB)</td>
           </tr>
         </tbody>
       </table>

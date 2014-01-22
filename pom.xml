@@ -13,9 +13,59 @@
       <plugin>
 	<groupId>com.rackspace.cloud.api</groupId>
 	<artifactId>clouddocs-maven-plugin</artifactId>
-	<version>1.12.0</version>
+	<version>1.12.1</version>
 	<executions>
-	  <execution>
+			
+		<execution>
+			<id>cq-devguide</id>
+			<goals>
+				<goal>generate-webhelp</goal>
+			</goals>
+			<phase>generate-sources</phase>
+			<configuration>
+				<enableDisqus>1</enableDisqus> 
+				<includes>
+					cq-devguide.xml
+				</includes>
+				<canonicalUrlBase>http://docs.rackspace.com/queues/api/v1.0/cq-devguide/content</canonicalUrlBase>
+				<feedbackEmail>catherine.richardson@rackspace.com</feedbackEmail>
+			</configuration>
+		</execution> 
+		
+		<execution>
+			<id>cq-gettingstarted</id>
+			<goals>
+				<goal>generate-webhelp</goal>
+			</goals>
+			<phase>generate-sources</phase>
+			<configuration>
+				<enableDisqus>1</enableDisqus> 
+				<includes>
+					cq-gettingstarted.xml
+				</includes>
+				<canonicalUrlBase>http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/content</canonicalUrlBase>
+				<feedbackEmail>catherine.richardson@rackspace.com</feedbackEmail>
+			</configuration>
+		</execution> 
+		
+		<execution>
+			<id>cq-releasenotes</id>
+			<goals>
+				<goal>generate-webhelp</goal>
+			</goals>
+			<phase>generate-sources</phase>
+			<configuration>
+				<enableDisqus>1</enableDisqus> 
+				<includes>
+					cq-releasenotes.xml
+				</includes>
+				<chapterAutolabel>0</chapterAutolabel>
+				<canonicalUrlBase>http://docs.rackspace.com/queues/api/v1.0/cq-releasenotes/content</canonicalUrlBase>
+				<feedbackEmail>catherine.richardson@rackspace.com</feedbackEmail>
+			</configuration>
+		</execution>  
+		
+<!--	  <execution>
 	    <goals>
 	      <goal>generate-webhelp</goal> 
 	    </goals>
@@ -30,7 +80,9 @@
 	      </includes>
 	    </configuration>
 	  </execution>
+-->	  
 	</executions>
+      	
 	<configuration>
 	  <enableDisqus>1</enableDisqus>
 	  <socialIcons>1</socialIcons>

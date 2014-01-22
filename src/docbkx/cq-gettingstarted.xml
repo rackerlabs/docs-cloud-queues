@@ -66,7 +66,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
         </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2014-01-14</pubdate>
+    <pubdate>2014-01-22</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
     <legalnotice role="rs-api">
       <annotation>
@@ -82,10 +82,17 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
     
     <revhistory>
             <revision>
+                <date>2014-01-22</date>
+                <revdescription>
+                    <para>Updated the maximum size information in
+                            <xref linkend="insert_messages"/>.</para>
+                </revdescription>
+            </revision>
+            <revision>
                 <date>2014-01-14</date>
                 <revdescription>
                     <para>Updated the Claim Messages description in
-                            <xref linkend="Claim_messages"/> to show
+                            <xref linkend="insert_messages"/> to show
                         the correct status code (201 Created) in the
                         response example.</para>
                 </revdescription>
@@ -1303,21 +1310,41 @@ Location: /v1/queues/samplequeue</programlisting>
                 the submitted messages, a partial list is returned.
                 The <parameter>partial</parameter> attribute is set to
                     <parameter>true</parameter>, and the client tries
-                to post the remaining messages again. </para>
-            <para>The <parameter>body</parameter> attribute specifies
-                an arbitrary document that constitutes the body of the
-                message being sent. The size of the message body is
-                limited to 256 KB, excluding whitespace. If multiple
-                messages are included in the request, this limit also
-                applies to the sum of the message bodies. For example,
-                you can have one message body of 256 KB, or up to 10
-                messages for which the sum of the message bodies is
-                256 KB. An HTTP<code>400 Bad Request</code>  response
-                code is triggered if a single message body or the sum
-                of multiple message bodies exceeds 256 KB in a single
-                request. The document <emphasis role="italic"
-                    >must</emphasis> be valid JSON. (Cloud Queues
-                validates it.)</para>
+                to post the remaining messages again. The
+                    <parameter>body</parameter> attribute specifies an
+                arbitrary document that constitutes the body of the
+                message being sent. </para>
+            <para>The following rules apply for the maximum size:<itemizedlist>
+                    <listitem>
+                        <para>The size is limited to 256 KB for the
+                            entire request body (as-is), including
+                            whitespace.</para>
+                    </listitem>
+                    <listitem>
+                        <para>The maximum size of posted messages is
+                            the maximum size of the entire request
+                            document (rather than the sum of the
+                            individual message <code>body</code> field
+                            values as it was earlier releases). On
+                            error, the client is notified of by how
+                            much the request exceeded the
+                            limit.</para>
+                    </listitem>
+                </itemizedlist></para>
+<!-- 2014-01-17 cyr: Per email from Kurt today, the following information is now outdated and is replaced with the information above.            
+            <para>
+                excluding whitespace. If multiple messages are
+                included in the request, this limit also applies to
+                the sum of the message bodies. For example, you can
+                have one message body of 256 KB, or up to 10 messages
+                for which the sum of the message bodies is 256 KB. An
+                    HTTP<code>400 Bad Request</code> response code is
+                triggered if a single message body or the sum of
+                multiple message bodies exceeds 256 KB in a single
+                request.</para>
+-->                
+            <para>The document <emphasis role="italic">must</emphasis>
+                be valid JSON. (Cloud Queues validates it.)</para>
             <para>The <parameter>ttl</parameter> attribute specifies
                 the lifetime of the message. When the lifetime
                 expires, the server deletes the message and removes it

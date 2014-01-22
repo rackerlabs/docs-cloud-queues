@@ -205,9 +205,9 @@
 		<wadl:doc xml:lang="EN" title="Set Queue Metadata" xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Sets metadata for the specified queue.</para>  
 			<para>This operation sets metadata for the specified queue.</para>
-			<para>The request body has a limit of 256 KB, excluding whitespace.</para>
+			<para>The request body has a limit of 256 KB, including whitespace (when re-serialized as JSON). </para>
 			<para>This operation replaces any existing metadata document in its entirety. Ensure that you do not accidentally overwrite existing metadata that you want to retain.</para>					
-			<para>The body of the request includes contextual information about the way a particular application interacts with the queue. The maximum size of this body is 256 KB, excluding whitespace (when re-serialized as JSON). The document must be valid JSON. (Cloud Queues validate it.)</para>
+			<para>The body of the request includes contextual information about the way a particular application interacts with the queue. The document must be valid JSON. (Cloud Queues validate it.)</para>
 			<note> <para><code>queue_name</code> is the name that you give to the queue. The name must not exceed 64 bytes in length, and it is limited to US-ASCII letters, digits, underscores, and hyphens.</para>
 			</note>		
 		</wadl:doc>
@@ -353,13 +353,28 @@
 			<para>You can submit up to 10 messages in a single request, but you must always encapsulate the messages in a collection container (an array in JSON, even for a single message - without the JSON array, you receive the "Invalid request body" message). The resulting value of the Location header or response body might be used to retrieve the created messages for further processing. </para>
 			<para>The client specifies only the body and TTL for the message. The server inserts metadata, such as ID and age.</para>
 			<para>The response body contains a list of resource paths that correspond to each message submitted in the request, in the order of the messages. If a server-side error occurs during the processing of the submitted messages, a partial list is returned, the partial attribute is set to true, and the client tries to post the remaining messages again. If the server cannot enqueue any messages, the server returns a <code>503 Service Unavailable</code> error message. </para>
-			<para>The <code>body</code> attribute specifies an arbitrary document that constitutes the body of the message being sent. The size of this body is limited to 256 KB, excluding whitespace. The document must be valid JSON. (Cloud Queues validates it.)</para>
+			
+			<para>The <code>body</code> attribute specifies an arbitrary document that constitutes the body of the message being sent.</para>.
+			<para>The following rules apply for the maximum size:</para>
+
+	
+			
+			<itemizedlist spacing="compact">
+				<listitem>
+					<para>The maximum size of posted messages is the maximum size of the entire request document (rather than the sum of the individual message body field values as it was in earlier releases). On error, the client will now be notified of how much it exceeded the limit.</para>
+				</listitem>
+				<listitem>
+					<para>The size is limited to 256 KB, including whitespace.</para>
+				</listitem>
+			</itemizedlist>
+			
+			<para>The document must be valid JSON. (Cloud Queues validates it.)</para>
 			<para>The <code>ttl</code> attribute specifies how long the server waits before marking the message as expired and removing it from the queue. The value of <code>ttl</code> must be between 60 and 1209600 seconds (14 days). Note that the server might not actually delete the message until its age has reached up to (ttl + 60) seconds, to allow for flexibility in storage implementations. </para>
 		</wadl:doc>
 		<request>
 			<representation mediaType="application/json" element="queues:Queue" >
 				<doc>
-					<xsdxt:code href="../wadl/samples/cq-postMessage_request.json"/>
+					<xsdxt:code href="../wadl/samples/cq-postMessage_request.json" />
 				</doc>
 			</representation>
 		</request>
