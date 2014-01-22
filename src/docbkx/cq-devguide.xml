@@ -57,7 +57,7 @@
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
     <pubdate>2014-01-22</pubdate><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
-    <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.  -->
+    <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
       <annotation>
         <remark>Copyright details are filled in by the build system.</remark>
