@@ -7,7 +7,7 @@
     xml:id="cq-releasenotes">
 <!-- <?rax canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cs-releasenotes/content"?>  -->
 <!--  <?rax title.font.size="30px" subtitle.font.size="20px"?> -->
-  <title>Rackspace Cloud Queues Release Notes</title>  <?rax title.font.size="37px" pdf.url="../../cn-releasenotes.pdf" canonical.url.base="http://docs.rackspace.com/servers/api/v2/cn-releasenotes/content"?>  
+  <title>Rackspace Cloud Queues Release Notes</title>  <?rax title.font.size="37px" pdf.url="../../cq-releasenotes.pdf" canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-releasenotes/content"?>  
  
   <info>
     <author>
@@ -51,7 +51,7 @@
                 entire request document, including whitespace, rather
                 than the sum of the individual message "body" field
                 values. On error, the client is now notified of how
-                much it exceeded the limit.</para>
+                much the request exceeded the limit.</para>
             </listitem>
             <listitem>
               <para>The maximum size of metadata is now the maximum
@@ -77,11 +77,11 @@
           <para xmlns:svg="http://www.w3.org/2000/svg"
             xmlns:m="http://www.w3.org/1998/Math/MathML"
             xmlns:html="http://www.w3.org/1999/xhtml">Updated the Post
-            Message description in "API Operations" section of the
+            Message description in the "API Operations" section of the
               <citetitle>Developer Guide</citetitle> to include the
             information that you must include even a single message in
             a JSON array or you will receive the error message
-            "Invalid request body".</para>
+              <code>Invalid request body</code>.</para>
         </revdescription>
       </revision>
       <revision>
@@ -93,16 +93,16 @@
             <listitem>
               <para>Removed the <code>claim_id</code> parameter from
                 the URI for the operation that gets a set of messages
-                by ID from the section "Get Set of Messages by ID" in
+                by ID from the "Get Set of Messages by ID" section in
                 the <citetitle>Developer Guide</citetitle>.</para>
             </listitem>
             <listitem>
-              <para>Updated the instructions for locating the API Key,
-                Tenant ID, and account number in the Cloud Control
-                Panel in section "Retrieving the Authentication Token"
-                in the <citetitle>Getting Started Guide</citetitle>
-                and in the <citetitle>Developer Guide</citetitle>.
-              </para>
+              <para>Updated the instructions for locating the API key,
+                tenant ID, and account number in the Cloud Control
+                Panel in the "Retrieving the Authentication Token"
+                section in the <citetitle>Getting Started
+                  Guide</citetitle> and in the <citetitle>Developer
+                  Guide</citetitle>. </para>
             </listitem>
           </itemizedlist>
         </revdescription>
@@ -134,7 +134,6 @@
     <title>Preface</title>
     <para>This document describes new features and changes for the
       Cloud Queues API. </para>
-    <para><emphasis role="bold">Resources</emphasis></para>
     <para>For detailed information about the Cloud Queues API, see the
       following documentation at <link
         xlink:href="http://docs.rackspace.com/"
@@ -149,33 +148,33 @@
           Guide</citetitle></para>
       </listitem>
     </itemizedlist>
-    <para>Support for Cloud Queues is available 24x7x365 via phone,
-      chat, or you may also <link
+    <para>Support for Cloud Queues is available 24x7x365 via phone or
+      chat, or you can also <link
         xlink:href="https://manage.rackspacecloud.com/Tickets/YourTickets.do"
         xmlns:svg="http://www.w3.org/2000/svg"
         xmlns:m="http://www.w3.org/1998/Math/MathML"
-        xmlns:html="http://www.w3.org/1999/xhtml">File a
-      Ticket</link>.</para>
-    <para>You can also provide feedback using our feedback forum at
-        <link
-        xlink:href="http://feedback.rackspacecloud.com/forums/71021-product-feedback/category/42449-cloud-databases"
-        >Product Feedback Forum</link>.</para>
+        xmlns:html="http://www.w3.org/1999/xhtml">file a
+      ticket</link>.</para>
+    <para>You can also provide feedback by using the <link
+        xlink:href="http://feedback.rackspacecloud.com/forums/71021-product-feedback"
+        >Product Feedback forum</link>.</para>
 
-    <para>We welcome your comments, feedback, and bug reports .</para>
+    <para>Rackspace welcomes your comments, feedback, and bug reports
+      .</para>
   </preface>
   <chapter xml:id="doc_change_history">
     <title>Document Change History</title>
     <para>This version of the release notes replaces and obsoletes all
       earlier versions. The most recent changes are described in the
-      table below:</para>
+      following table:</para>
     <?rax revhistory?>
   </chapter>
   <chapter xml:id="Jan222014">
     <title>January 22, 2014</title>
     <para>This release is includes the following changes for the Cloud
-      Queues API:</para>
+      Queues API.</para>
     <itemizedlist>
-      <title>API changes</title>
+      <title>API Changes</title>
       <listitem>
         <para xmlns:svg="http://www.w3.org/2000/svg"
           xmlns:m="http://www.w3.org/1998/Math/MathML"
@@ -195,7 +194,7 @@
       <title>Documentation</title>
       <listitem>
         <para>The documentation was updated to include the following
-          new information based on the code change described above: </para>
+          new information based on the preceding code change: </para>
         <itemizedlist>
           <listitem>
             <para>In the <citetitle>Cloud Queues Getting Started
@@ -243,7 +242,7 @@
           Post Message description in the "API Operations" section was
           updated to specify that you must include even a single
           message in a JSON array or you will receive the error
-          message "Invalid request body".</para>
+          message <code>Invalid request body</code>.</para>
       </listitem>
     </itemizedlist>
   </chapter> 
@@ -258,15 +257,15 @@
         <para>In the <citetitle>Cloud Queues Developer
             Guide</citetitle>, the <code>claim_id</code> parameter was
           removed from the URI for the operation description for "Get
-          Set of Messages by ID".</para>
+          Set of Messages by ID."</para>
       </listitem>
       <listitem>
         <para>In the <citetitle>Cloud Queues Getting Started
             Guide</citetitle> and in the <citetitle>Cloud Queues
             Developer Guide</citetitle>, the instructions for locating
-          the API Key, Tenant ID, and account number in the Cloud
-          Control Panel were updated in section "Retrieving the
-          Authentication Token". </para>
+          the API key, tenant ID, and account number in the Cloud
+          Control Panel were updated in "Retrieving the Authentication
+          Token" section. </para>
       </listitem>
     </itemizedlist>
   </chapter> 
