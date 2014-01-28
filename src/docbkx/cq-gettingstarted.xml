@@ -66,7 +66,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
         </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2014-01-22</pubdate>
+    <pubdate>2014-01-28</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
       <annotation>
@@ -81,6 +81,14 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
     </abstract>
     
     <revhistory>
+            <revision>
+                <date>2014-01-28</date>
+                <revdescription>
+                    <para>Updated <xref linkend="Pricing_SLA-d1e1362"
+                        /> to reflect the new time frame to begin
+                        billing for Cloud Queues.</para>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-01-22</date>
                 <revdescription>
@@ -242,20 +250,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
             site also offers links to Rackspace's official support
             channels, including phone, chat, and email as well as
             Knowledge Center articles.</para>
-        <note>
-            <para>Cloud Queues is free to all customers until January
-                2014. </para>
-            <para>The Service Level Agreement (SLA) for Cloud Queues
-                is available at <link
-                    xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
-                    >http://www.rackspace.com/information/legal/cloud/sla</link>
-                <link
-                    xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
-                    >http://www.rackspace.com/information/legal/cloud/sla</link>. </para>
-            <para>Customers are not eligible for Cloud Queues SLA
-                credits until billing begins in January of
-                2014.</para>
-        </note>      
+     
         
         <section xml:id="core_concepts">
             <title>Prerequisites for Running Examples </title>
@@ -283,15 +278,14 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
         </section>
         <section xml:id="Pricing_SLA-d1e1362">
             <title>Pricing and Service Level</title>
-            <para>Cloud Queues is free to all customers until January
-                2014. </para>
+            <para>Cloud Queues is free to all customers through
+                February 2014. </para>
             <para>The Service Level Agreement (SLA) for Cloud Queues
                 is available at <link
                     xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
                     >http://www.rackspace.com/information/legal/cloud/sla</link>. </para>
             <para>Customers are not eligible for Cloud Queues SLA
-                credits until billing begins in January of
-                2014.</para>
+                credits until billing begins.</para>
         </section>        
         <section xml:id="how_cq_works">
             <title>How Cloud Queues Works</title>
