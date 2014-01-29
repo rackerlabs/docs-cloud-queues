@@ -182,14 +182,11 @@
   </chapter>
   <chapter xml:id="Jan22814">
     <title>January 28, 2014</title>
-    <para>This release is includes a change in the time frame for
-      billing to begin for Cloud Queues. The Pricing and Service Level
-      section in the <citetitle>Cloud Queues Getting Started
-        Guide</citetitle> and in the <citetitle>Cloud Queues Developer
-        Guide</citetitle> has been changed to indicate that Cloud
-      Queues is free through February 2014.  Customers are not
-      eligible for Cloud Queues SLA credits until billing
-      begins.</para>
+    <para>This release includes a change in the time frame for billing to begin for Cloud Queues.
+      The Pricing and Service Level section in the <citetitle>Cloud Queues Getting Started
+        Guide</citetitle> and in the <citetitle>Cloud Queues Developer Guide</citetitle> has been
+      changed to indicate that Cloud Queues is free through February 2014. Customers are not
+      eligible for Cloud Queues SLA credits until billing begins.</para>
   </chapter>
   <chapter xml:id="Jan222014">
     <title>January 22, 2014</title>
