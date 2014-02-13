@@ -2605,11 +2605,11 @@ Content-Type: application/json
       <para>This section describes message operations that are
         supported by the Cloud Queues API. </para>
       <note>
-        <para>All message-relslated operations require that Client-ID
-          be included in the headers. This is to ensure that messages
-          are not echoed back to the client that posted them unless
-          the client explicitly requests this. For more information,
-          see Client-ID in <xref linkend="commonHeaders"/>.</para>
+        <para>All message-related operations require that Client-ID be
+          included in the headers. This is to ensure that messages are
+          not echoed back to the client that posted them unless the
+          client explicitly requests this. For more information, see
+          Client-ID in <xref linkend="commonHeaders"/>.</para>
       </note>
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">     
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#messages"/>
