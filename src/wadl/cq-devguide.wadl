@@ -38,7 +38,7 @@
 <!--*******************************************************-->
 	
 	
-	<resources base="https://ord.queues.api.rackspacecloud.com/" xml:id="queues-v1">
+	<resources base="https://ord.queues.api.rackspacecloud.com/">
 		<resource id="version" path="{version}">
 			<!--	Project ID was in the Header not in the URL but has recently been removed from header.	.</resource>
 				<resource id="projectID" path="{projectId}">
