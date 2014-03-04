@@ -45,7 +45,7 @@
         <revdescription>
           <para>Updated Cloud Queues to begin billing for the service. The "Pricing and Service
             Level" section in both the <citetitle>Cloud Queues Getting Started Guide</citetitle> and
-            in the <citetitle>Cloud Queues Developer Guide</citetitle> has been updated. </para>
+            the <citetitle>Cloud Queues Developer Guide</citetitle> has been updated. </para>
         </revdescription>
       </revision>
       <revision>
@@ -198,7 +198,7 @@
         xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
         >http://www.rackspace.com/information/legal/cloud/sla</link>. </para>
     <para> The "Pricing and Service Level" section in both the <citetitle>Cloud Queues Getting
-        Started Guide</citetitle> and in the <citetitle xmlns:svg="http://www.w3.org/2000/svg"
+        Started Guide</citetitle> and the <citetitle xmlns:svg="http://www.w3.org/2000/svg"
         xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml">Cloud
         Queues Developer Guide</citetitle> has been updated to include links to the pricing and
       service level information.</para>   
