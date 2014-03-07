@@ -32,21 +32,19 @@
               </inlinemediaobject>'>
 ]>
 
-<book  
-    xmlns="http://docbook.org/ns/docbook" 
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:xi="http://www.w3.org/2001/XInclude" 
-    xmlns:svg="http://www.w3.org/2000/svg"
-    xmlns:m="http://www.w3.org/1998/Math/MathML"
-    xmlns:html="http://www.w3.org/1999/xhtml"    
-    version="5.0-extension RaxBook-2.0"    
-    xml:id="cq-devguide">
+<book xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:m="http://www.w3.org/1998/Math/MathML"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  version="5.0-extension RaxBook-2.0" xml:id="cq-devguide">
 
   <?rax title.font.size="35px"
       pdf.url="../../cq-devguide.pdf" 
       status.bar.text.font.size="40px"
       canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-devguide/content"?>
-  
+
   <title>Rackspace Cloud Queues Developer Guide</title>
   <info>
     <copyright>
@@ -56,27 +54,30 @@
     </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2014-03-04</pubdate><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
+    <pubdate>2014-03-04</pubdate>
+    <!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
       <annotation>
-        <remark>Copyright details are filled in by the build system.</remark>
+        <remark>Copyright details are filled in by the build
+          system.</remark>
       </annotation>
     </legalnotice>
-    <abstract >
+    <abstract>
       <para>This document is intended for software developers
         interested in developing applications using the Rackspace
         Cloud Queues Application Programming Interface
-          (<abbrev>API</abbrev>). </para>
-    </abstract>  
- 
+          (<abbrev>API</abbrev>).</para>
+    </abstract>
+
     <revhistory>
       <revision>
         <date>2014-03-04</date>
         <revdescription>
-          <para>Updated <xref linkend="Pricing_SLA-d1e1362"/> to point to the pricing information
-            for Cloud Queues because customers are now incurring fees for their usage of the Cloud
-            Queues API and public outbound bandwidth. </para>
+          <para>Updated <xref linkend="Pricing_SLA-d1e1362"/> to point
+            to the pricing information for Cloud Queues because
+            customers are now incurring fees for their usage of the
+            Cloud Queues API and public outbound bandwidth.</para>
         </revdescription>
       </revision>
       <revision>
@@ -84,7 +85,7 @@
         <revdescription>
           <para>Updated <xref linkend="Pricing_SLA-d1e1362"/> to
             reflect the new time frame to begin billing for Cloud
-            Queues. </para>
+            Queues.</para>
         </revdescription>
       </revision>
       <revision>
@@ -115,8 +116,7 @@
             <listitem>
               <para>Removed the <code>claim_id</code> parameter from
                 the URI for the operation that gets a set of messages
-                by ID (<xref linkend="message-operations-dle001"
-                />).</para>
+                by ID.</para>
             </listitem>
             <listitem>
               <para>Updated the instructions for locating the API Key,
@@ -133,8 +133,6 @@
           <para>Initial Unlimited Availability (UA) release for
             Rackspace Cloud Queues</para>
         </revdescription>
-        
-<!-->        
       </revision>
       <revision>
         <date>2013-10-21</date>
@@ -150,7 +148,6 @@
             Rackspace Cloud Queues</para>
         </revdescription>
       </revision>
---></revision>      
     </revhistory>
 
     <!-- 
@@ -158,11 +155,11 @@
        Work with the Cloud Doc Tools team to find out what to put here. Once established, you should not change these
        values without first consulting with the CDT team.
     -->
-      <raxm:metadata xmlns:raxm="http://docs.rackspace.com/api/metadata">
-        <raxm:displayname>API Developer Guide</raxm:displayname>
-        <raxm:product version="v1.0">queues</raxm:product>
-        <raxm:priority>20</raxm:priority>
-      </raxm:metadata>
+    <raxm:metadata xmlns:raxm="http://docs.rackspace.com/api/metadata">
+      <raxm:displayname>API Developer Guide</raxm:displayname>
+      <raxm:product version="v1.0">queues</raxm:product>
+      <raxm:priority>20</raxm:priority>
+    </raxm:metadata>
   </info>
   <chapter xml:id="overview">
     <title>Overview</title>
@@ -183,25 +180,25 @@
       messages and delete them after they complete the actions
       associated with the messages. A single claim can contain
       multiple messages, and administrators can query claims for
-      status. </para>
+      status.</para>
     <para>In the publisher-subscriber model, messages are posted to a
       queue as in the producer-consumer model, but messages are never
       claimed. Instead, subscribers, or watchers, send
         <command>GET</command> requests to pull all messages that have
       been posted since their last request. In this model, a message
       remains in the queue, unclaimed, until the message's time to
-      live (TTL) has expired. </para>
+      live (TTL) has expired.</para>
     <para>In both of these models, administrators can get queue
       statistics that display the most recent and oldest messages, the
-      number of unclaimed messages, and more. </para>
+      number of unclaimed messages, and more.</para>
     <remark security="reviewer">Reviewer: Do you want to add a diagram
       of Cloud Queues infrastructure / architecture if you can give it
       to me. For an example, see the DB diagram at <link
         xlink:href="http://docs.rackspace.com/cdb/api/v1.0/cdb-devguide/content/overview.html"
         >
         http://docs.rackspace.com/cdb/api/v1.0/cdb-devguide/content/overview.html</link>.</remark>
-    
-  <section xml:id="Intended_Audience-d1e166">
+
+    <section xml:id="Intended_Audience-d1e166">
       <title>Intended Audience</title>
       <para>This document is intended for software developers who are
         interested in developing applications that use the Rackspace
@@ -239,14 +236,14 @@
         API-related documents from <link
           xlink:href="http://docs.rackspace.com/"
           >http://docs.rackspace.com/</link>.</para>
-     
+
       <para>For more details about Cloud Queues, refer to <link
           xlink:href="http://www.rackspace.com/cloud/queues/"
           >http://www.rackspace.com/cloud/queues/</link>. This site
         also offers links to Rackspace's official support channels,
         including phone, chat, and email as well as Knowledge Center
         articles.</para>
-<!--      
+      <!--      
       <remark security="reviewer">Reviewer: do you have a
         corresponding link for the Cloud Queues landing page on
         rackspace.com/cloud? If so, can you please give it to
@@ -256,43 +253,44 @@
           Guide</citetitle> for information about getting started
         using the API. All you need to get started with Cloud Queues
         is the getting started guide, the developer guide, and your
-        Rackspace Cloud account. </para>
+        Rackspace Cloud account.</para>
       <para>Email all support questions to
-          <email>cloudqueues@rackspace.com</email>. </para>
+          <email>cloudqueues@rackspace.com</email>.</para>
       <para>Visit the <link
           xlink:href="http://feedback.rackspace.com/forums/71021-product-feedback/category/6841-cloud-sites"
           >Product Feedback Forum</link> and tell us what you think
         about Cloud Queues.</para>
       <para>You can follow Rackspace updates and announcements via
         Twitter at <link xlink:href="http://www.twitter.com/rackspace"
-          >www.twitter.com/rackspace</link>. </para>
+          >www.twitter.com/rackspace</link>.</para>
       <para>This API uses standard HTTP 1.1 response codes as
         documented at <link
           xlink:href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"
-          >www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</link>. </para>
+          >www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</link>.</para>
     </section>
     <section xml:id="API-Contract_Changes-d1e001">
       <title>API Contract Changes</title>
       <para>Rackspace will notify customers in release notes when and
         if the contract changes.</para>
-    </section>  
+    </section>
     <section xml:id="Pricing_SLA-d1e1362">
       <title>Pricing and Service Level</title>
-      <para>Cloud Queues is part of the Rackspace Cloud and your use of the Cloud Queues API will be
-        billed according to the pricing schedule at <link
+      <para>Cloud Queues is part of the Rackspace Cloud and your use
+        of the Cloud Queues API will be billed according to the
+        pricing schedule at <link
           xlink:href="http://www.rackspace.com/cloud/queues/"
-          >http://www.rackspace.com/cloud/queues</link>. </para>
+          >http://www.rackspace.com/cloud/queues</link>.</para>
       <para>The Service Level Agreement (SLA) for Cloud Queues is
         available at <link
           xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_queues"
-          >http://www.rackspace.com/information/legal/cloud/sla</link>. </para>                
+          >http://www.rackspace.com/information/legal/cloud/sla</link>.</para>
     </section>
 
   </chapter>
   <chapter xml:id="Concepts-dle001">
     <title>Concepts</title>
-    <para> To use the Cloud Queues API effectively, you should
-      understand the key concepts described in this section. </para>
+    <para>To use the Cloud Queues API effectively, you should
+      understand the key concepts described in this section.</para>
     <section xml:id="how_cq_works">
       <title>How Cloud Queues Works</title>
       <para>Following is an overview of Cloud Queues works. For
@@ -310,7 +308,7 @@
           <para>If a worker will be offline before it completes the
             work in a message, the worker can retire the claim's time
             to live (TTL), putting the message back into the queue for
-            another worker to claim. </para>
+            another worker to claim.</para>
         </listitem>
         <listitem>
           <para>Subscribers monitor the claims from these queues to
@@ -320,12 +318,12 @@
       <para>For the majority of use cases, Cloud Queues is not
         responsible for the ordering of messages. However, if there is
         only a single producer, Cloud Queues ensures that messages are
-        handled in a First In, First Out (FIFO) order. </para>
+        handled in a First In, First Out (FIFO) order.</para>
     </section>
     <section xml:id="operating_modes">
       <title>Messaging Patterns</title>
       <para>Cloud Queues supports a variety of messaging patterns
-        including the following: </para>
+        including the following:</para>
       <itemizedlist>
         <listitem>
           <para>producer-consumer</para>
@@ -349,8 +347,8 @@
           </listitem>
           <listitem>
             <para>Only one worker can claim a message so that no other
-              worker can claim the message and duplicate the work.
-            </para>
+              worker can claim the message and duplicate the
+              work.</para>
           </listitem>
           <listitem>
             <para>The worker must delete the message when work is
@@ -374,7 +372,7 @@
           </listitem>
           <listitem>
             <para>All workers (or subscribers) listen to the messages
-              in the queue. </para>
+              in the queue.</para>
           </listitem>
           <listitem>
             <para>Workers do not claim a message.</para>
@@ -385,20 +383,20 @@
           </listitem>
           <listitem>
             <para>Workers can send a marker or cursor to skip messages
-              already seen. </para>
+              already seen.</para>
           </listitem>
           <listitem>
-            <para>TTL eventually deletes messages. </para>
+            <para>TTL eventually deletes messages.</para>
           </listitem>
         </itemizedlist>
         <para>This pattern is ideal for notification of events to
           multiple workers at once.</para>
       </section>
     </section>
-    <section xml:id="Use-Cases-d1e001"> 
+    <section xml:id="Use-Cases-d1e001">
       <title>Use Cases</title>
       <para>Queuing systems are used to coordinate tasks within an
-        application. Here are some examples: </para>
+        application. Here are some examples:</para>
       <itemizedlist>
         <listitem>
           <para><emphasis role="bold">Backup</emphasis>: A backup
@@ -411,7 +409,7 @@
             the customers server (the worker) checks the queue to see
             if it has any new messages to act on. The agent claims the
             "startBackup" message and kicks off the backup on the
-            customer's server. </para>
+            customer's server.</para>
         </listitem>
         <listitem>
           <para><emphasis role="bold">Storage</emphasis>: Gathering
@@ -430,13 +428,13 @@
             can protect themselves from workers going offline while
             processing a message. After a claim's TTL expires, the
             message is put back into the queue for another worker to
-            claim. </para>
+            claim.</para>
         </listitem>
         <listitem>
           <para><emphasis role="bold">Email</emphasis>: The team for
             an email application is constantly migrating customer
             email from old versions to newer ones, so they develop a
-            tool to let customers do it themselves.  The migrations
+            tool to let customers do it themselves. The migrations
             take a long time, so they cannot be done with single API
             calls, or by a single server. When a user starts a
             migration job from their portal, the migration tool sends
@@ -446,14 +444,15 @@
             tasks, claim the messages, perform the migration, and
             update a database with the migration details. This process
             allows a set of servers to work together to accomplish
-            large migrations in a timely manner. </para>
+            large migrations in a timely manner.</para>
         </listitem>
       </itemizedlist>
-      <para>Following are some generic use cases for Cloud Queues: </para>
+      <para>Following are some generic use cases for Cloud
+        Queues:</para>
       <itemizedlist>
         <listitem>
           <para>Distribute tasks among multiple workers (transactional
-            job queues) </para>
+            job queues)</para>
         </listitem>
         <listitem>
           <para>Forward events to data collectors (transactional event
@@ -492,50 +491,49 @@
         by the <code>X-Auth-Token</code> HTTP header. You obtain this
         token by using the Rackspace Cloud Authentication service
         (also known as the Cloud Identity Service) and supplying a
-        valid username and API access key.  (See the <parameter>token
+        valid username and API access key. (See the <parameter>token
           id</parameter> parameter in <xref linkend="authResponseXML"
-        /> and <xref linkend="auth-response-example-json"/>). </para>
+        /> and <xref linkend="auth-response-example-json"/>).</para>
       <section xml:id="Geographic_Endpoints">
         <title>Geographic Endpoints</title>
-        <para> The Rackspace Cloud Authentication service is the entry
+        <para>The Rackspace Cloud Authentication service is the entry
           point to all Rackspace Cloud APIs and is itself a RESTful
-          web service. </para>
-        <para> You can use either of the following endpoints to access
+          web service.</para>
+        <para>You can use either of the following endpoints to access
           the Authentication service, regardless of US or UK
-          identities: </para>
+          identities:</para>
         <itemizedlist spacing="compact">
           <listitem>
             <para><link xlink:href="&ENDPOINT-US-20;"
-              >&ENDPOINT-US-20;</link>
-            </para>
+                >&ENDPOINT-US-20;</link></para>
           </listitem>
           <listitem>
             <para><link xlink:href="&ENDPOINT-UK-20;"
-              >&ENDPOINT-UK-20;</link></para>
+                >&ENDPOINT-UK-20;</link></para>
           </listitem>
         </itemizedlist>
-        <para> Your account might be based in either the US or the UK.
+        <para>Your account might be based in either the US or the UK.
           The location of your account is not determined by your
           physical location but by the location of the Rackspace
-          retail site that was used to create your account: </para>
+          retail site that was used to create your account:</para>
         <itemizedlist spacing="compact">
           <listitem>
-            <para> If your account was created through <link
+            <para>If your account was created through <link
                 xlink:href="http://www.rackspacecloud.com"
                 >http://www.rackspacecloud.com</link>, it is a
-              US-based account. </para>
+              US-based account.</para>
           </listitem>
           <listitem>
-            <para> If your account was created through <link
+            <para>If your account was created through <link
                 xlink:href="http://www.rackspace.co.uk"
                 >http://www.rackspace.co.uk</link>, it is a UK-based
-              account. </para>
+              account.</para>
           </listitem>
         </itemizedlist>
       </section>
       <section xml:id="Retrieving_Auth_Token">
         <title>Retrieving the Authentication Token</title>
-        <para> The authenticate operation provides you with an
+        <para>The authenticate operation provides you with an
           authentication token and a list of regional cloud endpoints.
           The sample requests and responses in this section illustrate
           a general case. In your authentication request, use your own
@@ -544,8 +542,8 @@
           authenticate successfully, the response to your
           authentication request includes a catalog of the services to
           which you have subscribed rather than the sample values
-          shown in this section. </para>
-        <table frame="void">
+          shown in this section.</para>
+        <table rules="all">
           <caption>Command to Retrieve Authentication Token</caption>
           <col width="32%"/>
           <col width="22%"/>
@@ -560,58 +558,56 @@
           </tbody>
         </table>
         <simpara> Normal Response Code(s):
-          <returnvalue>200</returnvalue>,
-          <returnvalue>203</returnvalue>
+            <returnvalue>200</returnvalue>,
+            <returnvalue>203</returnvalue>
         </simpara>
         <simpara> Error Response Code(s): unauthorized
-          (<errorcode>401</errorcode>), userDisabled
-          (<errorcode>403</errorcode>), badRequest
-          (<errorcode>400</errorcode>), authFault
-          (<errorcode>500</errorcode>),
-          serviceUnavailable (<errorcode>503</errorcode>) </simpara>
+            (<errorcode>401</errorcode>), userDisabled
+            (<errorcode>403</errorcode>), badRequest
+            (<errorcode>400</errorcode>), authFault
+            (<errorcode>500</errorcode>), serviceUnavailable
+            (<errorcode>503</errorcode>) </simpara>
         <example>
           <title>Auth Request for US Endpoint: XML</title>
+          <programlisting language="bash"><xi:include href="samples/credentials-20-xml-http.txt" parse="text"/></programlisting>
           <programlistingco>
             <areaspec>
-              <area xml:id="credentials.xml.user"
-                units="linecolumn" coords="13 17"/>
-              <area xml:id="credentials.xml.key"
-                units="linecolumn" coords="14 15"/>
+              <area xml:id="credentials.xml.user" units="linecolumn"
+                coords="13 17"/>
+              <area xml:id="credentials.xml.key" units="linecolumn"
+                coords="14 15"/>
             </areaspec>
-            <programlisting language="xml">
-<xi:include href="samples/credentials-20.xml" parse="text"/>
-                    </programlisting>
+            <programlisting language="xml"><xi:include href="samples/credentials-20.xml" parse="text"/></programlisting>
           </programlistingco>
         </example>
         <example>
           <title>Auth Request for US Endpoint: JSON</title>
+          <programlisting language="bash"><xi:include href="samples/credentials-20-json-http.txt" parse="text"/></programlisting>
           <programlistingco>
             <areaspec>
-              <area xml:id="credentials.json.user"
-                units="linecolumn" coords="14 22"/>
-              <area xml:id="credentials.json.key"
-                units="linecolumn" coords="15 20"/>
+              <area xml:id="credentials.json.user" units="linecolumn"
+                coords="14 22"/>
+              <area xml:id="credentials.json.key" units="linecolumn"
+                coords="15 20"/>
             </areaspec>
-            <programlisting language="json">
-<xi:include href="samples/credentials-20.json" parse="text"/>
-                    </programlisting>
+            <programlisting language="json"><xi:include href="samples/credentials-20.json" parse="text"/></programlisting>
           </programlistingco>
         </example>
         <calloutlist>
           <callout arearefs="credentials.xml.user">
-            <para> The username supplied here is your
-              common Rackspace Cloud username. </para>
+            <para>The username supplied here is your common Rackspace
+              Cloud username.</para>
           </callout>
           <callout arearefs="credentials.xml.key">
-            <para> The key is your API access key. </para>
+            <para>The key is your API access key.</para>
             <para><emphasis role="bold">To find your API
                 Key:</emphasis>
             </para>
             <orderedlist>
               <listitem>
-                <para>Log in to the Cloud Control Panel  (<link
-                  xlink:href="https://mycloud.rackspace.com"
-                  >https://mycloud.rackspace.com</link>).</para>
+                <para>Log in to the Cloud Control Panel (<link
+                    xlink:href="https://mycloud.rackspace.com"
+                    >https://mycloud.rackspace.com</link>).</para>
               </listitem>
               <listitem>
                 <para>On the upper-right side of the top navigation
@@ -628,7 +624,7 @@
                     <guibutton>Show</guibutton>.</para>
               </listitem>
               <listitem>
-                <para> Copy the value of the API Key and paste it into
+                <para>Copy the value of the API Key and paste it into
                   a text editor of your choice.</para>
               </listitem>
               <listitem>
@@ -653,41 +649,58 @@
         </calloutlist>
         <example xml:id="authResponseXML">
           <title>Auth Response for US Endpoint: XML</title>
-          
+          <programlisting language="bash"><xi:include href="../../src/resources/samples/auth-20-xml-http.txt" parse="text"/></programlisting>
           <programlistingco>
             <areaspec>
-              <area xml:id="response.xml.namespaces" units="linecolumn" coords="7 9"/>
-              <area xml:id="response.xml.token" units="linecolumn" coords="15 10"/>
-              <area xml:id="response.xml.dfltregion" units="linecolumn" coords="16 67"/>
-              <area xml:id="response.xml.role" units="linecolumn" coords="17 12"/>
-              <area xml:id="response.xml.catalog" units="linecolumn" coords="22 21"/>
-              <area xml:id="response.xml.servicetype" units="linecolumn" coords="51 34"/>
-              <area xml:id="response.xml.servicename" units="linecolumn" coords="51 54"/>
-              <area xml:id="response.xml.region" units="linecolumn" coords="52 30"/>
-              <area xml:id="response.xml.tenant" units="linecolumn" coords="53 66"/>
-              <area xml:id="response.xml.url" units="linecolumn" coords="54 9"/>
+              <area xml:id="response.xml.namespaces"
+                units="linecolumn" coords="7 9"/>
+              <area xml:id="response.xml.token" units="linecolumn"
+                coords="15 10"/>
+              <area xml:id="response.xml.dfltregion"
+                units="linecolumn" coords="16 67"/>
+              <area xml:id="response.xml.role" units="linecolumn"
+                coords="17 12"/>
+              <area xml:id="response.xml.catalog" units="linecolumn"
+                coords="22 21"/>
+              <area xml:id="response.xml.servicetype"
+                units="linecolumn" coords="51 34"/>
+              <area xml:id="response.xml.servicename"
+                units="linecolumn" coords="51 54"/>
+              <area xml:id="response.xml.region" units="linecolumn"
+                coords="52 30"/>
+              <area xml:id="response.xml.tenant" units="linecolumn"
+                coords="53 66"/>
+              <area xml:id="response.xml.url" units="linecolumn"
+                coords="54 9"/>
             </areaspec>
             <programlisting language="xml"><xi:include href="../../src/resources/samples/auth-20.xml" parse="text"/></programlisting>
           </programlistingco>
         </example>
-        
-        
         <example xml:id="auth-response-example-json">
           <title>Auth Response for US Endpoint: JSON</title>
-          
           <programlistingco>
             <areaspec>
-              <area xml:id="response.json.namespaces" units="linecolumn" coords="200 1"/>
-              <area xml:id="response.json.token" units="linecolumn" coords="9 8"/>
-              <area xml:id="response.json.dfltregion" units="linecolumn" coords="16 45"/>
-              <area xml:id="response.json.role" units="linecolumn" coords="17 12"/>
-              <area xml:id="response.json.catalog" units="linecolumn" coords="30 8"/>
-              <area xml:id="response.json.servicetype" units="linecolumn" coords="114 16"/>
-              <area xml:id="response.json.servicename" units="linecolumn" coords="113 16"/>
-              <area xml:id="response.json.region" units="linecolumn" coords="104 24"/>
-              <area xml:id="response.json.tenant" units="linecolumn" coords="101 24"/>
-              <area xml:id="response.json.url" units="linecolumn" coords="102 24"/>
-            </areaspec>	
+              <area xml:id="response.json.namespaces"
+                units="linecolumn" coords="200 1"/>
+              <area xml:id="response.json.token" units="linecolumn"
+                coords="9 8"/>
+              <area xml:id="response.json.dfltregion"
+                units="linecolumn" coords="16 45"/>
+              <area xml:id="response.json.role" units="linecolumn"
+                coords="17 12"/>
+              <area xml:id="response.json.catalog" units="linecolumn"
+                coords="30 8"/>
+              <area xml:id="response.json.servicetype"
+                units="linecolumn" coords="114 16"/>
+              <area xml:id="response.json.servicename"
+                units="linecolumn" coords="113 16"/>
+              <area xml:id="response.json.region" units="linecolumn"
+                coords="104 24"/>
+              <area xml:id="response.json.tenant" units="linecolumn"
+                coords="101 24"/>
+              <area xml:id="response.json.url" units="linecolumn"
+                coords="102 24"/>
+            </areaspec>
             <programlisting language="json"><xi:include href="../../src/resources/samples/auth-20.json" parse="text"/>
                     </programlisting>
           </programlistingco>
@@ -700,23 +713,22 @@
         </note>
         <calloutlist>
           <callout arearefs="response.xml.namespaces">
-            <para>
-              In XML responses only,
-              a list of namespaces identifies API extensions that add functionality to the core API.
-            </para>
-            <para> </para>
+            <para> In XML responses only, a list of namespaces
+              identifies API extensions that add functionality to the
+              core API.</para>
           </callout>
           <callout arearefs="response.xml.token">
-            <para> Present this token in the X-Auth-Token HTTP header
+            <para>Present this token in the X-Auth-Token HTTP header
               of your request. Tokens are valid for a finite duration;
-              a token's default lifespan is 24 hours. </para>
-            <para> The token's <code>expires</code> attribute denotes
+              a token's default lifespan is 24 hours.</para>
+            <para>The token's <code>expires</code> attribute denotes
               the time after which the token automatically becomes
               invalid. A token can be manually revoked before the time
               identified by the <code>expires</code> attribute. The
               attribute predicts a token's maximum possible lifespan
               but does not guarantee that it will reach that lifespan.
-              You  are encouraged to cache a token until it expires. </para>
+              You are encouraged to cache a token until it
+              expires.</para>
             <note>
               <para>The token's expiration time is formatted
                 differently in the US and UK. These response examples
@@ -725,34 +737,35 @@
                   xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_authenticate_v2.0_tokens_.html"
                   >http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_authenticate_v2.0_tokens_.html</link>.</para>
             </note>
-            <para> </para>
+            <para/>
           </callout>
           <callout arearefs="response.xml.dfltregion">
-            <para> Users can be assigned a default region. If multiple
+            <para>Users can be assigned a default region. If multiple
               endpoints are associated with a service in the user's
               catalog, the endpoint for the user's default region is
               selected if it is available. In this example, the user's
               default region is DFW. Several of the services in the
               user's catalog are associated with endpoints in that
               region and in the ORD region. Whenever possible, the
-              user's work is directed to the DFW region. </para>
-            <para> </para>
+              user's work is directed to the DFW region.</para>
+            <para/>
           </callout>
           <callout arearefs="response.xml.role">
-            <para> Users can be assigned multiple roles, with each
-              role providing specific privileges. In this example,
+            <para>Users can be assigned multiple roles, with each role
+              providing specific privileges. In this example,
                 <code>jsmith</code> is the administrative user for the
               account and holds the fully privileged
                 <code>identity:admin</code> role. Other users might
               hold other roles with different privileges. Roles do not
               have to be associated with actual job functions such as
-              Administrator, Operator, Developer, Tester, or Trainer. </para>
-            <para> </para>
+              Administrator, Operator, Developer, Tester, or
+              Trainer.</para>
+            <para/>
           </callout>
           <callout arearefs="response.xml.catalog">
-            <para> The service catalog lists the services that this
+            <para>The service catalog lists the services that this
               user can access. In this example, the user can access
-              the following services:  one database service, one
+              the following services: one database service, one
               load-balancing service, two compute services (Cloud
               Servers OpenStack and Cloud Servers), two object storage
               services (Cloud Files Content Distribution Network
@@ -760,33 +773,33 @@
               catalog entry for each service provides at least one
               endpoint URL for that service. Other information, such
               as regions, versions, and tenants, is provided if it's
-              relevant to a user's access to a service. </para>
-            <para> </para>
+              relevant to a user's access to a service.</para>
+            <para/>
           </callout>
           <callout arearefs="response.xml.servicetype">
-            <para> The service <code>type</code> attribute identifies
+            <para>The service <code>type</code> attribute identifies
               services that perform similar functions, regardless of
               the service names. In this example, the services named
               cloudServers and cloudServersOpenStack are both
               identified as <code>type="compute"</code>, identifying
               them as compute services even though the word compute
-              does not appear in their names. </para>
+              does not appear in their names.</para>
             <important>
               <para>Use service type as the primary value for locating
                 a service. If multiple endpoints of the same service
                 type exist in the same region, use service name to
                 locate the appropriate service.</para>
             </important>
-            <para> </para>
+            <para/>
           </callout>
           <callout arearefs="response.xml.servicename">
-            <para> The service <code>name</code> attribute identifies
+            <para>The service <code>name</code> attribute identifies
               each unique service in the catalog. After a service is
               created, its name does not change. However, new services
               of the same service type might be added to the catalog
-              with new names. </para>
+              with new names.</para>
             <important>
-              <para> If you are programmatically parsing an
+              <para>If you are programmatically parsing an
                 authentication response, use service type rather than
                 service name to determine whether a user has access to
                 a particular kind of service. Service type is stable
@@ -797,41 +810,43 @@
                 compute services are added in future releases, you can
                 recognize them by parsing for
                   <code>type="compute"</code> in the authentication
-                response's service catalog.  </para>
+                response's service catalog.</para>
             </important>
-            <para> </para>
+            <para/>
           </callout>
           <callout arearefs="response.xml.region">
-            <para> A service might expose endpoints in different
+            <para>A service might expose endpoints in different
               regions. Regional endpoints enable clients to provision
-              resources in a manner that provides high availability. </para>
-            <para> Some services are not region specific. These
+              resources in a manner that provides high
+              availability.</para>
+            <para>Some services are not region specific. These
               services supply a single, non-regional endpoint and do
-              not provide access to internal URLs. </para>
-            <para> </para>
+              not provide access to internal URLs.</para>
+            <para/>
           </callout>
           <callout arearefs="response.xml.tenant">
-            <para> Some services recognize the specification of a
+            <para>Some services recognize the specification of a
               tenant. If a service recognizes tenants, the format of
               the tenant specification is defined only by the service.
               For details about whether and how to specify a tenant,
               check the documentation for the service that you are
               using.</para>
-            <para> </para>
+            <para/>
           </callout>
           <callout arearefs="response.xml.url">
-            <para> An endpoint can be assigned public and internal
+            <para>An endpoint can be assigned public and internal
               URLs. A public URL is accessible from anywhere. Access
               to a public URL usually incurs traffic charges. Internal
               URLs are accessible only to services within the same
-              region. Access to an internal URL is free of charge. </para>
-            <para> </para>
+              region. Access to an internal URL is free of
+              charge.</para>
+            <para/>
           </callout>
         </calloutlist>
-        <para>Authentication tokens are typically valid for 24
-          hours. Applications should be designed to
-          re-authenticate after receiving a 401
-          (Unauthorized) response from a service endpoint. </para>
+        <para>Authentication tokens are typically valid for 24 hours.
+          Applications should be designed to re-authenticate after
+          receiving a 401 (Unauthorized) response from a service
+          endpoint.</para>
         <important>
           <para>If you are programmatically parsing an authentication
             response, be aware that service names are stable for the
@@ -867,8 +882,9 @@
           endpoints. The examples in this document show authentication
           for US customers. Customers with UK-based accounts see
           different values in the service catalog. See the next
-          section for more information about service endpoints. </para>  
-      </section>  </section>
+          section for more information about service endpoints.</para>
+      </section>
+    </section>
     <section xml:id="RBAC"
       xmlns:wadl="http://wadl.dev.java.net/2009/02">
       <title>Role Based Access Control</title>
@@ -882,7 +898,7 @@
         perform certain operations in Cloud Queues API – create, read,
         update, delete – are assigned to specific roles, and these
         roles can be assigned by the Cloud account admin user to
-        account users of the account. </para>
+        account users of the account.</para>
       <section xml:id="Assigning-Roles-d1e001">
         <title>Assigning Roles to Account Users</title>
         <para>The account owner (identity:user-admin) can create
@@ -898,19 +914,18 @@
         <itemizedlist>
           <listitem>
             <para><link
-              xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_addUser_v2.0_users_User_Calls.html"
-              > Create account users</link></para>
+                xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_addUser_v2.0_users_User_Calls.html"
+                > Create account users</link></para>
           </listitem>
           <listitem>
             <para><link
-              xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/PUT_addUserRole_v2.0_users__userId__roles_OS-KSADM__roleId__Role_Calls.html"
-              > Assign roles to account users</link></para>
+                xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/PUT_addUserRole_v2.0_users__userId__roles_OS-KSADM__roleId__Role_Calls.html"
+                > Assign roles to account users</link></para>
           </listitem>
           <listitem>
             <para><link
-              xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/DELETE_deleteUserRole_v2.0_users__userId__roles_OS-KSADM__roleId__Role_Calls.html"
-              > Delete roles from account
-              users</link></para>
+                xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/DELETE_deleteUserRole_v2.0_users__userId__roles_OS-KSADM__roleId__Role_Calls.html"
+                > Delete roles from account users</link></para>
           </listitem>
         </itemizedlist>
         <note>
@@ -925,7 +940,7 @@
           to access the Cloud Queues API specifically. The following
           table describes these roles and their permissions.</para>
         <table xml:id="RBAC_product_roles_table" rules="all">
-          <caption>Cloud  Queues Product Roles and
+          <caption>Cloud Queues Product Roles and
             Capabilities</caption>
           <col width="50%"/>
           <col width="50%"/>
@@ -995,10 +1010,10 @@
           When two roles appear to conflict, the role that provides
           the more extensive permissions takes precedence. Therefore,
           admin roles take precedence over observer and creator roles,
-          because admin roles provide more permissions. </para>
+          because admin roles provide more permissions.</para>
         <para>The following table shows two examples of how potential
           conflicts between user roles in the Control Panel are
-          resolved: </para>
+          resolved:</para>
         <para>
           <informaltable rules="all">
             <thead>
@@ -1065,20 +1080,20 @@
             <tr align="left">
               <td colspan="2" rowspan="2">Chicago (ORD)</td>
               <td colspan="5"
-                ><code>https://ord.queues.api.rackspacecloud.com/v1/</code></td>
+                  ><code>https://ord.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="5"
-                ><code>https://snet-ord.queues.api.rackspacecloud.com/v1/</code></td>
+                  ><code>https://snet-ord.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="2" rowspan="2">Dallas/Ft. Worth (DFW)</td>
               <td colspan="5"
-                ><code>https://dfw.queues.api.rackspacecloud.com/v1/</code></td>
+                  ><code>https://dfw.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="5"
-                ><code>https://snet-dfw.queues.api.rackspacecloud.com/v1/</code></td>
+                  ><code>https://snet-dfw.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="2" rowspan="2">Hong Kong (HKG)</td>
@@ -1092,30 +1107,29 @@
             <tr align="left">
               <td colspan="2" rowspan="2">London (LON)</td>
               <td colspan="5"
-                ><code>https://lon.queues.api.rackspacecloud.com/v1/</code></td>
+                  ><code>https://lon.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="5"
-                ><code>https://snet-lon.queues.api.rackspacecloud.com/v1/</code></td>
+                  ><code>https://snet-lon.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
-              <td colspan="2" rowspan="2">Northern Virginia
-                (IAD)</td>
+              <td colspan="2" rowspan="2">Northern Virginia (IAD)</td>
               <td colspan="5"
-                ><code>https://iad.queues.api.rackspacecloud.com/v1/</code></td>
+                  ><code>https://iad.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="5"
-                ><code>https://snet-iad.queues.api.rackspacecloud.com/v1/</code></td>
+                  ><code>https://snet-iad.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="2" rowspan="2">Sydney (SYD)</td>
               <td colspan="5"
-                ><code>https://syd.queues.api.rackspacecloud.com/v1/</code></td>
+                  ><code>https://syd.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
             <tr>
               <td colspan="5"
-                ><code>https://snet-syd.queues.api.rackspacecloud.com/v1/</code></td>
+                  ><code>https://snet-syd.queues.api.rackspacecloud.com/v1/</code></td>
             </tr>
           </tbody>
         </table>
@@ -1128,23 +1142,21 @@
         />. ServiceNet is the data center internet network. In your
         authentication response (see <xref
           linkend="Authentication-d1e647"/>), it is listed as
-          <code>InternalURL</code>. </para>
-      <para> If you are working with servers that are not in one of
-        the Rackspace data centers, you must use a public endpoint
-        to connect. In your authentication response, public
-        endpoints are listed as <code>publicURL</code>. If you are
-        working with servers in multiple data centers or have a
-        mixed environment where you have servers in your data
-        centers and in Rackspace data centers, use a public
-        endpoint because it is accessible from all the servers in
-        the different environments.</para>
+          <code>InternalURL</code>.</para>
+      <para>If you are working with servers that are not in one of the
+        Rackspace data centers, you must use a public endpoint to
+        connect. In your authentication response, public endpoints are
+        listed as <code>publicURL</code>. If you are working with
+        servers in multiple data centers or have a mixed environment
+        where you have servers in your data centers and in Rackspace
+        data centers, use a public endpoint because it is accessible
+        from all the servers in the different environments.</para>
       <note>
-        <para>You should copy the base URLs directly from the
-          catalog rather than trying to construct them
-          manually.</para>
-        <para>Rackspace Cloud Identity returns an endpoint with
-          your account ID.  Note the following information about
-          account ID:</para>
+        <para>You should copy the base URLs directly from the catalog
+          rather than trying to construct them manually.</para>
+        <para>Rackspace Cloud Identity returns an endpoint with your
+          account ID. Note the following information about account
+          ID:</para>
         <itemizedlist>
           <listitem>
             <para>Account ID from Cloud Identity is the same as the
@@ -1157,12 +1169,12 @@
               Cloud Queues API if you have the
                 <code>X-Project-Id</code> header set. (In this case,
               the Cloud Queues API works with or without the account
-              ID specified.) </para>
+              ID specified.)</para>
           </listitem>
           <listitem>
             <para>Without the <code>X-Project-Id</code> header, you
               receive an auth error if the account ID is not in the
-              URL. </para>
+              URL.</para>
           </listitem>
           <listitem>
             <para>If the account ID is in the URL, the Cloud Queues
@@ -1170,19 +1182,18 @@
                 <code>X-Project-Id</code> header.</para>
           </listitem>
           <listitem>
-            <para>Account ID and Project ID refer to your
-              Rackspace account number.</para>
+            <para>Account ID and Project ID refer to your Rackspace
+              account number.</para>
           </listitem>
         </itemizedlist>
       </note>
       <tip>
-        <para>If you do not know which data center you are working
-          in or your account ID, you can find them in your Cloud
-          Control Panel at <link
-            xlink:href="https://mycloud.rackspace.com/"
-            >mycloud.rackspace.com</link>. </para>
+        <para>If you do not know which data center you are working in
+          or your account ID, you can find them in your Cloud Control
+          Panel at <link xlink:href="https://mycloud.rackspace.com/"
+            >mycloud.rackspace.com</link>.</para>
       </tip>
-<!--<
+      <!--<
       <para>Replace the sample account ID number,
           <parameter>1234</parameter>, with your actual account number
         returned as part of the authentication service
@@ -1194,7 +1205,7 @@
           <code>publicURL</code> field for <code>cloudServers</code>
           ("https://servers.api.rackspacecloud.com/v1.0/<emphasis
           role="bold">1100111</emphasis>") that the account number is
-        1100111. </para>
+        1100111.</para>
       <note>
         <para>Account ID refers to your Rackspace account number,
           which you can also find in your Cloud Control Panel at <link
@@ -1205,13 +1216,13 @@
     </section>
     <section xml:id="contractVersion">
       <title>Contract Version</title>
-      <para> The Cloud Queues version defines the contract and build
-        information for the API. </para>
-      <para> The contract version denotes the data model and behavior
+      <para>The Cloud Queues version defines the contract and build
+        information for the API.</para>
+      <para>The contract version denotes the data model and behavior
         that the API supports. The requested contract version is
         included in all request URLs. Different contract versions of
         the API might be available at any given time and are not
-        guaranteed to be compatible with one another. </para>
+        guaranteed to be compatible with one another.</para>
       <example>
         <title>Sample Request URL for Contract Version 1 </title>
         <programlisting>https://ord.queues.api.rackspacecloud.com/<emphasis role="strong">v1</emphasis></programlisting>
@@ -1251,14 +1262,16 @@
             <td>Yes</td>
           </tr>
         </tbody>
-      </table> 
+      </table>
     </section>
     <?hard-pagebreak?>
-      <section xml:id="Limits-d1e1397">
-        <title>Limits</title>
+    <section xml:id="Limits-d1e1397">
+      <title>Limits</title>
       <para>Accounts are configured with default thresholds, or
-        limits, that manage capacity and prevent abuse of the system. </para>
-      <para>The system recognizes the following types of limits: </para>
+        limits, that manage capacity and prevent abuse of the
+        system.</para>
+      <para>The system recognizes the following types of
+        limits:</para>
       <itemizedlist>
         <listitem>
           <para>rate limits</para>
@@ -1287,7 +1300,7 @@
         <para>Rate limits control the frequency at which the user can
           issue specific API requests.</para>
         <para>For Cloud Queues, the rate limit is 300 requests per
-          second per project ID. </para>
+          second per project ID.</para>
         <para>If your application slightly exceeds the rate limit, the
           Cloud Queues service throttles your requests. The requests
           will take longer to perform and will have more latency. If
@@ -1297,97 +1310,98 @@
           request rate to the Cloud Queues API by pausing slightly
           between each request. If your application continues to hit
           this limit and you cannot slow down the request rate, please
-          contact Rackspace Cloud support. </para>
+          contact Rackspace Cloud support.</para>
       </section>
-        <section xml:id="Absolute-Limits-d1e003" >
+      <section xml:id="Absolute-Limits-d1e003">
         <title>Absolute Limits</title>
         <para>The following table provides details about the absolute
           limits for the Cloud Queues API.</para>
-      
-      <table rules="all">
-        <caption>Absolute Limits</caption>
-        <col width="30%"/>
-        <col width="40%"/>
-        <col width="30%"/>
-        <thead>
-          <tr>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Limit</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td rowspan="6">Limits on Messages and Queues per Request </td>
-            <td>Number of queue records per page of results when
-                listing queues</td>
-            <td>1 - 1000</td>
-          </tr>
-          <tr>
-            <td>Number of messages per page of results when listing
-                messages</td>
-            <td>1 - 25 </td>
-          </tr>
-          <tr>
-            <td>Number of messages that can be posted in a single
-                request </td>
-            <td>1 - 25 </td>
-          </tr>
-          <tr>
-            <td>Number of messages that can be claimed at one
-                time</td>
-            <td>1 - 25 </td>
-          </tr>
-          <tr>
-            <td>Number of messages that can be deleted in a single
-                bulk delete request</td>
-            <td>1 - 25 </td>
-          </tr>
-          <tr>
-            <td>Number of messages that can be requested in a bulk get
-                by ID</td>
-            <td>1 - 25 </td>
-          </tr>
-          <tr>
-            <td rowspan="3">Time Limits</td>
-            <td>Valid range for a message TTL</td>
-            <td>60 - 1209600 seconds (1 minute to 14 days)</td>
-          </tr>
-          <tr>
-            <td>Valid range for a claim TTL</td>
-            <td>60 - 43200 seconds (1 minute to 12 hours)</td>
-          </tr>
-          <tr>
-            <td>Valid range for claim grace period</td>
-            <td>60 - 43200 seconds (1 minute to 12 hours)</td>
-          </tr>
-          <tr>
-            <td rowspan="2">Data Limits</td>
-            <td>Queue metadata JSON</td>
-            <td>Cannot exceed 262144 bytes, including whitespace (256
-                KB)</td>
-          </tr>
-          <tr>
-            <td>Message body JSON</td>
-            <td>Cannot exceed 262144 bytes, including whitespace (256
-                KB)</td>
-          </tr>
-        </tbody>
-      </table>
-      <note>
-        <para>For the 256 KB data limit for the message body JSON, if
-          multiple messages are included in the request, this limit
-          also applies to the sum of the message bodies added
-          together. For example, you may have one message body of 256
-          KB, or up to 10 messages for which the sum of the message
-          bodies is 256 KB. A 400 error is triggered if a single
-          message body or the sum of multiple message bodies exceed
-          256 KB in a single request.</para>
-      </note>
-        </section>   
 
-  </section> 
-    <section xml:id="commonHeaders" >
+        <table rules="all">
+          <caption>Absolute Limits</caption>
+          <col width="30%"/>
+          <col width="40%"/>
+          <col width="30%"/>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+              <th>Limit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="6">Limits on Messages and Queues per
+                Request </td>
+              <td>Number of queue records per page of results when
+                listing queues</td>
+              <td>1 - 1000</td>
+            </tr>
+            <tr>
+              <td>Number of messages per page of results when listing
+                messages</td>
+              <td>1 - 25 </td>
+            </tr>
+            <tr>
+              <td>Number of messages that can be posted in a single
+                request </td>
+              <td>1 - 25 </td>
+            </tr>
+            <tr>
+              <td>Number of messages that can be claimed at one
+                time</td>
+              <td>1 - 25 </td>
+            </tr>
+            <tr>
+              <td>Number of messages that can be deleted in a single
+                bulk delete request</td>
+              <td>1 - 25 </td>
+            </tr>
+            <tr>
+              <td>Number of messages that can be requested in a bulk
+                get by ID</td>
+              <td>1 - 25 </td>
+            </tr>
+            <tr>
+              <td rowspan="3">Time Limits</td>
+              <td>Valid range for a message TTL</td>
+              <td>60 - 1209600 seconds (1 minute to 14 days)</td>
+            </tr>
+            <tr>
+              <td>Valid range for a claim TTL</td>
+              <td>60 - 43200 seconds (1 minute to 12 hours)</td>
+            </tr>
+            <tr>
+              <td>Valid range for claim grace period</td>
+              <td>60 - 43200 seconds (1 minute to 12 hours)</td>
+            </tr>
+            <tr>
+              <td rowspan="2">Data Limits</td>
+              <td>Queue metadata JSON</td>
+              <td>Cannot exceed 262144 bytes, including whitespace
+                (256 KB)</td>
+            </tr>
+            <tr>
+              <td>Message body JSON</td>
+              <td>Cannot exceed 262144 bytes, including whitespace
+                (256 KB)</td>
+            </tr>
+          </tbody>
+        </table>
+        <note>
+          <para>For the 256 KB data limit for the message body JSON,
+            if multiple messages are included in the request, this
+            limit also applies to the sum of the message bodies added
+            together. For example, you may have one message body of
+            256 KB, or up to 10 messages for which the sum of the
+            message bodies is 256 KB. A 400 error is triggered if a
+            single message body or the sum of multiple message bodies
+            exceed 256 KB in a single request.</para>
+        </note>
+      </section>
+
+    </section>
+    <section xml:id="commonHeaders">
       <title>Common Headers</title>
       <para>Each request to the Cloud Queues API must include certain
         standard and extended HTTP headers. These headers provide
@@ -1468,12 +1482,12 @@
       <title>Date and Time Format</title>
       <para>For the display and consumption of date and time values,
         the Cloud Queues service uses a date format that complies with
-        ISO 8601. </para>
+        ISO 8601.</para>
       <example>
         <title>Service Date and Time Format</title>
         <programlisting>yyyy-MM-dd'T'HH:mm:ss.SSSZ</programlisting>
         <para>For example, May 19, 2013 at 8:07:08 A.M., GMT-5 would
-          have the following format: </para>
+          have the following format:</para>
         <programlisting>2013-05-19T08:07:08-05:00</programlisting>
       </example>
       <para>The following table describes the date and time format
@@ -1525,7 +1539,7 @@
           </tr>
         </tbody>
       </table>
-      
+
     </section>
     <section xml:id="faults-dle101">
       <title>Faults</title>
@@ -1533,7 +1547,7 @@
         queuing service returns an appropriate 4<emphasis
           role="italic">xx</emphasis> or 5<emphasis role="italic"
           >xx</emphasis> HTTP status code, and the following
-        information in the body: </para>
+        information in the body:</para>
       <itemizedlist>
         <listitem>
           <para>Title</para>
@@ -1550,22 +1564,21 @@
       </itemizedlist>
 
       <para><?rax-fo keep-with-next?> An example of an error message
-        follows. </para>
+        follows.</para>
 
       <example>
         <title>Error Message Example</title>
-        <programlisting>HTTP/1.1 400 Bad Request
-Content-Type: application/json
-
-{
-  "title": "Unsupported limit",
-  "description": "The given limit cannot be negative, and cannot be greater than 50.",
-  "code": 1092,
-  "link": {
-    "rel": "help",
-    "href": "http://docs.example.com/messages#limit",
-    "text": "API documentation for the limit parameter"
-  }
+        <programlisting language="bash">HTTP/1.1 400 Bad Request
+Content-Type: application/json</programlisting>
+        <programlisting language="json">{
+   "title":"Unsupported limit",
+   "description":"The given limit cannot be negative, and cannot be greater than 50.",
+   "code":1092,
+   "link":{
+      "rel":"help",
+      "href":"http://docs.example.com/messages#limit",
+      "text":"API documentation for the limit parameter"
+   }
 }</programlisting>
       </example>
       <para>Error information for each operation is included and with
@@ -1618,7 +1631,7 @@ Content-Type: application/json
             </tbody>
           </table>
         </section>
-        <section xml:id="list_Queues_Codes" >
+        <section xml:id="list_Queues_Codes">
           <title>List Queues</title>
           <para>The following table describes the response codes for
             the <command>List Queues</command> operation.</para>
@@ -1731,7 +1744,7 @@ Content-Type: application/json
             </tbody>
           </table>
         </section>
-        <section xml:id="check_Queue_Exists_Codes" >
+        <section xml:id="check_Queue_Exists_Codes">
           <title>Check Queue Existence</title>
           <para>The following table describes the response codes for
             the <command>Check Queue Existence</command>
@@ -1858,7 +1871,7 @@ Content-Type: application/json
             </tbody>
           </table>
         </section>
-        <section xml:id="get_Queue_Stats_Codes" >
+        <section xml:id="get_Queue_Stats_Codes">
           <title>Get Queue Stats</title>
           <para>The following table describes the response codes for
             the <command>Get Queue Stats</command> operation.</para>
@@ -1903,7 +1916,7 @@ Content-Type: application/json
             </tbody>
           </table>
         </section>
-      <section xml:id="post_Message_Codes" >
+        <section xml:id="post_Message_Codes">
           <title>Post Message</title>
           <para>The following table describes the response codes for
             the <command>Post Message</command> operation.</para>
@@ -1938,7 +1951,7 @@ Content-Type: application/json
               </tr>
               <tr>
                 <td>400</td>
-                <td>Post with request body greater than  4 KB </td>
+                <td>Post with request body greater than 4 KB </td>
               </tr>
               <tr>
                 <td>400</td>
@@ -2014,7 +2027,7 @@ Content-Type: application/json
             </tbody>
           </table>
         </section>
-      <section xml:id="get_Messages_Codes">
+        <section xml:id="get_Messages_Codes">
           <title>Get Messages</title>
           <para>The following table describes the response codes for
             the <command>Get Messages</command> operation.</para>
@@ -2051,11 +2064,11 @@ Content-Type: application/json
               </tr>
               <tr>
                 <td>400</td>
-                <td>Request message with limit greater than 100  </td>
+                <td>Request message with limit greater than 100 </td>
               </tr>
               <tr>
                 <td>400</td>
-                <td>Post with request body greater than  4 KB </td>
+                <td>Post with request body greater than 4 KB </td>
               </tr>
               <tr>
                 <td>400</td>
@@ -2087,13 +2100,13 @@ Content-Type: application/json
             </tbody>
           </table>
         </section>
-      <section xml:id="get_Set_Of_Messages_Codes">
+        <section xml:id="get_Set_Of_Messages_Codes">
           <title>Get a Set of Messages by ID</title>
           <para>The following table describes the response codes for
             the <command>Get a Set of Messages by ID</command>
             operation.</para>
           <table rules="all">
-            <caption>Descriptions of Get a Set  of Messages by ID
+            <caption>Descriptions of Get a Set of Messages by ID
               Response Codes</caption>
             <thead>
               <tr>
@@ -2108,15 +2121,15 @@ Content-Type: application/json
               </tr>
               <tr>
                 <td>200</td>
-                <td>URI has invalid parameters  </td>
+                <td>URI has invalid parameters </td>
               </tr>
               <tr>
                 <td>400</td>
-                <td>Request message with limit greater than 100  </td>
+                <td>Request message with limit greater than 100 </td>
               </tr>
               <tr>
                 <td>401</td>
-                <td>Post with request body greater than  4 KB </td>
+                <td>Post with request body greater than 4 KB </td>
               </tr>
               <tr>
                 <td>404</td>
@@ -2140,13 +2153,13 @@ Content-Type: application/json
             </tbody>
           </table>
         </section>
-      <section xml:id="delete_Set_Of_Messages_Codes">
+        <section xml:id="delete_Set_Of_Messages_Codes">
           <title>Delete a Set of Messages by ID</title>
           <para>The following table describes the response codes for
             the <command>Delete a Set of Messages by ID</command>
             operation.</para>
           <table rules="all">
-            <caption>Descriptions of Delete a Set  of Messages by ID
+            <caption>Descriptions of Delete a Set of Messages by ID
               Response Codes</caption>
             <thead>
               <tr>
@@ -2157,11 +2170,11 @@ Content-Type: application/json
             <tbody>
               <tr>
                 <td>204</td>
-                <td>Success  </td>
+                <td>Success </td>
               </tr>
               <tr>
                 <td>204</td>
-                <td>Delete message from a non-existing queue  </td>
+                <td>Delete message from a non-existing queue </td>
               </tr>
               <tr>
                 <td>204</td>
@@ -2169,7 +2182,7 @@ Content-Type: application/json
               </tr>
               <tr>
                 <td>400</td>
-                <td>Header has missing fields  </td>
+                <td>Header has missing fields </td>
               </tr>
               <tr>
                 <td>401</td>
@@ -2199,7 +2212,7 @@ Content-Type: application/json
             </tbody>
           </table>
         </section>
-      <section xml:id="Get_Specific_Message_Codes" >
+        <section xml:id="Get_Specific_Message_Codes">
           <title>Get a Specific Message</title>
           <para>The following table describes the response codes for
             the <command>Get a Specific Message</command>
@@ -2216,11 +2229,11 @@ Content-Type: application/json
             <tbody>
               <tr>
                 <td>200</td>
-                <td>Success(query matched the message)  </td>
+                <td>Success(query matched the message) </td>
               </tr>
               <tr>
                 <td>200</td>
-                <td>URI has invalid parameters  </td>
+                <td>URI has invalid parameters </td>
               </tr>
               <tr>
                 <td>400</td>
@@ -2269,15 +2282,15 @@ Content-Type: application/json
             <tbody>
               <tr>
                 <td>200</td>
-                <td>URI has invalid parameters  </td>
+                <td>URI has invalid parameters </td>
               </tr>
               <tr>
                 <td>204</td>
-                <td>Success  </td>
+                <td>Success </td>
               </tr>
               <tr>
                 <td>204</td>
-                <td>Delete message from a non-existing queue  </td>
+                <td>Delete message from a non-existing queue </td>
               </tr>
               <tr>
                 <td>204</td>
@@ -2285,7 +2298,7 @@ Content-Type: application/json
               </tr>
               <tr>
                 <td>400</td>
-                <td>Header has missing fields  </td>
+                <td>Header has missing fields </td>
               </tr>
               <tr>
                 <td>401</td>
@@ -2340,7 +2353,7 @@ Content-Type: application/json
               </tr>
               <tr>
                 <td>204</td>
-                <td>Claim message from a non-existing queue  </td>
+                <td>Claim message from a non-existing queue </td>
               </tr>
               <tr>
                 <td>400</td>
@@ -2520,7 +2533,7 @@ Content-Type: application/json
         <section xml:id="release_Claim_Codes">
           <title>Release Claim</title>
           <para>The following table describes the response codes for
-            the <command>Release Claim</command> operation. </para>
+            the <command>Release Claim</command> operation.</para>
           <table rules="all">
             <caption>Descriptions of Release Claim Response
               Codes</caption>
@@ -2573,45 +2586,48 @@ Content-Type: application/json
       </section>
     </section>
   </chapter>
-  <chapter xml:id="API_Operations_dle001" 
-    xmlns="http://docbook.org/ns/docbook"
-    role="api-reference">
+  <chapter xml:id="API_Operations_dle001"
+    xmlns="http://docbook.org/ns/docbook" role="api-reference">
     <title>API Operations</title>
     <para>This chapter describes each of the Cloud Queues operations,
-      which are summarized in the following table. </para>
+      which are summarized in the following table.</para>
     <section xml:id="homeDocument-operation">
       <title>Home Document</title>
       <para>The section describes how to get the home document for
         Cloud Queues.</para>
       <note>
         <para>The home document schema is currently not ratified in
-          OpenStack and may change. </para>
+          OpenStack and may change.</para>
       </note>
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#version">
-          <wadl:method href="getHomeDocument"/>
+          <wadl:method href="#getHomeDocument"/>
         </wadl:resource>
       </wadl:resources>
- 
     </section>
-    
-    <section xml:id="queue-operations-dle001">
+    <section xml:id="queue-operations">
       <title>Queues </title>
       <para>This section describes queue operations that are supported
-        by the Cloud Queues API. </para>
+        by the Cloud Queues API.</para>
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#queues">
-          <wadl:method href="listQueues"/>
+          <wadl:method href="#listQueues"/>
         </wadl:resource>
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#queue"/>
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#metadata"/>        
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#stats"/>
+        <wadl:resource
+          href="../../src/wadl/cq-devguide.wadl#queue_name"/>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#metadata">
+          <wadl:method href="#setQueueMetadata"/>
+          <wadl:method href="#getQueueMetadata"/>
+        </wadl:resource>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#stats">
+          <wadl:method href="#getQueueStats"/>
+        </wadl:resource>
       </wadl:resources>
     </section>
-    <section xml:id="message-operations-dle001" >
+    <section xml:id="message-operations">
       <title>Messages </title>
       <para>This section describes message operations that are
-        supported by the Cloud Queues API. </para>
+        supported by the Cloud Queues API.</para>
       <note>
         <para>All message-related operations require that Client-ID be
           included in the headers. This is to ensure that messages are
@@ -2619,22 +2635,29 @@ Content-Type: application/json
           client explicitly requests this. For more information, see
           Client-ID in <xref linkend="commonHeaders"/>.</para>
       </note>
-      <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">     
+      <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
         <wadl:resource href="../../src/wadl/cq-devguide.wadl#messages"/>
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#message"/>  
+        <wadl:resource
+          href="../../src/wadl/cq-devguide.wadl#messageId"/>
       </wadl:resources>
     </section>
-    <section xml:id="claims-operations-dle001" >
+    <section xml:id="claims-operations">
       <title>Claims </title>
       <para>This section describes claim operations that are supported
-        by the Cloud Queues API. </para>
+        by the Cloud Queues API.</para>
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#claims"/>
-          <wadl:resource href="../../src/wadl/cq-devguide.wadl#claim"/>  
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#claims">
+          <wadl:method href="#claimMessages"/>
+        </wadl:resource>
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#claimId">
+          <wadl:method href="#queryClaim"/>
+          <wadl:method href="#updateClaim"/>
+          <wadl:method href="#deleteClaim"/>
+        </wadl:resource>
       </wadl:resources>
- </section>
- </chapter>    
-  <glossary xml:id="glossary_1" >
+    </section>
+  </chapter>
+  <glossary xml:id="glossary_1">
     <title>Glossary</title>
     <glossentry xml:id="claim-d1e017">
       <glossterm>Claim</glossterm>
@@ -2669,7 +2692,7 @@ Content-Type: application/json
     <glossentry>
       <glossterm>Message TTL</glossterm>
       <glossdef>
-        <para>Defines how long a message will be accessible. </para>
+        <para>Defines how long a message will be accessible.</para>
       </glossdef>
     </glossentry>
     <glossentry>
@@ -2703,7 +2726,7 @@ Content-Type: application/json
       <glossdef>
         <para>A pattern where all worker applications have access to
           all messages in the queue. Workers cannot delete or update
-          messages. </para>
+          messages.</para>
       </glossdef>
     </glossentry>
     <glossentry xml:id="queue-d1e019">
@@ -2713,7 +2736,7 @@ Content-Type: application/json
           created per work type. For example, if you want to compress
           files, you would create a queue dedicated to this job. Any
           application that reads from this queue would only compress
-          files. </para>
+          files.</para>
       </glossdef>
     </glossentry>
     <glossentry xml:id="subscriber-d1e018">
@@ -2733,7 +2756,7 @@ Content-Type: application/json
       <glossterm>Worker</glossterm>
       <glossdef>
         <para>A client that claims messages from the queue and
-          performs actions based on those messages. </para>
+          performs actions based on those messages.</para>
       </glossdef>
     </glossentry>
   </glossary>
