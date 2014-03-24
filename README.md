@@ -21,6 +21,7 @@ You can use any editor to work with the files. The files that are most likely to
     o src/docbkx/cq-gettingstarted.xml
     o src/docbkx/cq-devguide.xml
     o src/docbkx/cq-releasenotes.xml
+    o src/wadl/cq-devguide.wadl
     
 You might also be interested in making changes to the example files referenced in the WADL file. They are here:
 
