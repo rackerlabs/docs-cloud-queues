@@ -1,25 +1,20 @@
-HTTP/1.1 200 OK
-Content-Location: /v1/queues/fizbat/messages?ids=50b68a50d6f5b8c8a7c62b01,f5b8c8a7c62b0150b68a50d6
-
-...
-
 [
-    {
-      "href": "/v1/queues/fizbit/messages/50b68a50d6f5b8c8a7c62b01",
-      "ttl": 800,
-      "age": 32,
-      "body": {
-        "cmd": "EncodeVideo",
-        "jobid": 58229 
+   {
+      "href":"/v1/queues/fizbit/messages/50b68a50d6f5b8c8a7c62b01",
+      "ttl":800,
+      "age":32,
+      "body":{
+         "cmd":"EncodeVideo",
+         "jobid":58229
       }
-    },
-    {
-      "href": "/v1/queues/fizbit/messages/f5b8c8a7c62b0150b68a50d6",
-      "ttl": 800,
-      "age": 790,
-      "body": {
-        "cmd": "EncodeAudio",
-        "jobid": 58201 
+   },
+   {
+      "href":"/v1/queues/fizbit/messages/f5b8c8a7c62b0150b68a50d6",
+      "ttl":800,
+      "age":790,
+      "body":{
+         "cmd":"EncodeAudio",
+         "jobid":58201
       }
-    }
+   }
 ]
