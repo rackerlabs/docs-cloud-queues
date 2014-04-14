@@ -700,23 +700,18 @@
         </note>
         <calloutlist>
           <callout arearefs="response.xml.namespaces">
-            <para>
-              In XML responses only,
-              a list of namespaces identifies API extensions that add functionality to the core API.
-            </para>
+            <para>In XML responses only, a list of namespaces identifies API extensions that add
+              functionality to the core API. </para>
             <para> </para>
           </callout>
           <callout arearefs="response.xml.token">
-            <para> Present this token in the X-Auth-Token HTTP header
-              of your request. Tokens are valid for a finite duration;
-              a token's default lifespan is 24 hours. </para>
-            <para> The token's <code>expires</code> attribute denotes
-              the time after which the token automatically becomes
-              invalid. A token can be manually revoked before the time
-              identified by the <code>expires</code> attribute. The
-              attribute predicts a token's maximum possible lifespan
-              but does not guarantee that it will reach that lifespan.
-              You  are encouraged to cache a token until it expires. </para>
+            <para>Present this token in the X-Auth-Token HTTP header of your request. Tokens are
+              valid for a finite duration; a token's default lifespan is 24 hours. </para>
+            <para>The token's <code>expires</code> attribute denotes the time after which the token
+              automatically becomes invalid. A token can be manually revoked before the time
+              identified by the <code>expires</code> attribute. The attribute predicts a token's
+              maximum possible lifespan but does not guarantee that it will reach that lifespan. You
+              are encouraged to cache a token until it expires. </para>
             <note>
               <para>The token's expiration time is formatted
                 differently in the US and UK. These response examples
@@ -728,49 +723,39 @@
             <para> </para>
           </callout>
           <callout arearefs="response.xml.dfltregion">
-            <para> Users can be assigned a default region. If multiple
-              endpoints are associated with a service in the user's
-              catalog, the endpoint for the user's default region is
-              selected if it is available. In this example, the user's
-              default region is DFW. Several of the services in the
-              user's catalog are associated with endpoints in that
-              region and in the ORD region. Whenever possible, the
-              user's work is directed to the DFW region. </para>
+            <para>Users can be assigned a default region. If multiple endpoints are associated with
+              a service in the user's catalog, the endpoint for the user's default region is
+              selected if it is available. In this example, the user's default region is DFW.
+              Several of the services in the user's catalog are associated with endpoints in that
+              region and in the ORD region. Whenever possible, the user's work is directed to the
+              DFW region. </para>
             <para> </para>
           </callout>
           <callout arearefs="response.xml.role">
-            <para> Users can be assigned multiple roles, with each
-              role providing specific privileges. In this example,
-                <code>jsmith</code> is the administrative user for the
-              account and holds the fully privileged
-                <code>identity:admin</code> role. Other users might
-              hold other roles with different privileges. Roles do not
-              have to be associated with actual job functions such as
-              Administrator, Operator, Developer, Tester, or Trainer. </para>
+            <para>Users can be assigned multiple roles, with each role providing specific
+              privileges. In this example, <code>jsmith</code> is the administrative user for the
+              account and holds the fully privileged <code>identity:admin</code> role. Other users
+              might hold other roles with different privileges. Roles do not have to be associated
+              with actual job functions such as Administrator, Operator, Developer, Tester, or
+              Trainer. </para>
             <para> </para>
           </callout>
           <callout arearefs="response.xml.catalog">
-            <para> The service catalog lists the services that this
-              user can access. In this example, the user can access
-              the following services:  one database service, one
-              load-balancing service, two compute services (Cloud
-              Servers OpenStack and Cloud Servers), two object storage
-              services (Cloud Files Content Distribution Network
-              (CDN), and Cloud Files), and one DNS service. The
-              catalog entry for each service provides at least one
-              endpoint URL for that service. Other information, such
-              as regions, versions, and tenants, is provided if it's
-              relevant to a user's access to a service. </para>
+            <para>The service catalog lists the services that this user can access. In this example,
+              the user can access the following services: one database service, one load-balancing
+              service, two compute services (Cloud Servers OpenStack and Cloud Servers), two object
+              storage services (Cloud Files Content Distribution Network (CDN), and Cloud Files),
+              and one DNS service. The catalog entry for each service provides at least one endpoint
+              URL for that service. Other information, such as regions, versions, and tenants, is
+              provided if it's relevant to a user's access to a service. </para>
             <para> </para>
           </callout>
           <callout arearefs="response.xml.servicetype">
-            <para> The service <code>type</code> attribute identifies
-              services that perform similar functions, regardless of
-              the service names. In this example, the services named
-              cloudServers and cloudServersOpenStack are both
-              identified as <code>type="compute"</code>, identifying
-              them as compute services even though the word compute
-              does not appear in their names. </para>
+            <para>The service <code>type</code> attribute identifies services that perform similar
+              functions, regardless of the service names. In this example, the services named
+              cloudServers and cloudServersOpenStack are both identified as
+                <code>type="compute"</code>, identifying them as compute services even though the
+              word compute does not appear in their names. </para>
             <important>
               <para>Use service type as the primary value for locating
                 a service. If multiple endpoints of the same service
@@ -780,11 +765,9 @@
             <para> </para>
           </callout>
           <callout arearefs="response.xml.servicename">
-            <para> The service <code>name</code> attribute identifies
-              each unique service in the catalog. After a service is
-              created, its name does not change. However, new services
-              of the same service type might be added to the catalog
-              with new names. </para>
+            <para>The service <code>name</code> attribute identifies each unique service in the
+              catalog. After a service is created, its name does not change. However, new services
+              of the same service type might be added to the catalog with new names. </para>
             <important>
               <para> If you are programmatically parsing an
                 authentication response, use service type rather than
@@ -802,29 +785,24 @@
             <para> </para>
           </callout>
           <callout arearefs="response.xml.region">
-            <para> A service might expose endpoints in different
-              regions. Regional endpoints enable clients to provision
-              resources in a manner that provides high availability. </para>
-            <para> Some services are not region specific. These
-              services supply a single, non-regional endpoint and do
-              not provide access to internal URLs. </para>
+            <para>A service might expose endpoints in different regions. Regional endpoints enable
+              clients to provision resources in a manner that provides high availability. </para>
+            <para>Some services are not region specific. These services supply a single,
+              non-regional endpoint and do not provide access to internal URLs. </para>
             <para> </para>
           </callout>
           <callout arearefs="response.xml.tenant">
-            <para> Some services recognize the specification of a
-              tenant. If a service recognizes tenants, the format of
-              the tenant specification is defined only by the service.
-              For details about whether and how to specify a tenant,
-              check the documentation for the service that you are
-              using.</para>
+            <para>Some services recognize the specification of a tenant. If a service recognizes
+              tenants, the format of the tenant specification is defined only by the service. For
+              details about whether and how to specify a tenant, check the documentation for the
+              service that you are using.</para>
             <para> </para>
           </callout>
           <callout arearefs="response.xml.url">
-            <para> An endpoint can be assigned public and internal
-              URLs. A public URL is accessible from anywhere. Access
-              to a public URL usually incurs traffic charges. Internal
-              URLs are accessible only to services within the same
-              region. Access to an internal URL is free of charge. </para>
+            <para>An endpoint can be assigned public and internal URLs. A public URL is accessible
+              from anywhere. Access to a public URL usually incurs traffic charges. Internal URLs
+              are accessible only to services within the same region. Access to an internal URL is
+              free of charge. </para>
             <para> </para>
           </callout>
         </calloutlist>
@@ -1147,9 +1125,8 @@
           account ID:</para>
         <itemizedlist>
           <listitem>
-            <para>Account ID from Cloud Identity is the same as the
-              Project ID given by the <code>X-Project-Id</code> header
-              in Cloud Queues. (You might also see account ID or
+            <para>Account ID from Cloud Identity is the same as the Project ID given by the
+                <code>X-Project-Id</code> header in Cloud Queues. (You might also see account ID or
               project ID referred to as tenant ID.)</para>
           </listitem>
           <listitem>
@@ -1170,8 +1147,7 @@
                 <code>X-Project-Id</code> header.</para>
           </listitem>
           <listitem>
-            <para>Account ID and Project ID refer to your
-              Rackspace account number.</para>
+            <para>Account ID and Project ID refer to your Rackspace account number.</para>
           </listitem>
         </itemizedlist>
       </note>
@@ -1449,17 +1425,16 @@
           </tr>
           <tr>
             <td>Client-ID</td>
-            <td>A UUID for each client instance. The UUID must be
-              submitted in its canonical form (for example,
-              3381af92-2b9e-11e3-b191-71861300734c). The client
-              generates the Client-ID once. Client-ID persists between
-              restarts of the client so the client should reuse that
-              same Client-ID. <emphasis role="bold">Note: All
-                message-related operations require the use of
-                  <code>Client-ID</code> in the headers to ensure that
-                messages are not echoed back to the client that posted
-                them, unless the client explicitly requests
-                this.</emphasis></td>
+            <td>A UUID for each client instance. The UUID must be submitted in its canonical form
+              (for example, 3381af92-2b9e-11e3-b191-71861300734c). The client generates the
+              Client-ID once. Client-ID persists between restarts of the client so the client should
+              reuse that same Client-ID. Client-IDs persist on a per message basis. Individual
+              messages keep track of who posted them. <emphasis role="bold">Note: All
+                message-related operations require the use of <code>Client-ID</code> in the headers
+                to ensure that messages are not echoed back to the client that posted them, unless
+                the client explicitly requests this.</emphasis> If you choose to use your own HTTP
+              tools to communicate with the Cloud Queues API, you must manage your own
+              Client-IDs.</td>
           </tr>
         </tbody>
       </table>
