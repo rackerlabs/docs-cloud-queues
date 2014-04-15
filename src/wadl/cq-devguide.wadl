@@ -34,7 +34,7 @@
 				<resource id="projectID" path="{projectId}">
 				<param name="projectId" style="template" type="xsd:string"> 
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">The project ID of the owner of a specified
+                        xml:lang="EN">The project ID of the owner of the specified
 				queue. </wadl:doc></param> 
 			-->
 			<method href="#getHomeDocument"/>
@@ -46,7 +46,10 @@
 						<wadl:doc
 							xmlns="http://docbook.org/ns/docbook"
 							xml:lang="EN"><para>The name of the
-								queue.</para></wadl:doc>
+								queue. <code>queue_name</code> is the name that you
+								give to the queue. The name must not exceed 64
+								bytes in length, and it is limited to US-ASCII
+								letters, digits, underscores, and hyphens.</para> </wadl:doc>
 					</param>
 					<method href="#createQueue"/>
 					<method href="#deleteQueue"/>
@@ -117,18 +120,23 @@
 				JSON doc in your browser.</para>
 			<para>For more information about home documents, see <link
 					xlink:href="http://tools.ietf.org/html/draft-nottingham-json-home-02"
-					>http://tools.ietf.org/html/draft-nottingham-json-home-02</link>.</para>
-			<!--<para>Sample HTTP request:
-				<screen><userinput>GET /v1 HTTP/1.1
-Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
+					>http://tools.ietf.org/html/draft-nottingham-json-home-02</link>.</para>			
 		</wadl:doc>
+		<request>
+			<representation mediaType="application/http" >
+				<doc title="Get home document request">
+					<xsdxt:code href="../wadl/samples/cq-getHomeDocument_request-json-http.txt"/>
+					<para xmlns="http://docbook.org/ns/docbook">This operation does not require a request body.</para>
+				</doc>
+			</representation>
+		</request>
 		<response status="200">
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
-				<!--	<xsdxt:code
+					<xsdxt:code
 						href="../wadl/samples/cq-getHomeDocument_response-json-http.txt"
-					/>-->
+					/>
 					<xsdxt:code
 						href="../wadl/samples/cq-getHomeDocument_response.json"
 					/>
@@ -148,16 +156,34 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 			xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Creates a queue.</para>
 			<para>This operation creates a new queue.</para>
-			<para>The body of the request is empty.</para>
-			<note>
+			<!--<note>
 				<para><code>queue_name</code> is the name that you
 					give to the queue. The name must not exceed 64
 					bytes in length, and it is limited to US-ASCII
 					letters, digits, underscores, and hyphens.</para>
-			</note>
-			<!--<literallayout><xi:include href="../wadl/samples/cq-createQueue_request-json-http.txt" parse="text"/></literallayout>
-			<literallayout><xi:include href="../wadl/samples/cq-createQueue_response-json-http.txt" parse="text"/></literallayout>--></wadl:doc>
-		<response status="201"> </response> &commonFaults; </method>
+			</note> -->
+		</wadl:doc>
+		<request>						
+			<representation mediaType="application/json" >
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-createQueue_request-json-http.txt"/>
+					<xsdxt:code href="../wadl/samples/cq-createQueue_request.json"/>
+					<para xmlns="http://docbook.org/ns/docbook">The body of the request is empty.</para> 
+				</doc>
+			</representation>
+		</request>
+		<response status="201">
+			<representation mediaType="application/json">
+				<wadl:doc xmlns="http://docbook.org/ns/docbook"
+					xml:lang="EN">
+					<xsdxt:code
+						href="../wadl/samples/cq-createQueue_response-json-http.txt"
+					/>
+				</wadl:doc>
+			</representation>					
+		</response> 
+		&commonFaults; 
+	</method>
 
 	<!--*******************************************************-->
 	<!--               List Queues: listQueues                 -->
@@ -167,25 +193,13 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 		<wadl:doc xml:lang="EN" title="List queues"
 			xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Lists queues.</para>
-			<para>A request to list queues when you have no queues in
-				your account returns 204, instead of 200, because
-				there was no information to send back.</para>
 			<para>This operation lists queues for the project. The
 				queues are sorted alphabetically by name.</para>
-			<!--<para>This operation does not accept a request body. The
-				following example shows a sample HTTP request:
-					<code>GET /v1/queues HTTP/1.1 Host:
-					ord.queues.api.rackspacecloud.com Content-type:
-					application/json X-Auth-Token:
-					0f6e9f63600142f0a970911583522217 Accept:
-					application/json X-Project-Id:
-				806067</code></para>
-			<para>This example shows a sample HTTP response:
-					<code>HTTP/1.1 200 OK Content-Length: 3170
-					Content-Type: application/json; charset=utf-8
-					Content-Location:
-			/v1/queues</code></para>--></wadl:doc>
-		<request>
+			<para>A request to list queues when you have no queues in
+				your account returns 204, instead of 200, because
+				there was no information to send back.</para>			
+			</wadl:doc>
+		<request>			
 			<param name="marker" style="query" type="xsd:string"
 				required="false">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -210,11 +224,20 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 					this parameter is <code>false</code>, which
 					excludes the metadata. </wadl:doc>
 			</param>
+			<representation mediaType="application/http" >
+				<doc title="List queues request">
+					<xsdxt:code href="../wadl/samples/cq-listQueues_request-json-http.txt"/>
+					<para xmlns="http://docbook.org/ns/docbook">This operation does not require a request body.</para> 
+				</doc>
+			</representation>
 		</request>
 		<response status="200">
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
+					<xsdxt:code
+						href="../wadl/samples/cq-listQueues_response-json-http.txt"
+					/>
 					<xsdxt:code
 						href="../wadl/samples/cq-listQueues_response.json"
 					/>
@@ -223,39 +246,39 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 		</response> &commonFaults; &getFaults; </method>
 
 	<!--*******************************************************-->
-	<!--       Set Queue Metadata: setQueueMetadata *****      -->
+	<!--       Set Queue Metadata: setQueueMetadata            -->
 	<!--*******************************************************-->
 	<method name="PUT" id="setQueueMetadata">
 		<wadl:doc xml:lang="EN" title="Set queue metadata"
 			xmlns="http://docbook.org/ns/docbook">
-			<para role="shortdesc">Sets metadata for a specified
+			<para role="shortdesc">Sets metadata for the specified
 				queue.</para>
-			<para>This operation sets metadata for a specified
+			<para>This operation sets metadata for the specified
 				queue.</para>
-			<para>The request body has a limit of 256 KB, including
-				whitespace (when re-serialized as JSON).</para>
 			<para>This operation replaces any existing metadata
 				document in its entirety. Ensure that you do not
 				accidentally overwrite existing metadata that you want
 				to retain.</para>
+			<para>The request body has a limit of 256 KB, including
+				whitespace (when re-serialized as JSON).</para>			
 			<para>The body of the request includes contextual
 				information about the way a particular application
 				interacts with the queue. The document must be valid
-				JSON. (Cloud Queues validate it.)</para>
-			<note>
+				JSON. (Cloud Queues validates it.)</para>
+			<!--<note>
 				<para><code>queue_name</code> is the name that you
 					give to the queue. The name must not exceed 64
 					bytes in length, and it is limited to US-ASCII
 					letters, digits, underscores, and hyphens.</para>
-			</note>
+			</note> -->
 		</wadl:doc>
 		<request>
 			<representation mediaType="application/json"
 				element="queues:Queue">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
-					<!--<xsdxt:code
-						href="../wadl/samples/cq-setQueueMetadata_request-json-http.txt"/>-->
+					<xsdxt:code
+						href="../wadl/samples/cq-setQueueMetadata_request-json-http.txt"/>
 					<xsdxt:code
 						href="../wadl/samples/cq-setQueueMetadata_request.json"
 					/>
@@ -263,50 +286,52 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 			</representation>
 		</request>
 		<response status="204">
-			<!--<representation mediaType="application/json">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Set queue metadata response">
 					<xsdxt:code
 						href="../wadl/samples/cq-setQueueMetadata_response-json-http.txt"
 					/>
+					<para>This operation does not return a response body.</para>
 				</wadl:doc>
-			</representation>-->
+			</representation>
 		</response> &commonFaults; </method>
 
 	<!--*******************************************************-->
-	<!--       Get Queue Metadata: getQueueMetadata *****      -->
+	<!--       Show Queue Metadata: getQueueMetadata            -->
 	<!--*******************************************************-->
 	<method name="GET" id="getQueueMetadata">
 		<wadl:doc xml:lang="EN" title="Show queue metadata"
 			xmlns="http://docbook.org/ns/docbook">
-			<para role="shortdesc">Shows metadata for a specified
+			<para role="shortdesc">Shows metadata for the specified
 				queue.</para>
 			<para>This operation returns metadata, such as message
 				TTL, for the queue.</para>
-			<note>
+			<!--<note>
 				<para><code>queue_name</code> is the name that you
 					give to the queue. The name must not exceed 64
 					bytes in length, and it is limited to US-ASCII
 					letters, digits, underscores, and hyphens.</para>
-			</note>
+			</note> -->
 		</wadl:doc>
-		<!--	<request>
-			<representation mediaType="application/json"
+			<request>
+			<representation mediaType="application/http"
 				element="queues:Queue">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Show queue metadata request">
 				<xsdxt:code
 						href="../wadl/samples/cq-getQueueMetadata_request-json-http.txt"
 					/>
+					<para>This operation does not require a request body.</para>
 				</wadl:doc>
 			</representation>
-		</request>-->
+		</request>
 		<response status="200">
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
-					<!--<xsdxt:code
-						href="../wadl/samples/cq-getQueueMetadata_response-json-http.txt"/>-->
+					<xsdxt:code
+						href="../wadl/samples/cq-getQueueMetadata_response-json-http.txt"/>
 					<xsdxt:code
 						href="../wadl/samples/cq-getQueueMetadata_response.json"
 					/>
@@ -315,38 +340,39 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 		</response> &commonFaults; &getFaults; </method>
 
 	<!--*******************************************************-->
-	<!--          Get Queue Stats: getQueueStats               -->
+	<!--          Show Queue Stats: getQueueStats               -->
 	<!--*******************************************************-->
 	<method name="GET" id="getQueueStats">
 		<wadl:doc xml:lang="EN" title="Show queue stats"
 			xmlns="http://docbook.org/ns/docbook">
-			<para role="shortdesc">Show statistics for a specified
+			<para role="shortdesc">Show statistics for the specified
 				queue.</para>
 			<para>This operation returns queue statistics, including
 				how many messages are in the queue, categorized by
 				status.</para>
 			<note><para>If the value of the <code>total</code>
-					attribute is 0, then <code>oldest</code> and
+					parameter is 0, then <code>oldest</code> and
 						<code>newest</code> message statistics are not
 					included in the response.</para></note>
 		</wadl:doc>
-		<!--	<request>
-			<representation mediaType="application/json"
+			<request>
+			<representation mediaType="application/http"
 				element="queues:Queue">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Show queue stats request">
 				<xsdxt:code
 						href="../wadl/samples/cq-getQueueStats_request-json-http.txt"
 					/>
+					<para>This operation does not require a request body.</para>
 				</wadl:doc>
 			</representation>
-		</request>-->
+		</request>
 		<response status="200">
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
-					<!--<xsdxt:code
-						href="../wadl/samples/cq-getQueueStats_response-json-http.txt"/>-->
+					<xsdxt:code
+						href="../wadl/samples/cq-getQueueStats_response-json-http.txt"/>
 					<xsdxt:code
 						href="../wadl/samples/cq-getQueueStats_response.json"
 					/>
@@ -360,77 +386,81 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 	<method name="DELETE" id="deleteQueue">
 		<wadl:doc xml:lang="EN" title="Delete queue"
 			xmlns="http://docbook.org/ns/docbook">
-			<para role="shortdesc">Deletes a specified queue.</para>
+			<para role="shortdesc">Deletes the specified queue.</para>
 			<para>This operation immediately deletes a queue and all
 				of its existing messages.</para>
-			<note>
+			<!--<note>
 				<para><code>queue_name</code> is the name that you
 					give to the queue. The name must not exceed 64
 					bytes in length, and it is limited to US-ASCII
 					letters, digits, underscores, and hyphens.</para>
-			</note>
+			</note> -->
 		</wadl:doc>
-		<!--<request>
-			<representation mediaType="application/json"
+		<request>
+			<representation mediaType="application/http"
 				element="queues:Queue">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Delete queue request">
 					<xsdxt:code
 						href="../wadl/samples/cq-deleteQueue_request-json-http.txt"
 					/>
+                <para>This operation does not require a request body.</para>					
 				</wadl:doc>
 			</representation>
-		</request>-->
+		</request>
 		<response status="204">
-			<!--<representation mediaType="application/json">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Delete queue response">
 				<xsdxt:code
 						href="../wadl/samples/cq-deleteQueue_response-json-http.txt"
 					/>
+					<para>This operation does not return a response body.</para>
 				</wadl:doc>
-			</representation>-->
+			</representation>
 		</response> &commonFaults; </method>
 
 	<!--*******************************************************-->
-	<!--              Delete Queue: checkQueueExists            -->
+	<!--    Check queue existence: checkQueueExists            -->
 	<!--*******************************************************-->
 	<method name="GET" id="checkQueueExists">
 		<wadl:doc xml:lang="EN" title="Check queue existence"
 			xmlns="http://docbook.org/ns/docbook">
-			<para role="shortdesc">Verifies whether a specified queue
+			<para role="shortdesc">Verifies whether the specified queue
 				exists.</para>
-			<para>This operation verifies whether a specified queue
+			<para>This operation verifies whether the specified queue
 				exists.</para>
-			<para> You can also use HEAD instead of GET for the
+			<para> You can also use <command>HEAD</command> instead of <command>GET</command> for the
 				verb.</para>
-			<note>
+			<!--<note>
 				<para><code>queue_name</code> is the name that you
 					give to the queue. The name must not exceed 64
 					bytes in length, and it is limited to US-ASCII
 					letters, digits, underscores, and hyphens.</para>
-			</note>
+			</note> -->
 		</wadl:doc>
-		<!--<request>
-			<representation mediaType="application/json"
+		<request>
+			<representation mediaType="application/http"
 				element="queues:Queue">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Check queue existence request">
 				<xsdxt:code
 						href="../wadl/samples/cq-checkQueueExists_request-json-http.txt"
-					/>	
+					/>
+					<para>This operation does not require a request body.</para>
 				</wadl:doc>
 			</representation>
-		</request>-->
+		</request>
 		<response status="204">
-			<!--<representation mediaType="application/json">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Check queue existenace response">
 					<xsdxt:code
 						href="../wadl/samples/cq-checkQueueExists_response-json-http.txt"
 					/>
+					<para>This operation does not return a response body.</para>
 				</wadl:doc>
-			</representation>-->
+			</representation>
 		</response> &getFaults; </method>
 
 	<!--*******************************************************-->
@@ -445,7 +475,7 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 			xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Posts the message or messages for a
 				specified queue.</para>
-			<para>This operation posts a specified message or
+			<para>This operation posts the specified message or
 				messages.</para>
 			<para>You can submit up to 10 messages in a single
 				request, but you must always encapsulate the messages
@@ -463,12 +493,12 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 				request, in the order of the messages. If a
 				server-side error occurs during the processing of the
 				submitted messages, a partial list is returned, the
-				partial attribute is set to true, and the client tries
+				partial parameter is set to true, and the client tries
 				to post the remaining messages again. If the server
 				cannot enqueue any messages, the server returns a
 					<code>503 Service Unavailable</code> error
 				message.</para>
-			<para>The <code>body</code> attribute specifies an
+			<para>The <code>body</code> parameter specifies an
 				arbitrary document that constitutes the body of the
 				message being sent.</para>. <para>The following rules
 				apply for the maximum size:</para>
@@ -489,7 +519,7 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 			</itemizedlist>
 			<para>The document must be valid JSON. (Cloud Queues
 				validates it.)</para>
-			<para>The <code>ttl</code> attribute specifies how long
+			<para>The <code>ttl</code> parameter specifies how long
 				the server waits before marking the message as expired
 				and removing it from the queue. The value of
 					<code>ttl</code> must be between 60 and 1209600
@@ -503,8 +533,8 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 				element="queues:Queue">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
-					<!--<xsdxt:code
-						href="../wadl/samples/cq-postMessage_request-json-http.txt"/>-->
+					<xsdxt:code
+						href="../wadl/samples/cq-postMessage_request-json-http.txt"/>
 					<xsdxt:code
 						href="../wadl/samples/cq-postMessage_request.json"
 					/>
@@ -515,8 +545,8 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
-					<!--<xsdxt:code
-						href="../wadl/samples/cq-postMessage_response-json-http.txt"/>-->
+					<xsdxt:code
+						href="../wadl/samples/cq-postMessage_response-json-http.txt"/>
 					<xsdxt:code
 						href="../wadl/samples/cq-postMessage_response.json"
 					/>
@@ -532,13 +562,8 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 			xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Gets the message or messages in a
 				specified queue.</para>
-			<para>A request to list messages when the queue is not
-				found or when messages are not found returns 204,
-				instead of 200, because there was no information to
-				send back. Messages with malformed IDs or messages
-				that are not found by ID are ignored.</para>
 			<para>This operation gets the message or messages in the
-				specified queue.</para>
+				specified queue.</para>						
 			<para>Message IDs and markers are opaque strings. Clients
 				should make no assumptions about their format or
 				length. Furthermore, clients should assume that there
@@ -548,6 +573,11 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 				implementations.</para>
 			<para>Results are ordered by age, oldest message first.
 			</para>
+			<para>A request to list messages when the queue is not
+				found or when messages are not found returns 204,
+				instead of 200, because there was no information to
+				send back. Messages with malformed IDs or messages
+				that are not found by ID are ignored.</para>
 		</wadl:doc>
 		<request>
 			<param name="marker" style="query" type="xsd:string"
@@ -604,24 +634,25 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 					value of <code>false</code> (only unclaimed
 					messages are returned). </wadl:doc>
 			</param>
-			<!--<representation mediaType="application/json"
+			<representation mediaType="application/http"
 				element="queues:Queue">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Get messages request ">
 					<xsdxt:code
 						href="../wadl/samples/cq-getMessages_request-json-http.txt"
 					/>
+					<para>This operation does not require a request body.</para>
 				</wadl:doc>
-			</representation>-->
+			</representation>
 		</request>
 		<response status="200 204">
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
-					<!--<xsdxt:code
+					<xsdxt:code
 						href="../wadl/samples/cq-getMessages_response1-json-http.txt"
 						/><xsdxt:code
-						href="../wadl/samples/cq-getMessages_response-json-http.txt"/>-->
+						href="../wadl/samples/cq-getMessages_response-json-http.txt"/>
 					<xsdxt:code
 						href="../wadl/samples/cq-getMessages_response.json"
 					/>
@@ -630,18 +661,18 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 		</response> &commonFaults; &getFaults; &postFaults; </method>
 
 	<!--*******************************************************-->
-	<!--      Get a Specific Message: getSpecificMessage       -->
+	<!--     Show message details: getSpecificMessage       -->
 	<!--*******************************************************-->
 	<method name="GET" id="getSpecificMessage">
 		<wadl:doc xml:lang="EN" title="Show message details"
 			xmlns="http://docbook.org/ns/docbook">
-			<para role="shortdesc">Shows details for a message from a
+			<para role="shortdesc">Shows details for the specified message from the
 				specified queue.</para>
-			<para>This operation gets a specified message from the
+			<para>This operation shows details for the specified message from the
 				specified queue.</para>
 			<para>If either the message ID is malformed or
 				nonexistent, no message is returned.</para>
-			<para>Message fields are defined as
+			<para>Message body parameters are defined as
 								follows:<itemizedlist><listitem><para><code>href</code>
 							is an opaque relative URI that the client
 							can use to uniquely identify a message
@@ -659,24 +690,24 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 							post the message.
 					</para></listitem></itemizedlist></para>
 		</wadl:doc>
-		<!--<request>
-
-			<representation mediaType="application/json"
+		<request>
+			<representation mediaType="application/http"
 				element="queues:Queue">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Show message details request">
 					<xsdxt:code
 						href="../wadl/samples/cq-getSpecificMessage_request-json-http.txt"
 					/>
+					<para>This operation does not require a request body.</para>
 				</wadl:doc>
 			</representation>
-		</request>-->
+		</request>
 		<response status="200">
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
-					<!--<xsdxt:code
-						href="../wadl/samples/cq-getSpecificMessage_response-json-http.txt"/>-->
+					<xsdxt:code
+						href="../wadl/samples/cq-getSpecificMessage_response-json-http.txt"/>
 					<xsdxt:code
 						href="../wadl/samples/cq-getSpecificMessage_response.json"
 					/>
@@ -685,24 +716,24 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 		</response> &commonFaults; &getFaults; </method>
 
 	<!--*******************************************************-->
-	<!--     Get a Set of Messages by ID: getSetMessagesByID   -->
+	<!--         Get messages by ID: getSetMessagesByID        -->
 	<!--*******************************************************-->
 	<method name="GET" id="getSetMessagesByID">
 		<wadl:doc xml:lang="EN" title="Get messages by ID"
 			xmlns="http://docbook.org/ns/docbook">
-			<para role="shortdesc">Gets a specified set of messages
-				from a specified queue.</para>
+			<para role="shortdesc">Gets the specified set of messages
+				from the specified queue.</para>
 			<para>This operation provides a more efficient way to
 				query multiple messages compared to using a series of
 				individual <command>GET</command>s. Note that the list
 				of IDs cannot exceed 20. If a malformed ID or a
 				nonexistent message ID is provided, it is ignored, and
 				the remaining messages are returned.</para>
-			<para>Unlike the Get Messages operation, a client's own
+			<para>Unlike the get messages operation, a client's own
 				messages are always returned in this operation. If you
 				use the ids parameter, the echo parameter is not used
 				and is ignored if it is specified.</para>
-			<para>The message attributes are defined as
+			<para>The message body parameters are defined as
 								follows:<itemizedlist><listitem><para><code>href</code>
 							is an opaque relative URI that the client
 							can use to uniquely identify a message
@@ -729,22 +760,23 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 					separating them with commas (comma-separated).
 				</wadl:doc>
 			</param>
-			<!--<representation mediaType="application/json"
+			<representation mediaType="application/http"
 				element="queues:Queue">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Get messages by id request">
 				<xsdxt:code
 						href="../wadl/samples/cq-getSetMessagesByID_request-json-http.txt"
 					/>
+					<para>This operation does not require a request body.</para>
 				</wadl:doc>
-			</representation>-->
+			</representation>
 		</request>
 		<response status="200">
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
-					<!--<xsdxt:code
-						href="../wadl/samples/cq-getSetMessagesByID_response-json-http.txt"/>-->
+					<xsdxt:code
+						href="../wadl/samples/cq-getSetMessagesByID_response-json-http.txt"/>
 					<xsdxt:code
 						href="../wadl/samples/cq-getSetMessagesByID_response.json"
 					/>
@@ -753,17 +785,17 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 		</response> &commonFaults; &getFaults; </method>
 
 	<!--*******************************************************-->
-	<!--           Delete Message: deleteMessage               -->
+	<!--           Delete message: deleteMessage               -->
 	<!--*******************************************************-->
 	<method name="DELETE" id="deleteMessage">
 		<wadl:doc xml:lang="EN" title="Delete message"
 			xmlns="http://docbook.org/ns/docbook">
-			<para role="shortdesc">Deletes a specified message from a
+			<para role="shortdesc">Deletes the specified message from the
 				specified queue.</para>
-			<para>This operation immediately deletes a specified
+			<para>This operation immediately deletes the specified
 				message.</para>
 			<para>The <code>claim_id</code> parameter specifies that
-				the message is deleted only if it has a specified
+				the message is deleted only if it has the specified
 				claim ID and that claim has not expired. This
 				specification is useful for ensuring only one worker
 				processes any given message. When a worker's claim
@@ -782,35 +814,37 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN"> Identifies the claim. </wadl:doc>
 			</param>
-		<!--	<representation mediaType="application/json"
-				element="queues:Queue">
+			<representation mediaType="application/http"
+				element="queues:Queue" >
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Delete message request">
 				<xsdxt:code
 						href="../wadl/samples/cq-deleteMessage_request-json-http.txt"
 					/>
+					<para>This operation does not require a request body.</para>
 				</wadl:doc>
-			</representation>-->
+			</representation>
 		</request>
 		<response status="204">
-			<!--<representation mediaType="application/json">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Delete message response">
 					<xsdxt:code
 						href="../wadl/samples/cq-deleteMessage_response-json-http.txt"
 					/>
+					<para>This operation does not return a response body.</para>
 				</wadl:doc>
-			</representation>-->
+			</representation>
 		</response> &commonFaults; &deleteFaults; </method>
 
 	<!--*******************************************************-->
-	<!--           Delete Messages: deleteMessages               -->
+	<!--     Bulk-delete messages by ID: deleteMessages        -->
 	<!--*******************************************************-->
 	<method name="DELETE" id="deleteMessages">
 		<wadl:doc xml:lang="EN" title="Bulk-delete messages by ID"
 			xmlns="http://docbook.org/ns/docbook">
 			<para role="shortdesc">Bulk-deletes for messages.</para>
-			<para>This operation immediately deletes a specified
+			<para>This operation immediately deletes the specified
 				messages. If any of the message IDs are malformed or
 				non-existent, they are ignored. The remaining valid
 				messages IDs are deleted.</para>
@@ -822,25 +856,27 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 					xml:lang="EN"> Specifies the IDs of the messages
 					to delete. </wadl:doc>
 			</param>
-			<!--<representation mediaType="application/json"
+			<representation mediaType="application/http"
 				element="queues:Queue">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Bulk-delete messages by ID request">
 				<xsdxt:code
 						href="../wadl/samples/cq-deleteMessages_request-json-http.txt"
 					/>
+					<para>This operation does not require a request body.</para>
 				</wadl:doc>
-			</representation>-->
+			</representation>
 		</request>
 		<response status="204">
-			<!--<representation mediaType="application/json">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title='Bulk-delete messages by ID response'>
 						<xsdxt:code
 						href="../wadl/samples/cq-deleteMessages_response-json-http.txt"
 					/>
+					<para>This operation does not return a response body.</para>
 				</wadl:doc>
-			</representation>-->
+			</representation>
 		</response> &commonFaults; &deleteFaults; </method>
 
 	<!--*******************************************************-->
@@ -884,21 +920,21 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 			<note><para>Note that claim creation is best-effort,
 					meaning the worker may claim and return less than
 					the requested number of messages.</para></note>
-			<para>The <code>ttl</code> attribute specifies how long
+			<para>The <code>ttl</code> parameter specifies how long
 				the server waits before releasing the claim. The ttl
 				value must be between 60 and 43200 seconds (12 hours).
-				You must include a value for this attribute in your
+				You must include a value for this parameter in your
 				request.</para>
-			<para>The <code>grace</code> attribute specifies the
+			<para>The <code>grace</code> parameter specifies the
 				message grace period in seconds. The value of
 					<code>grace</code> value must be between 60 and
 				43200 seconds (12 hours). You must include a value for
-				thia attribute in your request. To deal with workers
+				this parameter in your request. To deal with workers
 				that have stopped responding (for up to 1209600
 				seconds or 14 days, including claim lifetime), the
 				server extends the lifetime of claimed messages to be
 				at least as long as the lifetime of the claim itself,
-				plus a specified grace period. If a claimed message
+				plus the specified grace period. If a claimed message
 				would normally live longer than the grace period, its
 				expiration is not adjusted.</para>
 		</wadl:doc>
@@ -915,8 +951,8 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 				element="queues:Queue">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
-					<!--<xsdxt:code
-						href="../wadl/samples/cq-claimMessages_request-json-http.txt"/>-->
+					<xsdxt:code
+						href="../wadl/samples/cq-claimMessages_request-json-http.txt"/>
 					<xsdxt:code
 						href="../wadl/samples/cq-claimMessages_request.json"
 					/>
@@ -927,8 +963,8 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
-					<!--<xsdxt:code
-						href="../wadl/samples/cq-claimMessages_response-json-http.txt"/>-->
+					<xsdxt:code
+						href="../wadl/samples/cq-claimMessages_response-json-http.txt"/>
 					<xsdxt:code
 						href="../wadl/samples/cq-claimMessages_response.json"
 					/>
@@ -936,33 +972,35 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 			</representation>
 		</response> &commonFaults; &getFaults; </method>
 	<!--*******************************************************-->
-	<!--               Query Claim: queryClaim                 -->
+	<!--               Query claim: queryClaim                 -->
 	<!--*******************************************************-->
 	<method name="GET" id="queryClaim">
 		<wadl:doc xml:lang="EN" title="Query claim"
 			xmlns="http://docbook.org/ns/docbook">
-			<para role="shortdesc">Queries a specified claim for a
+			<para role="shortdesc">Queries the specified claim for a
 				specified queue.</para>
-			<para>This operation queries a specified claim for the
+			<para>This operation queries the specified claim for the
 				specified queue. Claims with malformed IDs or claims
 				that are not found by ID are ignored.</para>
 		</wadl:doc>
-		<!--<request>
-			<representation mediaType="application/json"
+		<request>
+			<representation mediaType="application/http"
 				element="queues:Queue">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Query claim request">
 					<xsdxt:code
 						href="../wadl/samples/cq-queryClaim_request-json-http.txt"
 					/>
+					<para>This operation does not require a request body.</para>
+				</wadl:doc>
 			</representation>
-		</request>-->
+		</request>
 		<response status="200">
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
-					<!--<xsdxt:code
-						href="../wadl/samples/cq-queryClaim_response-json-http.txt"/>-->
+					<xsdxt:code
+						href="../wadl/samples/cq-queryClaim_response-json-http.txt"/>
 					<xsdxt:code
 						href="../wadl/samples/cq-queryClaim_response.json"
 					/>
@@ -971,14 +1009,14 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 		</response> &commonFaults; &getFaults; </method>
 
 	<!--*******************************************************-->
-	<!--               Update Claim: updateClaim                 -->
+	<!--               Update claim: updateClaim                 -->
 	<!--*******************************************************-->
 	<method name="PATCH" id="updateClaim">
 		<wadl:doc xml:lang="EN" title="Update claim"
 			xmlns="http://docbook.org/ns/docbook">
-			<para role="shortdesc">Updates a specified claim for a
+			<para role="shortdesc">Updates the specified claim for a
 				specified queue.</para>
-			<para>This operation updates a specified claim for the
+			<para>This operation updates the specified claim for the
 				specified queue. Claims with malformed IDs or claims
 				that are not found by ID are ignored.</para>
 			<para>Clients should periodically renew claims during
@@ -995,8 +1033,8 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 				element="queues:Queue">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
-					<!--<xsdxt:code
-						href="../wadl/samples/cq-updateClaim_request-json-http.txt"/>-->
+					<xsdxt:code
+						href="../wadl/samples/cq-updateClaim_request-json-http.txt"/>
 					<xsdxt:code
 						href="../wadl/samples/cq-updateClaim_request.json"
 					/>
@@ -1004,15 +1042,19 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 			</representation>
 		</request>
 		<response status="204">
-			<!--<representation mediaType="application/json">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+					xml:lang="EN" title="Update claim response">
 				<xsdxt:code
 						href="../wadl/samples/cq-updateClaim_response-json-http.txt"
 					/>
+					<para>This operation does not return a response body.</para>
 				</wadl:doc>
-			</representation>-->
-		</response> &commonFaults; &getFaults; </method>
+			</representation>
+		</response> 
+		&commonFaults; 
+		&getFaults; 
+	</method>
 
 	<!--*******************************************************-->
 	<!--               Release Claim: deleteClaim              -->
@@ -1020,7 +1062,7 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 	<method name="DELETE" id="deleteClaim">
 		<wadl:doc xml:lang="EN" title="Release claim"
 			xmlns="http://docbook.org/ns/docbook">
-			<para role="shortdesc">Releases a specified claim for a
+			<para role="shortdesc">Releases the specified claim for the
 				specified queue.</para>
 			<para>This operation immediately releases a claim, making
 				any remaining, undeleted) messages that are associated
@@ -1032,11 +1074,30 @@ Host: ord.queues.api.rackspacecloud.com</userinput></screen></para>-->
 				messages, or is taking longer than expected to process
 				messages, and wants to make the remainder of the
 				messages available to other workers.</para>
-			<!--<para>This operation does not accept a request body or
-				return a response body. The following examples show a
-				sample HTTP request and response:</para>
-			<programlisting language="bash"><xi:include href="../wadl/samples/cq-releaseClaim_request-json-http.txt" parse="text"/></programlisting>
-			<programlisting language="bash"><xi:include href="../wadl/samples/cq-releaseClaim_response-json-http.txt" parse="text"/></programlisting>--></wadl:doc>
-		<response status="204"> </response> &commonFaults; &getFaults;
+				</wadl:doc>
+			<request>
+			<representation mediaType="application/http"
+				element="queues:Queue">
+				<wadl:doc xmlns="http://docbook.org/ns/docbook"
+					xml:lang="EN" title="Release claim request">
+					<xsdxt:code
+						href="../wadl/samples/cq-releaseClaim_request-json-http.txt"/>
+					<para>This operation does not require a request body.</para>
+				</wadl:doc>
+			</representation>
+			</request>							
+					<response status="204"> 
+			<representation mediaType="application/http"
+				element="queues:Queue">
+				<wadl:doc xmlns="http://docbook.org/ns/docbook"
+					xml:lang="EN" title="Release claim response">
+					<xsdxt:code
+						href="../wadl/samples/cq-releaseClaim_response-json-http.txt"/>					
+					<para>This operation does not return a response body.</para>
+				</wadl:doc>
+			</representation>
+		</response>
+			&commonFaults; 
+			&getFaults;
 	</method>
 </application>

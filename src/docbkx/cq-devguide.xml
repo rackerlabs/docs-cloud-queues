@@ -91,22 +91,19 @@
       <revision>
         <date>2014-01-22</date>
         <revdescription>
-          <para>Updated the maximum size information for queue
-            metadata and message body the Data Limits in <xref
-              linkend="Absolute-Limits-d1e003"/>, as well as in the
-            Set Queue Metadata and Post Message operations
-            descriptions in <xref linkend="API_Operations_dle001"
+          <para>Updated the maximum size information for queue metadata and message body for data
+            limits in <xref linkend="Absolute-Limits-d1e003"/>, as well as in the set queue metadata
+            and post message operations descriptions in <xref linkend="API_Operations_dle001"
             />.</para>
         </revdescription>
       </revision>
       <revision>
         <date>2013-12-19</date>
         <revdescription>
-          <para>Updated the Post Message description in <xref
-              linkend="API_Operations_dle001"/> to include the
-            information that you must include even a single message in
-            a JSON array or you will receive the error message
-            "Invalid request body".</para>
+          <para>Updated the post message operation description in <xref
+              linkend="API_Operations_dle001"/> to include the information that you must include
+            even a single message in a JSON array or you will receive the error message "Invalid
+            request body".</para>
         </revdescription>
       </revision>
       <revision>
@@ -114,15 +111,12 @@
         <revdescription>
           <itemizedlist>
             <listitem>
-              <para>Removed the <code>claim_id</code> parameter from
-                the URI for the operation that gets a set of messages
-                by ID.</para>
+              <para>Removed the <code>claim_id</code> parameter from the URI for the operation that
+                gets messages by ID.</para>
             </listitem>
             <listitem>
-              <para>Updated the instructions for locating the API Key,
-                Tenant ID, and account number in the Cloud Control
-                Panel in <xref linkend="Retrieving_Auth_Token"
-                />.</para>
+              <para>Updated the instructions for locating the API key, tenant ID, and account number
+                in the Cloud Control Panel in <xref linkend="Retrieving_Auth_Token"/>.</para>
             </listitem>
           </itemizedlist>
         </revdescription>
@@ -199,7 +193,7 @@
         http://docs.rackspace.com/cdb/api/v1.0/cdb-devguide/content/overview.html</link>.</remark>
 
     <section xml:id="Intended_Audience-d1e166">
-      <title>Intended Audience</title>
+      <title>Intended audience</title>
       <para>This document is intended for software developers who are
         interested in developing applications that use the Rackspace
         Cloud Queues API. It assumes that you have the following
@@ -217,14 +211,14 @@
       </itemizedlist>
     </section>
     <section xml:id="Document_Change_History-d1e166">
-      <title>Document Change History</title>
+      <title>Document change history</title>
       <para>This version of the document replaces and obsoletes all
         earlier versions. The most recent changes are described in the
         following table.</para>
       <?rax revhistory?>
     </section>
     <section xml:id="Additional_Resources-d1e532">
-      <title>Additional Resources</title>
+      <title>Additional resources</title>
       <!--
       <para>Descriptive information about Cloud Queues is also
         published in its Web Application Description Language (WADL).
@@ -239,10 +233,9 @@
 
       <para>For more details about Cloud Queues, refer to <link
           xlink:href="http://www.rackspace.com/cloud/queues/"
-          >http://www.rackspace.com/cloud/queues/</link>. This site
-        also offers links to Rackspace's official support channels,
-        including phone, chat, and email as well as Knowledge Center
-        articles.</para>
+          >http://www.rackspace.com/cloud/queues/</link>. This site also offers links to the
+        Rackspace official support channels, including phone, chat, and email as well as Knowledge
+        Center articles.</para>
       <!--      
       <remark security="reviewer">Reviewer: do you have a
         corresponding link for the Cloud Queues landing page on
@@ -269,12 +262,12 @@
           >www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</link>.</para>
     </section>
     <section xml:id="API-Contract_Changes-d1e001">
-      <title>API Contract Changes</title>
+      <title>API contract changes</title>
       <para>Rackspace will notify customers in release notes when and
         if the contract changes.</para>
     </section>
     <section xml:id="Pricing_SLA-d1e1362">
-      <title>Pricing and Service Level</title>
+      <title>Pricing and service level</title>
       <para>Cloud Queues is part of the Rackspace Cloud and your use
         of the Cloud Queues API will be billed according to the
         pricing schedule at <link
@@ -292,7 +285,7 @@
     <para>To use the Cloud Queues API effectively, you should
       understand the key concepts described in this section.</para>
     <section xml:id="how_cq_works">
-      <title>How Cloud Queues Works</title>
+      <title>How Cloud Queues works</title>
       <para>Following is an overview of Cloud Queues works. For
         definitions of Cloud Queues terms, see the <xref
           linkend="glossary_1"/>.</para>
@@ -321,7 +314,7 @@
         handled in a First In, First Out (FIFO) order.</para>
     </section>
     <section xml:id="operating_modes">
-      <title>Messaging Patterns</title>
+      <title>Messaging patterns</title>
       <para>Cloud Queues supports a variety of messaging patterns
         including the following:</para>
       <itemizedlist>
@@ -333,7 +326,7 @@
         </listitem>
       </itemizedlist>
       <section xml:id="producer_consumer">
-        <title>Producer-Consumer</title>
+        <title>Producer-consumer</title>
         <para>The producer-consumer pattern has the following
           characteristics:</para>
         <itemizedlist>
@@ -363,9 +356,8 @@
           processors.</para>
       </section>
       <section xml:id="publish_subscribe">
-        <title>Publish-Subscribe</title>
-        <para>Characteristics of the Publish-Subscribe pattern
-          are:</para>
+        <title>Publish-subscribe</title>
+        <para>Characteristics of the publish-subscribe pattern are:</para>
         <itemizedlist>
           <listitem>
             <para>The publisher sends a message to a queue.</para>
@@ -394,7 +386,7 @@
       </section>
     </section>
     <section xml:id="Use-Cases-d1e001">
-      <title>Use Cases</title>
+      <title>Use cases</title>
       <para>Queuing systems are used to coordinate tasks within an
         application. Here are some examples:</para>
       <itemizedlist>
@@ -474,7 +466,7 @@
     </section>
   </chapter>
   <chapter xml:id="Gen_API_Info-de01">
-    <title>General API Information</title>
+    <title>General API information</title>
     <para>The Cloud Queues API is implemented using a RESTful web
       service interface. Cloud Queues shares a common token-based
       authentication system with other Rackspace Cloud products, which
@@ -495,7 +487,7 @@
           id</parameter> parameter in <xref linkend="authResponseXML"
         /> and <xref linkend="auth-response-example-json"/>).</para>
       <section xml:id="Geographic_Endpoints">
-        <title>Geographic Endpoints</title>
+        <title>Geographic endpoints</title>
         <para>The Rackspace Cloud Authentication service is the entry
           point to all Rackspace Cloud APIs and is itself a RESTful
           web service.</para>
@@ -532,7 +524,7 @@
         </itemizedlist>
       </section>
       <section xml:id="Retrieving_Auth_Token">
-        <title>Retrieving the Authentication Token</title>
+        <title>Retrieving the authentication token</title>
         <para>The authenticate operation provides you with an
           authentication token and a list of regional cloud endpoints.
           The sample requests and responses in this section illustrate
@@ -544,7 +536,7 @@
           which you have subscribed rather than the sample values
           shown in this section.</para>
         <table rules="all">
-          <caption>Command to Retrieve Authentication Token</caption>
+          <caption>Command to retrieve authentication token</caption>
           <col width="32%"/>
           <col width="22%"/>
           <col width="46%"/>
@@ -568,27 +560,27 @@
             (<errorcode>500</errorcode>), serviceUnavailable
             (<errorcode>503</errorcode>) </simpara>
         <example>
-          <title>Auth Request for US Endpoint: XML</title>
+          <title>Auth request for US endpoint: XML</title>
           <programlisting language="bash"><xi:include href="samples/credentials-20-xml-http.txt" parse="text"/></programlisting>
           <programlistingco>
             <areaspec>
               <area xml:id="credentials.xml.user" units="linecolumn"
-                coords="13 17"/>
+                coords="5 18"/>
               <area xml:id="credentials.xml.key" units="linecolumn"
-                coords="14 15"/>
+                coords="6 16"/>
             </areaspec>
             <programlisting language="xml"><xi:include href="samples/credentials-20.xml" parse="text"/></programlisting>
           </programlistingco>
         </example>
         <example>
-          <title>Auth Request for US Endpoint: JSON</title>
+          <title>Auth request for US endpoint: JSON</title>
           <programlisting language="bash"><xi:include href="samples/credentials-20-json-http.txt" parse="text"/></programlisting>
           <programlistingco>
             <areaspec>
               <area xml:id="credentials.json.user" units="linecolumn"
-                coords="14 22"/>
+                coords="4 21"/>
               <area xml:id="credentials.json.key" units="linecolumn"
-                coords="15 20"/>
+                coords="5 19"/>
             </areaspec>
             <programlisting language="json"><xi:include href="samples/credentials-20.json" parse="text"/></programlisting>
           </programlistingco>
@@ -600,8 +592,7 @@
           </callout>
           <callout arearefs="credentials.xml.key">
             <para>The key is your API access key.</para>
-            <para><emphasis role="bold">To find your API
-                Key:</emphasis>
+            <para><emphasis role="bold">To find your API key:</emphasis>
             </para>
             <orderedlist>
               <listitem>
@@ -648,58 +639,58 @@
           </callout>
         </calloutlist>
         <example xml:id="authResponseXML">
-          <title>Auth Response for US Endpoint: XML</title>
+          <title>Auth response for US endpoint: XML</title>
           <programlisting language="bash"><xi:include href="../../src/resources/samples/auth-20-xml-http.txt" parse="text"/></programlisting>
           <programlistingco>
             <areaspec>
               <area xml:id="response.xml.namespaces"
-                units="linecolumn" coords="7 9"/>
+                units="linecolumn" coords="3 3"/>
               <area xml:id="response.xml.token" units="linecolumn"
-                coords="15 10"/>
+                coords="11 3"/>
               <area xml:id="response.xml.dfltregion"
-                units="linecolumn" coords="16 67"/>
+                units="linecolumn" coords="12 66"/>
               <area xml:id="response.xml.role" units="linecolumn"
-                coords="17 12"/>
+                coords="13 12"/>
               <area xml:id="response.xml.catalog" units="linecolumn"
-                coords="22 21"/>
+                coords="20 19"/>
               <area xml:id="response.xml.servicetype"
-                units="linecolumn" coords="51 34"/>
+                units="linecolumn" coords="57 35"/>
               <area xml:id="response.xml.servicename"
-                units="linecolumn" coords="51 54"/>
+                units="linecolumn" coords="57 54"/>
               <area xml:id="response.xml.region" units="linecolumn"
-                coords="52 30"/>
+                coords="58 32"/>
               <area xml:id="response.xml.tenant" units="linecolumn"
-                coords="53 66"/>
+                coords="59 9"/>
               <area xml:id="response.xml.url" units="linecolumn"
-                coords="54 9"/>
+                coords="60 9"/>
             </areaspec>
             <programlisting language="xml"><xi:include href="../../src/resources/samples/auth-20.xml" parse="text"/></programlisting>
           </programlistingco>
         </example>
         <example xml:id="auth-response-example-json">
-          <title>Auth Response for US Endpoint: JSON</title>
+          <title>Auth response for US endpoint: JSON</title>
           <programlistingco>
             <areaspec>
               <area xml:id="response.json.namespaces"
                 units="linecolumn" coords="200 1"/>
               <area xml:id="response.json.token" units="linecolumn"
-                coords="9 8"/>
+                coords="4 9"/>
               <area xml:id="response.json.dfltregion"
-                units="linecolumn" coords="16 45"/>
+                units="linecolumn" coords="11 45"/>
               <area xml:id="response.json.role" units="linecolumn"
-                coords="17 12"/>
+                coords="12 13"/>
               <area xml:id="response.json.catalog" units="linecolumn"
-                coords="30 8"/>
+                coords="25 7"/>
               <area xml:id="response.json.servicetype"
-                units="linecolumn" coords="114 16"/>
+                units="linecolumn" coords="109 13"/>
               <area xml:id="response.json.servicename"
-                units="linecolumn" coords="113 16"/>
+                units="linecolumn" coords="108 13"/>
               <area xml:id="response.json.region" units="linecolumn"
-                coords="104 24"/>
+                coords="99 19"/>
               <area xml:id="response.json.tenant" units="linecolumn"
-                coords="101 24"/>
+                coords="96 19"/>
               <area xml:id="response.json.url" units="linecolumn"
-                coords="102 24"/>
+                coords="97 19"/>
             </areaspec>
             <programlisting language="json"><xi:include href="../../src/resources/samples/auth-20.json" parse="text"/>
                     </programlisting>
@@ -900,7 +891,7 @@
         roles can be assigned by the Cloud account admin user to
         account users of the account.</para>
       <section xml:id="Assigning-Roles-d1e001">
-        <title>Assigning Roles to Account Users</title>
+        <title>Assigning roles to account users</title>
         <para>The account owner (identity:user-admin) can create
           account users on the account and then assign roles to those
           users. The roles grant the account users specific
@@ -935,19 +926,18 @@
         </note>
       </section>
       <section xml:id="RBAC_product_roles">
-        <title>Roles Available for Cloud Queues </title>
+        <title>Roles available for cloud queues </title>
         <para>Three roles (admin, creator, and observer) can be used
           to access the Cloud Queues API specifically. The following
           table describes these roles and their permissions.</para>
         <table xml:id="RBAC_product_roles_table" rules="all">
-          <caption>Cloud Queues Product Roles and
-            Capabilities</caption>
+          <caption>Cloud Queues product roles and capabilities</caption>
           <col width="50%"/>
           <col width="50%"/>
           <thead>
             <tr>
-              <th>Role Name</th>
-              <th>Role Permissions</th>
+              <th>Role name</th>
+              <th>Role permissions</th>
             </tr>
           </thead>
           <tbody>
@@ -976,14 +966,13 @@
           following table describes these roles and their
           permissions.</para>
         <table rules="all">
-          <caption> Multiproduct (Global) Roles and
-            Permissions</caption>
+          <caption> Multiproduct (global) roles and permissions</caption>
           <col width="50%"/>
           <col width="50%"/>
           <thead>
             <tr>
-              <th>Role Name</th>
-              <th>Role Permissions</th>
+              <th>Role name</th>
+              <th>Role permissions</th>
             </tr>
           </thead>
           <tbody>
@@ -1002,8 +991,8 @@
         </table>
       </section>
       <section xml:id="RBAC-Resolving-Conflicts-d1e001" version="5.0">
-        <title>Resolving Conflicts Between RBAC Multiproduct vs.
-          Custom (Product-specific) Roles</title>
+        <title>Resolving conflicts between RBAC multiproduct vs. custom (product-specific)
+          roles</title>
         <para>The account owner can set roles for both multiproduct
           and Cloud Queues scope, and it is important to understand
           how any potential conflicts among these roles are resolved.
@@ -1018,10 +1007,9 @@
           <informaltable rules="all">
             <thead>
               <tr align="center">
-                <td>Permission Configuration</td>
-                <td>View of Permission in the Control Panel </td>
-                <td>Can the User Perform Product Admin Functions in
-                  the Control Panel?</td>
+                <td>Permission configuration</td>
+                <td>View of permission in the Control Panel </td>
+                <td>Can the user perform product admin functions in the Control Panel?</td>
               </tr>
             </thead>
             <tbody>
@@ -1054,8 +1042,7 @@
       </section>
       <section xml:id="RBAC-Permissions-Cross-Ref-d1e001"
         version="5.0">
-        <title>RBAC Permissions Cross-reference to Cloud Queues API
-          Operations</title>
+        <title>RBAC permissions cross-reference to Cloud Queues API operations</title>
         <para>API operations for Cloud Queues may or may not be
           available to all roles. To see which operations are
           permitted to invoke which calls, please review <link
@@ -1064,12 +1051,12 @@
       </section>
     </section>
     <section xml:id="serviceEndpoints">
-      <title>Service Access Endpoints</title>
+      <title>Service access endpoints</title>
       <para>The following table shows the available service endpoints
         for Cloud Queues.</para>
       <para>
         <table xml:id="Endpoints-Table-d1e001" rules="all">
-          <caption>Regionalized Service Endpoints</caption>
+          <caption>Regionalized service endpoints</caption>
           <thead>
             <tr align="center">
               <td colspan="2">Region</td>
@@ -1214,7 +1201,7 @@
       -->
     </section>
     <section xml:id="contractVersion">
-      <title>Contract Version</title>
+      <title>Contract version</title>
       <para>The Cloud Queues version defines the contract and build
         information for the API.</para>
       <para>The contract version denotes the data model and behavior
@@ -1223,7 +1210,7 @@
         the API might be available at any given time and are not
         guaranteed to be compatible with one another.</para>
       <example>
-        <title>Sample Request URL for Contract Version 1 </title>
+        <title>Sample request URL for contract version 1 </title>
         <programlisting>https://ord.queues.api.rackspacecloud.com/<emphasis role="strong">v1</emphasis></programlisting>
       </example>
       <note>
@@ -1233,7 +1220,7 @@
       </note>
     </section>
     <section xml:id="Request_Response_Types-d1e903">
-      <title>Request and Response Types</title>
+      <title>Request and response types</title>
       <para>The Cloud Queues API supports JSON data serialization
         formats. You specify the request format by using the
           <code>Content-Type</code> header. The request format is
@@ -1243,13 +1230,13 @@
           <code>.json</code> extension to the request URI. JSON is
         also used for the response format.</para>
       <table rules="all">
-        <caption>Response Format</caption>
+        <caption>Response format</caption>
         <?dbfo keep-together="always"?>
         <thead>
           <tr align="center">
             <td>Format</td>
-            <td>Accept Header</td>
-            <td>Query Extension</td>
+            <td>Accept header</td>
+            <td>Query extension</td>
             <td>Default</td>
           </tr>
         </thead>
@@ -1295,7 +1282,7 @@
           justification.</para>
       </note>
       <section xml:id="Rate-Limits-d1e003">
-        <title>Rate Limits</title>
+        <title>Rate limits</title>
         <para>Rate limits control the frequency at which the user can
           issue specific API requests.</para>
         <para>For Cloud Queues, the rate limit is 300 requests per
@@ -1310,14 +1297,15 @@
           between each request. If your application continues to hit
           this limit and you cannot slow down the request rate, please
           contact Rackspace Cloud support.</para>
-      </section>
+      </section>      
+      <?hard-pagebreak?>
       <section xml:id="Absolute-Limits-d1e003">
-        <title>Absolute Limits</title>
+        <title>Absolute limits</title>
         <para>The following table provides details about the absolute
           limits for the Cloud Queues API.</para>
 
         <table rules="all">
-          <caption>Absolute Limits</caption>
+          <caption>Absolute limits</caption>
           <col width="30%"/>
           <col width="40%"/>
           <col width="30%"/>
@@ -1330,8 +1318,7 @@
           </thead>
           <tbody>
             <tr>
-              <td rowspan="6">Limits on Messages and Queues per
-                Request </td>
+              <td rowspan="6">Limits on messages and queues per request </td>
               <td>Number of queue records per page of results when
                 listing queues</td>
               <td>1 - 1000</td>
@@ -1362,7 +1349,7 @@
               <td>1 - 25 </td>
             </tr>
             <tr>
-              <td rowspan="3">Time Limits</td>
+              <td rowspan="3">Time limits</td>
               <td>Valid range for a message TTL</td>
               <td>60 - 1209600 seconds (1 minute to 14 days)</td>
             </tr>
@@ -1375,7 +1362,7 @@
               <td>60 - 43200 seconds (1 minute to 12 hours)</td>
             </tr>
             <tr>
-              <td rowspan="2">Data Limits</td>
+              <td rowspan="2">Data limits</td>
               <td>Queue metadata JSON</td>
               <td>Cannot exceed 262144 bytes, including whitespace
                 (256 KB)</td>
@@ -1398,17 +1385,17 @@
             exceed 256 KB in a single request.</para>
         </note>
       </section>
-
+      <?hard-pagebreak?>
     </section>
     <section xml:id="commonHeaders">
-      <title>Common Headers</title>
+      <title>Common headers</title>
       <para>Each request to the Cloud Queues API must include certain
         standard and extended HTTP headers. These headers provide
         host, agent, authentication, and other pertinent information
         to the server. The following table provides the common headers
         used by the API.</para>
       <table rules="all">
-        <caption>Common Headers</caption>
+        <caption>Common headers</caption>
         <col width="30%"/>
         <col width="70%"/>
         <thead>
@@ -1476,13 +1463,14 @@
         </tbody>
       </table>
     </section>
+    <?hard-pagebreak?> 
     <section xml:id="datetimeformat">
-      <title>Date and Time Format</title>
+      <title>Date and time format</title>
       <para>For the display and consumption of date and time values,
         the Cloud Queues service uses a date format that complies with
         ISO 8601.</para>
       <example>
-        <title>Service Date and Time Format</title>
+        <title>Service date and time format</title>
         <programlisting>yyyy-MM-dd'T'HH:mm:ss.SSSZ</programlisting>
         <para>For example, May 19, 2013 at 8:07:08 A.M., GMT-5 would
           have the following format:</para>
@@ -1491,7 +1479,7 @@
       <para>The following table describes the date and time format
         codes.</para>
       <table rules="all">
-        <caption>Explanation of Date and Time Format Codes</caption>
+        <caption>Explanation of date and time format codes</caption>
         <thead>
           <tr>
             <td>Code</td>
@@ -1565,7 +1553,7 @@
         follows.</para>
 
       <example>
-        <title>Error Message Example</title>
+        <title>Error message example</title>
         <programlisting language="bash">HTTP/1.1 400 Bad Request
 Content-Type: application/json</programlisting>
         <programlisting language="json">{
@@ -1579,25 +1567,23 @@ Content-Type: application/json</programlisting>
    }
 }</programlisting>
       </example>
-      <para>Error information for each operation is included and with
-        the operation description in <xref
-          linkend="API_Operations_dle001"/>.</para>
+      <para>Error information for each operation is included in this section. For more information,
+        see the operation description in <xref linkend="API_Operations_dle001"/>.</para>
       <section xml:id="error_Codes_And_Explanations">
-        <title>Response Codes and Explanations</title>
+        <title>Response codes and explanations</title>
         <para>This section includes response codes and explanations
           for each of the Cloud Queues API operations. The operations
           are described in <xref linkend="API_Operations_dle001"
           />.</para>
         <section xml:id="create_Queue_Codes">
-          <title>Create Queue</title>
+          <title>Create queue</title>
           <para>The following table describes the response codes for
             the <command>Create Queue</command> operation.</para>
           <table rules="all">
-            <caption>Descriptions of Create Queue Response
-              Codes</caption>
+            <caption>Descriptions of create queue response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -1630,15 +1616,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="list_Queues_Codes">
-          <title>List Queues</title>
-          <para>The following table describes the response codes for
-            the <command>List Queues</command> operation.</para>
+          <title>List queues</title>
+          <para>The following table describes the response codes for the list queues
+            operation.</para>
           <table rules="all">
-            <caption>Descriptions of List Queues Response
-              Codes</caption>
+            <caption>Descriptions of list queues response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -1698,15 +1683,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="delete_Queue_Codes">
-          <title>Delete Queue</title>
-          <para>The following table describes the response codes for
-            the <command>Delete Queue</command> operation.</para>
+          <title>Delete queue</title>
+          <para>The following table describes the response codes for the delete queue
+            operation.</para>
           <table rules="all">
-            <caption>Descriptions of Delete Queue Response
-              Codes</caption>
+            <caption>Descriptions of delete queue response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -1743,16 +1727,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="check_Queue_Exists_Codes">
-          <title>Check Queue Existence</title>
-          <para>The following table describes the response codes for
-            the <command>Check Queue Existence</command>
+          <title>Check queue existence</title>
+          <para>The following table describes the response codes for the check queue existence
             operation.</para>
           <table rules="all">
-            <caption>Descriptions of Check Queue Existence Response
-              Codes</caption>
+            <caption>Descriptions of check queue existence response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -1769,16 +1751,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="set_Queue_Metadata_Codes">
-          <title>Set Queue Metadata</title>
-          <para>The following table describes the response codes for
-            the <command>Set Queue Metadata</command>
+          <title>Set queue metadata</title>
+          <para>The following table describes the response codes for the set queue metadata
             operation.</para>
           <table rules="all">
-            <caption>Descriptions of Set Queue Metadata Response
-              Codes</caption>
+            <caption>Descriptions of set queue metadata response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -1820,16 +1800,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="get_Queue_Metadata_Codes">
-          <title>Get Queue Metadata</title>
-          <para>The following table describes the response codes for
-            the <command>Get Queue Metadata</command>
+          <title>Show queue metadata</title>
+          <para>The following table describes the response codes for the show queue metadata
             operation.</para>
           <table rules="all">
-            <caption>Descriptions of Get Queue Metadata Response
-              Codes</caption>
+            <caption>Descriptions of show queue metadata response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -1870,12 +1848,11 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="get_Queue_Stats_Codes">
-          <title>Get Queue Stats</title>
-          <para>The following table describes the response codes for
-            the <command>Get Queue Stats</command> operation.</para>
+          <title>Show queue stats</title>
+          <para>The following table describes the response codes for the show queue stats
+            operation.</para>
           <table rules="all">
-            <caption>Descriptions of Get Queue Stats Response
-              Codes</caption>
+            <caption>Descriptions of show queue stats response codes</caption>
             <thead>
               <tr>
                 <td>HTTP Response Code</td>
@@ -1915,15 +1892,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="post_Message_Codes">
-          <title>Post Message</title>
-          <para>The following table describes the response codes for
-            the <command>Post Message</command> operation.</para>
+          <title>Post message</title>
+          <para>The following table describes the response codes for the post message
+            operation.</para>
           <table rules="all">
-            <caption>Descriptions of Post Message Response
-              Codes</caption>
+            <caption>Descriptions of post message response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -2026,15 +2002,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="get_Messages_Codes">
-          <title>Get Messages</title>
-          <para>The following table describes the response codes for
-            the <command>Get Messages</command> operation.</para>
+          <title>Get messages</title>
+          <para>The following table describes the response codes for the get messages
+            operation.</para>
           <table rules="all">
-            <caption>Descriptions of Get Messages Response
-              Codes</caption>
+            <caption>Descriptions of get messages response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -2099,16 +2074,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="get_Set_Of_Messages_Codes">
-          <title>Get a Set of Messages by ID</title>
-          <para>The following table describes the response codes for
-            the <command>Get a Set of Messages by ID</command>
+          <title>Get messages by ID</title>
+          <para>The following table describes the response codes for the get messages by ID
             operation.</para>
           <table rules="all">
-            <caption>Descriptions of Get a Set of Messages by ID
-              Response Codes</caption>
+            <caption>Descriptions of get messages by ID response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -2152,16 +2125,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="delete_Set_Of_Messages_Codes">
-          <title>Delete a Set of Messages by ID</title>
-          <para>The following table describes the response codes for
-            the <command>Delete a Set of Messages by ID</command>
+          <title>Bulk-delete messages by ID</title>
+          <para>The following table describes the response codes for the bulk-delete messages by ID
             operation.</para>
           <table rules="all">
-            <caption>Descriptions of Delete a Set of Messages by ID
-              Response Codes</caption>
+            <caption>Descriptions of bulk-delete messages by ID response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -2211,16 +2182,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="Get_Specific_Message_Codes">
-          <title>Get a Specific Message</title>
-          <para>The following table describes the response codes for
-            the <command>Get a Specific Message</command>
+          <title>Show message details</title>
+          <para>The following table describes the response codes for the show message details
             operation.</para>
           <table rules="all">
-            <caption>Descriptions of Get a Specific Message Response
-              Codes</caption>
+            <caption>Descriptions of show message details response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -2265,15 +2234,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="delete_Message_Codes">
-          <title>Delete Message</title>
-          <para>The following table describes the response codes for
-            the <command>Delete Message</command> operation.</para>
+          <title>Delete message</title>
+          <para>The following table describes the response codes for the delete message
+            operation.</para>
           <table rules="all">
-            <caption>Descriptions of Delete Message Response
-              Codes</caption>
+            <caption>Descriptions of delete message response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -2327,15 +2295,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="claim_Messages_Codes">
-          <title>Claim Messages</title>
-          <para>The following table describes the response codes for
-            the <command>Claim Messages</command> operation.</para>
+          <title>Claim messages</title>
+          <para>The following table describes the response codes for the claim messages
+            operation.</para>
           <table rules="all">
-            <caption>Descriptions of Claim Messages Response
-              Codes</caption>
+            <caption>Descriptions of claim messages response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -2409,15 +2376,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="query_Claim_Codes">
-          <title>Query Claim</title>
-          <para>The following table describes the response codes for
-            the <command>Query Claim</command> operation.</para>
+          <title>Query claim</title>
+          <para>The following table describes the response codes for the query claim
+            operation.</para>
           <table rules="all">
-            <caption>Descriptions of Query Claim Response
-              Codes</caption>
+            <caption>Descriptions of query claim response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -2462,15 +2428,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="update_Claim_Codes">
-          <title>Update Claim</title>
-          <para>The following table describes the response codes for
-            the <command>Update Claim</command> operation.</para>
+          <title>Update claim</title>
+          <para>The following table describes the response codes for the update claim
+            operation.</para>
           <table rules="all">
-            <caption>Descriptions of Update Claim Response
-              Codes</caption>
+            <caption>Descriptions of update claim response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -2529,15 +2494,14 @@ Content-Type: application/json</programlisting>
           </table>
         </section>
         <section xml:id="release_Claim_Codes">
-          <title>Release Claim</title>
-          <para>The following table describes the response codes for
-            the <command>Release Claim</command> operation.</para>
+          <title>Release claim</title>
+          <para>The following table describes the response codes for the release claim
+            operation.</para>
           <table rules="all">
-            <caption>Descriptions of Release Claim Response
-              Codes</caption>
+            <caption>Descriptions of release claim response codes</caption>
             <thead>
               <tr>
-                <td>HTTP Response Code</td>
+                <td>HTTP response code</td>
                 <td>Description</td>
               </tr>
             </thead>
@@ -2586,11 +2550,11 @@ Content-Type: application/json</programlisting>
   </chapter>
   <chapter xml:id="API_Operations_dle001"
     xmlns="http://docbook.org/ns/docbook" role="api-reference">
-    <title>API Operations</title>
+    <title>API operations</title>
     <para>This chapter describes each of the Cloud Queues operations,
       which are summarized in the following table.</para>
     <section xml:id="homeDocument-operation">
-      <title>Home Document</title>
+      <title>Home document</title>
       <para>The section describes how to get the home document for
         Cloud Queues.</para>
       <note>
@@ -2603,6 +2567,7 @@ Content-Type: application/json</programlisting>
         </wadl:resource>
       </wadl:resources>
     </section>
+    <?hard-pagebreak?> 
     <section xml:id="queue-operations">
       <title>Queues </title>
       <para>This section describes queue operations that are supported
@@ -2622,6 +2587,7 @@ Content-Type: application/json</programlisting>
         </wadl:resource>
       </wadl:resources>
     </section>
+    <?hard-pagebreak?> 
     <section xml:id="message-operations">
       <title>Messages </title>
       <para>This section describes message operations that are
@@ -2639,6 +2605,7 @@ Content-Type: application/json</programlisting>
           href="../../src/wadl/cq-devguide.wadl#messageId"/>
       </wadl:resources>
     </section>
+    <?hard-pagebreak?>    
     <section xml:id="claims-operations">
       <title>Claims </title>
       <para>This section describes claim operations that are supported

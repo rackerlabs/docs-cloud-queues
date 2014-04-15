@@ -107,31 +107,26 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
             <revision>
                 <date>2014-01-14</date>
                 <revdescription>
-                    <para>Updated the Claim Messages description in
-                            <xref linkend="insert_messages"/> to show
-                        the correct status code (201 Created) in the
-                        response example.</para>
+                    <para>Updated the claim messages description in <xref linkend="insert_messages"
+                        /> to show the correct status code (201 Created) in the response
+                        example.</para>
                 </revdescription>
             </revision>
             <revision>
                 <date>2013-12-19</date>
                 <revdescription>
-                    <para linkend="insert_messages">Updated the Post
-                        Message description in <xref
-                            linkend="insert_messages"/> to include the
-                        information that you must include even a
-                        single message in a JSON array or you will
-                        receive the error message "Invalid request
-                        body".</para>
+                    <para linkend="insert_messages">Updated the post message description in <xref
+                            linkend="insert_messages"/> to include the information that you must
+                        include even a single message in a JSON array or you will receive the error
+                        message "Invalid request body".</para>
                 </revdescription>
             </revision>
             <revision>
                 <date>2013-12-12</date>
                 <revdescription>
-                    <para>Updated the instructions for locating the
-                        API Key, Tenant ID, and account number in the
-                        Cloud Control Panel in <xref
-                            linkend="Generating_Auth_Token"/>.</para>
+                    <para>Updated the instructions for locating the API key, tenant ID, and account
+                        number in the Cloud Control Panel in <xref linkend="Generating_Auth_Token"
+                        />.</para>
                 </revdescription>
             </revision>
             <revision>
@@ -215,7 +210,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
     </raxm:metadata>
   </info>
   <chapter xml:id="doc-change-history">
-    <title>Document Change History</title>
+    <title>Document change history</title>
     <para>This version of the document replaces and obsoletes all
       earlier versions. The most recent changes are described in the
       following table: </para>
@@ -261,7 +256,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
      
         
         <section xml:id="core_concepts">
-            <title>Prerequisites for Running Examples </title>
+            <title>Prerequisites for running examples </title>
             <para xmlns:wadl="http://wadl.dev.java.net/2009/02">In
                 order to run the examples in this guide, you must have
                 the following prerequisites: <itemizedlist
@@ -285,7 +280,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
             </para>
         </section>
         <section xml:id="Pricing_SLA-d1e1362">
-            <title>Pricing and Service Level</title>
+            <title>Pricing and service level</title>
             <para>Cloud Queues is part of the Rackspace Cloud and your use of the Cloud Queues API
                 will be billed according to the pricing schedule at <link
                     xlink:href="http://www.rackspace.com/cloud/queues/"
@@ -295,7 +290,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                     >http://www.rackspace.com/information/legal/cloud/sla</link>. </para>
         </section>        
         <section xml:id="how_cq_works">
-            <title>How Cloud Queues Works</title>
+            <title>How Cloud Queues works</title>
             <para>Following is an overview of Cloud Queues works. For
                 definitions of Cloud Queues terms, see the <xref
                     linkend="glossary-d1e018"/>.</para>
@@ -327,7 +322,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                 that messages are handled in a First In, First Out
                 (FIFO) order. </para>
             <section xml:id="operating_modes">
-                <title>Messaging Patterns</title>
+                <title>Messaging patterns</title>
                 <para>Cloud Queues supports a variety of messaging
                     patterns including the following: </para>
                 <itemizedlist>
@@ -339,7 +334,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                     </listitem>
                 </itemizedlist>
                 <section xml:id="producer_consumer">
-                    <title>Producer-Consumer</title>
+                    <title>Producer-consumer</title>
                     <para>The producer-consumer pattern has the
                         following characteristics:</para>
                     <itemizedlist>
@@ -371,9 +366,8 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                         to multiple processors.</para>
                 </section>
                 <section xml:id="publish_subscribe">
-                    <title>Publish-Subscribe</title>
-                    <para>Characteristics of the Publish-Subscribe
-                        pattern are:</para>
+                    <title>Publish-subscribe</title>
+                    <para>Characteristics of the publish-subscribe pattern are:</para>
                     <itemizedlist>
                         <listitem>
                             <para>The publisher sends a message to a
@@ -405,7 +399,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                 </section>
             </section>
             <section xml:id="cloud-queuing-actions">
-                <title>Cloud Queues Operations</title>
+                <title>Cloud Queues operations</title>
                 <para>This section lists all of the operations that
                     are available in the Cloud Queues API. This
                     document uses some of the most common operations
@@ -414,12 +408,12 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                         <citetitle>Cloud Queues Developer
                         Guide</citetitle>. </para>
                 <section xml:id="homeDocument">
-                    <title>Home Document</title>
+                    <title>Home document</title>
                     <para>The following operation is available for the
                         home document:</para>
                     <itemizedlist>
                         <listitem>
-                            <para>Get Home Document</para>
+                            <para>Get home document</para>
                         </listitem>
                     </itemizedlist>
                 </section>
@@ -429,25 +423,25 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                         queues: </para>
                     <itemizedlist>
                         <listitem>
-                            <para>Create Queue</para>
+                            <para>Create queue</para>
                         </listitem>
                         <listitem>
-                            <para>List Queues</para>
+                            <para>List queues</para>
                         </listitem>
                         <listitem>
-                            <para>Check Queue Existence</para>
+                            <para>Check queue existence</para>
                         </listitem>
                         <listitem>
-                            <para>Set Queue Metadata</para>
+                            <para>Set queue metadata</para>
                         </listitem>
                         <listitem>
-                            <para>Get Queue Metadata</para>
+                            <para>Show queue metadata</para>
                         </listitem>
                         <listitem>
-                            <para>Get Queue Stats</para>
+                            <para>Show queue stats</para>
                         </listitem>
                         <listitem>
-                            <para>Delete Queue</para>
+                            <para>Delete queue</para>
                         </listitem>
                     </itemizedlist>
                 </section>
@@ -457,23 +451,22 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                         messages:</para>
                     <itemizedlist>
                         <listitem>
-                            <para>Post Message</para>
+                            <para>Post message</para>
                         </listitem>
                         <listitem>
-                            <para>Get Messages</para>
+                            <para>Get messages</para>
                         </listitem>
                         <listitem>
-                            <para>Get a Specific Message</para>
+                            <para>Show message details</para>
                         </listitem>
                         <listitem>
-                            <para>Get a Set of Messages by ID</para>
+                            <para>Get messages by ID</para>
                         </listitem>
                         <listitem>
-                            <para>Delete Message</para>
+                            <para>Delete message</para>
                         </listitem>
                         <listitem>
-                            <para>Delete a Set of Messages by
-                                ID</para>
+                            <para>Bulk-delete messages by ID</para>
                         </listitem>
                     </itemizedlist>
                 </section>
@@ -483,16 +476,16 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                         claims:</para>
                     <itemizedlist>
                         <listitem>
-                            <para>Claim Messages</para>
+                            <para>Claim messages</para>
                         </listitem>
                         <listitem>
-                            <para>Query Claim</para>
+                            <para>Query claim</para>
                         </listitem>
                         <listitem>
-                            <para>Update Claim</para>
+                            <para>Update claim</para>
                         </listitem>
                         <listitem>
-                            <para>Release Claim</para>
+                            <para>Release claim</para>
                         </listitem>
                     </itemizedlist>
                 </section>
@@ -596,7 +589,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
         </section>
   </chapter>
     <chapter xml:id="prerequisites">
-        <title>Send Requests to the API</title>
+        <title>Send requests to the API</title>
         <para>You have several options for sending requests through an
             API: </para>
         <itemizedlist spacing="compact">
@@ -626,7 +619,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
             </listitem>
         </itemizedlist>
         <section xml:id="using_curl">
-            <title>Sending API Requests Using cURL</title>
+            <title>Sending API requests using cURL</title>
             <para>cURL is a command-line tool that is available in
                 UNIX® system-based environments and Apple Mac OS X®
                 systems, and can be downloaded for Microsoft Windows®
@@ -642,7 +635,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
             <para>The following cURL command-line options are used in
                 this guide to run the examples.</para>
             <table rules="all">
-                <caption>cURL Command-Line Options</caption>
+                <caption>cURL command-line options</caption>
                 <col width="30%"/>
                 <col width="70%"/>
                 <thead>
@@ -688,8 +681,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
             </note>
         </section>
         <section xml:id="Copying-and_Pasting-cURL-d1e003">
-            <title>Copying and Pasting cURL Request Examples into a
-                Terminal Window</title>
+            <title>Copying and pasting cURL request examples into a terminal window</title>
             <para>To run the cURL request examples shown in this guide
                     (<xref linkend="stepping_through_the_api"/>) on
                 Linux or Mac systems, perform the following
@@ -730,13 +722,12 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                     message within the command.</para>
             </note>
            
-            <para>Consider the following cURL Authentication Request:
-                JSON example, which is described in detail in <xref
-                    linkend="Generating_Auth_Token"/>.</para>
+            <para>Consider the following cURL authentication request: JSON example, which is
+                described in detail in <xref linkend="Generating_Auth_Token"/>.</para>
 
  <para>
                 <example>
-                    <title>cURL Authenticate Request: JSON</title>
+                    <title>cURL authenticate request: JSON</title>
                     <?dbfo keep-together="always"?>
                     <screen language="bash"><command>curl</command> <option>-i</option> <option>-d</option> \
 '{
@@ -791,7 +782,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
         </section>
     </chapter>
     <chapter xml:id="Generating_Auth_Token">
-        <title>Generate an Authentication Token</title>
+        <title>Generate an authentication token</title>
         <para>You need to generate a token whether you use cURL or a
             REST client.</para>
         <para>In order to use the REST API, you first need to obtain
@@ -802,75 +793,61 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
             You will need to supply the authentication token and
             account number when making subsequent Cloud Queues API
             calls.</para>
-        <para>Remember to replace the names in the Authenticate
-            Request examples below with their respective
-                values:<itemizedlist spacing="compact">
+        <para>Remember to replace the names in the authenticate request examples below with their
+            respective values:<itemizedlist spacing="compact">
                 <listitem>
-                    <para><emphasis role="bold"
-                            >your_username</emphasis> &mdash; The
-                        username is your common Rackspace Cloud
-                        username, as supplied during
+                    <para><emphasis role="bold">your_username</emphasis> &mdash; The username is
+                        your common Rackspace Cloud username, as supplied during
                         registration.</para>
                 </listitem>
                 <listitem>
-                    <para><emphasis role="bold"
-                            >your_api_key</emphasis> &mdash; The key
-                        is your API access key. </para>
-                    <para><emphasis role="bold">To find your API
-                            Key:</emphasis>
+                    <para><emphasis role="bold">your_api_key</emphasis> &mdash; The key is your API
+                        access key. </para>
+                    <para><emphasis role="bold">To find your API key:</emphasis>
                     </para>
                     <orderedlist>
                         <listitem>
-                            <para>Log in to the Cloud Control Panel
-                                   (<link
-                                   xlink:href="https://mycloud.rackspace.com"
-                                   >https://mycloud.rackspace.com</link>).</para>
+                            <para>Log in to the Cloud Control Panel (<link
+                                    xlink:href="https://mycloud.rackspace.com"
+                                    >https://mycloud.rackspace.com</link>).</para>
                         </listitem>
                         <listitem>
-                            <para>On the upper-right side of the top
-                                navigation pane, click your
+                            <para>On the upper-right side of the top navigation pane, click your
                                 username.</para>
                         </listitem>
                         <listitem>
-                            <para>From the menu, select
-                                   <guilabel>Account
-                                   Settings</guilabel>.</para>
+                            <para>From the menu, select <guilabel>Account
+                                Settings</guilabel>.</para>
                         </listitem>
                         <listitem>
-                            <para>In the Login Details section of the
-                                Account Settings page, locate the
-                                   <guilabel>API Key</guilabel> field
-                                and click
-                                <guibutton>Show</guibutton>.</para>
+                            <para>In the Login Details section of the Account Settings page, locate
+                                the <guilabel>API Key</guilabel> field and click
+                                    <guibutton>Show</guibutton>.</para>
                         </listitem>
                         <listitem>
-                            <para> Copy the value of the API Key and
-                                paste it into a text editor of your
-                                choice.</para>
+                            <para> Copy the value of the API key and paste it into a text editor of
+                                your choice.</para>
                         </listitem>
                         <listitem>
-                            <para>Click <guibutton>Hide</guibutton> to
-                                hide the value of the API Key.</para>
+                            <para>Click <guibutton>Hide</guibutton> to hide the value of the API
+                                key.</para>
                         </listitem>
                     </orderedlist>
                 </listitem>
             </itemizedlist></para>
-        <para>You also need your cloud account number. In the
-            documentation, the account number is often referred to as
-            your tenant name or tenant ID (technically, the ID is
-            different from the name, but at Rackspace, they are the
-            same thing). Together, three components—your username,
-            your API Key, and your tenant ID or cloud account
-            number—form the authentication credentials that are
-            required to connect to the Rackspace cloud.</para>
+        <para>You also need your cloud account number. In the documentation, the account number is
+            often referred to as your tenant name or tenant ID (technically, the ID is different
+            from the name, but at Rackspace, they are the same thing). Together, three
+            components—your username, your API key, and your tenant ID or cloud account number—form
+            the authentication credentials that are required to connect to the Rackspace
+            cloud.</para>
         <para>To find your tenant ID or cloud account number, locate
             your username on the upper-right side of the top
             navigation pane in the Cloud Control Panel. The tenant ID
             or account number is in parentheses just to the right of
             your username.</para>
-        <para> You can use either of the following endpoints to access
-            the Authentication Service, regardless of US or UK
-            identities: </para>
+        <para> You can use either of the following endpoints to access the Cloud Identity service,
+            regardless of US or UK identities: </para>
         <itemizedlist spacing="compact">
             <listitem>
                 <para><link xlink:href="&ENDPOINT-US-20;"
@@ -900,15 +877,13 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                     UK-based account. </para>
             </listitem>
         </itemizedlist>
-        <para>Notice that you authenticate using a special URL for
-            Cloud authentication services. For example, you may use
-                <code>https://identity.api.rackspacecloud.com/v2.0/tokens</code>,
-            as shown in the following Authenticate Request examples.
-            Note that the <code>v2.0</code> component in the URL
-            indicates that you are using version 2.0 of the Cloud Auth
+        <para>Notice that you authenticate using a special URL for the Cloud Identity services. For
+            example, you may use <code>https://identity.api.rackspacecloud.com/v2.0/tokens</code>,
+            as shown in the following authenticate request examples. Note that the <code>v2.0</code>
+            component in the URL indicates that you are using version 2.0 of the Cloud Identity
             API.</para>
         <example>
-            <title>cURL Authenticate Request: XML</title>
+            <title>cURL authenticate request: XML</title>
             <?dbfo keep-together="always"?>
             <screen language="bash"><command>curl</command> <option>-i</option> <option>-d</option> \
 '&lt;?xml version="1.0" encoding="UTF-8"?>
@@ -923,7 +898,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
 <uri>'https://identity.api.rackspacecloud.com/v2.0/tokens'</uri></screen>
         </example>
         <example>
-            <title>cURL Authenticate Request: JSON</title>
+            <title>cURL authenticate request: JSON</title>
             <?dbfo keep-together="always"?>
             <screen language="bash"><command>curl</command> <option>-i</option> <option>-d</option> \
 '{
@@ -944,11 +919,11 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                 instead.</para>
         </note>
         <example>
-            <title>Authenticate Response: XML</title>
+            <title>Authenticate response: XML</title>
             <programlisting language="xml"><xi:include href="../../src/resources/samples/auth-20.xml" parse="text"/></programlisting>
         </example>
         <example xml:id="Authenticate-Response-JSON-d1e001">
-            <title>Authenticate Response: JSON</title>
+            <title>Authenticate response: JSON</title>
             <programlisting language="json"><xi:include href="../../src/resources/samples/auth-20.json" parse="text"/></programlisting>
         </example>
         <para>The authentication token <code>id</code> is returned
@@ -1018,12 +993,12 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
             for the Cloud Queues API.</para>
     </chapter>
     <chapter xml:id="Service-Access-Endpoints-d1e003">
-        <title>Service Access Endpoints</title>
+        <title>Service access endpoints</title>
         <para>The endpoints to use for your Cloud Queues API calls are
             summarized in the table below.</para>
         <para>
             <table xml:id="Endpoints-Table-d1e001" rules="all">
-                <caption>Regionalized Service Endpoints</caption>
+                <caption>Regionalized service endpoints</caption>
                 <thead>
                     <tr align="center">
                         <td colspan="2">Region</td>
@@ -1163,7 +1138,7 @@ response.</para>
 -->
     </chapter>
     <chapter xml:id="commonHeaders">
-        <title>Common Headers</title>
+        <title>Common headers</title>
         <para>Each request to the Cloud Queues API must include
             certain standard and extended HTTP headers (as shown in
             the following table). These headers provide host, agent,
@@ -1245,9 +1220,8 @@ response.</para>
             request is fully described in the <emphasis role="italic"
                 >Cloud Queues Developer Guide</emphasis>.</para>
         <section xml:id="create_queue">
-            <title>Create Queue</title>
-            <para>The Create Queue operation creates a queue in the
-                region of your choice. </para>
+            <title>Create queue</title>
+            <para>The create queue operation creates a queue in the region of your choice. </para>
             <para>The body of the PUT request is empty. </para>
             <para>The template is as follows:</para>
             <para>
@@ -1258,26 +1232,24 @@ response.</para>
                     <emphasis role="italic">must not</emphasis> exceed
                 64 bytes in length and is limited to US-ASCII letters,
                 digits, underscores, and hyphens.</para>
-            <para>Following are examples of a Create Queue request and
-                response:</para>
+            <para>Following are examples of a create queue request and response:</para>
             <example>
-                <title>cURL Create Queue Request</title>
+                <title>cURL create queue request</title>
                 <programlisting language="bash">curl -i -X PUT https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \
 -H "Accept: application/json" \
 -H "X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
             </example>
             <example>
-                <title>Create Queue Response</title>
+                <title>Create queue response</title>
                 <programlisting language="json">HTTP/1.1 201 Created
 Content-Length: 0
 Location: /v1/queues/samplequeue</programlisting>
             </example>
         </section>
         <section xml:id="insert_messages">
-            <title>Post Message</title>
-            <para>The Post Message operation inserts one or more
-                messages in a queue. </para>
+            <title>Post message</title>
+            <para>The post message operation inserts one or more messages in a queue. </para>
             <para>You can submit up to 10 messages in a single
                 request, but you must encapsulate them in a collection
                 container (an array in JSON, even for a single message
@@ -1347,10 +1319,9 @@ Location: /v1/queues/samplequeue</programlisting>
                     there might be a delay of 60 seconds after the
                     message expires before it is deleted.</para>
             </note>
-            <para>The following are examples of a Post Message request
-                and response:</para>
+            <para>The following are examples of a post message request and response:</para>
             <example>
-                <title>cURL Post Message Request</title>
+                <title>cURL post message request</title>
                 <programlisting language="bash">curl -i -X POST https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages -d \
 '[{"ttl": 300,"body": {"event": "BackupStarted"}},{"ttl": 60,"body": {"play": "hockey"}}]' \
 -H "Content-type: application/json" \
@@ -1360,7 +1331,7 @@ Location: /v1/queues/samplequeue</programlisting>
 -H "X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
             </example>
             <example>
-                <title>Post Message Response </title>
+                <title>Post message response </title>
                 <programlisting language="json">HTTP/1.1 201 Created
 Content-Length: 153
 Content-Type: application/json; charset=utf-8
@@ -1371,14 +1342,11 @@ Location: /v1/queues/samplequeue/messages?ids=51ca00a0c508f154c912b85c,51ca00a0c
             </example>
         </section>
         <section xml:id="Claim_messages">
-            <title>Claim Messages</title>
-            <para>The Claim Messages operation claims a set of
-                messages (up to the value of the
-                    <parameter>limit</parameter> parameter) from
-                oldest to newest and skips any messages that are
-                already claimed. If there are no messages available to
-                claim, the Cloud Queues service returns an HTTP
-                    <code>204 No Content</code> response code. </para>
+            <title>Claim messages</title>
+            <para>The claim messages operation claims a set of messages (up to the value of the
+                    <parameter>limit</parameter> parameter) from oldest to newest and skips any
+                messages that are already claimed. If there are no messages available to claim, the
+                Cloud Queues service returns an HTTP <code>204 No Content</code> response code. </para>
             <para>The template is as follows:</para>
             <programlisting language="json">POST {endpoint}/queues/{queue_name}/claims{?limit}
 Content-Type: application/json
@@ -1387,22 +1355,17 @@ Content-Type: application/json
     "ttl": {claim_ttl},
     "grace": {message_grace}
 }</programlisting>
-            <para>The client (worker) needs to delete the message when
-                it has finished processing it. The client deletes the
-                message before the claim expires to ensure that the
-                message is processed only once. If a client needs more
-                time, the Cloud Service provides the Update Claim
-                operation to make changes. See the <citetitle>Cloud
-                    Queues Developer Guide</citetitle> for a
-                description of this operation. As part of the delete
-                operation, workers specify the claim ID (which is best
-                done by simply using the provided href). If workers
-                perform these actions, then if a claim simply expires,
-                the server can return an error and notify the worker
-                of a possible race condition. This action gives the
-                worker a chance to roll back its own processing of the
-                given message because another worker can claim the
-                message and process it.</para>
+            <para>The client (worker) needs to delete the message when it has finished processing
+                it. The client deletes the message before the claim expires to ensure that the
+                message is processed only once. If a client needs more time, Cloud Queues provides
+                the update claim operation to make changes. See the <citetitle>Cloud Queues
+                    Developer Guide</citetitle> for a description of this operation. As part of the
+                delete operation, workers specify the claim ID (which is best done by simply using
+                the provided href). If workers perform these actions, then if a claim simply
+                expires, the server can return an error and notify the worker of a possible race
+                condition. This action gives the worker a chance to roll back its own processing of
+                the given message because another worker can claim the message and process
+                it.</para>
             <para>The age given for a claim is relative to the
                 server's clock. The claim's age is useful for
                 determining how quickly messages are getting processed
@@ -1432,10 +1395,9 @@ Content-Type: application/json
                 itself, plus the specified grace period. If a claimed
                 message normally lives longer than the grace period,
                 its expiration is not adjusted. it </para>
-            <para>Following are examples of a Claim Messages request
-                and response:</para>
+            <para>Following are examples of a claim messages request and response:</para>
             <example>
-                <title>cURL Claim Messages Request</title>
+                <title>cURL claim messages request</title>
                 <programlisting language="bash">curl -i -X POST https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims -d \
 '{"ttl": 300,"grace":300}' \
 -H "Content-type: application/json" \ 
@@ -1445,7 +1407,7 @@ Content-Type: application/json
 -H "X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
             </example>
             <example>
-                <title>Claim Messages Response</title>
+                <title>Claim messages response</title>
                 <programlisting language="json">HTTP/1.1 201 OK
 Content-Length: 164
 Content-Type: application/json; charset=utf-8
@@ -1465,9 +1427,8 @@ X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>
             </example>
         </section>
         <section xml:id="Delete_messages">
-            <title>Delete Message with Claim ID</title>
-            <para>The Delete Message operations deletes
-                messages.</para>
+            <title>Delete message</title>
+            <para>The delete message operation deletes messages.</para>
             <para>The template is as
                 follows:<programlisting language="json">DELETE {endpoint}/queues/{queue_name}/messages/{message_id}{?claim_id}
 </programlisting></para>
@@ -1483,10 +1444,9 @@ X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>
                 actions it took based on that message because another
                 worker can now claim and process the same
                 message.</para>
-            <para>Following are examples of a Delete Message request
-                and response:</para>
+            <para>Following are examples of a delete message request and response:</para>
             <example>
-                <title>cURL Delete Message Request</title>
+                <title>cURL delete message request</title>
                 <programlisting language="bash">curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6 \ 
 -H "Content-type: application/json" \
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \ 
@@ -1495,15 +1455,14 @@ X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>
 -H "X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
             </example>
             <example>
-                <title>Delete Message Response</title>
+                <title>Delete message response</title>
                 <programlisting language="json">HTTP/1.1 204 No Content</programlisting>
             </example>
         </section>
         <section xml:id="Delete_claim">
-            <title>Release Claim </title>
-            <para>The Release Claim operation immediately releases a
-                claim, making any remaining, undeleted) messages
-                associated with the claim available to other workers. </para>
+            <title>Release claim </title>
+            <para>The release claim operation immediately releases a claim, making any remaining,
+                undeleted) messages associated with the claim available to other workers. </para>
             <para>The template is as follows:</para>
             <programlisting language="json">DELETE {endpoint}/queues/{queue_name}/claims/{claim_id}</programlisting>
             <para>This operation is useful when a worker is performing
@@ -1511,10 +1470,9 @@ X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>
                 messages, or is taking longer than expected to process
                 messages and wants to make the remainder of the
                 messages available to other workers. </para>
-            <para>Following are examples of a Release Claim request
-                and response:</para>
+            <para>Following are examples of a release claim request and response:</para>
             <example>
-                <title>cURL Release Claim Request</title>
+                <title>cURL release claim request</title>
                 <programlisting language="bash">curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 \ 
 -H "Content-type: application/json" \ 
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \ 
@@ -1523,20 +1481,19 @@ X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>
 -H "X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
             </example>
             <example>
-                <title>Release Claim Response</title>
+                <title>Release claim response</title>
                 <programlisting language="json">HTTP/1.1 204 No Content</programlisting>
             </example>
         </section>
         <section xml:id="Delete_queue">
-            <title>Delete Queue </title>
-            <para>The Delete Queue operation immediately deletes a
-                queue and all of its existing messages. </para>
+            <title>Delete queue </title>
+            <para>The delete queue operation immediately deletes a queue and all of its existing
+                messages. </para>
             <para>The template is as
                 follows:<programlisting language="json">DELETE {endpoint}/queues/{queue_name}</programlisting></para>
-            <para>Following are examples of a Delete Queue request and
-                response:</para>
+            <para>Following are examples of a delete queue request and response:</para>
             <example>
-                <title>cURL Delete Queue Request</title>
+                <title>cURL delete queue request</title>
                 <programlisting language="bash">curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \ 
 -H "Content-type: application/json" \ 
 -H "X-Auth-Token: <emphasis role="bold">your_auth_token</emphasis>" \
@@ -1544,14 +1501,14 @@ X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>
 -H "X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>"</programlisting>
             </example>
             <example>
-                <title>Delete Queue Response</title>
+                <title>Delete queue response</title>
                 <programlisting language="json">HTTP/1.1 204 No Content
 </programlisting>
             </example>
         </section>
     </chapter>
   <chapter xml:id="additional-resources" >
-    <title>Additional Resources</title>
+    <title>Additional resources</title>
         <para>For more information about using the API, see the
                 <citetitle>Cloud Queues Developer Guide</citetitle>.
             All you need to get started with Cloud Queues is the
