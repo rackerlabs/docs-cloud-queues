@@ -491,7 +491,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                 </section>
             </section>
             <section xml:id="use_cases">
-                <title>Use Cases</title>
+                <title>Use cases</title>
                 <para>Queuing systems are used to coordinate tasks
                     within an application. Here are some examples: </para>
                 <itemizedlist>

@@ -173,6 +173,7 @@
 			</representation>
 		</request>
 		<response status="201">
+			<doc title="Created" xml:lang="EN">The request has been fulfilled and the queue was created.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
@@ -181,8 +182,32 @@
 					/>
 				</wadl:doc>
 			</representation>					
-		</response> 
-		&commonFaults; 
+		</response>
+<!--		<response status="204">
+			<doc title="No content" xml:lang="EN">Success. The queue already exists.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The queue has a long name (greater than 64 bytes).</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request header has missing fields.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response> -->
+		&commonFaults;
 	</method>
 
 	<!--*******************************************************-->

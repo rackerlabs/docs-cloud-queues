@@ -2567,7 +2567,6 @@ Content-Type: application/json</programlisting>
         </wadl:resource>
       </wadl:resources>
     </section>
-    <?hard-pagebreak?> 
     <section xml:id="queue-operations">
       <title>Queues </title>
       <para>This section describes queue operations that are supported
@@ -2587,7 +2586,6 @@ Content-Type: application/json</programlisting>
         </wadl:resource>
       </wadl:resources>
     </section>
-    <?hard-pagebreak?> 
     <section xml:id="message-operations">
       <title>Messages </title>
       <para>This section describes message operations that are
@@ -2604,8 +2602,7 @@ Content-Type: application/json</programlisting>
         <wadl:resource
           href="../../src/wadl/cq-devguide.wadl#messageId"/>
       </wadl:resources>
-    </section>
-    <?hard-pagebreak?>    
+    </section>   
     <section xml:id="claims-operations">
       <title>Claims </title>
       <para>This section describes claim operations that are supported
