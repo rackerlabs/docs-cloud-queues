@@ -26,7 +26,7 @@
     </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2014-03-04</pubdate>
+    <pubdate>2014-04-16</pubdate>
     <legalnotice role="rs-api">
       <annotation>
         <remark>Copyright details are filled in by the template. </remark>
@@ -39,6 +39,15 @@
           (<abbrev>API</abbrev>).  </para>
     </abstract>
     <revhistory>
+      <revision>
+        <date>2014-04-16</date>
+        <revdescription>
+          <para xmlns:svg="http://www.w3.org/2000/svg" xmlns:m="http://www.w3.org/1998/Math/MathML"
+            xmlns:html="http://www.w3.org/1999/xhtml">Moved the operation errors from the "Faults"
+            section of the <citetitle>Cloud Queues Developer Guide</citetitle> to the appropriate
+            operation description in the "API operations" chapter in the guide.</para>
+        </revdescription>
+      </revision>
       <revision xmlns:svg="http://www.w3.org/2000/svg" xmlns:m="http://www.w3.org/1998/Math/MathML"
         xmlns:html="http://www.w3.org/1999/xhtml">
         <date>2014-03-04</date>
@@ -178,6 +187,14 @@
       following table:</para>
     <?rax revhistory?>
   </chapter>
+  <chapter xml:id="Apr16">
+    <title>April 16, 2014</title>
+    <para>This release includes a documentation change that moved the operation errors from the
+      "Faults" section of the <citetitle xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml">Cloud
+        Queues Developer Guide</citetitle> to the appropriate operation description in the "API
+      operations" chapter in the guide.</para>
+  </chapter>
   <chapter xml:id="Mar04">
     <title>March 4, 2014</title>
     <para>This release updates Cloud Queues to begin billing for the service. As part of the
@@ -201,6 +218,10 @@
         Guide</citetitle> and in the <citetitle>Cloud Queues Developer Guide</citetitle> has been
       changed to indicate that Cloud Queues is free through February 2014. Customers are not
       eligible for Cloud Queues SLA credits until billing begins.</para>
+    <para xmlns:svg="http://www.w3.org/2000/svg" xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml">Moved the operation errors from the "Faults" section
+      of the <citetitle>Cloud Queues Developer Guide</citetitle> to the appropriate operation
+      description in "API operations" chapter in the guide.</para>
   </chapter>
   <chapter xml:id="Jan222014">
     <title>January 22, 2014</title>

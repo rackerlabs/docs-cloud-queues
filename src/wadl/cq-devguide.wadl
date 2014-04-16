@@ -26,7 +26,7 @@
 	</grammars>
 -->
 	<!--*******************************************************-->
-	<!--             All Resources                             -->
+	<!--             All resources                             -->
 	<!--*******************************************************-->
 	<resources base="https://ord.queues.api.rackspacecloud.com/">
 		<resource id="version" path="v1">
@@ -97,14 +97,12 @@
 			</resource>
 		</resource>
 	</resources>
-
-	<!--*******************************************************-->
-	<!--               All Methods                             -->
-	<!--*******************************************************-->
-
-	<!--*******************************************************-->
-	<!--               Get Home Document                       -->
-	<!--*******************************************************-->
+<!--*******************************************************-->
+<!--               All methods                             -->
+<!--*******************************************************-->
+<!--*******************************************************-->
+<!--               Get home document                       -->
+<!--*******************************************************-->
 	<method name="GET" id="getHomeDocument">
 		<wadl:doc xml:lang="EN" title="Get home document"
 			xmlns="http://docbook.org/ns/docbook">
@@ -131,6 +129,7 @@
 			</representation>
 		</request>
 		<response status="200">
+			<doc title="OK" xml:lang="EN">Success.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
@@ -144,13 +143,12 @@
 			</representation>
 		</response>
 	</method>
-	<!--*******************************************************-->
-	<!--              Queues Methods                           -->
-	<!--*******************************************************-->
-
-	<!--*******************************************************-->
-	<!--              Create Queue: createQueue                -->
-	<!--*******************************************************-->
+<!--*******************************************************-->
+<!--              Queues methods                           -->
+<!--*******************************************************-->
+<!--*******************************************************-->
+<!--              Create queue: createQueue                -->
+<!--*******************************************************-->
 	<method name="PUT" id="createQueue">
 		<wadl:doc xml:lang="EN" title="Create queue"
 			xmlns="http://docbook.org/ns/docbook">
@@ -183,7 +181,7 @@
 				</wadl:doc>
 			</representation>					
 		</response>
-<!--		<response status="204">
+		<response status="204">
 			<doc title="No content" xml:lang="EN">Success. The queue already exists.</doc>
 			<representation mediaType="application/json"/>
 		</response>
@@ -199,21 +197,14 @@
 			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
 			<representation mediaType="application/json"/>
 		</response>
-		<response status="406">
-			<doc title="Not acceptable" xml:lang="EN">The request header has an invalid auth token.</doc>
-			<representation mediaType="application/json"/>
-		</response>
 		<response status="429">
 			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
 			<representation mediaType="application/json"/>
-		</response> -->
-		&commonFaults;
+		</response>
 	</method>
-
-	<!--*******************************************************-->
-	<!--               List Queues: listQueues                 -->
-	<!--*******************************************************-->
-
+<!--*******************************************************-->
+<!--               List queues: listQueues                 -->
+<!--*******************************************************-->
 	<method name="GET" id="listQueues">
 		<wadl:doc xml:lang="EN" title="List queues"
 			xmlns="http://docbook.org/ns/docbook">
@@ -257,6 +248,7 @@
 			</representation>
 		</request>
 		<response status="200">
+			<doc title="OK" xml:lang="EN">Success.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
@@ -268,11 +260,58 @@
 					/>
 				</wadl:doc>
 			</representation>
-		</response> &commonFaults; &getFaults; </method>
-
-	<!--*******************************************************-->
-	<!--       Set Queue Metadata: setQueueMetadata            -->
-	<!--*******************************************************-->
+		</response> 
+		<response status="200">
+			<doc title="OK" xml:lang="EN">The URI has invalid parameter (something other than
+				limit, marker, or detailed). The invalid parameters are ignored.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="204">
+			<doc title="No content" xml:lang="EN">You have no queues in
+				your account.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="204">
+			<doc title="No content" xml:lang="EN">The request has a non-existing value for
+				marker.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request has a negative value for limit.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request has a zero value for limit.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request has a non-boolean value for detailed.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">A header has missing fields.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">The requested queue does not exist.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+	</method>
+<!--*******************************************************-->
+<!--       Set queue metadata: setQueueMetadata            -->
+<!--*******************************************************-->
 	<method name="PUT" id="setQueueMetadata">
 		<wadl:doc xml:lang="EN" title="Set queue metadata"
 			xmlns="http://docbook.org/ns/docbook">
@@ -298,8 +337,7 @@
 			</note> -->
 		</wadl:doc>
 		<request>
-			<representation mediaType="application/json"
-				element="queues:Queue">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
 					<xsdxt:code
@@ -311,6 +349,7 @@
 			</representation>
 		</request>
 		<response status="204">
+			<doc title="No content" xml:lang="EN">Success.</doc>
 			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Set queue metadata response">
@@ -320,11 +359,39 @@
 					<para>This operation does not return a response body.</para>
 				</wadl:doc>
 			</representation>
-		</response> &commonFaults; </method>
-
-	<!--*******************************************************-->
-	<!--       Show Queue Metadata: getQueueMetadata            -->
-	<!--*******************************************************-->
+		</response> 
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request body is empty.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request body is greater than 64 KB.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request has malformed JSON.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request body is not JSON.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request has a UTF-16 char JSON body.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response> 
+	</method>
+<!--*******************************************************-->
+<!--       Show queue metadata: getQueueMetadata            -->
+<!--*******************************************************-->
 	<method name="GET" id="getQueueMetadata">
 		<wadl:doc xml:lang="EN" title="Show queue metadata"
 			xmlns="http://docbook.org/ns/docbook">
@@ -340,8 +407,7 @@
 			</note> -->
 		</wadl:doc>
 			<request>
-			<representation mediaType="application/http"
-				element="queues:Queue">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Show queue metadata request">
 				<xsdxt:code
@@ -352,6 +418,7 @@
 			</representation>
 		</request>
 		<response status="200">
+			<doc title="OK" xml:lang="EN">Success.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
@@ -362,11 +429,39 @@
 					/>
 				</wadl:doc>
 			</representation>
-		</response> &commonFaults; &getFaults; </method>
-
-	<!--*******************************************************-->
-	<!--          Show Queue Stats: getQueueStats               -->
-	<!--*******************************************************-->
+		</response> 
+		<response status="200">
+			<doc title="OK" xml:lang="EN">No metadata exists for the queue.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="200">
+			<doc title="OK" xml:lang="EN">The URI has invalid parameters. The invalid parameters are ignored.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request header has missing fields.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">Metadata was requested for a queue that does not exist.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response> 
+    </method>
+<!--*******************************************************-->
+<!--          Show queue stats: getQueueStats              -->
+<!--*******************************************************-->
 	<method name="GET" id="getQueueStats">
 		<wadl:doc xml:lang="EN" title="Show queue stats"
 			xmlns="http://docbook.org/ns/docbook">
@@ -381,8 +476,7 @@
 					included in the response.</para></note>
 		</wadl:doc>
 			<request>
-			<representation mediaType="application/http"
-				element="queues:Queue">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Show queue stats request">
 				<xsdxt:code
@@ -393,6 +487,7 @@
 			</representation>
 		</request>
 		<response status="200">
+			<doc title="OK" xml:lang="EN">Success.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
@@ -403,11 +498,35 @@
 					/>
 				</wadl:doc>
 			</representation>
-		</response> &commonFaults; &getFaults; </method>
-
-	<!--*******************************************************-->
-	<!--              Delete Queue: deleteQueue                -->
-	<!--*******************************************************-->
+		</response> 
+		<response status="200">
+			<doc title="OK" xml:lang="EN">The URI has invalid parameters. The invalid parameters are ignored.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request header has missing fields.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">Stats were requested for a queue that does not exist.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response>		
+	</method>
+<!--*******************************************************-->
+<!--              Delete queue: deleteQueue                -->
+<!--*******************************************************-->
 	<method name="DELETE" id="deleteQueue">
 		<wadl:doc xml:lang="EN" title="Delete queue"
 			xmlns="http://docbook.org/ns/docbook">
@@ -422,8 +541,7 @@
 			</note> -->
 		</wadl:doc>
 		<request>
-			<representation mediaType="application/http"
-				element="queues:Queue">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Delete queue request">
 					<xsdxt:code
@@ -433,21 +551,45 @@
 				</wadl:doc>
 			</representation>
 		</request>
-		<response status="204">
+		<response status="200">
+			<doc title="OK" xml:lang="EN">The URI has invalid parameters. The invalid parameters are ignored.</doc>
 			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Delete queue response">
 				<xsdxt:code
 						href="../wadl/samples/cq-deleteQueue_response-json-http.txt"
 					/>
-					<para>This operation does not return a response body.</para>
 				</wadl:doc>
 			</representation>
-		</response> &commonFaults; </method>
-
-	<!--*******************************************************-->
-	<!--    Check queue existence: checkQueueExists            -->
-	<!--*******************************************************-->
+		</response> 
+		<response status="204">
+			<doc title="No content" xml:lang="EN">Success.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="204">
+			<doc title="No content" xml:lang="EN">Delete of a non-existing queue.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The header has missing fields.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+	</method>
+<!--*******************************************************-->
+<!--    Check queue existence: checkQueueExists            -->
+<!--*******************************************************-->
 	<method name="GET" id="checkQueueExists">
 		<wadl:doc xml:lang="EN" title="Check queue existence"
 			xmlns="http://docbook.org/ns/docbook">
@@ -465,8 +607,7 @@
 			</note> -->
 		</wadl:doc>
 		<request>
-			<representation mediaType="application/http"
-				element="queues:Queue">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Check queue existence request">
 				<xsdxt:code
@@ -477,6 +618,7 @@
 			</representation>
 		</request>
 		<response status="204">
+			<doc title="OK" xml:lang="EN">The requested queue exists.</doc>
 			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Check queue existenace response">
@@ -486,15 +628,18 @@
 					<para>This operation does not return a response body.</para>
 				</wadl:doc>
 			</representation>
-		</response> &getFaults; </method>
-
-	<!--*******************************************************-->
-	<!--               Messages Methods                        -->
-	<!--*******************************************************-->
-
-	<!--*******************************************************-->
-	<!--           Post Message: postMessage                   -->
-	<!--*******************************************************-->
+		</response> 
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">The requested queue does not exist.</doc>
+			<representation mediaType="application/json"/>
+		</response> 
+	</method>
+<!--*******************************************************-->
+<!--               Messages methods                        -->
+<!--*******************************************************-->
+<!--*******************************************************-->
+<!--           Post message: postMessage                   -->
+<!--*******************************************************-->
 	<method name="POST" id="postMessage">
 		<wadl:doc xml:lang="EN" title="Post message"
 			xmlns="http://docbook.org/ns/docbook">
@@ -554,8 +699,7 @@
 				storage implementations.</para>
 		</wadl:doc>
 		<request>
-			<representation mediaType="application/json"
-				element="queues:Queue">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
 					<xsdxt:code
@@ -567,21 +711,106 @@
 			</representation>
 		</request>
 		<response status="201">
+			<doc title="Created" xml:lang="EN">Success.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
 					<xsdxt:code
-						href="../wadl/samples/cq-postMessage_response-json-http.txt"/>
+						href="../wadl/samples/cq-postMessage_response-json-http.txt"/> 
 					<xsdxt:code
 						href="../wadl/samples/cq-postMessage_response.json"
 					/>
 				</wadl:doc>
 			</representation>
-		</response> &commonFaults; &getFaults; &postFaults; </method>
-
-	<!--*******************************************************-->
-	<!--           Get Messages: getMessages                   -->
-	<!--*******************************************************-->
+		</response> 
+		<response status="200">
+			<doc title="OK" xml:lang="EN">The URI has invalid parameters. The invalid parameters are ignored.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="201">
+			<doc title="Created" xml:lang="EN">Multiple messages were posted in a single request and some of them succeeded (with "partial": true).</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to post more than 100 messages with a single request.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to post with request body greater than 4 KB.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The post request included an invalid JSON body.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The post request included a non-JSON body.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to post with a non-JSON message. </doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to post with a TTL less than 60.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to post with a TTL greater than 1209600.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to post with a non-integer value for TTL.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to post with a negative value for TTL.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to post without TTL in the request body.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to post without the body parameter in request body.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to post with no request body.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to post with messages encapsulated in multiple arrays.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request header has missing fields.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">An attempt was made to post a message to a non-existing queue.</doc>
+			<representation mediaType="application/json"/>
+		</response> 
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="503">
+			<doc title="Service unavailable" xml:lang="EN">An attempt was made to post multiple messages in a single request and all of them failed.</doc>
+			<representation mediaType="application/json"/>
+		</response> 
+	 </method>
+<!--*******************************************************-->
+<!--           Get messages: getMessages                   -->
+<!--*******************************************************-->
 	<method name="GET" id="getMessages">
 		<wadl:doc xml:lang="EN" title="Get messages"
 			xmlns="http://docbook.org/ns/docbook">
@@ -659,8 +888,7 @@
 					value of <code>false</code> (only unclaimed
 					messages are returned). </wadl:doc>
 			</param>
-			<representation mediaType="application/http"
-				element="queues:Queue">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Get messages request ">
 					<xsdxt:code
@@ -670,7 +898,8 @@
 				</wadl:doc>
 			</representation>
 		</request>
-		<response status="200 204">
+		<response status="200">
+			<doc title="OK" xml:lang="EN">Success. One or more messages were found.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
@@ -683,11 +912,55 @@
 					/>
 				</wadl:doc>
 			</representation>
-		</response> &commonFaults; &getFaults; &postFaults; </method>
-
-	<!--*******************************************************-->
-	<!--     Show message details: getSpecificMessage       -->
-	<!--*******************************************************-->
+		</response> 
+		<response status="200">
+			<doc title="OK" xml:lang="EN">The request included an invalid parameter (something other than marker, limit, echo, or include_claimed).</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="204">
+			<doc title="No content" xml:lang="EN">Success, but no messages matched the request.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="204">
+			<doc title="No content" xml:lang="EN">A message with a non-existing marker was requested.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to request messages with a limit greater than 100.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to request messages with a limit less than or equal to 0. </doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to request messages with a non-boolean value for echo.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">An attempt was made to request a message from a non-existing queue.</doc>
+			<representation mediaType="application/json"/>
+		</response> 
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="503">
+			<doc title="Service unavailable" xml:lang="EN">The server is currently unavailable.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+	 </method>
+<!--*******************************************************-->
+<!--     Show message details: getSpecificMessage       -->
+<!--*******************************************************-->
 	<method name="GET" id="getSpecificMessage">
 		<wadl:doc xml:lang="EN" title="Show message details"
 			xmlns="http://docbook.org/ns/docbook">
@@ -716,8 +989,7 @@
 					</para></listitem></itemizedlist></para>
 		</wadl:doc>
 		<request>
-			<representation mediaType="application/http"
-				element="queues:Queue">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Show message details request">
 					<xsdxt:code
@@ -728,6 +1000,7 @@
 			</representation>
 		</request>
 		<response status="200">
+			<doc title="OK" xml:lang="EN">Success. The request found a matching message.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
@@ -737,12 +1010,44 @@
 						href="../wadl/samples/cq-getSpecificMessage_response.json"
 					/>
 				</wadl:doc>
-			</representation>
-		</response> &commonFaults; &getFaults; </method>
-
-	<!--*******************************************************-->
-	<!--         Get messages by ID: getSetMessagesByID        -->
-	<!--*******************************************************-->
+			</representation>			
+		</response>
+		<response status="200">
+			<doc title="OK" xml:lang="EN">The URI has invalid parameters. The invalid parameters are ignored.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The header has missing fields.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">An attempt was made to request a message from a non-existing queue.</doc>
+			<representation mediaType="application/json"/>
+		</response> 
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">An attempt was made to request a non-existing message.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">An attempt was made to request an expired message.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+	</method>
+<!--*******************************************************-->
+<!--         Get messages by ID: getSetMessagesByID        -->
+<!--*******************************************************-->
 	<method name="GET" id="getSetMessagesByID">
 		<wadl:doc xml:lang="EN" title="Get messages by ID"
 			xmlns="http://docbook.org/ns/docbook">
@@ -785,10 +1090,9 @@
 					separating them with commas (comma-separated).
 				</wadl:doc>
 			</param>
-			<representation mediaType="application/http"
-				element="queues:Queue">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Get messages by id request">
+					xml:lang="EN" title="Get messages by ID request">
 				<xsdxt:code
 						href="../wadl/samples/cq-getSetMessagesByID_request-json-http.txt"
 					/>
@@ -797,6 +1101,7 @@
 			</representation>
 		</request>
 		<response status="200">
+			<doc title="OK" xml:lang="EN">Success.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
@@ -807,11 +1112,47 @@
 					/>
 				</wadl:doc>
 			</representation>
-		</response> &commonFaults; &getFaults; </method>
-
-	<!--*******************************************************-->
-	<!--           Delete message: deleteMessage               -->
-	<!--*******************************************************-->
+		</response>
+		<response status="200">
+			<doc title="OK" xml:lang="EN">The URI has invalid parameters. The invalid parameters are ignored.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to request messages with a limit greater than 100.</doc>
+			<representation mediaType="application/json"/>
+		</response>	
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">An attempt was made to request messages with a limit less than or equal to 0. </doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">An attempt was made to request messages with a non-boolean value for echo.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">An attempt was made to request a message from a non-existing queue.</doc>
+			<representation mediaType="application/json"/>
+		</response> 
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="503">
+			<doc title="Service unavailable" xml:lang="EN">The server is currently unavailable.</doc>
+			<representation mediaType="application/json"/>
+		</response>		
+	</method>
+<!--*******************************************************-->
+<!--           Delete message: deleteMessage               -->
+<!--*******************************************************-->
 	<method name="DELETE" id="deleteMessage">
 		<wadl:doc xml:lang="EN" title="Delete message"
 			xmlns="http://docbook.org/ns/docbook">
@@ -839,8 +1180,7 @@
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN"> Identifies the claim. </wadl:doc>
 			</param>
-			<representation mediaType="application/http"
-				element="queues:Queue" >
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Delete message request">
 				<xsdxt:code
@@ -851,20 +1191,60 @@
 			</representation>
 		</request>
 		<response status="204">
+			<doc title="No content" xml:lang="EN">Success.</doc>
 			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Delete message response">
 					<xsdxt:code
 						href="../wadl/samples/cq-deleteMessage_response-json-http.txt"
 					/>
-					<para>This operation does not return a response body.</para>
 				</wadl:doc>
 			</representation>
-		</response> &commonFaults; &deleteFaults; </method>
-
-	<!--*******************************************************-->
-	<!--     Bulk-delete messages by ID: deleteMessages        -->
-	<!--*******************************************************-->
+		</response> 
+		<response status="200">
+			<doc title="OK" xml:lang="EN">The URI has invalid parameters. The invalid parameters are ignored.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="204">
+			<doc title="No content" xml:lang="EN">The request attempts to delete a message from a non-existing queue.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="204">
+			<doc title="No content" xml:lang="EN">The request attempts to delete a non-existing message.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The header has missing fields.</doc>
+			<representation mediaType="application/json"/>
+		</response>	
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="403">
+			<doc title="Forbidden" xml:lang="EN">An attempt was made to delete a message with an expired claim ID. </doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="403">
+			<doc title="Forbidden" xml:lang="EN">An attempt was made to delete a message with non-existing claim ID.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="403">
+			<doc title="Forbidden" xml:lang="EN">An attempt was made to delete a claimed message without providing a claim ID.</doc>
+			<representation mediaType="application/json"/>
+		</response> 
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+	</method>
+<!--*******************************************************-->
+<!--     Bulk-delete messages by ID: deleteMessages        -->
+<!--*******************************************************-->
 	<method name="DELETE" id="deleteMessages">
 		<wadl:doc xml:lang="EN" title="Bulk-delete messages by ID"
 			xmlns="http://docbook.org/ns/docbook">
@@ -881,8 +1261,7 @@
 					xml:lang="EN"> Specifies the IDs of the messages
 					to delete. </wadl:doc>
 			</param>
-			<representation mediaType="application/http"
-				element="queues:Queue">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Bulk-delete messages by ID request">
 				<xsdxt:code
@@ -893,24 +1272,59 @@
 			</representation>
 		</request>
 		<response status="204">
+			<doc title="No content" xml:lang="EN">Success.</doc>
 			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title='Bulk-delete messages by ID response'>
 						<xsdxt:code
 						href="../wadl/samples/cq-deleteMessages_response-json-http.txt"
 					/>
-					<para>This operation does not return a response body.</para>
 				</wadl:doc>
 			</representation>
-		</response> &commonFaults; &deleteFaults; </method>
-
-	<!--*******************************************************-->
-	<!--                 CLAIMS METHODS                        -->
-	<!--*******************************************************-->
-
-	<!--*******************************************************-->
-	<!--            Claim Messages: claimMessages              -->
-	<!--*******************************************************-->
+		</response> 
+		<response status="204">
+			<doc title="No content" xml:lang="EN">The request attempts to delete a message from a non-existing queue.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="204">
+			<doc title="No content" xml:lang="EN">The request attempts to delete a non-existing message.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The header has missing fields.</doc>
+			<representation mediaType="application/json"/>
+		</response>	
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="403">
+			<doc title="Forbidden" xml:lang="EN">An attempt was made to delete messages with an expired claim ID. </doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="403">
+			<doc title="Forbidden" xml:lang="EN">An attempt was made to delete messages with non-existing claim ID.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="403">
+			<doc title="Forbidden" xml:lang="EN">An attempt was made to delete a claimed message without providing a claim ID.</doc>
+			<representation mediaType="application/json"/>
+		</response> 
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+	</method>
+<!--*******************************************************-->
+<!--                 Claim methods                         -->
+<!--*******************************************************-->
+<!--*******************************************************-->
+<!--            Claim messages: claimMessages              -->
+<!--*******************************************************-->
 	<method name="POST" id="claimMessages">
 		<wadl:doc xml:lang="EN" title="Claim messages"
 			xmlns="http://docbook.org/ns/docbook">
@@ -972,8 +1386,7 @@
 					is not specified, <code>limit</code> defaults to
 					10. </wadl:doc>
 			</param>
-			<representation mediaType="application/json"
-				element="queues:Queue">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
 					<xsdxt:code
@@ -984,7 +1397,8 @@
 				</wadl:doc>
 			</representation>
 		</request>
-		<response status="201 204">
+		<response status="201">
+			<doc title="Created" xml:lang="EN">Success.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
@@ -995,10 +1409,67 @@
 					/>
 				</wadl:doc>
 			</representation>
-		</response> &commonFaults; &getFaults; </method>
-	<!--*******************************************************-->
-	<!--               Query claim: queryClaim                 -->
-	<!--*******************************************************-->
+		</response> 
+		<response status="204">
+			<doc title="No content" xml:lang="EN">Success (an empty queue with no messages to claim).</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="204">
+			<doc title="No content" xml:lang="EN">An attempt was made to claim a message from a non-existing queue.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to claim messages with an invalid value for limit (non-integer, or less than or equal to 0).</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to claim a message with limit greater than 100. </doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to claim a message using a request with no request body.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to claim a message using a request with no TTL parameter.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to claim a message with an invalid TTL value (non-integer, or less than or equal to 0). </doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to claim a message with invalid JSON.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to claim a message using a non-JSON request body .</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">An attempt was made to claim a message using a request with missing header fields.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">An attempt was made to claim a message to a non-existing queue.</doc>
+			<representation mediaType="application/json"/>
+		</response> 
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response>	
+	</method>
+<!--*******************************************************-->
+<!--               Query claim: queryClaim                 -->
+<!--*******************************************************-->
 	<method name="GET" id="queryClaim">
 		<wadl:doc xml:lang="EN" title="Query claim"
 			xmlns="http://docbook.org/ns/docbook">
@@ -1009,8 +1480,7 @@
 				that are not found by ID are ignored.</para>
 		</wadl:doc>
 		<request>
-			<representation mediaType="application/http"
-				element="queues:Queue">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Query claim request">
 					<xsdxt:code
@@ -1021,6 +1491,7 @@
 			</representation>
 		</request>
 		<response status="200">
+			<doc title="OK" xml:lang="EN">Success.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
@@ -1031,11 +1502,43 @@
 					/>
 				</wadl:doc>
 			</representation>
-		</response> &commonFaults; &getFaults; </method>
-
-	<!--*******************************************************-->
-	<!--               Update claim: updateClaim                 -->
-	<!--*******************************************************-->
+		</response> 
+		<response status="200">
+			<doc title="OK" xml:lang="EN">The request used invalid URI parameters.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request had missing header fields.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">The request included an expired claim.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">The request included a claim from a non-existing queue.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">The request included a non-existing claim ID.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response>	
+	</method>
+<!--*******************************************************-->
+<!--               Update claim: updateClaim                 -->
+<!--*******************************************************-->
 	<method name="PATCH" id="updateClaim">
 		<wadl:doc xml:lang="EN" title="Update claim"
 			xmlns="http://docbook.org/ns/docbook">
@@ -1054,8 +1557,7 @@
 				applies the new TTL.</para>
 		</wadl:doc>
 		<request>
-			<representation mediaType="application/json"
-				element="queues:Queue">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
 					<xsdxt:code
@@ -1067,23 +1569,64 @@
 			</representation>
 		</request>
 		<response status="204">
+			<doc title="No content" xml:lang="EN">Success.</doc>
 			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Update claim response">
 				<xsdxt:code
 						href="../wadl/samples/cq-updateClaim_response-json-http.txt"
 					/>
-					<para>This operation does not return a response body.</para>
 				</wadl:doc>
 			</representation>
-		</response> 
-		&commonFaults; 
-		&getFaults; 
+		</response>
+		<response status="200">
+			<doc title="OK" xml:lang="EN">The request used invalid URI parameters.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request included no request body.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request included invalid JSON in the request body.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request included a non-JSON request body.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request was missing header fields.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">The request included an expired claim.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">The request included a claim from a non-existing queue.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">The request included a non-existing claim ID.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response>	
 	</method>
-
-	<!--*******************************************************-->
-	<!--               Release Claim: deleteClaim              -->
-	<!--*******************************************************-->
+<!--*******************************************************-->
+<!--               Release claim: deleteClaim              -->
+<!--*******************************************************-->
 	<method name="DELETE" id="deleteClaim">
 		<wadl:doc xml:lang="EN" title="Release claim"
 			xmlns="http://docbook.org/ns/docbook">
@@ -1101,8 +1644,7 @@
 				messages available to other workers.</para>
 				</wadl:doc>
 			<request>
-			<representation mediaType="application/http"
-				element="queues:Queue">
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Release claim request">
 					<xsdxt:code
@@ -1111,18 +1653,47 @@
 				</wadl:doc>
 			</representation>
 			</request>							
-					<response status="204"> 
-			<representation mediaType="application/http"
-				element="queues:Queue">
+			<response status="204"> 
+				<doc title="No content" xml:lang="EN">Success.</doc>	
+			<representation mediaType="application/http">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN" title="Release claim response">
 					<xsdxt:code
-						href="../wadl/samples/cq-releaseClaim_response-json-http.txt"/>					
-					<para>This operation does not return a response body.</para>
+						href="../wadl/samples/cq-releaseClaim_response-json-http.txt"/>	
 				</wadl:doc>
 			</representation>
 		</response>
-			&commonFaults; 
-			&getFaults;
+		<response status="200">
+			<doc title="OK" xml:lang="EN">The request used invalid URI parameters. The extra parameters are ignored.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="204">
+			<doc title="No content" xml:lang="EN">The request included an expired claim.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="204">
+			<doc title="No content" xml:lang="EN">The request included a non-existing claim.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request was missing header fields.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="404">
+			<doc title="Not found" xml:lang="EN">The request included a claim from a non-existing queue.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="406">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response>	
 	</method>
 </application>
