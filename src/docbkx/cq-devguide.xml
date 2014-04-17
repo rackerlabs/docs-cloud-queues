@@ -1292,18 +1292,15 @@
         <title>Rate limits</title>
         <para>Rate limits control the frequency at which the user can
           issue specific API requests.</para>
-        <para>For Cloud Queues, the rate limit is 300 requests per
-          second per project ID.</para>
-        <para>If your application slightly exceeds the rate limit, the
-          Cloud Queues service throttles your requests. The requests
-          will take longer to perform and will have more latency. If
-          your application greatly exceeds the 300 request per second
-          rate limit, the API returns the HTTP response code 429 Too
-          Many Requests. If this occurs, reduce the application's
-          request rate to the Cloud Queues API by pausing slightly
-          between each request. If your application continues to hit
-          this limit and you cannot slow down the request rate, please
-          contact Rackspace Cloud support.</para>
+        <para>For Cloud Queues, you can send over 25 million requests a day per project ID
+          (approximately 300 requests per second).</para>
+        <para>If your application slightly exceeds the rate limit, the Cloud Queues service
+          throttles your requests. The requests will take longer to perform and will have more
+          latency. If your application greatly exceeds the 300 request per second rate limit, the
+          API returns the HTTP response code 429 Too Many Requests. If this cdoccurs, reduce the
+          application's request rate to the Cloud Queues API by pausing slightly between each
+          request. If your application continues to hit this limit and you cannot slow down the
+          request rate, please contact Rackspace Cloud support.</para>
       </section>      
       <?hard-pagebreak?>
       <section xml:id="Absolute-Limits-d1e003">
