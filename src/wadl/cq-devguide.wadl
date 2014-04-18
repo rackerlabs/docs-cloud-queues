@@ -116,14 +116,13 @@
 					>http://tools.ietf.org/html/draft-nottingham-json-home-02</link>.</para>			
 		</wadl:doc>
 		<request>
-			<representation mediaType="application/http" >
-				<doc title="Get home document request">
+			<representation mediaType="application/json" >
+				<doc>
 					<xsdxt:code href="../wadl/samples/cq-getHomeDocument_request-json-http.txt"/>
-					<para xmlns="http://docbook.org/ns/docbook">This operation does not require a request body.</para>
 				</doc>
 			</representation>
 		</request>
-		<response status="200">
+		<response status="200" xmlns="http://wadl.dev.java.net/2009/02">
 			<doc title="OK" xml:lang="EN">Success.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -235,10 +234,9 @@
 					this parameter is <code>false</code>, which
 					excludes the metadata. </wadl:doc>
 			</param>
-			<representation mediaType="application/http" >
+			<representation mediaType="application/json" >
 				<doc title="List queues request">
 					<xsdxt:code href="../wadl/samples/cq-listQueues_request-json-http.txt"/>
-					<para xmlns="http://docbook.org/ns/docbook">This operation does not require a request body.</para> 
 				</doc>
 			</representation>
 		</request>
@@ -256,7 +254,7 @@
 				</wadl:doc>
 			</representation>
 		</response> 
-<!--		<response status="200">
+		<response status="200">
 			<doc title="OK" xml:lang="EN">The URI has invalid parameter (something other than
 				limit, marker, or detailed). The invalid parameters are ignored.</doc>
 			<representation mediaType="application/json"/>
@@ -302,7 +300,7 @@
 		<response status="429">
 			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
 			<representation mediaType="application/json"/>
-		</response> -->
+		</response>
 	</method>
 <!--*******************************************************-->
 <!--       Set queue metadata: setQueueMetadata            -->
@@ -345,13 +343,12 @@
 		</request>
 		<response status="204">
 			<doc title="No content" xml:lang="EN">Success.</doc>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Set queue metadata response">
+					xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-setQueueMetadata_response-json-http.txt"
 					/>
-					<para>This operation does not return a response body.</para>
 				</wadl:doc>
 			</representation>
 		</response> 
@@ -402,13 +399,12 @@
 			</note> -->
 		</wadl:doc>
 			<request>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Show queue metadata request">
+					xml:lang="EN">
 				<xsdxt:code
 						href="../wadl/samples/cq-getQueueMetadata_request-json-http.txt"
 					/>
-					<para>This operation does not require a request body.</para>
 				</wadl:doc>
 			</representation>
 		</request>
@@ -471,13 +467,12 @@
 					included in the response.</para></note>
 		</wadl:doc>
 			<request>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Show queue stats request">
+					xml:lang="EN">
 				<xsdxt:code
 						href="../wadl/samples/cq-getQueueStats_request-json-http.txt"
 					/>
-					<para>This operation does not require a request body.</para>
 				</wadl:doc>
 			</representation>
 		</request>
@@ -536,21 +531,20 @@
 			</note> -->
 		</wadl:doc>
 		<request>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Delete queue request">
+					xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-deleteQueue_request-json-http.txt"
-					/>
-                <para>This operation does not require a request body.</para>					
+					/>				
 				</wadl:doc>
 			</representation>
 		</request>
 		<response status="200">
 			<doc title="OK" xml:lang="EN">The URI has invalid parameters. The invalid parameters are ignored.</doc>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Delete queue response">
+					xml:lang="EN">
 				<xsdxt:code
 						href="../wadl/samples/cq-deleteQueue_response-json-http.txt"
 					/>
@@ -602,25 +596,23 @@
 			</note> -->
 		</wadl:doc>
 		<request>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Check queue existence request">
+					xml:lang="EN">
 				<xsdxt:code
 						href="../wadl/samples/cq-checkQueueExists_request-json-http.txt"
 					/>
-					<para>This operation does not require a request body.</para>
 				</wadl:doc>
 			</representation>
 		</request>
 		<response status="204">
 			<doc title="OK" xml:lang="EN">The requested queue exists.</doc>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Check queue existenace response">
+					xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-checkQueueExists_response-json-http.txt"
 					/>
-					<para>This operation does not return a response body.</para>
 				</wadl:doc>
 			</representation>
 		</response> 
@@ -883,13 +875,12 @@
 					value of <code>false</code> (only unclaimed
 					messages are returned). </wadl:doc>
 			</param>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Get messages request ">
+					xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-getMessages_request-json-http.txt"
 					/>
-					<para>This operation does not require a request body.</para>
 				</wadl:doc>
 			</representation>
 		</request>
@@ -984,13 +975,12 @@
 					</para></listitem></itemizedlist></para>
 		</wadl:doc>
 		<request>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Show message details request">
+					xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-getSpecificMessage_request-json-http.txt"
 					/>
-					<para>This operation does not require a request body.</para>
 				</wadl:doc>
 			</representation>
 		</request>
@@ -1085,13 +1075,12 @@
 					separating them with commas (comma-separated).
 				</wadl:doc>
 			</param>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Get messages by ID request">
+					xml:lang="EN">
 				<xsdxt:code
 						href="../wadl/samples/cq-getSetMessagesByID_request-json-http.txt"
 					/>
-					<para>This operation does not require a request body.</para>
 				</wadl:doc>
 			</representation>
 		</request>
@@ -1175,21 +1164,20 @@
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN"> Identifies the claim. </wadl:doc>
 			</param>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Delete message request">
+					xml:lang="EN">
 				<xsdxt:code
 						href="../wadl/samples/cq-deleteMessage_request-json-http.txt"
 					/>
-					<para>This operation does not require a request body.</para>
 				</wadl:doc>
 			</representation>
 		</request>
 		<response status="204">
 			<doc title="No content" xml:lang="EN">Success.</doc>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Delete message response">
+					xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-deleteMessage_response-json-http.txt"
 					/>
@@ -1256,21 +1244,20 @@
 					xml:lang="EN"> Specifies the IDs of the messages
 					to delete. </wadl:doc>
 			</param>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Bulk-delete messages by ID request">
+					xml:lang="EN">
 				<xsdxt:code
 						href="../wadl/samples/cq-deleteMessages_request-json-http.txt"
 					/>
-					<para>This operation does not require a request body.</para>
 				</wadl:doc>
 			</representation>
 		</request>
 		<response status="204">
 			<doc title="No content" xml:lang="EN">Success.</doc>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title='Bulk-delete messages by ID response'>
+					xml:lang="EN">
 						<xsdxt:code
 						href="../wadl/samples/cq-deleteMessages_response-json-http.txt"
 					/>
@@ -1475,13 +1462,12 @@
 				that are not found by ID are ignored.</para>
 		</wadl:doc>
 		<request>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Query claim request">
+					xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-queryClaim_request-json-http.txt"
 					/>
-					<para>This operation does not require a request body.</para>
 				</wadl:doc>
 			</representation>
 		</request>
@@ -1565,9 +1551,9 @@
 		</request>
 		<response status="204">
 			<doc title="No content" xml:lang="EN">Success.</doc>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Update claim response">
+					xml:lang="EN">
 				<xsdxt:code
 						href="../wadl/samples/cq-updateClaim_response-json-http.txt"
 					/>
@@ -1639,20 +1625,19 @@
 				messages available to other workers.</para>
 				</wadl:doc>
 			<request>
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Release claim request">
+					xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-releaseClaim_request-json-http.txt"/>
-					<para>This operation does not require a request body.</para>
 				</wadl:doc>
 			</representation>
 			</request>							
 			<response status="204"> 
 				<doc title="No content" xml:lang="EN">Success.</doc>	
-			<representation mediaType="application/http">
+			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN" title="Release claim response">
+					xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-releaseClaim_response-json-http.txt"/>	
 				</wadl:doc>

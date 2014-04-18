@@ -1292,7 +1292,7 @@
         <title>Rate limits</title>
         <para>Rate limits control the frequency at which the user can
           issue specific API requests.</para>
-        <para>For Cloud Queues, you can send over 25 million requests a day per project ID
+        <para>With Cloud Queues, you can send over 25 million requests a day per project ID
           (approximately 300 requests per second).</para>
         <para>If your application slightly exceeds the rate limit, the Cloud Queues service
           throttles your requests. The requests will take longer to perform and will have more
