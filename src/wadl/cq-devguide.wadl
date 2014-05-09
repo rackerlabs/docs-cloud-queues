@@ -235,7 +235,7 @@
 					excludes the metadata. </wadl:doc>
 			</param>
 			<representation mediaType="application/json" >
-				<doc title="List queues request">
+				<doc>
 					<xsdxt:code href="../wadl/samples/cq-listQueues_request-json-http.txt"/>
 				</doc>
 			</representation>
