@@ -10,10 +10,23 @@
   <name>Cloud Queuing Docs</name>
   <build>
     <plugins>
+    	<plugin>
+    		<groupId>com.rackspace.cloud.api</groupId>
+    		<artifactId>olink-maven-plugin</artifactId>
+    		<version>1.2.6</version>
+    		<executions>
+    			<execution>
+    				<phase>initialize</phase>
+    				<goals>
+    					<goal>olink</goal>
+    				</goals>
+    			</execution>
+    		</executions>
+    	</plugin>
       <plugin>
 	<groupId>com.rackspace.cloud.api</groupId>
 	<artifactId>clouddocs-maven-plugin</artifactId>
-	<version>2.0.4</version>
+	<version>2.1.0</version>
 	<executions>
 			
 		<execution>

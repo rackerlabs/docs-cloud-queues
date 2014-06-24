@@ -1146,7 +1146,7 @@ response.</para>
             server. The following table provides the common headers
             used by the API.</para>
         <table rules="all" width="691">
-            <caption>Common Headers</caption>
+            <caption>Common headers</caption>
             <col width="30%"/>
             <col width="70%"/>
             <thead>
