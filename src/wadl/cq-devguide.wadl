@@ -245,9 +245,9 @@
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
-					<xsdxt:code
+					<!--<xsdxt:code
 						href="../wadl/samples/cq-listQueues_response-json-http.txt"
-					/>
+					/>-->
 					<xsdxt:code
 						href="../wadl/samples/cq-listQueues_response.json"
 					/>
