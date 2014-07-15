@@ -699,8 +699,7 @@
               <area xml:id="response.json.url" units="linecolumn"
                 coords="97 19"/>
             </areaspec>
-            <programlisting language="json"><xi:include href="../../src/resources/samples/auth-20.json" parse="text"/>
-                    </programlisting>
+            <programlisting language="json"><xi:include href="../../src/resources/samples/auth-20.json" parse="text"/></programlisting>
           </programlistingco>
         </example>
         <note>

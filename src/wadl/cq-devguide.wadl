@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- (C) 2012-2014 OpenStack Foundation, All Rights Reserved  -->
+
+<!DOCTYPE application [<!ENTITY % common  SYSTEM "../wadl/common.ent">
+    %common;]>
+    
 <application xmlns="http://wadl.dev.java.net/2009/02"
 	xmlns:wadl="http://wadl.dev.java.net/2009/02"
 	xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -8,7 +12,15 @@
 	xmlns:raxapi="http://docs.rackspace.com/volume/api/v1"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:queues="http://docs.openstack.org/database/api/v1.0">
+	xmlns:queues="http://docs.openstack.org/database/api/v1.0"
+	
+
+	xmlns:imageapi="http://docs.openstack.org/image/api/v2.0" 
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:csapi="http://docs.openstack.org/compute/api/v2" 
+	xmlns:common="http://docs.openstack.org/common/api/v1.0">	
+	
+
 <!--*******************************************************-->
 <!--             Grammars                                  -->
 <!--*******************************************************-->
@@ -140,6 +152,7 @@
 <!--*******************************************************-->
 <!--              Queues methods                           -->
 <!--*******************************************************-->
+	
 <!--*******************************************************-->
 <!--              Create queue: createQueue                -->
 <!--*******************************************************-->
@@ -174,8 +187,8 @@
 					/>
 				</wadl:doc>
 			</representation>					
-		</response>
-		<response status="204">
+		</response> &createQueueFaults;
+<!--		<response status="204">
 			<doc title="No content" xml:lang="EN">Success. The queue already exists.</doc>
 			<representation mediaType="application/json"/>
 		</response>
@@ -194,7 +207,7 @@
 		<response status="429">
 			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
 			<representation mediaType="application/json"/>
-		</response>
+		</response> -->
 	</method>
 <!--*******************************************************-->
 <!--               List queues: listQueues                 -->
@@ -240,21 +253,20 @@
 				</doc>
 			</representation>
 		</request>
-		<response status="200">
-			<doc title="OK" xml:lang="EN">Success.</doc>
+
+		<response status="200" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="OK">Success.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
-					<xsdxt:code
-						href="../wadl/samples/cq-listQueues_response-json-http.txt"
-					/>
-					<xsdxt:code
-						href="../wadl/samples/cq-listQueues_response.json"
-					/>
+					xml:lang="EN">			
+						<xsdxt:code href="../wadl/samples/cq-listQueues_response-json-http.txt"
+						/>			
+						<xsdxt:code href="../wadl/samples/cq-listQueues_response.json"
+						/>			
 				</wadl:doc>
 			</representation>
-		</response> 
-		<response status="200">
+		</response>  &listQueueFaults;
+<!--		<response status="200">
 			<doc title="OK" xml:lang="EN">The URI has invalid parameter (something other than
 				limit, marker, or detailed). The invalid parameters are ignored.</doc>
 			<representation mediaType="application/json"/>
@@ -300,7 +312,7 @@
 		<response status="429">
 			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
 			<representation mediaType="application/json"/>
-		</response>
+		</response> -->
 	</method>
 <!--*******************************************************-->
 <!--       Set queue metadata: setQueueMetadata            -->
