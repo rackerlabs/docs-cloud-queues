@@ -1,0 +1,218 @@
+     <!--
+         A collection of common faults, these are pretty much expected
+         in every request.
+     -->
+     <!ENTITY commonFaults
+           '
+        <response status="400" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:badRequest"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="401" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:unauthorized"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="406" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:unauthorized"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="429" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:tooManyRequests"/>
+            <representation mediaType="application/json"/>
+        </response>
+        
+                <!-- Not used by all of Cloud Queues API operations
+        <response status="403" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="dbaas:forbidden"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="405" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="dbaas:badMethod"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="413" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="dbaas:overLimit"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="422" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="dbaas:unprocessableEntity"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="500" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="dbaas:instanceFault"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="501" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="dbaas:notImplemented"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="503" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="dbaas:serviceUnavailable"/>
+            <representation mediaType="application/json"/>
+        </response>
+        -->       
+        
+           '>
+           
+     <!--
+          Faults for List queues
+      -->       
+       <!ENTITY createQueueFaults
+          '      
+           
+       <response status="204">
+			<doc title="No content" xml:lang="EN">Success. The queue already exists.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The queue has a long name (greater than 64 bytes).</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="400">
+			<doc title="Bad request" xml:lang="EN">The request header has missing fields.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="401">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json"/>
+		</response>
+		<response status="429">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json"/>
+		</response>           
+        '>
+        
+      <!--
+          Faults for List queues
+      -->       
+       <!ENTITY listQueueFaults
+          '
+        <response status="200" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="OK">The URI has invalid parameter (something other than
+				limit, marker, or detailed). The invalid parameters are ignored.</doc>
+			<representation mediaType="application/json" element="queues:badRequest" />
+		</response>
+		<response status="204" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="No content" xml:lang="EN">You have no queues in
+				your account.</doc>
+			<representation mediaType="application/json" element="queues:badRequest" />
+		</response>
+		<response status="204" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="No content" xml:lang="EN">The request has a non-existing value for
+				marker.</doc>
+			<representation mediaType="application/json" element="queues:badRequest" />
+		</response>
+		<response status="400" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="Bad request" xml:lang="EN">The request has a negative value for limit.</doc>
+			<representation mediaType="application/json" element="queues:badRequest" />
+		</response>
+		<response status="400" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="Bad request" xml:lang="EN">The request has a zero value for limit.</doc>
+			<representation mediaType="application/json" element="queues:badRequest" />
+		</response>
+		<response status="400" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="Bad request" xml:lang="EN">The request has a non-boolean value for detailed.</doc>
+			<representation mediaType="application/json" element="queues:badRequest" />
+		</response>
+		<response status="400" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="Bad request" xml:lang="EN">A header has missing fields.</doc>
+			<representation mediaType="application/json" element="queues:badRequest" />
+		</response>
+		<response status="401" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="Unauthorized" xml:lang="EN">The request header has an invalid auth token.</doc>
+			<representation mediaType="application/json" element="queues:badRequest" />
+		</response>
+		<response status="404" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="Not found" xml:lang="EN">The requested queue does not exist.</doc>
+			<representation mediaType="application/json" element="queues:badRequest" />
+		</response>
+		<response status="406" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="Not acceptable" xml:lang="EN">The request header has Accept !="application/json".</doc>
+			<representation mediaType="application/json" element="queues:badRequest" />
+		</response>
+		<response status="429" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
+			<representation mediaType="application/json" element="queues:badRequest" />
+		</response>
+          '>
+
+     <!--
+          Faults on LIST MESSAGES
+      -->
+     <!ENTITY getListFaults
+           '
+        <response status=" 204" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:noContent"/>
+            <representation mediaType="application/json"/>
+        </response>
+           '>      
+      <!--
+          Faults on GET
+      -->
+     <!ENTITY getFaults
+           '
+        <response status="404" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:itemNotFound"/>
+            <representation mediaType="application/json"/>
+        </response>
+           '>
+      <!--
+          Faults on POST/PATCH
+      -->
+     <!ENTITY postPatchFaults
+           '
+        <response status="404" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:itemNotFound"/>
+            <representation mediaType="application/json"/>
+        </response>
+           '>      
+           
+      <!--
+          Faults on DELETE
+      -->
+     <!ENTITY deleteFaults
+           '
+        <response status="403" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:forbidden"/>
+            <representation mediaType="application/json"/>
+        </response>
+           '>
+           
+               <!--
+          Faults on POST
+      -->
+     <!ENTITY postFaults
+           '
+        <response status="503" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="queues:serviceUnavailable"/>
+            <representation mediaType="application/json"/>
+        </response>
+           '> 
+           
+ <!-- Useful for describing APIs -->
+
+     <!ENTITY GET '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+     <!ENTITY PUT '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+     <!ENTITY POST '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+     <!ENTITY PATCH '<command xmlns="http://docbook.org/ns/docbook">PATCH</command>'>
+     <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+     
+   <!-- Some useful entities borrowed from HTML -->
+     <!ENTITY ndash "&#x2013;">
+     <!ENTITY mdash "&#x2014;">
+     <!ENTITY hellip "&#x2026;">
+     <!ENTITY plusmn "&#xB1;">
+     
+ <!ENTITY CHECK '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+     <imageobject>
+     <imagedata fileref="figures/Check_mark_23x20_02.svg"
+     format="SVG" scale="60"/>
+     </imageobject>
+     </inlinemediaobject>'>
+    
+     <!ENTITY ARROW '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+     <imageobject>
+     <imagedata fileref="figures/Arrow_east.svg"
+     format="SVG" scale="60"/>
+     </imageobject>
+     </inlinemediaobject>'>              
