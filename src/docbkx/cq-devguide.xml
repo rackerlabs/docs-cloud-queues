@@ -54,7 +54,7 @@
     </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2014-04-16</pubdate>
+    <pubdate>2014-07-22</pubdate>
     <!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
@@ -71,6 +71,14 @@
     </abstract>
 
     <revhistory>
+      <revision xmlns:wadl="http://wadl.dev.java.net/2009/02"
+        xmlns:m="http://www.w3.org/the key 1998/Math/MathML">
+        <date>2014-07-22</date>
+        <revdescription>
+          <para>Added a link to guidance on choosing a regionalized endpoint in <xref
+              linkend="serviceEndpoints"/>.</para>
+        </revdescription>
+      </revision>
       <revision>
         <date>2014-04-16</date>
         <revdescription>
@@ -1060,6 +1068,19 @@
       <title>Service access endpoints</title>
       <para>The following table shows the available service endpoints
         for Cloud Queues.</para>
+      <tip xmlns:wadl="http://wadl.dev.java.net/2009/02">
+        <para>To help you decide which regionalized endpoint to use, read about special
+          considerations for choosing a data center at <link
+            xlink:href="http://www.rackspace.com/knowledge_center/article/what-is-ord-and-dfw"
+            >http://www.rackspace.com/knowledge_center/article/what-is-ord-and-dfw</link>.
+          <!--
+2014-07-21 rose.coste
+David Hendler confirms this is the right KC article:
+at the same location, it has a new page title, "Where are the Rackspace data centers (DFW, LON, HKG, etc.)?"
+<link xlink:href="http://www.rackspace.com/knowledge_center/article/what-is-ord-and-dfw">http://www.rackspace.com/knowledge_center/article/what-is-ord-and-dfw</link>.
+-->
+        </para>
+      </tip>
       <para>
         <table xml:id="Endpoints-Table-d1e001" rules="all">
           <caption>Regionalized service endpoints</caption>
