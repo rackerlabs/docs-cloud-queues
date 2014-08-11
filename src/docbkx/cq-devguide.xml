@@ -54,7 +54,7 @@
     </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2014-07-22</pubdate>
+    <pubdate>2014-08-11</pubdate>
     <!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
@@ -71,6 +71,13 @@
     </abstract>
 
     <revhistory>
+      <revision>
+        <date>2011-08-11</date>
+        <revdescription>
+          <para>Removed the statement "Workers do not claim a message." from <xref
+              linkend="publish_subscribe"/>. </para>
+        </revdescription>
+      </revision>
       <revision xmlns:wadl="http://wadl.dev.java.net/2009/02"
         xmlns:m="http://www.w3.org/the key 1998/Math/MathML">
         <date>2014-07-22</date>
@@ -380,9 +387,6 @@
           <listitem>
             <para>All workers (or subscribers) listen to the messages
               in the queue.</para>
-          </listitem>
-          <listitem>
-            <para>Workers do not claim a message.</para>
           </listitem>
           <listitem>
             <para>Multiple workers can take action on a

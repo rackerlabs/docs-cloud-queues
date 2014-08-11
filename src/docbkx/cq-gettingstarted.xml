@@ -66,7 +66,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
         </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2014-07-22</pubdate>
+    <pubdate>2014-08-11</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
       <annotation>
@@ -81,6 +81,14 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
     </abstract>
     
     <revhistory>
+            <revision>
+                <date>2014-08-11</date>
+                <revdescription>
+                    <para>Removed the statement "Workers do not claim a message." from <xref
+                            linkend="publish_subscribe"/>.</para>
+                    <para>.</para>
+                </revdescription>
+            </revision>
             <revision xmlns:wadl="http://wadl.dev.java.net/2009/02"
                 xmlns:m="http://www.w3.org/the key 1998/Math/MathML">
                 <date>2014-07-22</date>
@@ -384,10 +392,6 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                         <listitem>
                             <para>All workers (or subscribers) listen
                                 to the messages in the queue. </para>
-                        </listitem>
-                        <listitem>
-                            <para>Workers do not claim a
-                                message.</para>
                         </listitem>
                         <listitem>
                             <para>Multiple workers can take action on
