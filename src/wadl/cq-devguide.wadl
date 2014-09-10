@@ -177,18 +177,16 @@
 				</doc>
 			</representation>
 		</request>
-		<response status="201">
+		
+		<response status="201" xmlns="http://wadl.dev.java.net/2009/02">
 			<doc title="Created" xml:lang="EN">The request has been fulfilled and the queue was created.</doc>
 			<representation mediaType="application/json">
-				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
-					<xsdxt:code
-						href="../wadl/samples/cq-createQueue_response-json-http.txt"
-					/>
-				</wadl:doc>
+				<doc>
+					<xsdxt:code href="../wadl/samples/cq-createQueue_response-json-http.txt"/>						
+				</doc>
 			</representation>					
-		</response> &createQueueFaults;
-<!--		<response status="204">
+		</response> 
+		<response status="204">
 			<doc title="No content" xml:lang="EN">Success. The queue already exists.</doc>
 			<representation mediaType="application/json"/>
 		</response>
@@ -207,7 +205,7 @@
 		<response status="429">
 			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
 			<representation mediaType="application/json"/>
-		</response> -->
+		</response> 
 	</method>
 <!--*******************************************************-->
 <!--               List queues: listQueues                 -->
@@ -255,46 +253,28 @@
 		</request>
 
 		<response status="200" xmlns="http://wadl.dev.java.net/2009/02">
-			<doc title="OK">Success.</doc>
+			<doc title="OK">Success. The URI might have an invalid parameter (something other than
+				limit, marker, or detailed), but the invalid parameter is ignored.</doc>						
 			<representation mediaType="application/json">
-				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">			
+				<doc xml:lang="EN">	
+					<xsdxt:sample>
 						<xsdxt:code href="../wadl/samples/cq-listQueues_response-json-http.txt"
-						/>			
+						/>	
+						</xsdxt:sample>
+					<xsdxt:sample>
 						<xsdxt:code href="../wadl/samples/cq-listQueues_response.json"
-						/>			
-				</wadl:doc>
+						/>
+					</xsdxt:sample>
+				</doc>
 			</representation>
-		</response>  &listQueueFaults;
-<!--		<response status="200">
-			<doc title="OK" xml:lang="EN">The URI has invalid parameter (something other than
-				limit, marker, or detailed). The invalid parameters are ignored.</doc>
-			<representation mediaType="application/json"/>
 		</response>
-		<response status="204">
-			<doc title="No content" xml:lang="EN">You have no queues in
-				your account.</doc>
-			<representation mediaType="application/json"/>
-		</response>
-		<response status="204">
-			<doc title="No content" xml:lang="EN">The request has a non-existing value for
-				marker.</doc>
-			<representation mediaType="application/json"/>
-		</response>
+		<response status="204" >
+			<doc title="No content">
+				You have no queues in your account, or the request has a non-existing value for marker.
+			</doc>
+		</response> 		
 		<response status="400">
-			<doc title="Bad request" xml:lang="EN">The request has a negative value for limit.</doc>
-			<representation mediaType="application/json"/>
-		</response>
-		<response status="400">
-			<doc title="Bad request" xml:lang="EN">The request has a zero value for limit.</doc>
-			<representation mediaType="application/json"/>
-		</response>
-		<response status="400">
-			<doc title="Bad request" xml:lang="EN">The request has a non-boolean value for detailed.</doc>
-			<representation mediaType="application/json"/>
-		</response>
-		<response status="400">
-			<doc title="Bad request" xml:lang="EN">A header has missing fields.</doc>
+			<doc title="Bad request" xml:lang="EN">The request has a negative or zero value for the limit, a non-boolean value for detailed, or a header that has missing fields.</doc>
 			<representation mediaType="application/json"/>
 		</response>
 		<response status="401">
@@ -312,7 +292,7 @@
 		<response status="429">
 			<doc title="Too many requests" xml:lang="EN">Too many requests.</doc>
 			<representation mediaType="application/json"/>
-		</response> -->
+		</response>
 	</method>
 <!--*******************************************************-->
 <!--       Set queue metadata: setQueueMetadata            -->
@@ -421,7 +401,7 @@
 			</representation>
 		</request>
 		<response status="200">
-			<doc title="OK" xml:lang="EN">Success.</doc>
+			<doc title="OK" xml:lang="EN">Success, or no metadata exists for the queue, or the URI has invalid parameters and the invalid parameters are ignored.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
@@ -433,14 +413,6 @@
 				</wadl:doc>
 			</representation>
 		</response> 
-		<response status="200">
-			<doc title="OK" xml:lang="EN">No metadata exists for the queue.</doc>
-			<representation mediaType="application/json"/>
-		</response>
-		<response status="200">
-			<doc title="OK" xml:lang="EN">The URI has invalid parameters. The invalid parameters are ignored.</doc>
-			<representation mediaType="application/json"/>
-		</response>
 		<response status="400">
 			<doc title="Bad request" xml:lang="EN">The request header has missing fields.</doc>
 			<representation mediaType="application/json"/>
@@ -489,7 +461,7 @@
 			</representation>
 		</request>
 		<response status="200">
-			<doc title="OK" xml:lang="EN">Success.</doc>
+			<doc title="OK" xml:lang="EN">Success, or the URI has invalid parameters, but the invalid parameters are ignored.</doc>
 			<representation mediaType="application/json">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN">
@@ -501,10 +473,6 @@
 				</wadl:doc>
 			</representation>
 		</response> 
-		<response status="200">
-			<doc title="OK" xml:lang="EN">The URI has invalid parameters. The invalid parameters are ignored.</doc>
-			<representation mediaType="application/json"/>
-		</response>
 		<response status="400">
 			<doc title="Bad request" xml:lang="EN">The request header has missing fields.</doc>
 			<representation mediaType="application/json"/>
@@ -709,27 +677,21 @@
 				</wadl:doc>
 			</representation>
 		</request>
-		<response status="201">
-			<doc title="Created" xml:lang="EN">Success.</doc>
+					
+		<response status="200" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="OK" xml:lang="EN">The URI might have invalid parameters, but the invalid parameters are ignored.</doc>
 			<representation mediaType="application/json">
-				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+				<doc xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-postMessage_response-json-http.txt"/> 
 					<xsdxt:code
-						href="../wadl/samples/cq-postMessage_response.json"
-					/>
-				</wadl:doc>
+						href="../wadl/samples/cq-postMessage_response.json"/>
+				</doc>
 			</representation>
 		</response> 
-		<response status="200">
-			<doc title="OK" xml:lang="EN">The URI has invalid parameters. The invalid parameters are ignored.</doc>
-			<representation mediaType="application/json"/>
-		</response>
 		<response status="201">
-			<doc title="Created" xml:lang="EN">Multiple messages were posted in a single request and some of them succeeded (with "partial": true).</doc>
-			<representation mediaType="application/json"/>
-		</response>
+			<doc title="Created">Success. With "partial": true, multiple messages were posted in a single request and some of them succeeded.</doc>
+		</response> 
 		<response status="400">
 			<doc title="Bad request" xml:lang="EN">An attempt was made to post more than 100 messages with a single request.</doc>
 			<representation mediaType="application/json"/>
@@ -805,7 +767,7 @@
 		<response status="503">
 			<doc title="Service unavailable" xml:lang="EN">An attempt was made to post multiple messages in a single request and all of them failed.</doc>
 			<representation mediaType="application/json"/>
-		</response> 
+		</response>
 	 </method>
 <!--*******************************************************-->
 <!--           Get messages: getMessages                   -->
@@ -888,41 +850,32 @@
 					messages are returned). </wadl:doc>
 			</param>
 			<representation mediaType="application/json">
-				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+				<doc xml:lang="EN">
 					<xsdxt:code
-						href="../wadl/samples/cq-getMessages_request-json-http.txt"
-					/>
-				</wadl:doc>
+						href="../wadl/samples/cq-getMessages_request-json-http.txt"/>
+				</doc>
 			</representation>
 		</request>
-		<response status="200">
-			<doc title="OK" xml:lang="EN">Success. One or more messages were found.</doc>
+		
+		<response status="200" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="OK" xml:lang="EN">Success. One or more messages were found. The request might have included an invalid parameter (something other than marker, limit, echo, or include_claimed).</doc>
 			<representation mediaType="application/json">
-				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
-					<xsdxt:code
-						href="../wadl/samples/cq-getMessages_response1-json-http.txt"
-						/><xsdxt:code
+				<doc xml:lang="EN">
+					<xsdxt:code 
+						href="../wadl/samples/cq-getMessages_response1-json-http.txt"/>  
+					<xsdxt:code 
 						href="../wadl/samples/cq-getMessages_response-json-http.txt"/>
-					<xsdxt:code
-						href="../wadl/samples/cq-getMessages_response.json"
-					/>
-				</wadl:doc>
+					<xsdxt:code 
+						href="../wadl/samples/cq-getMessages_response.json" />
+				</doc>
 			</representation>
 		</response> 
-		<response status="200">
-			<doc title="OK" xml:lang="EN">The request included an invalid parameter (something other than marker, limit, echo, or include_claimed).</doc>
-			<representation mediaType="application/json"/>
-		</response>
 		<response status="204">
-			<doc title="No content" xml:lang="EN">Success, but no messages matched the request.</doc>
-			<representation mediaType="application/json"/>
-		</response>
+			<doc title="No content" xml:lang="EN">Success, but no messages matched the request. Or, a message with a non-existing marker was requested.</doc>			
+		</response> 
 		<response status="204">
 			<doc title="No content" xml:lang="EN">A message with a non-existing marker was requested.</doc>
-			<representation mediaType="application/json"/>
-		</response>
+		</response> 
 		<response status="400">
 			<doc title="Bad request" xml:lang="EN">An attempt was made to request messages with a limit greater than 100.</doc>
 			<representation mediaType="application/json"/>
@@ -954,7 +907,7 @@
 		<response status="503">
 			<doc title="Service unavailable" xml:lang="EN">The server is currently unavailable.</doc>
 			<representation mediaType="application/json"/>
-		</response>
+		</response> 
 	 </method>
 <!--*******************************************************-->
 <!--     Show message details: getSpecificMessage       -->
@@ -996,22 +949,16 @@
 				</wadl:doc>
 			</representation>
 		</request>
-		<response status="200">
-			<doc title="OK" xml:lang="EN">Success. The request found a matching message.</doc>
+		<response status="200" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="OK" xml:lang="EN">Success. The request found a matching message. The URI might have invalid parameters, but the invalid parameters are ignored. </doc>
 			<representation mediaType="application/json">
-				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+				<doc xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-getSpecificMessage_response-json-http.txt"/>
 					<xsdxt:code
-						href="../wadl/samples/cq-getSpecificMessage_response.json"
-					/>
-				</wadl:doc>
+						href="../wadl/samples/cq-getSpecificMessage_response.json"/>
+				</doc>
 			</representation>			
-		</response>
-		<response status="200">
-			<doc title="OK" xml:lang="EN">The URI has invalid parameters. The invalid parameters are ignored.</doc>
-			<representation mediaType="application/json"/>
 		</response>
 		<response status="400">
 			<doc title="Bad request" xml:lang="EN">The header has missing fields.</doc>
@@ -1096,22 +1043,16 @@
 				</wadl:doc>
 			</representation>
 		</request>
-		<response status="200">
-			<doc title="OK" xml:lang="EN">Success.</doc>
+		<response status="200" xmlns="http://wadl.dev.java.net/2009/02">
+			<doc title="OK" xml:lang="EN">Success. The URI might have invalid parameters, but invalid parameters are ignored.</doc>
 			<representation mediaType="application/json">
-				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+				<doc xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-getSetMessagesByID_response-json-http.txt"/>
 					<xsdxt:code
-						href="../wadl/samples/cq-getSetMessagesByID_response.json"
-					/>
-				</wadl:doc>
+						href="../wadl/samples/cq-getSetMessagesByID_response.json"/>
+				</doc>
 			</representation>
-		</response>
-		<response status="200">
-			<doc title="OK" xml:lang="EN">The URI has invalid parameters. The invalid parameters are ignored.</doc>
-			<representation mediaType="application/json"/>
 		</response>
 		<response status="400">
 			<doc title="Bad request" xml:lang="EN">An attempt was made to request messages with a limit greater than 100.</doc>
@@ -1381,37 +1322,30 @@
 					10. </wadl:doc>
 			</param>
 			<representation mediaType="application/json">
-				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+				<doc xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-claimMessages_request-json-http.txt"/>
 					<xsdxt:code
-						href="../wadl/samples/cq-claimMessages_request.json"
-					/>
-				</wadl:doc>
+						href="../wadl/samples/cq-claimMessages_request.json"/>
+				</doc>
 			</representation>
 		</request>
-		<response status="201">
+		
+		<response status="201" xmlns="http://wadl.dev.java.net/2009/02">
 			<doc title="Created" xml:lang="EN">Success.</doc>
 			<representation mediaType="application/json">
-				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+				<doc xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-claimMessages_response-json-http.txt"/>
 					<xsdxt:code
-						href="../wadl/samples/cq-claimMessages_response.json"
-					/>
-				</wadl:doc>
+						href="../wadl/samples/cq-claimMessages_response.json"/>
+				</doc>
 			</representation>
 		</response> 
 		<response status="204">
-			<doc title="No content" xml:lang="EN">Success (an empty queue with no messages to claim).</doc>
-			<representation mediaType="application/json"/>
-		</response>
-		<response status="204">
-			<doc title="No content" xml:lang="EN">An attempt was made to claim a message from a non-existing queue.</doc>
-			<representation mediaType="application/json"/>
-		</response>
+			<doc title="No content" xml:lang="EN">Success. A request was made to an empty queue with no messages to claim, or an attempt was made to claim a message from a non-existing queue.</doc>
+			
+		</response> 
 		<response status="400">
 			<doc title="Bad request" xml:lang="EN">An attempt was made to claim messages with an invalid value for limit (non-integer, or less than or equal to 0).</doc>
 			<representation mediaType="application/json"/>
@@ -1484,22 +1418,17 @@
 			</representation>
 		</request>
 		<response status="200">
-			<doc title="OK" xml:lang="EN">Success.</doc>
+			<doc title="OK" xml:lang="EN">Success. The request might have used invalid URI parameters, but invalid parameters were ignored.</doc>
 			<representation mediaType="application/json">
-				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-					xml:lang="EN">
+				<doc xml:lang="EN">
 					<xsdxt:code
 						href="../wadl/samples/cq-queryClaim_response-json-http.txt"/>
 					<xsdxt:code
-						href="../wadl/samples/cq-queryClaim_response.json"
-					/>
-				</wadl:doc>
+						href="../wadl/samples/cq-queryClaim_response.json"/>
+				</doc>
 			</representation>
 		</response> 
-		<response status="200">
-			<doc title="OK" xml:lang="EN">The request used invalid URI parameters.</doc>
-			<representation mediaType="application/json"/>
-		</response>
+
 		<response status="400">
 			<doc title="Bad request" xml:lang="EN">The request had missing header fields.</doc>
 			<representation mediaType="application/json"/>

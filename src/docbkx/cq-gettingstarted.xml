@@ -86,7 +86,6 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                 <revdescription>
                     <para>Removed the statement "Workers do not claim a message." from <xref
                             linkend="publish_subscribe"/>.</para>
-                    <para>.</para>
                 </revdescription>
             </revision>
             <revision xmlns:wadl="http://wadl.dev.java.net/2009/02"
