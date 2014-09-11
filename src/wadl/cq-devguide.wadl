@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- (C) 2012-2014 OpenStack Foundation, All Rights Reserved  -->
 
-<!DOCTYPE application [<!ENTITY % common  SYSTEM "../wadl/common.ent">
-    %common;]>
+<!-- <!DOCTYPE application [<!ENTITY % common  SYSTEM "../wadl/common.ent">
+    %common;]> -->
     
 <application xmlns="http://wadl.dev.java.net/2009/02"
 	xmlns:wadl="http://wadl.dev.java.net/2009/02"
