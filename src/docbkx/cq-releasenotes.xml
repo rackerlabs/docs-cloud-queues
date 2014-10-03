@@ -54,9 +54,9 @@
         <revdescription>
           <para>In the "Service access endpoints" sections in the <citetitle>Cloud Queues Getting
               Started Guide</citetitle> and in the <citetitle>Cloud Queues Developer
-                Guide</citetitle>, added a link to <link
-                  xlink:href="http://ord.admin.kc.rakr.net/knowledge_center/article/about-regions"
-                  >http://ord.admin.kc.rakr.net/knowledge_center/article/about-regions</link> to
+                Guide</citetitle>, added a link to the Knowledge Center article <link
+                  xlink:href="http://www.rackspace.com/knowledge_center/article/about-regions"
+                  >About Regions</link> to
             provide guidance on choosing a regionalized endpoint.</para>
         </revdescription>
       </revision>
@@ -229,9 +229,9 @@
           xmlns:wadl="http://wadl.dev.java.net/2009/02" xmlns:svg="http://www.w3.org/2000/svg"
           xmlns:m="http://www.w3.org/the key 1998/Math/MathML">In the "Service access endpoints"
           sections in the <citetitle>Cloud Queues Getting Started Guide</citetitle> and in the
-          <citetitle>Cloud Queues Developer Guide</citetitle>, a link to <link
-            xlink:href="http://ord.admin.kc.rakr.net/knowledge_center/article/about-regions"
-            >http://ord.admin.kc.rakr.net/knowledge_center/article/about-regions</link> was added
+          <citetitle>Cloud Queues Developer Guide</citetitle>, a link to the Knowledge Center article <link
+            xlink:href="http://www.rackspace.com/knowledge_center/article/about-regions"
+            >About Regions</link> was added
           to provide guidance on choosing a regionalized endpoint.</para>
       </listitem>
     </itemizedlist>
