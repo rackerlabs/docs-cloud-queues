@@ -43,6 +43,6 @@ The files that are most likely to be of interest to you are as follows:
 
 * [src/docbkx/cq-gettingstarted.xml](src/docbkx/cq-gettingstarted.xml)
 * [src/docbkx/cq-devguide.xml](src/docbkx/cq-devguide.xml)
-* [src/wadl/cq-devquide.wadl](src/wadl/cq-devquide.wadl)
+* [src/wadl/cq-devguide.wadl](src/wadl/cq-devguide.wadl)
 
 If you want to make changes to the example files referenced in the WADL file, you can find the example files at [src/wadl/samples](src/wadl/samples).
