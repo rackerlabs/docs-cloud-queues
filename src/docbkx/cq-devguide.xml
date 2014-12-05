@@ -54,7 +54,7 @@
     </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2014-08-11</pubdate>
+    <pubdate>2014-12-05</pubdate>
     <!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
@@ -72,7 +72,14 @@
 
     <revhistory>
       <revision>
-        <date>2011-08-11</date>
+        <date>2014-12-05</date>
+        <revdescription>
+          <para>Removed the empty body from the request example in the "Create queue" section in
+              <xref linkend="queue-operations"/>. </para>
+        </revdescription>
+      </revision>
+      <revision>
+        <date>2014-08-11</date>
         <revdescription>
           <para>Removed the statement "Workers do not claim a message." from <xref
               linkend="publish_subscribe"/>. </para>

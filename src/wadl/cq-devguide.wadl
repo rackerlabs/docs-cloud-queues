@@ -172,8 +172,9 @@
 			<representation mediaType="application/json" >
 				<doc>
 					<xsdxt:code href="../wadl/samples/cq-createQueue_request-json-http.txt"/>
-					<xsdxt:code href="../wadl/samples/cq-createQueue_request.json"/>
-					<para xmlns="http://docbook.org/ns/docbook">The body of the request is empty.</para> 
+					<!-- 12/5/2014 Hiding empty body. Checked with CQ team and it is not needed in this example.
+						<xsdxt:code href="../wadl/samples/cq-createQueue_request.json"/>
+					<para xmlns="http://docbook.org/ns/docbook">The body of the request is empty.</para> -->
 				</doc>
 			</representation>
 		</request>
