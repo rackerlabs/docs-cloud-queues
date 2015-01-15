@@ -62,11 +62,12 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
     <copyright>
             <year>2013</year>
             <year>2014</year>
+            <year>2014</year>
             <holder>Rackspace US, Inc.</holder>
         </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2014-08-11</pubdate>
+    <pubdate>2015-01-15</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
       <annotation>
@@ -81,6 +82,23 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
     </abstract>
     
     <revhistory>
+            <revision>
+                <date>2015-01-15</date>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <para>Added a note that includes a link to additional authentication
+                                methods, including multi-factor authentication, in <xref
+                                    linkend="Generating_Auth_Token"/>.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Corrected the <code>limit</code> maximum in <xref
+                                    linkend="Claim_messages"/>. The maximum value for
+                                    <code>limit</code> is 20, not 50.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-08-11</date>
                 <revdescription>
@@ -846,6 +864,14 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                     </orderedlist>
                 </listitem>
             </itemizedlist></para>
+        <note>
+            <para>This guide uses <emphasis role="bold">your_username</emphasis> and <emphasis
+                    role="bold">your_api_key</emphasis> for authentication. For information about
+                other supported authentication methods, see <link
+                    xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/Token_Calls.html"
+                    >Authentication tokens</link> in the <citetitle>Cloud Identity Client Developer
+                    Guide</citetitle>.</para>
+        </note>
         <para>You also need your cloud account number. In the documentation, the account number is
             often referred to as your tenant name or tenant ID (technically, the ID is different
             from the name, but at Rackspace, they are the same thing). Together, three
@@ -1393,12 +1419,10 @@ Content-Type: application/json
                 queue for other workers to claim. (If the original
                 worker failed to process the message, another client
                 worker can then claim the message.)</para>
-            <para>The <parameter>limit</parameter> parameter specifies
-                the number of messages to claim. The limit is 50. If a
-                value is not specified, the default is 10.  Messages
-                are claimed based on the number of messages available.
-                The server may claim and return less than the
-                requested number of messages.</para>
+            <para>The <parameter>limit</parameter> parameter specifies the number of messages to
+                claim. The limit is 20. If a value is not specified, the default is 10. Messages are
+                claimed based on the number of messages available. The server may claim and return
+                less than the requested number of messages.</para>
             <para>The <parameter>ttl</parameter> attribute specifies
                 the lifetime of the claim. While messages are claimed,
                 they are not available to other workers. The value

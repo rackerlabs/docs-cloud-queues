@@ -50,11 +50,12 @@
     <copyright>
       <year>2013</year>
       <year>2014</year>
+      <year>2015</year>
       <holder>Rackspace US, Inc.</holder>
     </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2014-12-05</pubdate>
+    <pubdate>2015-01-15</pubdate>
     <!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
@@ -71,6 +72,23 @@
     </abstract>
 
     <revhistory>
+      <revision xmlns:m="http://www.w3.org/the key 1998/Math/MathML">
+        <date>2015-01-15</date>
+        <revdescription>
+          <itemizedlist>
+            <listitem>
+              <para>Updated <xref linkend="Retrieving_Auth_Token"/> with information about using
+                multi-factor authentication for added security when a user authenticates with
+                  <code>username</code> and <code>password</code> credentials.</para>
+            </listitem>
+            <listitem>
+              <para>Updated the 400 error message description for the claim messages operation to
+                indicate that the message is issued when a value for <code>limit</code> is greater
+                than 20, rather than 100.</para>
+            </listitem>
+          </itemizedlist>
+        </revdescription>
+      </revision>
       <revision>
         <date>2014-12-05</date>
         <revdescription>
@@ -547,16 +565,21 @@
       </section>
       <section xml:id="Retrieving_Auth_Token">
         <title>Retrieving the authentication token</title>
-        <para>The authenticate operation provides you with an
-          authentication token and a list of regional cloud endpoints.
-          The sample requests and responses in this section illustrate
-          a general case. In your authentication request, use your own
-          credentials rather than the sample values shown for
-            <code>username</code> and <code>apiKey</code>. When you
-          authenticate successfully, the response to your
-          authentication request includes a catalog of the services to
-          which you have subscribed rather than the sample values
-          shown in this section.</para>
+        <para>The authenticate operation provides you with an authentication token and a list of
+          regional cloud endpoints. The sample requests and responses in this section illustrate a
+          general case. In your authentication request, use your own credentials rather than the
+          sample values shown for <code>username</code> and <code>apiKey</code>. When you
+          authenticate successfully, the response to your authentication request includes a catalog
+          of the services to which you have subscribed rather than the sample values shown in this section.<note>
+            <para>If you authenticate with <code>username</code> and <code>password</code>
+              credentials, you can use multi-factor authentication to add an additional level of
+              account security. This feature is not implemented for the <code>username</code> and
+                <code>apiKey</code> credentials shown in the following examples. </para>
+            <para>For more information, see <link
+                xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/MFA_Ops.html"
+                >Multi-factor authentication</link> in the <citetitle>Cloud Identity Client
+                Developer Guide</citetitle>. </para>
+          </note></para>
         <table rules="all">
           <caption>Command to retrieve authentication token</caption>
           <col width="32%"/>
@@ -1361,7 +1384,7 @@
             <tr>
               <td>Number of messages that can be claimed at one
                 time</td>
-              <td>1 - 25 </td>
+              <td>1 - 20 </td>
             </tr>
             <tr>
               <td>Number of messages that can be deleted in a single

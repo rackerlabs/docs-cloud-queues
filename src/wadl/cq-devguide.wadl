@@ -1352,7 +1352,7 @@
 			<representation mediaType="application/json"/>
 		</response>
 		<response status="400">
-			<doc title="Bad request" xml:lang="EN">An attempt was made to claim a message with limit greater than 100. </doc>
+			<doc title="Bad request" xml:lang="EN">An attempt was made to claim messages with the value of limit set to be greater than 20. </doc>
 			<representation mediaType="application/json"/>
 		</response>
 		<response status="400">
