@@ -67,7 +67,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
         </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2015-01-15</pubdate>
+    <pubdate>2015-01-19</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
       <annotation>
@@ -83,20 +83,18 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
     
     <revhistory>
             <revision>
+                <date>2015-01-19</date>
+                <revdescription>
+                    <para>Corrected the information about the <code>limit</code> parameter in <xref
+                            linkend="Claim_messages"/> and provided examples. </para>
+                </revdescription>
+            </revision>
+            <revision>
                 <date>2015-01-15</date>
                 <revdescription>
-                    <itemizedlist>
-                        <listitem>
-                            <para>Added a note that includes a link to additional authentication
-                                methods, including multi-factor authentication, in <xref
-                                    linkend="Generating_Auth_Token"/>.</para>
-                        </listitem>
-                        <listitem>
-                            <para>Corrected the <code>limit</code> maximum in <xref
-                                    linkend="Claim_messages"/>. The maximum value for
-                                    <code>limit</code> is 20, not 50.</para>
-                        </listitem>
-                    </itemizedlist>
+                    <para>Added a note that includes a link to additional authentication methods,
+                        including multi-factor authentication, in <xref
+                            linkend="Generating_Auth_Token"/>.</para>
                 </revdescription>
             </revision>
             <revision>
@@ -1420,9 +1418,19 @@ Content-Type: application/json
                 worker failed to process the message, another client
                 worker can then claim the message.)</para>
             <para>The <parameter>limit</parameter> parameter specifies the number of messages to
-                claim. The limit is 20. If a value is not specified, the default is 10. Messages are
-                claimed based on the number of messages available. The server may claim and return
-                less than the requested number of messages.</para>
+                claim. If a <code>limit</code> value is not specified, Cloud Queues claims 10
+                messages. Once the messages are successfully claimed, Cloud Queues returns 10
+                messages in the response. </para>
+            <para>Messages are claimed based on the number of messages <emphasis role="italic"
+                    >available</emphasis>. The server might claim and return less than the requested
+                number of messages.</para>
+            <para>If you specify a value for the <code>limit</code> parameter and the value is less
+                than or equal to 100, Cloud Queues lets you claim free messages up to the number
+                specified by the <code>limit</code> parameter. For example, if only 23 messages are
+                free and <code>limit</code> is 100, Cloud Queues claims all 23 messages and returns
+                23 messages in the response. If 120 free messages are available and
+                    <code>limit</code> is 100, Cloud Queues claims the oldest 100 messages and
+                returns 100 messages in response.</para>
             <para>The <parameter>ttl</parameter> attribute specifies
                 the lifetime of the claim. While messages are claimed,
                 they are not available to other workers. The value
@@ -1462,7 +1470,7 @@ X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>
       "event": "BackupStarted"
     },
     "age": 124,
-    "href": "\/v1\/queues\/samplequeue\/messages\/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6",
+    "href": "/v1/queues/samplequeue/messages/51ca00a0c508f154c912b85c?claim_id=51ca011c821e7250f344efd6",
     "ttl": 300
   }
 ]</programlisting>

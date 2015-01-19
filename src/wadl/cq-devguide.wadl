@@ -1318,9 +1318,8 @@
 				required="false">
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
 					xml:lang="EN"> Specifies the number of messages to
-					return, up to 20 messages. If <code>limit</code>
-					is not specified, <code>limit</code> defaults to
-					10. </wadl:doc>
+					return, up to 100 messages. If you do not specify a value for <code>limit</code>, Cloud Queues claims 10 messages. Once the messages are successfully claimed, Cloud Queues returns 10 messages in the response. Messages are claimed based on the number of messages available. The server might claim and return less than the requested number of messages.
+					If you specify a value for the limit parameter and the value is less than or equal to 100, Cloud Queues lets you claim free messages up to the number specified by the limit parameter. For example, if only 23 messages are free and limit is 100, Cloud Queues claims all 23 messages and returns 23 messages in the response. If 120 free messages are available and limit is 100, Cloud Queues claims the oldest 100 messages and returns 100 messages in response.</wadl:doc>
 			</param>
 			<representation mediaType="application/json">
 				<doc xml:lang="EN">
@@ -1352,7 +1351,7 @@
 			<representation mediaType="application/json"/>
 		</response>
 		<response status="400">
-			<doc title="Bad request" xml:lang="EN">An attempt was made to claim messages with the value of limit set to be greater than 20. </doc>
+			<doc title="Bad request" xml:lang="EN">An attempt was made to claim messages with the value of limit set to be greater than 100. </doc>
 			<representation mediaType="application/json"/>
 		</response>
 		<response status="400">
