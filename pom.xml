@@ -51,13 +51,12 @@
 				<goal>generate-webhelp</goal>
 			</goals>
 			<phase>generate-sources</phase>
-			<configuration>
-				<enableDisqus>1</enableDisqus> 
+			<configuration> 
 				<includes>
 					cq-gettingstarted.xml
 				</includes>
+				<security>external</security>
 				<canonicalUrlBase>http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/content</canonicalUrlBase>
-				<feedbackEmail>catherine.richardson@rackspace.com</feedbackEmail>
 			</configuration>
 		</execution> 
 		
@@ -77,23 +76,7 @@
 				<feedbackEmail>catherine.richardson@rackspace.com</feedbackEmail>
 			</configuration>
 		</execution>  
-		
-<!--	  <execution>
-	    <goals>
-	      <goal>generate-webhelp</goal> 
-	    </goals>
-	    <phase>generate-sources</phase>
-	    <configuration>
-	      <security>external</security> 
-	      <metaRobots>1</metaRobots>
-	      <includes>
-	       cq-devguide.xml,
-           cq-gettingstarted.xml,
-	       cq-releasenotes.xml  
-	      </includes>
-	    </configuration>
-	  </execution>
--->	  
+		  
 	</executions>
       	
 	<configuration>
