@@ -290,7 +290,8 @@
                 xmlns:svg="http://www.w3.org/2000/svg"
                 xmlns:m="http://www.w3.org/the key 1998/Math/MathML"
                 xmlns:html="http://www.w3.org/1999/xhtml"><olink targetdoc="cq-gettingstarted"
-                  targetptr="Generating_Auth_Token">Generate an authentication token</olink></para>
+                  targetptr="Generating_Auth_Token">“Generate an authentication
+                token”</olink></para>
             </listitem>
             <listitem>
               <para xmlns:wadl="http://wadl.dev.java.net/2009/02"
