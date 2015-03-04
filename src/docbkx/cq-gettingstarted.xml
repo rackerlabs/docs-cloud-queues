@@ -11,11 +11,10 @@
         <!ENTITY POST '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
         <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
         
-        <!-- changing authentication endpoints; define entities for US & UK rather than maintaining in text -->
-        <!ENTITY ENDPOINT-US "https://identity.api.rackspacecloud.com/v1.1/">
-        <!ENTITY ENDPOINT-UK "https://lon.identity.api.rackspacecloud.com/v1.1/">
+        <!-- Authentication endpoints -->
+        <!ENTITY ENDPOINT-US "https://identity.api.rackspacecloud.com/v1.1/">        
         <!ENTITY ENDPOINT-US-20 "https://identity.api.rackspacecloud.com/v2.0/">
-        <!ENTITY ENDPOINT-UK-20 "https://lon.identity.api.rackspacecloud.com/v2.0/">
+        
         
         <!ENTITY CHECK '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
                  <imageobject>
@@ -67,7 +66,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
         </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2015-01-19</pubdate>
+    <pubdate>2015-03-04</pubdate>
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
       <annotation>
@@ -81,7 +80,19 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
         (<abbrev>API</abbrev>). </para>
     </abstract>
     
-    <revhistory>
+      <revhistory> 
+          <revision>
+          <date>2015-03-04</date>
+          <revdescription>
+              <itemizedlist spacing="compact">
+                  <listitem>
+                      <para>Removed the London endpoint, since Rackspace now has one global endpoint
+                                for authentication using the Rackspace Cloud Identity service. See
+                                    <xref linkend="Generating_Auth_Token"/>.</para>
+                  </listitem>
+              </itemizedlist>
+          </revdescription>
+      </revision>
             <revision>
                 <date>2015-01-19</date>
                 <revdescription>
@@ -881,7 +892,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
             navigation pane in the Cloud Control Panel. The tenant ID
             or account number is in parentheses just to the right of
             your username.</para>
-        <para> You can use either of the following endpoints to access the Cloud Identity service,
+        <para>Use the following endpoint to access the Cloud Identity service for authentication,
             regardless of US or UK identities: </para>
         <itemizedlist spacing="compact">
             <listitem>
@@ -889,15 +900,10 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
                         >&ENDPOINT-US-20;</link>
                 </para>
             </listitem>
-            <listitem>
-                <para><link xlink:href="&ENDPOINT-UK-20;"
-                        >&ENDPOINT-UK-20;</link></para>
-            </listitem>
         </itemizedlist>
-        <para> Your account may be based in either the US or the UK.
-            This is not determined by your physical location but by
-            the location of the Rackspace retail site which was used
-            to create your account: </para>
+        <para>Your account may be based in either the US or the UK. This is not determined by your
+            physical location but by the location of the Rackspace retail site that was used to
+            create your account: </para>
         <itemizedlist spacing="compact">
             <listitem>
                 <para> If your account was created via <link

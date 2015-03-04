@@ -11,11 +11,9 @@
         <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
         <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
         
-        <!-- changing authentication endpoints; define entities for US & UK rather than maintaining in text -->
+        <!-- cAuthentication endpoints -->
         <!ENTITY ENDPOINT-US "https://identity.api.rackspacecloud.com/v1.1/">
-        <!ENTITY ENDPOINT-UK "https://lon.identity.api.rackspacecloud.com/v1.1/">
         <!ENTITY ENDPOINT-US-20 "https://identity.api.rackspacecloud.com/v2.0/">
-        <!ENTITY ENDPOINT-UK-20 "https://lon.identity.api.rackspacecloud.com/v2.0/">
         
         <!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
                  <imageobject>
@@ -55,7 +53,7 @@
     </copyright>
     <releaseinfo>API v1</releaseinfo>
     <productname>Rackspace Cloud Queues</productname>
-    <pubdate>2015-01-19</pubdate>
+    <pubdate>2015-03-04</pubdate>
     <!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <!--If you leave the <pubdate> element empty, the build system inserts today's date automatically.   -->
     <legalnotice role="rs-api">
@@ -72,13 +70,25 @@
     </abstract>
 
     <revhistory>
+      <revision>
+         <date>2015-03-04</date>
+         <revdescription>
+           <itemizedlist spacing="compact">
+             <listitem>
+               <para>Removed the London endpoint, since Rackspace now has one global endpoint for
+                authentication using the Rackspace Cloud Identity service. See <xref
+                  linkend="Authentication-d1e647"/>.</para>
+                   </listitem>
+                   </itemizedlist>
+                   </revdescription>
+                   </revision>
       <revision xmlns:m="http://www.w3.org/the key 1998/Math/MathML">
         <date>2015-01-19</date>
         <revdescription>
           <itemizedlist>
             <listitem>
               <para>Corrected <xref linkend="Absolute-Limits-d1e003"/> to show the number of
-                messages that can be claimed at one timeas 1 - 100. </para>
+                messages that can be claimed at one time as 1 - 100. </para>
             </listitem>
             <listitem>
               <para xmlns:m="http://www.w3.org/1998/Math/MathML">Updated the information about the
@@ -525,30 +535,23 @@
     </note>
     <section xml:id="Authentication-d1e647">
       <title>Authentication</title>
-      <para>Each REST request to the Cloud Queues API requires the
-        inclusion of a specific authorization token, which is supplied
-        by the <code>X-Auth-Token</code> HTTP header. You obtain this
-        token by using the Rackspace Cloud Authentication service
-        (also known as the Cloud Identity Service) and supplying a
-        valid username and API access key. (See the <parameter>token
-          id</parameter> parameter in <xref linkend="authResponseXML"
-        /> and <xref linkend="auth-response-example-json"/>).</para>
+      <para>Each REST request to the Cloud Queues API requires the inclusion of a specific
+        authorization token, which is supplied by the <code>X-Auth-Token</code> HTTP header. You
+        obtain this token by using the Rackspace Cloud Identity service for authentication and
+        supplying a valid username and API access key. (See the <parameter>token id</parameter>
+        parameter in <xref linkend="authResponseXML"/> and <xref
+          linkend="auth-response-example-json"/>).</para>
       <section xml:id="Geographic_Endpoints">
         <title>Geographic endpoints</title>
         <para>The Rackspace Cloud Authentication service is the entry
           point to all Rackspace Cloud APIs and is itself a RESTful
           web service.</para>
-        <para>You can use either of the following endpoints to access
-          the Authentication service, regardless of US or UK
-          identities:</para>
+        <para>Use the following endpoint to access the Cloud Identity service for authentication,
+          regardless of US or UK identities:</para>
         <itemizedlist spacing="compact">
           <listitem>
             <para><link xlink:href="&ENDPOINT-US-20;"
                 >&ENDPOINT-US-20;</link></para>
-          </listitem>
-          <listitem>
-            <para><link xlink:href="&ENDPOINT-UK-20;"
-                >&ENDPOINT-UK-20;</link></para>
           </listitem>
         </itemizedlist>
         <para>Your account might be based in either the US or the UK.
@@ -1348,7 +1351,7 @@
         <para>If your application slightly exceeds the rate limit, the Cloud Queues service
           throttles your requests. The requests will take longer to perform and will have more
           latency. If your application greatly exceeds the 300 request per second rate limit, the
-          API returns the HTTP response code 429 Too Many Requests. If this cdoccurs, reduce the
+          API returns the HTTP response code 429 Too Many Requests. If this occurs, reduce the
           application's request rate to the Cloud Queues API by pausing slightly between each
           request. If your application continues to hit this limit and you cannot slow down the
           request rate, please contact Rackspace Cloud support.</para>
