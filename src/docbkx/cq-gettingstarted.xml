@@ -84,13 +84,9 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
           <revision>
           <date>2015-03-04</date>
           <revdescription>
-              <itemizedlist spacing="compact">
-                  <listitem>
-                      <para>Removed the London endpoint, since Rackspace now has one global endpoint
-                                for authentication using the Rackspace Cloud Identity service. See
-                                    <xref linkend="Generating_Auth_Token"/>.</para>
-                  </listitem>
-              </itemizedlist>
+                    <para>Removed the London endpoint for authentication, since Rackspace now has
+                        one global endpoint for authentication using the Rackspace Cloud Identity
+                        service. See <xref linkend="Generating_Auth_Token"/>.</para>
           </revdescription>
       </revision>
             <revision>
@@ -258,7 +254,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
       following table: </para>
     <?rax revhistory?>
   </chapter>
-  <chapter xml:id="DB_Overview" xmlns:svg="http://www.w3.org/2000/svg"
+  <chapter xml:id="cq_Overview" xmlns:svg="http://www.w3.org/2000/svg"
     xmlns:m="http://www.w3.org/1998/Math/MathML"
     xmlns:html="http://www.w3.org/1999/xhtml">
     <title>Overview</title>
