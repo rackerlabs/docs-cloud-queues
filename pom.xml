@@ -57,6 +57,7 @@
 				</includes>
 				<security>external</security>
 				<canonicalUrlBase>http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/content</canonicalUrlBase>
+				<webhelpDefaultTopic>cq_Overview.html</webhelpDefaultTopic>
 			</configuration>
 		</execution> 
 		
