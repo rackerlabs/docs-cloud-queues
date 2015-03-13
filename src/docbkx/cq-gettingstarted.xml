@@ -247,13 +247,7 @@ canonical.url.base="http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/
       <raxm:priority>10</raxm:priority>
     </raxm:metadata>
   </info>
-  <chapter xml:id="doc-change-history">
-    <title>Document change history</title>
-    <para>This version of the document replaces and obsoletes all
-      earlier versions. The most recent changes are described in the
-      following table: </para>
-    <?rax revhistory?>
-  </chapter>
+  
   <chapter xml:id="cq_Overview" xmlns:svg="http://www.w3.org/2000/svg"
     xmlns:m="http://www.w3.org/1998/Math/MathML"
     xmlns:html="http://www.w3.org/1999/xhtml">
@@ -1593,6 +1587,15 @@ X-Project-Id: <emphasis role="bold">your_project_ID</emphasis>
                 xlink:href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"
                 >www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</link>. </para>
   </chapter>
+    
+    <chapter xml:id="doc-change-history">
+        <title>Document change history</title>
+        <para>This version of the document replaces and obsoletes all
+            earlier versions. The most recent changes are described in the
+            following table: </para>
+        <?rax revhistory?>
+    </chapter>   
+    
   <glossary xml:id="glossary-d1e018">
     <title>Glossary</title>
     <glossentry xml:id="claim-d1e017">
