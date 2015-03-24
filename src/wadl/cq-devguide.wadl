@@ -37,13 +37,18 @@
 <!--*******************************************************-->
 	<resources base="https://ord.queues.api.rackspacecloud.com/">
 		<resource id="version" path="v1">
-			<!--	Project ID was in the Header not in the URL but has recently been removed from header.	.</resource>
-				<resource id="projectID" path="{projectId}">
-				<param name="projectId" style="template" type="xsd:string"> 
+			<!--	Project ID was in the Header not in the URL but has recently been removed from header.	--> 
+			<resource id="project_id" path="{project_id}">
+				<param name="project_id" style="template" type="xsd:string"> 
 				<wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">The project ID of the owner of the specified
-				queue. </wadl:doc></param> 
-			-->
+                        xml:lang="EN">
+					<para>The project ID for the user. If you do not set the 
+						<code>X-Project-Id header</code> in the request, use <code>project_id</code> in the URI. 
+						For example: <code>GET https://ord.queues.api.rackspacecloud.com/v1/{project_id}</code> 
+					</para> 
+				</wadl:doc>
+				</param> 								
+				
 			<method href="#getHomeDocument"/>
 			<resource id="queues" path="queues">
 				<method href="#listQueues"/>
@@ -102,7 +107,8 @@
 					</resource>
 				</resource>
 			</resource>
-		</resource>
+		</resource>	
+	  </resource>	
 	</resources>
 <!--*******************************************************-->
 <!--               All methods                             -->

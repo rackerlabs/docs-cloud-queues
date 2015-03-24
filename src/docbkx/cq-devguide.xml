@@ -1643,7 +1643,7 @@ Content-Type: application/json</programlisting>
           OpenStack and may change.</para>
       </note>
       <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
-        <wadl:resource href="../../src/wadl/cq-devguide.wadl#version">
+        <wadl:resource href="../../src/wadl/cq-devguide.wadl#project_id">
           <wadl:method href="#getHomeDocument"/>
         </wadl:resource>
       </wadl:resources>
