@@ -1,0 +1,520 @@
+==========================
+General API information 
+==========================
+
+Ideas explained here are relevant to all operations of the API. See the 
+API operations reference for details about specific operations.
+
+The Cloud Queues API is implemented using a RESTful web service
+interface. Cloud Queues shares a common token-based authentication
+system with other Rackspace Cloud products, which allows seamless access
+among products and services.
+
+
+
+.. note:: 
+           All API requests to authenticate and operate Rackspace Cloud services are
+           performed using SSL over HTTP (HTTPS) on TCP port 443.
+
+Authentication
+--------------------
+
+Each REST request to the Cloud Queues API requires the inclusion of a
+specific authorization token, which is supplied by the ``X-Auth-Token``
+HTTP header. You obtain this token by submitting an authentication
+request with a valid username and API access key to the Rackspace Cloud
+Identity API service endpoint::
+
+``https://identity.api.rackspacecloud.com/v2.0``
+
+For information about how to authenticate and retrieve the
+authentication token, see the `Rackspace Identity API
+Quickstart`__.
+
+.. _Rackspace Identity API Quickstart: http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/QuickStart-000.html
+
+Role Based Access Control
+-------------------------------
+
+Role Based Access Control (RBAC) restricts access to the capabilities of
+Rackspace Cloud services, including the Cloud Queues API, to authorized
+users only. RBAC enables Rackspace Cloud customers to specify which
+account users of their Cloud account have access to which Cloud Queues
+API service capabilities, based on `roles defined by
+Rackspace <RBAC_product_roles.html>`__). The permissions to perform
+certain operations in Cloud Queues API – create, read, update, delete –
+are assigned to specific roles, and these roles can be assigned by the
+Cloud account admin user to account users of the account.
+
+
+Assigning roles to account users
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The account owner (identity:user-admin) can create account users on the
+account and then assign roles to those users. The roles grant the
+account users specific permissions for accessing the capabilities of the
+Cloud Queues service. Each account has only one account owner, and that
+role is assigned by default to any Rackspace Cloud account when the
+account is created.
+
+See the *Cloud Identity Client Developer Guide* for information on how to perform 
+these tasks:
+
+
+-  Create account users
+-  Assign roles to account users 
+-  Delete roles from account users 
+
+.. note:  The account admin user (identity:user-admin) role cannot hold any
+          additional roles because it already has full access to all capabilities
+          by default.
+
+Roles available for Cloud Queues
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Cloud Queues provides both product roles and multiproduct roles. Product roles enable 
+access to the Cloud Queues product.
+
+** Table: Cloud Queues product roles and capabilities**
+
++--------------------------------------+--------------------------------------+
+| Role name                            | Role permissions                     |
++======================================+======================================+
+| queues:admin                         | This role provides Create, Read,     |
+|                                      | Update, and Delete permissions in    |
+|                                      | Cloud Queues, where access is        |
+|                                      | granted.                             |
++--------------------------------------+--------------------------------------+
+| queues:creator                       | This role provides Create, Read and  |
+|                                      | Update permissions in Cloud Queues,  |
+|                                      | where access is granted.             |
++--------------------------------------+--------------------------------------+
+| queues:observer                      | This role provides Read permission   |
+|                                      | in Cloud Queues, where access is     |
+|                                      | granted.                             |
++--------------------------------------+--------------------------------------+
+
+
+Multiproduct roles enable access to all Rackspace Cloud services.
+Users with multiproduct roles inherit access to future products when those products
+become RBAC-enabled. The following table describes these roles and their permissions.
+
+**Table: Multiproduct (global) roles and permissions**
+
++--------------------------------------+--------------------------------------+
+| Role name                            | Role permissions                     |
++======================================+======================================+
+| admin                                | This role provides Create, Read,     |
+|                                      | Update, and Delete permissions in    |
+|                                      | all products, where access is        |
+|                                      | granted.                             |
++--------------------------------------+--------------------------------------+
+| observer                             | This role provides Read permission   |
+|                                      | in all products, where access is     |
+|                                      | granted.                             |
++--------------------------------------+--------------------------------------+
+
+Resolving conflicts between RBAC multiproduct vs. custom (product-specific) roles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The account owner can set roles for both multiproduct and Cloud Queues
+scope, and it is important to understand how any potential conflicts
+among these roles are resolved. When two roles appear to conflict, the
+role that provides the more extensive permissions takes precedence.
+Therefore, admin roles take precedence over observer and creator roles,
+because admin roles provide more permissions.
+
+The following table shows two examples of how potential conflicts
+between user roles in the Control Panel are resolved:
+
++---------------------------------+-----------------------+-----------------------------+
+| Permission configuration        | View of Permission    | Can the User Perform        |
+|                                 | in the Control Panel  | Product Admin Functions     |
+|                                 |                       | in the Control Panel?       |
++=================================+=======================+=============================+
+| User is assigned the following  | Appears that the user | Yes, Cloud Queues           |
+| roles: multiproduct **observer**| has only the          | only. The user ha           |
+| and Cloud Queues                | multiproduct          | **observer** role for the   |
+| **admin**                       | **observer** role     | rest of the products.       |
++---------------------------------+-----------------------+-----------------------------+
+| User is assigned the following  | Appears that the user | Yes, for all products.      |
+| roles: multiproduct             | has only the          | The Cloud Queues            |
+| **admin** and Cloud Queues      | multiproduct          | **observer** role is        |
+| **observer**                    | **admin** role.       | ignored.                    |
++---------------------------------+-----------------------------------------------------+
+
+
+RBAC permissions cross-reference to Cloud Queues API operations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+API operations for Cloud Queues are accessible to users based on user
+role assignment. For information about which roles are available to
+which users, review the *Permissions Matrix for Role-Based Access
+Control* article in the `Rackspace Knowledge Center article`_ .
+
+.. _Rackspace Knowledge Center article: http://www.rackspace.com/knowledge_center/article/permissions-matrix-for-role-based-access-control-rbac
+
+
+Service access and endpoints
+------------------------------
+The Cloud Queues service is a regionalized service that allows customers to select the   
+regional endpoint where the Cloud Queues service is provisioned. 
+
+.. tip:: 
+     To help you decide which regionalized endpoint to use, review the 
+     considerations for choosing a data center in the 
+     `About regions`_  Rackspace Knowledge Center article.
+
+.. _About regions: http://www.rackspace.com/knowledge_center/article/about-regions
+
+.. _cqueues-dg-api-info-service-access-regional:
+
+Regionalized service endpoints
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Chicago (ORD)**
+- ``https://ord.queues.api.rackspacecloud.com/v1/``
+- ``https://snet-ord.queues.api.rackspacecloud.com/v1/``
+
+**Dallas/Ft. Worth (DFW)**
+- ``https://dfw.queues.api.rackspacecloud.com/v1/``
+- ``https://snet-dfw.queues.api.rackspacecloud.com/v1/``
+
+**Hong Kong (HKG)**
+- ``https://hkg.queues.api.rackspacecloud.com/v1/``
+- ``https://snet-hkg.queues.api.rackspacecloud.com/v1/``
+
+**London (LON)**
+- ``https://lon.queues.api.rackspacecloud.com/v1/``
+- ``https://snet-lon.queues.api.rackspacecloud.com/v1/``
+
+**Northern Virginia (IAD)**
+- ``https://iad.queues.api.rackspacecloud.com/v1/``
+- ``https://snet-iad.queues.api.rackspacecloud.com/v1/``
+
+**Sydney (SYD)**
+- ``https://syd.queues.api.rackspacecloud.com/v1/``
+- ``https://snet-syd.queues.api.rackspacecloud.com/v1/``
+
+If you are working with cloud servers that are in one of the Rackspace
+data centers, using the ServiceNet endpoint in the same data center has
+no network costs and provides a faster connection. ServiceNet endpoints
+are prefixed with ``snet-``. ServiceNet is
+the data center internet network. You can find the ServiceNet endpoint
+URL value in the ``InternalURL`` attribute in the service catalog that
+is returned in the authentication response.
+
+If you are working with servers that are not in one of the Rackspace
+data centers, you must use a public endpoint to connect. In your
+authentication response, public endpoints are listed as ``publicURL`` in
+the service catalog. If you are working with servers in multiple data
+centers or have a mixed environment where you have servers in your data
+centers and in Rackspace data centers, use a public endpoint because it
+is accessible from all the servers in the different environments.
+
+
+.. note::
+   When you use base URLs, copy them directly from the service catalog
+   rather than trying to construct them manually.
+
+When you authenticate successfully, the Rackspace Cloud Identity returns 
+the endpoint with your account ID appended to the URL. Note
+the following information about account ID:
+
+-  Account ID from Cloud Identity is the same as the Project ID given by
+   the ``X-Project-Id`` header in Cloud Queues. (You might also see
+   account ID or project ID referred to as tenant ID.)
+
+-  You do not have to provide the account ID for the Cloud Queues API if
+   you have the ``X-Project-Id`` header set. (In this case, the Cloud
+   Queues API works with or without the account ID specified.)
+
+-  Without the ``X-Project-Id`` header, you receive an auth error if the
+   account ID is not in the URL.
+
+-  If the account ID is in the URL, the Cloud Queues API will use that
+   ID in place of the ``X-Project-Id`` header.
+
+-  Account ID and Project ID refer to your Rackspace account number.
+
+.. tip::
+   If you do not know which data center you are working in or your account
+   ID, you can find them in your `Cloud Control panel`_.
+   
+.. _Cloud Control panel:  https://mycloud.rackspace.com/>`__.
+
+
+Contract version
+------------------
+
+The Cloud Queues version defines the contract and build information for
+the API.
+
+The contract version denotes the data model and behavior that the API
+supports. The requested contract version is included in all request
+URLs. Different contract versions of the API might be available at any
+given time and are not guaranteed to be compatible with one another.
+
+ 
+**Example: Sample request URL for contract version 1**
+
+.. code:: 
+
+    https://ord.queues.api.rackspacecloud.com/v1
+
+.. note:: 
+         This document pertains to contract version 1. Rackspace will notify
+         customers in Release Notes when and if the contract does change.
+
+
+Request and response types
+--------------------------------
+
+The Cloud Queues API supports JSON data serialization formats. You 
+specify the request format by using the ``Content-Type`` header. The 
+request format is required for calls that have a request body. You can 
+specify the response format in requests either by using the Accept 
+header or by adding a ``.json`` extension to the request URI. JSON is 
+also used for the response format.
+
+**JSON and XML response formats**
+
++--------+----------------------+-----------------+---------+
+| Format | Accept Header        | Query Extension | Default |
++========+======================+=================+=========+
+| JSON   | application/json     | .json           | Yes     |
++--------+----------------------+-----------------+---------+
+
+
+Limits
+-------- 
+
+Accounts are configured with default thresholds, or limits, that manage
+capacity and prevent abuse of the system. The system recognizes default rate limits 
+and absolute limits.
+
+
+.. _cqueues-dg-api-info-limits-ratelimits:
+
+Rate limits
+~~~~~~~~~~~~~~~~~~~
+
+Rate limits are thresholds that control the frequency at which the user can issue specific
+API requests.  Limits are reset after a certain amount of time passes. 
+
+With Cloud Queues, you can send over 25 million requests a day per
+project ID (approximately 300 requests per second).
+
+If your application slightly exceeds the rate limit, the Cloud Queues
+service throttles your requests. The requests will take longer to
+perform and will have more latency. If your application greatly exceeds
+the 300 request per second rate limit, the API returns the HTTP response
+code 429 Too Many Requests. If this occurs, reduce the application's
+request rate to the Cloud Queues API by pausing slightly between each
+request. If your application continues to hit this limit and you cannot
+slow down the request rate, please contact Rackspace Cloud support.
+
+
+.. note:: 
+          If the default limits are too low for your particular application,
+          please contact Rackspace Cloud support to request an increase. All
+          requests require reasonable justification.
+
+Absolute limits
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Absolute limits are fixed. Absolute limits control the total number of specific objects 
+that the user can possess simultaneously.
+
+The following table provides details about the absolute limits for the
+Cloud Queues API.
+
+**Table Absolute limits**
+
++------------------------+------------------------------------------------------------+
+| Type                   | Description                        | Limit                 |
++========================+====================================+=======================+
+| Limits on messages     | Number of queue records per page   | 1 - 1000              |
+| and queues per request | of results when listing queues     |                       |
+|                        +------------------------------------+-----------------------+
+|                        | Number of messages per page        | 1 - 25                |
+|                        | of results when listing messages   |                       |
+|                        +------------------------------------+-----------------------+
+|                        | Number of messages that can be     | 1 - 25                |
+|                        | posted in a single request         |                       |
+|                        +------------------------------------+-----------------------+
+|                        | Number of messages that can be     | 1 - 100               |
+|                        | claimed at one time                |                       |
+|                        +------------------------------------+-----------------------+
+|                        | Number of messages that can be     | 1 - 25                |
+|                        | deleted in a single bulk delete    |                       |
+|                        | request                            |                       |
+|                        +------------------------------------+-----------------------+
+|                        | Number of messages that can be     | 1 - 25                |
+|                        | deleted in a get by ID request     |                       |
++------------------------+------------------------------------+-----------------------+
+|      Time limits       | Valid range for a message TTL      | 60 - 1209600          |
+|                        |                                    | (1 minute to 14 days) | 
+|                        |                                    | 14 days)              |
+|                        +------------------------------------+-----------------------+
+|                        | Valid range for a claim TTL        | 60 - 43200 seconds    |
+|                        |                                    | (1 minute to 12 hours)|
+|                        +------------------------------------+-----------------------+
+|                        | Valid range for a claim grace      | 60 - 43200 seconds    |
+|                        | period                             | (1 minute to 12 hours)|
++------------------------+------------------------------------+-----------------------+
+|      Data limits       | Queue metadata JSON                | Cannot exceed 262144  |
+|                        |                                    | bytes, including      |
+|                        |                                    | whitespace (256 KB)   |
++------------------------+------------------------------------+-----------------------+
+|                        | Message body JSON                  | Cannot exceed 262144  |
+|                        |                                    | bytes, including      |
+|                        |                                    | whitespace (256 KB)   |
++------------------------+------------------------------------+-----------------------+
+
+
+.. note:: 
+          For the 256 KB data limit for the message body JSON, if multiple
+          messages are included in the request, this limit also applies to the sum
+          of the message bodies added together. For example, you may have one
+          message body of 256 KB, or up to 10 messages for which the sum of the 
+          message bodies is 256 KB. A 400 error is triggered if a single message
+          body or the sum of multiple message bodies exceed 256 KB in a single
+          request.
+
+Common headers
+--------------------
+
+Each request to the Cloud Queues API must include certain standard and
+extended HTTP headers. These headers provide host, agent,
+authentication, and other pertinent information to the server. The
+following table provides the common headers used by the API.
+
+**Table Common headers**
+
++-----------------------+----------------------------------------------------+
+| Header                | Description                                        |
++=======================+====================================================+
+| Host                  | Host name of the API                               |
++-----------------------+----------------------------------------------------+
+| Date                  | Current date and time                              |
++-----------------------+----------------------------------------------------+
+| Accept                | Media type desired; initially, only                |
+|                       | ``application/json`` is supported. **Note: The     |
+|                       | ``Accept`` header is required.**                   |
++-----------------------+----------------------------------------------------+
+| Accept-Encoding       | Specifies that the agent accepts gzip-encoded      |
+|                       | response bodies                                    |
++-----------------------+----------------------------------------------------+
+| Content-Type          | ``application/json``                               |
++-----------------------+----------------------------------------------------+
+| Content-Length        | For **POST** or **PUT** requests, the length in    |
+|                       | bytes of the message document being submitted      |
++-----------------------+----------------------------------------------------+
+| X-Auth-Token          | Auth token                                         |
++-----------------------+----------------------------------------------------+
+| X-Project-Id          | An ID for a project to which the value of          |
+|                       | X-Auth-Token grants access. Queues are created     |
+|                       | under this project.                                |
++-----------------------+----------------------------------------------------+
+| Client-ID             | A UUID for each client instance. The UUID must be  |
+|                       | submitted in its canonical form (for example,      |
+|                       | 3381af92-2b9e-11e3-b191-71861300734c). The client  |
+|                       | generates the Client-ID once. Client-ID persists   |
+|                       | between restarts of the client so the client       |
+|                       | should reuse that same Client-ID. Client-IDs       |
+|                       | messages keep track of who posted them. **Note:    |
+|                       | All message-related operations require the use of  |
+|                       | ``Client-ID`` in the headers to ensure that        |
+|                       | messages are not echoed back to the client that    |
+|                       | posted them, unless the client explicitly requests |
+|                       | this.** If you choose to use your own HTTP tools   |
+|                       | to communicate with the Cloud Queues API, you must |
+|                       | manage your own Client-IDs.                        |
++-----------------------+----------------------------------------------------+
+
+Date and time format
+----------------------------
+
+For the display and consumption of date and time values, the Cloud
+Queues service uses a date format that complies with ISO 8601.
+ 
+Service date and time format
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: 
+
+    yyyy-MM-dd'T'HH:mm:ss.SSSZ
+
+
+For example, May 19, 2013 at 8:07:08 A.M., GMT-5 would have the
+following format:
+
+.. code:: 
+
+    2013-05-19T08:07:08-05:00
+
+
+Date and time format codes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++------+-----------------------------------------------------------+
+| yyyy | Four digit year                                           |
++------+-----------------------------------------------------------+
+| MM   | Two digit month                                           |
++------+-----------------------------------------------------------+
+| DD   | Two digit day                                             |
++------+-----------------------------------------------------------+
+| T    | Separator for date/time                                   |
++------+-----------------------------------------------------------+
+| HH   | Two digit hour (00-23)                                    |
++------+-----------------------------------------------------------+
+| mm   | Two digit minute                                          |
++------+-----------------------------------------------------------+
+| ss   | Two digit second                                          |
++------+-----------------------------------------------------------+
+| Z    | RFC 8601 timezone (offset from GMT). If Z is not replaced |
+|      | with the offset from GMT, it indicates a 00:00 offset.    |
++------+-----------------------------------------------------------+
+
+
+Faults
+------------
+
+If any Cloud Queues request results in an error, the queuing service
+returns an appropriate 4xx or 5xx HTTP status code, and the following
+information in the body:
+
+-  Title
+
+-  Description
+
+-  Internal code
+
+-  Link to more information
+
+An example of an error message follows.
+
+ 
+**Example  Error message example**
+
+.. code:: 
+
+    HTTP/1.1 400 Bad Request
+    Content-Type: application/json
+
+.. code:: 
+
+    {
+       "title":"Unsupported limit",
+       "description":"The given limit cannot be negative, and cannot be greater than 50.",
+       "code":1092,
+       "link":{
+          "rel":"help",
+          "href":"http://docs.example.com/messages#limit",
+          "text":"API documentation for the limit parameter"
+       }
+    }
+
+
+Error information for each operation is included in the API operations reference.
