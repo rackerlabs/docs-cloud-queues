@@ -114,7 +114,7 @@ between user roles in the Control Panel are resolved:
 |                                 |                       | in the Control Panel?       |
 +=================================+=======================+=============================+
 | User is assigned the following  | Appears that the user | Yes, Cloud Queues           |
-| roles: multiproduct **observer**| has only the          | only. The user ha           |
+| roles: multiproduct **observer**| has only the          | only. The user has          |
 | and Cloud Queues                | multiproduct          | **observer** role for the   |
 | **admin**                       | **observer** role     | rest of the products.       |
 +---------------------------------+-----------------------+-----------------------------+
