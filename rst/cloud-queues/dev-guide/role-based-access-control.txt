@@ -53,7 +53,7 @@ access to the Cloud Queues product.
 
 .. _queues-rbac-product-roles-and-capabilities:
 
-** Table: Cloud Queues product roles and capabilities**
+**Table: Cloud Queues product roles and capabilities**
 
 +--------------------------------------+--------------------------------------+
 | Role name                            | Role permissions                     |
