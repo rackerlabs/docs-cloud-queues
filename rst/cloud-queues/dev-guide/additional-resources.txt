@@ -11,7 +11,7 @@ For additional product, documentation, and support information, visit
 Rackspace website.
 
 For information about getting started using Cloud Queues, refer to the 
-`Cloud Queues Getting Started Guide <http://docs.rackspace.com/queues/qpi/v1.0/cq-gettingstarted/content/cq_Overview.html>`__. 
+`Cloud Queues Getting Started Guide <http://docs.rackspace.com>`__. 
 
 Email all support questions to the `Cloud Queues team <cloudqueues@rackspace.com>`_ .
 
