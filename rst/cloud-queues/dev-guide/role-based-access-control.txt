@@ -7,12 +7,12 @@ Role Based Access Control (RBAC) restricts access to the capabilities of
 Rackspace Cloud services, including the Cloud Queues API, to authorized
 users only. RBAC enables Rackspace Cloud customers to specify which
 account users of their Cloud account have access to which Cloud Queues
-API service capabilities, based on `roles defined by
-Rackspace <queues-dg-rbac-roles-available>`_. The permissions to perform
-certain operations in Cloud Queues API – create, read, update, delete –
+API service capabilities, based on 
+`roles defined by Rackspace <queues-dg-rbac-roles-available>`. 
+The permissions to perform certain operations in Cloud Queues
+API – create, read, update, delete –
 are assigned to specific roles, and these roles can be assigned by the
 Cloud account admin user to account users of the account.
-
 
 .. _queues-dg-rbac-assign-roles:
 
@@ -114,7 +114,7 @@ between user roles in the Control Panel are resolved:
 |                                 |                       | in the Control Panel?       |
 +=================================+=======================+=============================+
 | User is assigned the following  | Appears that the user | Yes, Cloud Queues           |
-| roles: multiproduct **observer**| has only the          | only. The user ha           |
+| roles: multiproduct **observer**| has only the          | only. The user has          |
 | and Cloud Queues                | multiproduct          | **observer** role for the   |
 | **admin**                       | **observer** role     | rest of the products.       |
 +---------------------------------+-----------------------+-----------------------------+
@@ -122,7 +122,7 @@ between user roles in the Control Panel are resolved:
 | roles: multiproduct             | has only the          | The Cloud Queues            |
 | **admin** and Cloud Queues      | multiproduct          | **observer** role is        |
 | **observer**                    | **admin** role.       | ignored.                    |
-+---------------------------------+-----------------------------------------------------+
++---------------------------------+-----------------------+-----------------------------+
 
 .. _queues-dg-rbac-permissions-matrix:
 
