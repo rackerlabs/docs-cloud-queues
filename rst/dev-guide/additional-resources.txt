@@ -1,0 +1,23 @@
+.. _queues-dg-additional-resources:
+
+Additional resources
+~~~~~~~~~~~~~~~~~~~~~~~
+
+You can download the most current version of this document from the Rackspace Cloud 
+website at http://docs.rackspace.com/.
+
+For additional product, documentation, and support information, visit
+`Cloud Queues/ <http://www.rackspace.com/cloud/queues/>`__ on the
+Rackspace website.
+
+For information about getting started using Cloud Queues, refer to the 
+`Cloud Queues Getting Started Guide <http://docs.rackspace.com>`__. 
+
+Email all support questions to the `Cloud Queues team <cloudqueues@rackspace.com>`_ .
+
+You can follow Rackspace updates and announcements on `Twitter <http://www.twitter.com/rackspace>`__.
+
+This API uses standard HTTP 1.1 response codes as documented in `RFC
+2616, 10 Status Code Definitions <http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html>`__.
+
+.. _Cloud Queues team: cloudqueues@rackspace.com
