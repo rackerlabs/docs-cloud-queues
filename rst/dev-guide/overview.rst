@@ -38,8 +38,6 @@ messages, and more.
 
 .. include:: additional-resources.txt
 
-.. include:: api-contract-version.txt 
-
 .. include:: api-contract-changes.txt
 
 .. include:: pricing-service-level.txt
