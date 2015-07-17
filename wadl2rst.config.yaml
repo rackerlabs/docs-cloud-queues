@@ -1,0 +1,3 @@
+./src/wadl/cq-devguide.wadl:
+   title: Queues
+   output_directory: ./rst/dev-guide/api-operations
