@@ -1,32 +1,31 @@
-=============================================================================
-Claim Messages -  Queues
-=============================================================================
+
+.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
 
 Claim Messages
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Request <POST_claim_messages_v1_project_id_queues_queue_name_claims.rst#request>`__
-`Response <POST_claim_messages_v1_project_id_queues_queue_name_claims.rst#response>`__
-
-.. code-block:: javascript
+.. code::
 
     POST /v1/{project_id}/queues/{queue_name}/claims
 
-Claims a set of messages from a specified queue.
+Claims a set of messages from a 				specified queue.
 
-This operation claims a set of messages (up to the value of the ``limit`` parameter) from oldest to newest and skips any messages that are already claimed. If no unclaimed messages are available, the API returns a ``204 No Content`` message.
+This operation claims a set of messages (up to the 				value of the ``limit`` parameter) from oldest 				to newest and skips any messages that are already 				claimed. If no unclaimed messages are available, the 				API returns a ``204 No Content`` 				message.
 
-When a client (worker) finishes processing a message, it should delete the message before the claim expires to ensure that the message is processed only once. As part of the delete operation, workers should specify the claim ID (which is best done by simply using the provided href). If workers perform these actions, then if a claim simply expires, the server can return an error and notify the worker of the race condition. This action gives the worker a chance to roll back its own processing of the given message because another worker can claim the message and process it.
+When a client (worker) finishes processing a 				message, it should delete the message before the claim 				expires to ensure that the message is processed only 				once. As part of the delete operation, workers should 				specify the claim ID (which is best done by simply 				using the provided href). If workers perform these 				actions, then if a claim simply expires, the server 				can return an error and notify the worker of the race 				condition. This action gives the worker a chance to 				roll back its own processing of the given message 				because another worker can claim the message and 				process it.
 
-The age given for a claim is relative to the server's clock. The claim's age is useful for determining how quickly messages are getting processed and whether a given message's claim is about to expire.
+The age given for a claim is relative to the 				server's clock. The claim's age is useful for 				determining how quickly messages are getting processed 				and whether a given message's claim is about to 				expire.
 
-When a claim expires, it is released. If the original worker failed to process the message, another client worker can then claim the message.
+When a claim expires, it is released. If the 				original worker failed to process the message, another 				client worker can then claim the message.
 
-Note that claim creation is best-effort, meaning the worker may claim and return less than the requested number of messages.
+.. note::
+   Note that claim creation is best-effort, 					meaning the worker may claim and return less than 					the requested number of messages.
+   
+   
 
-The ``ttl`` parameter specifies how long the server waits before releasing the claim. The ttl value must be between 60 and 43200 seconds (12 hours). You must include a value for this parameter in your request.
+The ``ttl`` parameter specifies how long 				the server waits before releasing the claim. The ttl 				value must be between 60 and 43200 seconds (12 hours). 				You must include a value for this parameter in your 				request.
 
-The ``grace`` parameter specifies the message grace period in seconds. The value of ``grace`` value must be between 60 and 43200 seconds (12 hours). You must include a value for this parameter in your request. To deal with workers that have stopped responding (for up to 1209600 seconds or 14 days, including claim lifetime), the server extends the lifetime of claimed messages to be at least as long as the lifetime of the claim itself, plus the specified grace period. If a claimed message would normally live longer than the grace period, its expiration is not adjusted.
+The ``grace`` parameter specifies the 				message grace period in seconds. The value of ``grace`` value must be between 60 and 				43200 seconds (12 hours). You must include a value for 				this parameter in your request. To deal with workers 				that have stopped responding (for up to 1209600 				seconds or 14 days, including claim lifetime), the 				server extends the lifetime of claimed messages to be 				at least as long as the lifetime of the claim itself, 				plus the specified grace period. If a claimed message 				would normally live longer than the grace period, its 				expiration is not adjusted.
 
 
 
@@ -128,10 +127,10 @@ This table shows the query parameters for the request:
 |Name                      |Type                     |Description              |
 +==========================+=========================+=========================+
 |limit                     |xsd:integer *(Required)* |Specifies the number of  |
-|                          |                         |messages toreturn, up to |
-|                          |                         |100 messages. If you do  |
-|                          |                         |not specify a value      |
-|                          |                         |for``limit``, Cloud      |
+|                          |                         |messages to return, up   |
+|                          |                         |to 100 messages. If you  |
+|                          |                         |do not specify a value   |
+|                          |                         |for ``limit``, Cloud     |
 |                          |                         |Queues claims 10         |
 |                          |                         |messages. Once the       |
 |                          |                         |messages are             |
@@ -144,7 +143,7 @@ This table shows the query parameters for the request:
 |                          |                         |available. The server    |
 |                          |                         |might claim and return   |
 |                          |                         |less than the requested  |
-|                          |                         |number of messages.If    |
+|                          |                         |number of messages. If   |
 |                          |                         |you specify a value for  |
 |                          |                         |the limit parameter and  |
 |                          |                         |the value is less than   |
@@ -194,7 +193,7 @@ Response
 
 
 
-**Example Claim Messages: JSON request**
+**Example Claim Messages: JSON response**
 
 
 .. code::

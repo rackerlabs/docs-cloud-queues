@@ -1,20 +1,16 @@
-=============================================================================
-Query Claim -  Queues
-=============================================================================
 
-Query Claim
+.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
+
+Delete Queue
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Request <GET_query_claim_v1_project_id_queues_queue_name_claims_claimid_.rst#request>`__
-`Response <GET_query_claim_v1_project_id_queues_queue_name_claims_claimid_.rst#response>`__
+.. code::
 
-.. code-block:: javascript
+    DELETE /v1/{project_id}/queues/{queue_name}
 
-    GET /v1/{project_id}/queues/{queue_name}/claims/{claimId}
+Deletes the specified queue.
 
-Queries the specified claim for a specified queue.
-
-This operation queries the specified claim for the specified queue. Claims with malformed IDs or claims that are not found by ID are ignored.
+This operation immediately deletes a queue and all 				of its existing messages.
 
 
 
@@ -24,27 +20,20 @@ This table shows the possible response codes for this operation:
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
 +==========================+=========================+=========================+
-|200                       |OK                       |Success. The request     |
-|                          |                         |might have used invalid  |
-|                          |                         |URI parameters, but      |
-|                          |                         |invalid parameters were  |
-|                          |                         |ignored.                 |
+|200                       |OK                       |The URI has invalid      |
+|                          |                         |parameters. The invalid  |
+|                          |                         |parameters are ignored.  |
 +--------------------------+-------------------------+-------------------------+
-|400                       |Bad request              |The request had missing  |
-|                          |                         |header fields.           |
+|204                       |No content               |Success.                 |
++--------------------------+-------------------------+-------------------------+
+|204                       |No content               |Delete of a non-existing |
+|                          |                         |queue.                   |
++--------------------------+-------------------------+-------------------------+
+|400                       |Bad request              |The header has missing   |
+|                          |                         |fields.                  |
 +--------------------------+-------------------------+-------------------------+
 |401                       |Unauthorized             |The request header has   |
 |                          |                         |an invalid auth token.   |
-+--------------------------+-------------------------+-------------------------+
-|404                       |Not found                |The request included an  |
-|                          |                         |expired claim.           |
-+--------------------------+-------------------------+-------------------------+
-|404                       |Not found                |The request included a   |
-|                          |                         |claim from a non-        |
-|                          |                         |existing queue.          |
-+--------------------------+-------------------------+-------------------------+
-|404                       |Not found                |The request included a   |
-|                          |                         |non-existing claim ID.   |
 +--------------------------+-------------------------+-------------------------+
 |406                       |Not acceptable           |The request header has   |
 |                          |                         |Accept                   |
@@ -72,8 +61,6 @@ This table shows the URI parameters for the request:
 |             |           |length, and it is limited to US-ASCII letters, digits,      |
 |             |           |underscores, and hyphens.                                   |
 +-------------+-----------+------------------------------------------------------------+
-|{claimId}    |xsd:string |The claim ID.                                               |
-+-------------+-----------+------------------------------------------------------------+
 
 
 
@@ -82,16 +69,15 @@ This table shows the URI parameters for the request:
 
 
 
-**Example Query Claim: JSON request**
+**Example Delete Queue: JSON request**
 
 
 .. code::
 
-    GET /v1/queues/demoqueue/claims/51db7067821e727dc24df754 HTTP/1.1
+    DELETE /v1/queues/demoqueue HTTP/1.1
     Host: ord.queues.api.rackspacecloud.com
     Content-type: application/json
     X-Auth-Token: 0f6e9f63600142f0a970911583522217
-    Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830
     Accept: application/json
     X-Project-Id: 806067
 
@@ -103,13 +89,10 @@ Response
 
 
 
-**Example Query Claim: JSON request**
+**Example Delete Queue: JSON response**
 
 
 .. code::
 
-    HTTP/1.1 200 OK
-    Content-Length: 263
-    Content-Type: application/json; charset=utf-8
-    Content-Location: /v1/queues/demoqueue/claims/51db7067821e727dc24df754
+    HTTP/1.1 204 No Content
 

@@ -1,20 +1,28 @@
-=============================================================================
-Delete Queue -  Queues
-=============================================================================
 
-Delete Queue
+.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
+
+Show Message Details
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Request <DELETE_delete_queue_v1_project_id_queues_queue_name_.rst#request>`__
-`Response <DELETE_delete_queue_v1_project_id_queues_queue_name_.rst#response>`__
+.. code::
 
-.. code-block:: javascript
+    GET /v1/{project_id}/queues/{queue_name}/messages/{messageId}
 
-    DELETE /v1/{project_id}/queues/{queue_name}
+Shows details for the specified message from the 				specified queue.
 
-Deletes the specified queue.
+This operation shows details for the specified message from the 				specified queue.
 
-This operation immediately deletes a queue and all of its existing messages.
+If either the message ID is malformed or 				nonexistent, no message is returned.
+
+Message body parameters are defined as 								follows: 
+
+* ``href`` 							is an opaque relative URI that the client 							can use to uniquely identify a message 							resource and interact with it.
+* ``ttl`` 							is the TTL that was set on the message 							when it was posted. The message expires 							after (ttl - age) seconds.
+* ``age`` 							is the number of seconds relative to the 							server's 								clock.
+* ``body`` 							is the arbitrary document that was 							submitted with the original request to 							post the message.
+
+
+
 
 
 
@@ -24,20 +32,30 @@ This table shows the possible response codes for this operation:
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
 +==========================+=========================+=========================+
-|200                       |OK                       |The URI has invalid      |
-|                          |                         |parameters. The invalid  |
+|200                       |OK                       |Success. The request     |
+|                          |                         |found a matching         |
+|                          |                         |message. The URI might   |
+|                          |                         |have invalid parameters, |
+|                          |                         |but the invalid          |
 |                          |                         |parameters are ignored.  |
-+--------------------------+-------------------------+-------------------------+
-|204                       |No content               |Success.                 |
-+--------------------------+-------------------------+-------------------------+
-|204                       |No content               |Delete of a non-existing |
-|                          |                         |queue.                   |
 +--------------------------+-------------------------+-------------------------+
 |400                       |Bad request              |The header has missing   |
 |                          |                         |fields.                  |
 +--------------------------+-------------------------+-------------------------+
 |401                       |Unauthorized             |The request header has   |
 |                          |                         |an invalid auth token.   |
++--------------------------+-------------------------+-------------------------+
+|404                       |Not found                |An attempt was made to   |
+|                          |                         |request a message from a |
+|                          |                         |non-existing queue.      |
++--------------------------+-------------------------+-------------------------+
+|404                       |Not found                |An attempt was made to   |
+|                          |                         |request a non-existing   |
+|                          |                         |message.                 |
++--------------------------+-------------------------+-------------------------+
+|404                       |Not found                |An attempt was made to   |
+|                          |                         |request an expired       |
+|                          |                         |message.                 |
 +--------------------------+-------------------------+-------------------------+
 |406                       |Not acceptable           |The request header has   |
 |                          |                         |Accept                   |
@@ -65,6 +83,8 @@ This table shows the URI parameters for the request:
 |             |           |length, and it is limited to US-ASCII letters, digits,      |
 |             |           |underscores, and hyphens.                                   |
 +-------------+-----------+------------------------------------------------------------+
+|{messageId}  |xsd:string |The message ID.                                             |
++-------------+-----------+------------------------------------------------------------+
 
 
 
@@ -73,15 +93,16 @@ This table shows the URI parameters for the request:
 
 
 
-**Example Delete Queue: JSON request**
+**Example Show Message Details: JSON request**
 
 
 .. code::
 
-    DELETE /v1/queues/demoqueue HTTP/1.1
+    GET /v1/queues/demoqueue/messages/51db6ecac508f17ddc9242ad HTTP/1.1
     Host: ord.queues.api.rackspacecloud.com
     Content-type: application/json
     X-Auth-Token: 0f6e9f63600142f0a970911583522217
+    Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830
     Accept: application/json
     X-Project-Id: 806067
 
@@ -93,10 +114,13 @@ Response
 
 
 
-**Example Delete Queue: JSON request**
+**Example Show Message Details: JSON response**
 
 
 .. code::
 
-    HTTP/1.1 204 No Content
+    HTTP/1.1 200 OK
+    Content-Length: 126
+    Content-Type: application/json; charset=utf-8
+    Content-Location: /v1/queues/demoqueue/messages/51db6ecac508f17ddc9242ad
 

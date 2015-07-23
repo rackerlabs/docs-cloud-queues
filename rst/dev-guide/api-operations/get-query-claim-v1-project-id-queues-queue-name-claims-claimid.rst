@@ -1,22 +1,16 @@
-=============================================================================
-Release Claim -  Queues
-=============================================================================
 
-Release Claim
+.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
+
+Query Claim
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Request <DELETE_release_claim_v1_project_id_queues_queue_name_claims_claimid_.rst#request>`__
-`Response <DELETE_release_claim_v1_project_id_queues_queue_name_claims_claimid_.rst#response>`__
+.. code::
 
-.. code-block:: javascript
+    GET /v1/{project_id}/queues/{queue_name}/claims/{claimId}
 
-    DELETE /v1/{project_id}/queues/{queue_name}/claims/{claimId}
+Queries the specified claim for a 				specified queue.
 
-Releases the specified claim for the specified queue.
-
-This operation immediately releases a claim, making any remaining, undeleted) messages that are associated with the claim available to other workers. Claims with malformed IDs or claims that are not found by ID are ignored.
-
-This operation is useful when a worker is performing a graceful shutdown, fails to process one or more messages, or is taking longer than expected to process messages, and wants to make the remainder of the messages available to other workers.
+This operation queries the specified claim for the 				specified queue. Claims with malformed IDs or claims 				that are not found by ID are ignored.
 
 
 
@@ -26,28 +20,27 @@ This table shows the possible response codes for this operation:
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
 +==========================+=========================+=========================+
-|204                       |No content               |Success.                 |
-+--------------------------+-------------------------+-------------------------+
-|200                       |OK                       |The request used invalid |
-|                          |                         |URI parameters. The      |
-|                          |                         |extra parameters are     |
+|200                       |OK                       |Success. The request     |
+|                          |                         |might have used invalid  |
+|                          |                         |URI parameters, but      |
+|                          |                         |invalid parameters were  |
 |                          |                         |ignored.                 |
 +--------------------------+-------------------------+-------------------------+
-|204                       |No content               |The request included an  |
-|                          |                         |expired claim.           |
-+--------------------------+-------------------------+-------------------------+
-|204                       |No content               |The request included a   |
-|                          |                         |non-existing claim.      |
-+--------------------------+-------------------------+-------------------------+
-|400                       |Bad request              |The request was missing  |
+|400                       |Bad request              |The request had missing  |
 |                          |                         |header fields.           |
 +--------------------------+-------------------------+-------------------------+
 |401                       |Unauthorized             |The request header has   |
 |                          |                         |an invalid auth token.   |
 +--------------------------+-------------------------+-------------------------+
+|404                       |Not found                |The request included an  |
+|                          |                         |expired claim.           |
++--------------------------+-------------------------+-------------------------+
 |404                       |Not found                |The request included a   |
 |                          |                         |claim from a non-        |
 |                          |                         |existing queue.          |
++--------------------------+-------------------------+-------------------------+
+|404                       |Not found                |The request included a   |
+|                          |                         |non-existing claim ID.   |
 +--------------------------+-------------------------+-------------------------+
 |406                       |Not acceptable           |The request header has   |
 |                          |                         |Accept                   |
@@ -85,12 +78,12 @@ This table shows the URI parameters for the request:
 
 
 
-**Example Release Claim: JSON request**
+**Example Query Claim: JSON request**
 
 
 .. code::
 
-    DELETE /v1/480924/queues/demoqueue/claims/51db7067821e727dc24df754 HTTP/1.1
+    GET /v1/queues/demoqueue/claims/51db7067821e727dc24df754 HTTP/1.1
     Host: ord.queues.api.rackspacecloud.com
     Content-type: application/json
     X-Auth-Token: 0f6e9f63600142f0a970911583522217
@@ -106,10 +99,13 @@ Response
 
 
 
-**Example Release Claim: JSON request**
+**Example Query Claim: JSON response**
 
 
 .. code::
 
-    HTTP/1.1 204 No Content
+    HTTP/1.1 200 OK
+    Content-Length: 263
+    Content-Type: application/json; charset=utf-8
+    Content-Location: /v1/queues/demoqueue/claims/51db7067821e727dc24df754
 

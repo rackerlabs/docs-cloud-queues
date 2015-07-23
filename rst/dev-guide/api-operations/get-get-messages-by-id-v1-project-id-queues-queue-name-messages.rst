@@ -1,24 +1,28 @@
-=============================================================================
-Get Messages By Id -  Queues
-=============================================================================
+
+.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
 
 Get Messages By Id
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Request <GET_get_messages_by_id_v1_project_id_queues_queue_name_messages.rst#request>`__
-`Response <GET_get_messages_by_id_v1_project_id_queues_queue_name_messages.rst#response>`__
-
-.. code-block:: javascript
+.. code::
 
     GET /v1/{project_id}/queues/{queue_name}/messages
 
-Gets the specified set of messages from the specified queue.
+Gets the specified set of messages 				from the specified queue.
 
-This operation provides a more efficient way to query multiple messages compared to using a series of individual ``GET`` s. Note that the list of IDs cannot exceed 20. If a malformed ID or a nonexistent message ID is provided, it is ignored, and the remaining messages are returned.
+This operation provides a more efficient way to 				query multiple messages compared to using a series of 				individual ``GET`` s. Note that the list 				of IDs cannot exceed 20. If a malformed ID or a 				nonexistent message ID is provided, it is ignored, and 				the remaining messages are returned.
 
-Unlike the get messages operation, a client's own messages are always returned in this operation. If you use the ids parameter, the echo parameter is not used and is ignored if it is specified.
+Unlike the get messages operation, a client's own 				messages are always returned in this operation. If you 				use the ids parameter, the echo parameter is not used 				and is ignored if it is specified.
 
-The message body parameters are defined as follows: ``href`` is an opaque relative URI that the client can use to uniquely identify a message resource and interact with it. ``ttl`` is the TTL that was set on the message when it was posted. The message expires after (ttl - age) seconds. ``age`` is the number of seconds relative to the server's clock. ``body`` is the arbitrary document that was submitted with the original request to post the message.
+The message body parameters are defined as 								follows: 
+
+* ``href`` 							is an opaque relative URI that the client 							can use to uniquely identify a message 							resource and interact with it.
+* ``ttl`` 							is the TTL that was set on the message 							when it was posted. The message expires 							after (ttl - age) seconds.
+* ``age`` 							is the number of seconds relative to the 							server's 								clock.
+* ``body`` 							is the arbitrary document that was 							submitted with the original request to 							post the message.
+
+
+
 
 
 
@@ -92,10 +96,10 @@ This table shows the query parameters for the request:
 |Name                      |Type                     |Description              |
 +==========================+=========================+=========================+
 |ids                       |xsd:string *(Required)*  |Specifies the IDs of the |
-|                          |                         |messagesto get. Format   |
+|                          |                         |messages to get. Format  |
 |                          |                         |multiple message ID      |
-|                          |                         |values byseparating them |
-|                          |                         |with commas (comma-      |
+|                          |                         |values by separating     |
+|                          |                         |them with commas (comma- |
 |                          |                         |separated).              |
 +--------------------------+-------------------------+-------------------------+
 
@@ -126,7 +130,7 @@ Response
 
 
 
-**Example Get Messages By Id: JSON request**
+**Example Get Messages By Id: JSON response**
 
 
 .. code::

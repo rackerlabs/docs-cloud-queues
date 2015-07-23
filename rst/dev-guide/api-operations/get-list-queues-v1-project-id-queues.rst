@@ -1,22 +1,18 @@
-=============================================================================
-List Queues -  Queues
-=============================================================================
+
+.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
 
 List Queues
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Request <GET_list_queues_v1_project_id_queues.rst#request>`__
-`Response <GET_list_queues_v1_project_id_queues.rst#response>`__
-
-.. code-block:: javascript
+.. code::
 
     GET /v1/{project_id}/queues
 
 Lists queues.
 
-This operation lists queues for the project. The queues are sorted alphabetically by name.
+This operation lists queues for the project. The 				queues are sorted alphabetically by name.
 
-A request to list queues when you have no queues in your account returns 204, instead of 200, because there was no information to send back.
+A request to list queues when you have no queues in 				your account returns 204, instead of 200, because 				there was no information to send back.
 
 
 
@@ -29,10 +25,10 @@ This table shows the possible response codes for this operation:
 |200                       |OK                       |Success. The URI might   |
 |                          |                         |have an invalid          |
 |                          |                         |parameter (something     |
-|                          |                         |other thanlimit, marker, |
-|                          |                         |or detailed), but the    |
-|                          |                         |invalid parameter is     |
-|                          |                         |ignored.                 |
+|                          |                         |other than limit,        |
+|                          |                         |marker, or detailed),    |
+|                          |                         |but the invalid          |
+|                          |                         |parameter is ignored.    |
 +--------------------------+-------------------------+-------------------------+
 |204                       |No content               |You have no queues in    |
 |                          |                         |your account, or the     |
@@ -83,26 +79,27 @@ This table shows the query parameters for the request:
 |Name                      |Type                     |Description              |
 +==========================+=========================+=========================+
 |marker                    |xsd:string *(Required)*  |Specifies the name of    |
-|                          |                         |the lastqueue received   |
+|                          |                         |the last queue received  |
 |                          |                         |in a previous request,   |
-|                          |                         |or none toget the first  |
+|                          |                         |or none to get the first |
 |                          |                         |page of results.         |
 +--------------------------+-------------------------+-------------------------+
 |limit                     |xsd:integer *(Required)* |Specifies the number of  |
-|                          |                         |queues toreturn. The     |
+|                          |                         |queues to return. The    |
 |                          |                         |default value for the    |
-|                          |                         |number of queuesreturned |
-|                          |                         |is 10. If you do not     |
-|                          |                         |specify thisparameter,   |
-|                          |                         |the default number of    |
-|                          |                         |queues isreturned.       |
+|                          |                         |number of queues         |
+|                          |                         |returned is 10. If you   |
+|                          |                         |do not specify this      |
+|                          |                         |parameter, the default   |
+|                          |                         |number of queues is      |
+|                          |                         |returned.                |
 +--------------------------+-------------------------+-------------------------+
 |detailed                  |xsd:boolean *(Required)* |Determines whether queue |
-|                          |                         |metadatais included in   |
+|                          |                         |metadata is included in  |
 |                          |                         |the response. The        |
-|                          |                         |default value forthis    |
-|                          |                         |parameter is``false``,   |
-|                          |                         |whichexcludes the        |
+|                          |                         |default value for this   |
+|                          |                         |parameter is ``false``,  |
+|                          |                         |which excludes the       |
 |                          |                         |metadata.                |
 +--------------------------+-------------------------+-------------------------+
 
@@ -132,7 +129,7 @@ Response
 
 
 
-**Example List Queues: JSON request**
+**Example List Queues: JSON response**
 
 
 .. code::

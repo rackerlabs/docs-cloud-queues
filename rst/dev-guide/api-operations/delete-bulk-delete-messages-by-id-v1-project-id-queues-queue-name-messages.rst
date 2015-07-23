@@ -1,22 +1,16 @@
-=============================================================================
-Update Claim -  Queues
-=============================================================================
 
-Update Claim
+.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
+
+Bulk-Delete Messages By Id
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Request <PATCH_update_claim_v1_project_id_queues_queue_name_claims_claimid_.rst#request>`__
-`Response <PATCH_update_claim_v1_project_id_queues_queue_name_claims_claimid_.rst#response>`__
+.. code::
 
-.. code-block:: javascript
+    DELETE /v1/{project_id}/queues/{queue_name}/messages
 
-    PATCH /v1/{project_id}/queues/{queue_name}/claims/{claimId}
+Bulk-deletes for messages.
 
-Updates the specified claim for a specified queue.
-
-This operation updates the specified claim for the specified queue. Claims with malformed IDs or claims that are not found by ID are ignored.
-
-Clients should periodically renew claims during long-running batches of work to avoid losing a claim while processing a message. The client can renew a claim by issuing a ``PATCH`` command to a specific claim resource and including a new TTL for the claim (which can be different from the original TTL). The server resets the age of the claim and applies the new TTL.
+This operation immediately deletes the specified 				messages. If any of the message IDs are malformed or 				non-existent, they are ignored. The remaining valid 				messages IDs are deleted.
 
 
 
@@ -28,34 +22,32 @@ This table shows the possible response codes for this operation:
 +==========================+=========================+=========================+
 |204                       |No content               |Success.                 |
 +--------------------------+-------------------------+-------------------------+
-|200                       |OK                       |The request used invalid |
-|                          |                         |URI parameters.          |
+|204                       |No content               |The request attempts to  |
+|                          |                         |delete a message from a  |
+|                          |                         |non-existing queue.      |
 +--------------------------+-------------------------+-------------------------+
-|400                       |Bad request              |The request included no  |
-|                          |                         |request body.            |
+|204                       |No content               |The request attempts to  |
+|                          |                         |delete a non-existing    |
+|                          |                         |message.                 |
 +--------------------------+-------------------------+-------------------------+
-|400                       |Bad request              |The request included     |
-|                          |                         |invalid JSON in the      |
-|                          |                         |request body.            |
-+--------------------------+-------------------------+-------------------------+
-|400                       |Bad request              |The request included a   |
-|                          |                         |non-JSON request body.   |
-+--------------------------+-------------------------+-------------------------+
-|400                       |Bad request              |The request was missing  |
-|                          |                         |header fields.           |
+|400                       |Bad request              |The header has missing   |
+|                          |                         |fields.                  |
 +--------------------------+-------------------------+-------------------------+
 |401                       |Unauthorized             |The request header has   |
 |                          |                         |an invalid auth token.   |
 +--------------------------+-------------------------+-------------------------+
-|404                       |Not found                |The request included an  |
-|                          |                         |expired claim.           |
+|403                       |Forbidden                |An attempt was made to   |
+|                          |                         |delete messages with an  |
+|                          |                         |expired claim ID.        |
 +--------------------------+-------------------------+-------------------------+
-|404                       |Not found                |The request included a   |
-|                          |                         |claim from a non-        |
-|                          |                         |existing queue.          |
+|403                       |Forbidden                |An attempt was made to   |
+|                          |                         |delete messages with non-|
+|                          |                         |existing claim ID.       |
 +--------------------------+-------------------------+-------------------------+
-|404                       |Not found                |The request included a   |
-|                          |                         |non-existing claim ID.   |
+|403                       |Forbidden                |An attempt was made to   |
+|                          |                         |delete a claimed message |
+|                          |                         |without providing a      |
+|                          |                         |claim ID.                |
 +--------------------------+-------------------------+-------------------------+
 |406                       |Not acceptable           |The request header has   |
 |                          |                         |Accept                   |
@@ -83,8 +75,17 @@ This table shows the URI parameters for the request:
 |             |           |length, and it is limited to US-ASCII letters, digits,      |
 |             |           |underscores, and hyphens.                                   |
 +-------------+-----------+------------------------------------------------------------+
-|{claimId}    |xsd:string |The claim ID.                                               |
-+-------------+-----------+------------------------------------------------------------+
+
+
+
+This table shows the query parameters for the request:
+
++--------------------------+-------------------------+-------------------------+
+|Name                      |Type                     |Description              |
++==========================+=========================+=========================+
+|ids                       |xsd:string *(Required)*  |Specifies the IDs of the |
+|                          |                         |messages to delete.      |
++--------------------------+-------------------------+-------------------------+
 
 
 
@@ -92,13 +93,12 @@ This table shows the URI parameters for the request:
 
 
 
-
-**Example Update Claim: JSON request**
+**Example Bulk-Delete Messages By Id: JSON request**
 
 
 .. code::
 
-    PATCH /v1/queues/demoqueue/claims/51db7067821e727dc24df754 HTTP/1.1 
+    DELETE /v1/queues/demoqueue/messages?ids=50b68a50d6f5b8c8a7c62b01,50b68a50d6f5b8c8a7c62b02 HTTP/1.1
     Host: ord.queues.api.rackspacecloud.com
     Content-type: application/json
     X-Auth-Token: 0f6e9f63600142f0a970911583522217
@@ -114,7 +114,7 @@ Response
 
 
 
-**Example Update Claim: JSON request**
+**Example Bulk-Delete Messages By Id: JSON response**
 
 
 .. code::

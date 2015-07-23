@@ -1,26 +1,18 @@
-=============================================================================
-Set Queue Metadata -  Queues
-=============================================================================
 
-Set Queue Metadata
+.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
+
+Release Claim
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Request <PUT_set_queue_metadata_v1_project_id_queues_queue_name_metadata.rst#request>`__
-`Response <PUT_set_queue_metadata_v1_project_id_queues_queue_name_metadata.rst#response>`__
+.. code::
 
-.. code-block:: javascript
+    DELETE /v1/{project_id}/queues/{queue_name}/claims/{claimId}
 
-    PUT /v1/{project_id}/queues/{queue_name}/metadata
+Releases the specified claim for the 				specified queue.
 
-Sets metadata for the specified queue.
+This operation immediately releases a claim, making 				any remaining, undeleted) messages that are associated 				with the claim available to other workers. Claims with 				malformed IDs or claims that are not found by ID are 				ignored.
 
-This operation sets metadata for the specified queue.
-
-This operation replaces any existing metadata document in its entirety. Ensure that you do not accidentally overwrite existing metadata that you want to retain.
-
-The request body has a limit of 256 KB, including whitespace (when re-serialized as JSON).
-
-The body of the request includes contextual information about the way a particular application interacts with the queue. The document must be valid JSON. (Cloud Queues validates it.)
+This operation is useful when a worker is performing 				a graceful shutdown, fails to process one or more 				messages, or is taking longer than expected to process 				messages, and wants to make the remainder of the 				messages available to other workers.
 
 
 
@@ -32,20 +24,26 @@ This table shows the possible response codes for this operation:
 +==========================+=========================+=========================+
 |204                       |No content               |Success.                 |
 +--------------------------+-------------------------+-------------------------+
-|400                       |Bad request              |The request body is      |
-|                          |                         |empty.                   |
+|200                       |OK                       |The request used invalid |
+|                          |                         |URI parameters. The      |
+|                          |                         |extra parameters are     |
+|                          |                         |ignored.                 |
 +--------------------------+-------------------------+-------------------------+
-|400                       |Bad request              |The request body is      |
-|                          |                         |greater than 64 KB.      |
+|204                       |No content               |The request included an  |
+|                          |                         |expired claim.           |
 +--------------------------+-------------------------+-------------------------+
-|400                       |Bad request              |The request has          |
-|                          |                         |malformed JSON.          |
+|204                       |No content               |The request included a   |
+|                          |                         |non-existing claim.      |
 +--------------------------+-------------------------+-------------------------+
-|400                       |Bad request              |The request body is not  |
-|                          |                         |JSON.                    |
+|400                       |Bad request              |The request was missing  |
+|                          |                         |header fields.           |
 +--------------------------+-------------------------+-------------------------+
-|400                       |Bad request              |The request has a UTF-16 |
-|                          |                         |char JSON body.          |
+|401                       |Unauthorized             |The request header has   |
+|                          |                         |an invalid auth token.   |
++--------------------------+-------------------------+-------------------------+
+|404                       |Not found                |The request included a   |
+|                          |                         |claim from a non-        |
+|                          |                         |existing queue.          |
 +--------------------------+-------------------------+-------------------------+
 |406                       |Not acceptable           |The request header has   |
 |                          |                         |Accept                   |
@@ -73,6 +71,8 @@ This table shows the URI parameters for the request:
 |             |           |length, and it is limited to US-ASCII letters, digits,      |
 |             |           |underscores, and hyphens.                                   |
 +-------------+-----------+------------------------------------------------------------+
+|{claimId}    |xsd:string |The claim ID.                                               |
++-------------+-----------+------------------------------------------------------------+
 
 
 
@@ -81,15 +81,16 @@ This table shows the URI parameters for the request:
 
 
 
-**Example Set Queue Metadata: JSON request**
+**Example Release Claim: JSON request**
 
 
 .. code::
 
-    PUT /v1/queues/demoqueue/metadata HTTP/1.1
+    DELETE /v1/480924/queues/demoqueue/claims/51db7067821e727dc24df754 HTTP/1.1
     Host: ord.queues.api.rackspacecloud.com
     Content-type: application/json
     X-Auth-Token: 0f6e9f63600142f0a970911583522217
+    Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830
     Accept: application/json
     X-Project-Id: 806067
 
@@ -101,11 +102,10 @@ Response
 
 
 
-**Example Set Queue Metadata: JSON request**
+**Example Release Claim: JSON response**
 
 
 .. code::
 
     HTTP/1.1 204 No Content
-    Location: /v1/queues/demoqueue/metadata
 

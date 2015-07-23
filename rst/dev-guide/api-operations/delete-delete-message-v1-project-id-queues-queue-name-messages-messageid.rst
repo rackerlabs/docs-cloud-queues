@@ -1,24 +1,20 @@
-=============================================================================
-Show Message Details -  Queues
-=============================================================================
 
-Show Message Details
+.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
+
+Delete Message
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Request <GET_show_message_details_v1_project_id_queues_queue_name_messages_messageid_.rst#request>`__
-`Response <GET_show_message_details_v1_project_id_queues_queue_name_messages_messageid_.rst#response>`__
+.. code::
 
-.. code-block:: javascript
+    DELETE /v1/{project_id}/queues/{queue_name}/messages/{messageId}
 
-    GET /v1/{project_id}/queues/{queue_name}/messages/{messageId}
+Deletes the specified message from the 				specified queue.
 
-Shows details for the specified message from the specified queue.
+This operation immediately deletes the specified 				message.
 
-This operation shows details for the specified message from the specified queue.
+The ``claim_id`` parameter specifies that 				the message is deleted only if it has the specified 				claim ID and that claim has not expired. This 				specification is useful for ensuring only one worker 				processes any given message. When a worker's claim 				expires before it can delete a message that it has 				processed, the worker must roll back any actions it 				took based on that message because another worker can 				now claim and process the same message.
 
-If either the message ID is malformed or nonexistent, no message is returned.
-
-Message body parameters are defined as follows: ``href`` is an opaque relative URI that the client can use to uniquely identify a message resource and interact with it. ``ttl`` is the TTL that was set on the message when it was posted. The message expires after (ttl - age) seconds. ``age`` is the number of seconds relative to the server's clock. ``body`` is the arbitrary document that was submitted with the original request to post the message.
+If you do not specify ``claim_id``, but the 				message is claimed, the operation fails. You can only 				delete claimed messages by providing an appropriate ``claim_id``.
 
 
 
@@ -28,12 +24,19 @@ This table shows the possible response codes for this operation:
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
 +==========================+=========================+=========================+
-|200                       |OK                       |Success. The request     |
-|                          |                         |found a matching         |
-|                          |                         |message. The URI might   |
-|                          |                         |have invalid parameters, |
-|                          |                         |but the invalid          |
+|204                       |No content               |Success.                 |
++--------------------------+-------------------------+-------------------------+
+|200                       |OK                       |The URI has invalid      |
+|                          |                         |parameters. The invalid  |
 |                          |                         |parameters are ignored.  |
++--------------------------+-------------------------+-------------------------+
+|204                       |No content               |The request attempts to  |
+|                          |                         |delete a message from a  |
+|                          |                         |non-existing queue.      |
++--------------------------+-------------------------+-------------------------+
+|204                       |No content               |The request attempts to  |
+|                          |                         |delete a non-existing    |
+|                          |                         |message.                 |
 +--------------------------+-------------------------+-------------------------+
 |400                       |Bad request              |The header has missing   |
 |                          |                         |fields.                  |
@@ -41,17 +44,18 @@ This table shows the possible response codes for this operation:
 |401                       |Unauthorized             |The request header has   |
 |                          |                         |an invalid auth token.   |
 +--------------------------+-------------------------+-------------------------+
-|404                       |Not found                |An attempt was made to   |
-|                          |                         |request a message from a |
-|                          |                         |non-existing queue.      |
+|403                       |Forbidden                |An attempt was made to   |
+|                          |                         |delete a message with an |
+|                          |                         |expired claim ID.        |
 +--------------------------+-------------------------+-------------------------+
-|404                       |Not found                |An attempt was made to   |
-|                          |                         |request a non-existing   |
-|                          |                         |message.                 |
+|403                       |Forbidden                |An attempt was made to   |
+|                          |                         |delete a message with    |
+|                          |                         |non-existing claim ID.   |
 +--------------------------+-------------------------+-------------------------+
-|404                       |Not found                |An attempt was made to   |
-|                          |                         |request an expired       |
-|                          |                         |message.                 |
+|403                       |Forbidden                |An attempt was made to   |
+|                          |                         |delete a claimed message |
+|                          |                         |without providing a      |
+|                          |                         |claim ID.                |
 +--------------------------+-------------------------+-------------------------+
 |406                       |Not acceptable           |The request header has   |
 |                          |                         |Accept                   |
@@ -84,17 +88,26 @@ This table shows the URI parameters for the request:
 
 
 
+This table shows the query parameters for the request:
+
++--------------------------+-------------------------+-------------------------+
+|Name                      |Type                     |Description              |
++==========================+=========================+=========================+
+|claim_id                  |xsd:string *(Required)*  |Identifies the claim.    |
++--------------------------+-------------------------+-------------------------+
 
 
 
 
 
-**Example Show Message Details: JSON request**
+
+
+**Example Delete Message: JSON request**
 
 
 .. code::
 
-    GET /v1/queues/demoqueue/messages/51db6ecac508f17ddc9242ad HTTP/1.1
+    DELETE /v1/queues/demoqueue/messages/51db6f78c508f17ddc924358 HTTP/1.1
     Host: ord.queues.api.rackspacecloud.com
     Content-type: application/json
     X-Auth-Token: 0f6e9f63600142f0a970911583522217
@@ -110,13 +123,10 @@ Response
 
 
 
-**Example Show Message Details: JSON request**
+**Example Delete Message: JSON response**
 
 
 .. code::
 
-    HTTP/1.1 200 OK
-    Content-Length: 126
-    Content-Type: application/json; charset=utf-8
-    Content-Location: /v1/queues/demoqueue/messages/51db6ecac508f17ddc9242ad
+    HTTP/1.1 204 No Content
 

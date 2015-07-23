@@ -1,14 +1,10 @@
-=============================================================================
-Get Home Document -  Queues
-=============================================================================
+
+.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
 
 Get Home Document
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Request <GET_get_home_document_v1_project_id_.rst#request>`__
-`Response <GET_get_home_document_v1_project_id_.rst#response>`__
-
-.. code-block:: javascript
+.. code::
 
     GET /v1/{project_id}
 
@@ -16,9 +12,9 @@ Gets the home document.
 
 This operation gets the home document.
 
-The entire API is discoverable from a single starting point, the home document. To explore the entire API, you need to know only this one URI. This document is cacheable.
+The entire API is discoverable from a single 				starting point, the home document. To explore the 				entire API, you need to know only this one URI. This 				document is cacheable.
 
-The home document lets you write clients by using relational links, so clients do not have to construct their own URLs. You can click through and view the JSON doc in your browser.
+The home document lets you write clients by using 				relational links, so clients do not have to construct 				their own URLs. You can click through and view the 				JSON doc in your browser.
 
 For more information about home documents, see `http://tools.ietf.org/html/draft-nottingham-json-home-02 <http://tools.ietf.org/html/draft-nottingham-json-home-02>`__.
 
@@ -71,7 +67,7 @@ Response
 
 
 
-**Example Get Home Document: JSON request**
+**Example Get Home Document: JSON response**
 
 
 .. code::

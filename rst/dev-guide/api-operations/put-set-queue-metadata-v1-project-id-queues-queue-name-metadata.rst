@@ -1,20 +1,22 @@
-=============================================================================
-Show Queue Metadata -  Queues
-=============================================================================
 
-Show Queue Metadata
+.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
+
+Set Queue Metadata
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Request <GET_show_queue_metadata_v1_project_id_queues_queue_name_metadata.rst#request>`__
-`Response <GET_show_queue_metadata_v1_project_id_queues_queue_name_metadata.rst#response>`__
+.. code::
 
-.. code-block:: javascript
+    PUT /v1/{project_id}/queues/{queue_name}/metadata
 
-    GET /v1/{project_id}/queues/{queue_name}/metadata
+Sets metadata for the specified 				queue.
 
-Shows metadata for the specified queue.
+This operation sets metadata for the specified 				queue.
 
-This operation returns metadata, such as message TTL, for the queue.
+This operation replaces any existing metadata 				document in its entirety. Ensure that you do not 				accidentally overwrite existing metadata that you want 				to retain.
+
+The request body has a limit of 256 KB, including 				whitespace (when re-serialized as JSON).
+
+The body of the request includes contextual 				information about the way a particular application 				interacts with the queue. The document must be valid 				JSON. (Cloud Queues validates it.)
 
 
 
@@ -24,22 +26,22 @@ This table shows the possible response codes for this operation:
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
 +==========================+=========================+=========================+
-|200                       |OK                       |Success, or no metadata  |
-|                          |                         |exists for the queue, or |
-|                          |                         |the URI has invalid      |
-|                          |                         |parameters and the       |
-|                          |                         |invalid parameters are   |
-|                          |                         |ignored.                 |
+|204                       |No content               |Success.                 |
 +--------------------------+-------------------------+-------------------------+
-|400                       |Bad request              |The request header has   |
-|                          |                         |missing fields.          |
+|400                       |Bad request              |The request body is      |
+|                          |                         |empty.                   |
 +--------------------------+-------------------------+-------------------------+
-|401                       |Unauthorized             |The request header has   |
-|                          |                         |an invalid auth token.   |
+|400                       |Bad request              |The request body is      |
+|                          |                         |greater than 64 KB.      |
 +--------------------------+-------------------------+-------------------------+
-|404                       |Not found                |Metadata was requested   |
-|                          |                         |for a queue that does    |
-|                          |                         |not exist.               |
+|400                       |Bad request              |The request has          |
+|                          |                         |malformed JSON.          |
++--------------------------+-------------------------+-------------------------+
+|400                       |Bad request              |The request body is not  |
+|                          |                         |JSON.                    |
++--------------------------+-------------------------+-------------------------+
+|400                       |Bad request              |The request has a UTF-16 |
+|                          |                         |char JSON body.          |
 +--------------------------+-------------------------+-------------------------+
 |406                       |Not acceptable           |The request header has   |
 |                          |                         |Accept                   |
@@ -75,12 +77,12 @@ This table shows the URI parameters for the request:
 
 
 
-**Example Show Queue Metadata: JSON request**
+**Example Set Queue Metadata: JSON request**
 
 
 .. code::
 
-    GET /v1/queues/demoqueue/metadata HTTP/1.1
+    PUT /v1/queues/demoqueue/metadata HTTP/1.1
     Host: ord.queues.api.rackspacecloud.com
     Content-type: application/json
     X-Auth-Token: 0f6e9f63600142f0a970911583522217
@@ -95,13 +97,11 @@ Response
 
 
 
-**Example Show Queue Metadata: JSON request**
+**Example Set Queue Metadata: JSON response**
 
 
 .. code::
 
-    HTTP/1.1 200 OK
-    Content-Length: 25
-    Content-Type: application/json; charset=utf-8
-    Content-Location: /v1/queues/demoqueue/metadata
+    HTTP/1.1 204 No Content
+    Location: /v1/queues/demoqueue/metadata
 

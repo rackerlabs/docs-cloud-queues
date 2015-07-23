@@ -1,22 +1,18 @@
-=============================================================================
-Check Queue Existence -  Queues
-=============================================================================
+
+.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
 
 Check Queue Existence
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Request <GET_check_queue_existence_v1_project_id_queues_queue_name_.rst#request>`__
-`Response <GET_check_queue_existence_v1_project_id_queues_queue_name_.rst#response>`__
-
-.. code-block:: javascript
+.. code::
 
     GET /v1/{project_id}/queues/{queue_name}
 
-Verifies whether the specified queue exists.
+Verifies whether the specified queue 				exists.
 
-This operation verifies whether the specified queue exists.
+This operation verifies whether the specified queue 				exists.
 
-You can also use ``HEAD`` instead of ``GET`` for the verb.
+You can also use ``HEAD`` instead of ``GET`` for the 				verb.
 
 
 
@@ -77,7 +73,7 @@ Response
 
 
 
-**Example Check Queue Existence: JSON request**
+**Example Check Queue Existence: JSON response**
 
 
 .. code::
