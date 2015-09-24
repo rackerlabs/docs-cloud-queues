@@ -121,6 +121,6 @@ Following are some generic use cases for Cloud Queues:
 * Forward events to data collectors (transactional event queues)
 * Publish events to any number of subscribers (publish-subscribe)
 * Send commands to one or more agents (point-to-point or
-   publish-subscribe)
+  publish-subscribe)
 * Request an action or get information from a Remote Procedure Call
-   (RPC) agent
+  (RPC) agent
