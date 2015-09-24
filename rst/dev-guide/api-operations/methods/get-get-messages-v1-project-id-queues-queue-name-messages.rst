@@ -1,5 +1,6 @@
 .. _get-messages:
 
+^^^^^^^^^^^^
 Get messages
 ^^^^^^^^^^^^
 .. code::

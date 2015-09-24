@@ -1,5 +1,6 @@
 .. _get-query-claim:
 
+^^^^^^^^^^^
 Query claim
 ^^^^^^^^^^^
 .. code::
@@ -105,4 +106,3 @@ Response
      ],
      "ttl": 300
    }
-   

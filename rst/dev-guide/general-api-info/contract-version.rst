@@ -1,5 +1,6 @@
 .. _contract-version:
 
+~~~~~~~~~~~~~~~~
 Contract version
 ~~~~~~~~~~~~~~~~
 The Cloud Queues version defines the contract and build information for

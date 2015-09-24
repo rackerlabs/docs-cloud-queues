@@ -1,5 +1,6 @@
 .. _claims-operations:
 
+~~~~~~
 Claims
 ~~~~~~
 This section describes claim operations that are

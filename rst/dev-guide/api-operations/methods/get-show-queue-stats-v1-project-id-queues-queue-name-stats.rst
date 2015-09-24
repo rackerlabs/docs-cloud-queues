@@ -1,5 +1,6 @@
 .. _show-queue-stats:
 
+^^^^^^^^^^^^^^^^
 Show queue stats
 ^^^^^^^^^^^^^^^^
 .. code::

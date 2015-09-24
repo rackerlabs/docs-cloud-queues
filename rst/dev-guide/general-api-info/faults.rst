@@ -1,5 +1,6 @@
 .. _faults:
 
+~~~~~~
 Faults
 ~~~~~~
 If any Cloud Queues request results in an error, the queuing service

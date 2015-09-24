@@ -1,5 +1,6 @@
 .. _additional-resources:
 
+~~~~~~~~~~~~~~~~~~~~
 Additional resources
 ~~~~~~~~~~~~~~~~~~~~
 We welcome feedback, comments, and bug reports. Visit the Rackspace customer

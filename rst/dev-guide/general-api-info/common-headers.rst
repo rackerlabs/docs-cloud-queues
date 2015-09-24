@@ -1,5 +1,6 @@
 .. _common-headers:
 
+~~~~~~~~~~~~~~
 Common headers
 ~~~~~~~~~~~~~~
 Each request to the Cloud Queues API must include certain standard and

@@ -1,5 +1,6 @@
 .. _date--time-format:
 
+~~~~~~~~~~~~~~~~~~~~
 Date and time format
 ~~~~~~~~~~~~~~~~~~~~
 For the display and consumption of date and time values, the Cloud

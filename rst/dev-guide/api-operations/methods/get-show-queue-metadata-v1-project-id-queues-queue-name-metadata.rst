@@ -1,5 +1,6 @@
 .. _show-queue-metadata:
 
+^^^^^^^^^^^^^^^^^^^
 Show queue metadata
 ^^^^^^^^^^^^^^^^^^^
 .. code::

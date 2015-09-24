@@ -1,5 +1,6 @@
 .. _general-api-info:
 
+-----------------------
 General API information
 -----------------------
 Ideas explained here are relevant to all operations of the API. See the

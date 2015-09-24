@@ -1,5 +1,6 @@
 .. _request-and-response-types:
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 Request and response types
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 The Cloud Queues API supports JSON data serialization formats. You

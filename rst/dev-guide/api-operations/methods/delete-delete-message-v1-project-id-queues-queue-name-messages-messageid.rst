@@ -1,5 +1,6 @@
 .. _delete-message:
 
+^^^^^^^^^^^^^^
 Delete message
 ^^^^^^^^^^^^^^
 .. code::

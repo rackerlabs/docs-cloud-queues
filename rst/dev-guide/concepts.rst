@@ -1,5 +1,6 @@
 .. _concepts:
 
+--------
 Concepts
 --------
 To use the Cloud Queues API effectively, you should understand the key

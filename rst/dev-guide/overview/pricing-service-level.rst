@@ -1,5 +1,6 @@
 .. _pricing-service-level:
 
+~~~~~~~~~~~~~~~~~~~~~~~~~
 Pricing and service level
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 Cloud Queues is part of the Rackspace Cloud and your use of the Cloud

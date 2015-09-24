@@ -1,5 +1,6 @@
 .. _delete-queue:
 
+^^^^^^^^^^^^
 Delete queue
 ^^^^^^^^^^^^
 .. code::

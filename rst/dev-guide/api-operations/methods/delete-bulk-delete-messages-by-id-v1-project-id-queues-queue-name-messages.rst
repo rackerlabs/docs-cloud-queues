@@ -1,5 +1,6 @@
 .. _delete-bulk-messages-by-id:
 
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 Bulk-delete messages by ID
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 

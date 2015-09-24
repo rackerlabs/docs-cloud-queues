@@ -1,5 +1,6 @@
 .. _check-queue-existence:
 
+^^^^^^^^^^^^^^^^^^^^^
 Check queue existence
 ^^^^^^^^^^^^^^^^^^^^^
 .. code::

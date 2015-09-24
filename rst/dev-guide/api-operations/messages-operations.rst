@@ -1,5 +1,6 @@
 .. _messages-operations:
 
+~~~~~~~~
 Messages
 ~~~~~~~~
 This section describes message operations that are supported by the Cloud Queues API.
