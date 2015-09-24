@@ -1,23 +1,14 @@
-
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
-.. _get-show-queue-metadata-v1-project-id-queues-queue-name-metadata:
+.. _show-queue-metadata:
 
 Show queue metadata
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+^^^^^^^^^^^^^^^^^^^
 .. code::
 
     GET /v1/{project_id}/queues/{queue_name}/metadata
 
-Shows metadata for the specified 				queue.
+This operation returns metadata, such as message TTL, for the queue.
 
-This operation returns metadata, such as message 				TTL, for the queue.
-
-
-
-This table shows the possible response codes for this operation:
-
+The following table shows the possible response codes for this operation:
 
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
@@ -46,14 +37,9 @@ This table shows the possible response codes for this operation:
 |429                       |Too many requests        |Too many requests.       |
 +--------------------------+-------------------------+-------------------------+
 
-
 Request
-""""""""""""""""
-
-
-
-
-This table shows the URI parameters for the request:
+"""""""
+The following table shows the URI parameters for the request:
 
 +-------------+-------+------------------------------------------------------------+
 |Name         |Type   |Description                                                 |
@@ -69,17 +55,9 @@ This table shows the URI parameters for the request:
 |             |       |underscores, and hyphens.                                   |
 +-------------+-------+------------------------------------------------------------+
 
-
-
-
-
-This operation does not accept a request body.
-
-
-
+.. note:: This operation does not accept a request body.
 
 **Example Show queue metadata: JSON request**
-
 
 .. code::
 
@@ -90,24 +68,9 @@ This operation does not accept a request body.
    Accept: application/json
    X-Project-Id: 806067
 
-
-
-
-
 Response
-""""""""""""""""
-
-
-
-
-
-
-
-
-
-
+""""""""
 **Example Show queue metadata: JSON response**
-
 
 .. code::
 
@@ -116,13 +79,8 @@ Response
    Content-Type: application/json; charset=utf-8
    Content-Location: /v1/queues/demoqueue/metadata
 
-
 .. code::
 
    {
       "new metadata":"Omega"
    }
-
-
-
-

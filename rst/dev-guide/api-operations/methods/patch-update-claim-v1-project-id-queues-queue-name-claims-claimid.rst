@@ -1,25 +1,22 @@
-
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
-.. _patch-update-claim-v1-project-id-queues-queue-name-claims-claimid:
+.. _patch-update-claim:
 
 Update claim
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+^^^^^^^^^^^^
 .. code::
 
     PATCH /v1/{project_id}/queues/{queue_name}/claims/{claimId}
 
-Updates the specified claim for a 				specified queue.
+This operation updates the specified claim for the specified queue.
+Claims with malformed IDs or claims that are not found by ID are ignored.
 
-This operation updates the specified claim for the 				specified queue. Claims with malformed IDs or claims 				that are not found by ID are ignored.
+Clients should periodically renew claims during long-running batches
+of work to avoid losing a claim while processing a message.
+The client can renew a claim by issuing a ``PATCH`` command to a
+specific claim resource and including a new TTL for the claim
+(which can be different from the original TTL).
+The server resets the age of the claim and applies the new TTL.
 
-Clients should periodically renew claims during 				long-running batches of work to avoid losing a claim 				while processing a message. The client can renew a 				claim by issuing a ``PATCH`` command to 				a specific claim resource and including a new TTL for 				the claim (which can be different from the original 				TTL). The server resets the age of the claim and 				applies the new TTL.
-
-
-
-This table shows the possible response codes for this operation:
-
+The following table shows the possible response codes for this operation:
 
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
@@ -62,14 +59,9 @@ This table shows the possible response codes for this operation:
 |429                       |Too many requests        |Too many requests.       |
 +--------------------------+-------------------------+-------------------------+
 
-
 Request
-""""""""""""""""
-
-
-
-
-This table shows the URI parameters for the request:
+"""""""
+The following table shows the URI parameters for the request:
 
 +-------------+-------+------------------------------------------------------------+
 |Name         |Type   |Description                                                 |
@@ -87,28 +79,19 @@ This table shows the URI parameters for the request:
 |{claimId}    |String |The claim ID.                                               |
 +-------------+-------+------------------------------------------------------------+
 
-
-
-
-
-This operation does not accept a request body.
-
-
-
+.. note:: This operation does not accept a request body.
 
 **Example Update claim: JSON request**
 
-
 .. code::
 
-   PATCH /v1/queues/demoqueue/claims/51db7067821e727dc24df754 HTTP/1.1 
+   PATCH /v1/queues/demoqueue/claims/51db7067821e727dc24df754 HTTP/1.1
    Host: ord.queues.api.rackspacecloud.com
    Content-type: application/json
    X-Auth-Token: 0f6e9f63600142f0a970911583522217
    Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830
    Accept: application/json
    X-Project-Id: 806067
-
 
 .. code::
 
@@ -118,28 +101,10 @@ This operation does not accept a request body.
    }
 
 
-
-
-
 Response
-""""""""""""""""
-
-
-
-
-
-
-
-
-
-
+""""""""
 **Example Update claim: JSON response**
-
 
 .. code::
 
    HTTP/1.1 204 No Content
-
-
-
-

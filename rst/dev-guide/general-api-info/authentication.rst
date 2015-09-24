@@ -1,4 +1,4 @@
-.. authentication:
+.. _authentication:
 
 Authenticate through the Rackspace Cloud Identity service
 ---------------------------------------------------------
@@ -43,7 +43,7 @@ In the request body, supply one of the following sets of credentials:
 
 To find your API key, perform the following steps:
 
-1. Log in to the :my-cloud:`Cloud Control Panel <>`.
+1. Log in to the :mycloud:`Cloud Control Panel <>`.
 2. On the upper-right side of the top navigation pane, click your username.
 3. From the menu, select **Account Settings**.
 4. In the **Login Details** section of the **Account Settings** page, locate
@@ -52,13 +52,24 @@ To find your API key, perform the following steps:
 The following cURL examples show how to get an authentication token
 by entering your username and either password or your API key.
 
-**Example: Authenticate to the Identity endpoint - username and password:
-JSON request**
+**Example: Authenticate to the Identity Endpoint – Username and
+Password: JSON Request**
 
 .. code::
-        $ curl -s https://identity.api.rackspacecloud.com/v2.0/tokens -X 'POST' \
-              -d '{"auth":{"RAX-KSKEY:apiKeyCredentials":{"username":"MyRackspaceAcct", "apiKey":"0000000000000000000"}}}' \
-              -H "Content-Type: application/json" | python -m json.tool
+
+    $ curl -s https://identity.api.rackspacecloud.com/v2.0/tokens -X 'POST' \
+         -d '{"auth":{"passwordCredentials":{"username":"MyRackspaceAcct", \
+         "password":"MyRackspacePwd"}}}' \
+         -H "Content-Type: application/json" | python -m json.tool
+
+**Example: Authenticate to the Identity Endpoint – Username and API
+Key: JSON Request**
+
+.. code::
+
+    $ curl -s https://identity.api.rackspacecloud.com/v2.0/tokens -X 'POST' \
+         -d '{"auth":{"RAX-KSKEY:apiKeyCredentials":{"username":"MyRackspaceAcct", "apiKey":"0000000000000000000"}}}' \
+         -H "Content-Type: application/json" | python -m json.tool
 
 .. note::
    In these examples, the following pipe command makes the JSON output more
@@ -215,9 +226,7 @@ Successful authentication returns the following information:
 * **The name of the service** appears in the ``name`` field.
 
   Locate the correct service name in the catalog, as follows:
-  * **Cloud Queues** is named ``cloudQueues`` in the catalog.
-    To access the Cloud Queues service, use the ``publicURL`` value for
-    the ``cloudQueues`` service.
+  * **Cloud Queues** is named ``cloudQueues`` in the catalog. To access the Cloud Queues service, use the ``publicURL`` value for the ``cloudQueues`` service.
 
   If you use the authentication to access this service, you can perform
   Cloud Queues API operations.

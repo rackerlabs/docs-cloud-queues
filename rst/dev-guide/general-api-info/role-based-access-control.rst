@@ -51,16 +51,16 @@ roles enable access to the Cloud Queues product.
 +--------------------------------------+--------------------------------------+
 | Role name                            | Role permissions                     |
 +======================================+======================================+
-| queues:admin                         | Provides Create, Read,               |
+| admin                                | Provides Create, Read,               |
 |                                      | Update, and Delete permissions in    |
 |                                      | Cloud Queues, where access is        |
 |                                      | granted.                             |
 +--------------------------------------+--------------------------------------+
-| queues:creator                       | Provides Create, Read and            |
+| creator                              | Provides Create, Read and            |
 |                                      | Update permissions in Cloud Queues,  |
 |                                      | where access is granted.             |
 +--------------------------------------+--------------------------------------+
-| queues:observer                      | Provides Read permission             |
+| observer                             | Provides Read permission             |
 |                                      | in Cloud Queues, where access is     |
 |                                      | granted.                             |
 +--------------------------------------+--------------------------------------+

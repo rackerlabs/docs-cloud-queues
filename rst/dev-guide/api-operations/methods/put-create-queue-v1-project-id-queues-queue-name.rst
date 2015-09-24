@@ -1,23 +1,14 @@
-
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
-.. _put-create-queue-v1-project-id-queues-queue-name:
+.. _create-queue:
 
 Create queue
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+^^^^^^^^^^^^
 .. code::
 
     PUT /v1/{project_id}/queues/{queue_name}
 
-Creates a queue.
-
 This operation creates a new queue.
 
-
-
-This table shows the possible response codes for this operation:
-
+The following table shows the possible response codes for this operation:
 
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
@@ -42,14 +33,9 @@ This table shows the possible response codes for this operation:
 |429                       |Too many requests        |Too many requests.       |
 +--------------------------+-------------------------+-------------------------+
 
-
 Request
-""""""""""""""""
-
-
-
-
-This table shows the URI parameters for the request:
+"""""""
+The following table shows the URI parameters for the request:
 
 +-------------+-------+------------------------------------------------------------+
 |Name         |Type   |Description                                                 |
@@ -65,17 +51,9 @@ This table shows the URI parameters for the request:
 |             |       |underscores, and hyphens.                                   |
 +-------------+-------+------------------------------------------------------------+
 
-
-
-
-
-This operation does not accept a request body.
-
-
-
+.. note:: This operation does not accept a request body.
 
 **Example Create queue: JSON request**
-
 
 .. code::
 
@@ -85,31 +63,12 @@ This operation does not accept a request body.
    Accept: application/json
    X-Project-Id: 806067
 
-
-
-
-
 Response
-""""""""""""""""
-
-
-
-
-
-
-
-
-
-
+""""""""
 **Example Create queue: JSON response**
-
 
 .. code::
 
    HTTP/1.1 201 Created
    Content-Length: 0
    Location: /v1/queues/demoqueue
-
-
-
-

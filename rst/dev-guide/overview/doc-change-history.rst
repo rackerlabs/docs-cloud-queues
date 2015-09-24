@@ -14,9 +14,10 @@ versions. The most recent changes are described in the following table:
 |                   | the Rackspace Cloud Identity service. See              |
 |                   | :ref:`authentication`.                                 |
 +-------------------+--------------------------------------------------------+
-| January 19, 2015  | * Corrected :ref:`limits` to show the number of        |
-|                   |   messages that can be claimed at one time as 1 - 100. |
-|                   | * Updated the information about the ``limit``          |
-|                   |   parameter in the claim messages operation            |
-|                   |   description and provided examples.                   |
+| January 19, 2015  | Corrected :ref:`limits` to show the number of          |
+|                   | messages that can be claimed at one time as 1 - 100.   |
+|                   |                                                        |
+|                   | Updated the information about the ``limit``            |
+|                   | parameter in the claim messages operation              |
+|                   | description and provided examples.                     |
 +-------------------+--------------------------------------------------------+

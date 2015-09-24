@@ -1,29 +1,25 @@
-
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
-.. _put-set-queue-metadata-v1-project-id-queues-queue-name-metadata:
+.. _set-queue-metadata:
 
 Set queue metadata
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+^^^^^^^^^^^^^^^^^^
 .. code::
 
     PUT /v1/{project_id}/queues/{queue_name}/metadata
 
-Sets metadata for the specified 				queue.
+This operation sets metadata for the specified queue.
 
-This operation sets metadata for the specified 				queue.
+This operation replaces any existing metadata document in its
+entirety. Ensure that you do not accidentally overwrite existing
+metadata that you want to retain.
 
-This operation replaces any existing metadata 				document in its entirety. Ensure that you do not 				accidentally overwrite existing metadata that you want 				to retain.
+The request body has a limit of 256 KB, including whitespace
+(when re-serialized as JSON).
 
-The request body has a limit of 256 KB, including 				whitespace (when re-serialized as JSON).
+The body of the request includes contextual information about the
+way a particular application interacts with the queue. The document
+must be valid JSON (Cloud Queues validates it).
 
-The body of the request includes contextual 				information about the way a particular application 				interacts with the queue. The document must be valid 				JSON. (Cloud Queues validates it.)
-
-
-
-This table shows the possible response codes for this operation:
-
+The following table shows the possible response codes for this operation:
 
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
@@ -52,14 +48,9 @@ This table shows the possible response codes for this operation:
 |429                       |Too many requests        |Too many requests.       |
 +--------------------------+-------------------------+-------------------------+
 
-
 Request
-""""""""""""""""
-
-
-
-
-This table shows the URI parameters for the request:
+"""""""
+The following table shows the URI parameters for the request:
 
 +-------------+-------+------------------------------------------------------------+
 |Name         |Type   |Description                                                 |
@@ -75,17 +66,9 @@ This table shows the URI parameters for the request:
 |             |       |underscores, and hyphens.                                   |
 +-------------+-------+------------------------------------------------------------+
 
-
-
-
-
-This operation does not accept a request body.
-
-
-
+.. note:: This operation does not accept a request body.
 
 **Example Set queue metadata: JSON request**
-
 
 .. code::
 
@@ -96,37 +79,17 @@ This operation does not accept a request body.
    Accept: application/json
    X-Project-Id: 806067
 
-
 .. code::
 
    {
       "new metadata":"Omega"
    }
 
-
-
-
-
 Response
-""""""""""""""""
-
-
-
-
-
-
-
-
-
-
+""""""""
 **Example Set queue metadata: JSON response**
-
 
 .. code::
 
    HTTP/1.1 204 No Content
    Location: /v1/queues/demoqueue/metadata
-
-
-
-

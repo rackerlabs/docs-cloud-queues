@@ -1,43 +1,52 @@
-
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
-.. _post-post-message-v1-project-id-queues-queue-name-messages:
+.. _post-message:
 
 Post message
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+^^^^^^^^^^^^
 .. code::
 
     POST /v1/{project_id}/queues/{queue_name}/messages
 
-Posts the message or messages for a 				specified queue.
+This operation posts the specified message or messages.
 
-This operation posts the specified message or 				messages.
+You can submit up to 10 messages in a single request, but you must
+always encapsulate the messages in a collection container
+(an array in JSON, even for a single message - without the JSON array,
+you receive the "Invalid request body" message). The resulting
+value of the Location header or response body might be used to
+retrieve the created messages for further processing.
 
-You can submit up to 10 messages in a single 				request, but you must always encapsulate the messages 				in a collection container (an array in JSON, even for 				a single message - without the JSON array, you receive 				the "Invalid request body" message). The resulting 				value of the Location header or response body might be 				used to retrieve the created messages for further 				processing.
+The client specifies only the body and TTL for the message.
+The server inserts metadata, such as ID and age.
 
-The client specifies only the body and TTL for the 				message. The server inserts metadata, such as ID and 				age.
+The response body contains a list of resource paths that correspond
+to each message submitted in the request, in the order of the messages.
+If a server-side error occurs during the processing of the submitted
+messages, a partial list is returned, the partial parameter is set
+to true, and the client tries to post the remaining messages again.
+If the server cannot enqueue any messages, the server returns
+a ``503 Service Unavailable`` error message.
 
-The response body contains a list of resource paths 				that correspond to each message submitted in the 				request, in the order of the messages. If a 				server-side error occurs during the processing of the 				submitted messages, a partial list is returned, the 				partial parameter is set to true, and the client tries 				to post the remaining messages again. If the server 				cannot enqueue any messages, the server returns a ``503 Service Unavailable`` error 				message.
-
-The ``body`` parameter specifies an 				arbitrary document that constitutes the body of the 				message being sent.
+The ``body`` parameter specifies an arbitrary document that constitutes
+the body of the message being sent.
 
 The following rules apply for the maximum size:
 
+* The maximum size of posted messages is the maximum size of the entire
+  request document (rather than the sum of the individual message body
+  field values as it was in earlier releases). On error, the
+  client will now be notified of how much it exceeded the limit.
+* The size is limited to 256 KB, including whitespace.
 
+The document must be valid JSON. (Cloud Queues validates it.)
 
-*  The maximum size of posted messages is the 						maximum size of the entire request document 						(rather than the sum of the individual message 						body field values as it was in earlier 						releases). On error, the client will now be 						notified of how much it exceeded the 						limit.
-*  The size is limited to 256 KB, including 						whitespace.
+The ``ttl`` parameter specifies how long the server waits before
+marking the message as expired and removing it from the queue.
+The value of ``ttl`` must be between 60 and 1209600 seconds (14 days).
+Note that the server might not actually delete the message until
+its age has reached up to (ttl + 60) seconds, to allow for
+flexibility in storage implementations.
 
-
-The document must be valid JSON. (Cloud Queues 				validates it.)
-
-The ``ttl`` parameter specifies how long 				the server waits before marking the message as expired 				and removing it from the queue. The value of ``ttl`` must be between 60 and 1209600 				seconds (14 days). Note that the server might not 				actually delete the message until its age has reached 				up to (ttl + 60) seconds, to allow for flexibility in 				storage implementations.
-
-
-
-This table shows the possible response codes for this operation:
-
+The following table shows the possible response codes for this operation:
 
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
@@ -129,14 +138,9 @@ This table shows the possible response codes for this operation:
 |                          |                         |all of them failed.      |
 +--------------------------+-------------------------+-------------------------+
 
-
 Request
-""""""""""""""""
-
-
-
-
-This table shows the URI parameters for the request:
+"""""""
+The following table shows the URI parameters for the request:
 
 +-------------+-------+------------------------------------------------------------+
 |Name         |Type   |Description                                                 |
@@ -152,17 +156,9 @@ This table shows the URI parameters for the request:
 |             |       |underscores, and hyphens.                                   |
 +-------------+-------+------------------------------------------------------------+
 
-
-
-
-
-This operation does not accept a request body.
-
-
-
+.. note:: This operation does not accept a request body.
 
 **Example Post message: JSON request**
-
 
 .. code::
 
@@ -173,7 +169,6 @@ This operation does not accept a request body.
    X-Auth-Token: 0f6e9f63600142f0a970911583522217
    Accept: application/json
    X-Project-Id: 806067
-
 
 .. code::
 
@@ -192,24 +187,9 @@ This operation does not accept a request body.
       }
    ]
 
-
-
-
-
 Response
-""""""""""""""""
-
-
-
-
-
-
-
-
-
-
+""""""""
 **Example Post message: JSON response**
-
 
 .. code::
 
@@ -217,7 +197,6 @@ Response
    Content-Length: 149
    Content-Type: application/json; charset=utf-8
    Location: /v1/queues/demoqueue/messages?ids=51db6f78c508f17ddc924357,51db6f78c508f17ddc924358
-
 
 .. code::
 
@@ -228,7 +207,3 @@ Response
          "/v1/queues/demoqueue/messages/51db6f78c508f17ddc924358"
       ]
    }
-
-
-
-

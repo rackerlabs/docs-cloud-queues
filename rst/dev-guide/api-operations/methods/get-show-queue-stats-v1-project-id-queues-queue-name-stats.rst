@@ -1,28 +1,19 @@
-
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
-.. _get-show-queue-stats-v1-project-id-queues-queue-name-stats:
+.. _show-queue-stats:
 
 Show queue stats
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+^^^^^^^^^^^^^^^^
 .. code::
 
     GET /v1/{project_id}/queues/{queue_name}/stats
 
-Show statistics for the specified 				queue.
-
-This operation returns queue statistics, including 				how many messages are in the queue, categorized by 				status.
+This operation returns queue statistics, including how many messages
+are in the queue, categorized by status.
 
 .. note::
-   If the value of the ``total`` 					parameter is 0, then ``oldest`` and ``newest`` message statistics are not 					included in the response.
-   
-   
+   If the value of the ``total`` parameter is 0, then ``oldest``
+   and ``newest`` message statistics are not included in the response.
 
-
-
-This table shows the possible response codes for this operation:
-
+The following table shows the possible response codes for this operation:
 
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
@@ -49,14 +40,9 @@ This table shows the possible response codes for this operation:
 |429                       |Too many requests        |Too many requests.       |
 +--------------------------+-------------------------+-------------------------+
 
-
 Request
-""""""""""""""""
-
-
-
-
-This table shows the URI parameters for the request:
+"""""""
+The following table shows the URI parameters for the request:
 
 +-------------+-------+------------------------------------------------------------+
 |Name         |Type   |Description                                                 |
@@ -72,17 +58,9 @@ This table shows the URI parameters for the request:
 |             |       |underscores, and hyphens.                                   |
 +-------------+-------+------------------------------------------------------------+
 
-
-
-
-
-This operation does not accept a request body.
-
-
-
+.. note:: This operation does not accept a request body.
 
 **Example Show queue stats: JSON request**
-
 
 .. code::
 
@@ -93,24 +71,9 @@ This operation does not accept a request body.
    Accept: application/json
    X-Project-Id: 806067
 
-
-
-
-
 Response
-""""""""""""""""
-
-
-
-
-
-
-
-
-
-
+""""""""
 **Example Show queue stats: JSON response**
-
 
 .. code::
 
@@ -118,7 +81,6 @@ Response
    Content-Length: 53
    Content-Type: application/json; charset=utf-8
    Content-Location: /v1/queues/demoqueue/stats
-
 
 .. code::
 
@@ -139,7 +101,3 @@ Response
          }
       }
    }
-
-
-
-

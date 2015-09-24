@@ -75,7 +75,7 @@ Cloud Queues API.
 |      Data limits       | Queue metadata JSON                | Cannot exceed 262144  |
 |                        |                                    | bytes, including      |
 |                        |                                    | whitespace (256 KB)   |
-+------------------------+------------------------------------+-----------------------+
+|                        +------------------------------------+-----------------------+
 |                        | Message body JSON                  | Cannot exceed 262144  |
 |                        |                                    | bytes, including      |
 |                        |                                    | whitespace (256 KB)   |
