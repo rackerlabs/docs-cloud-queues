@@ -34,6 +34,8 @@ messages, and more.
 .. toctree:: :hidden:
    :maxdepth: 3
 
+   intended-audience
+   doc-change-history
    additional-resources
    contract-changes
    pricing-service-level
