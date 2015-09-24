@@ -1,19 +1,16 @@
-Cloud Queues
-============
+.. _index:
+
+Rackspace Cloud Queues API 1.0
+==============================
+Learn how to use the Rackspace Cloud Queues service by using the REST API.
+
+
 
 .. toctree::
     :maxdepth: 2
 
-    overview
+    overview/index
     concepts
-    general-api-information
+    general-api-info/index
+    api-operations/index
     glossary
-
-API Operations
--------------------
-
-.. toctree::
-    :maxdepth: 1
-    :glob:
-
-    api-operations/* 
