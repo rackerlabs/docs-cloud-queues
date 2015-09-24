@@ -1,7 +1,7 @@
-.. _queues-dg-glossary:
+.. _glossary:
 
 Glossary
-------------
+--------
 
 Claim
 	The process of a worker checking out a message to perform a task.
@@ -58,7 +58,3 @@ TTL
 Worker
 	A client that claims messages from the queue and performs actions
 	based on those messages.
-
-
-
-
