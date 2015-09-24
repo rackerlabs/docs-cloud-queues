@@ -1,5 +1,6 @@
 .. _home-document:
 
+~~~~~~~~~~~~~
 Home document
 ~~~~~~~~~~~~~
 The section describes how to get the home document for Cloud Queues.

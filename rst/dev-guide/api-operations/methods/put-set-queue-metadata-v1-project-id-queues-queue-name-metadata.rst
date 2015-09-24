@@ -1,5 +1,6 @@
 .. _set-queue-metadata:
 
+^^^^^^^^^^^^^^^^^^
 Set queue metadata
 ^^^^^^^^^^^^^^^^^^
 .. code::

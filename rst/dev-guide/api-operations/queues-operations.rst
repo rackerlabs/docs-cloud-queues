@@ -1,5 +1,6 @@
 .. _queues-operations:
 
+~~~~~~
 Queues
 ~~~~~~
 This section describes queue operations that are supported by the

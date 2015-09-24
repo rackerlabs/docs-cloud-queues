@@ -1,5 +1,6 @@
 .. _overview:
 
+-------------
 About the API
 -------------
 Rackspace Cloud Queues is an open source, scalable, and highly available

@@ -1,7 +1,8 @@
 .. _authentication:
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Authenticate through the Rackspace Cloud Identity service
----------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 To authenticate access to the Rackspace Cloud Images service, you issue an
 authentication request to the Rackspace Cloud Identity Service endpoint.
 

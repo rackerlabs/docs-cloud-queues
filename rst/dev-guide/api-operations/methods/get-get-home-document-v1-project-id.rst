@@ -1,5 +1,6 @@
 .. _get-home-document:
 
+^^^^^^^^^^^^^^^^^
 Get home document
 ^^^^^^^^^^^^^^^^^
 .. code::

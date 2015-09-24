@@ -1,5 +1,6 @@
 .. _limits:
 
+~~~~~~
 Limits
 ~~~~~~
 Accounts are configured with default thresholds, or limits, that manage

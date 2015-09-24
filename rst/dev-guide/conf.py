@@ -37,7 +37,7 @@ extensions = [
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-#templates_path = ['_templates']
+templates_path = ['_templates']
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -47,6 +47,10 @@ source_suffix = '.rst'
 
 # The master toctree document.
 master_doc = 'index'
+
+# The builder to use when running via the deconst preparer
+# builder = 'deconst-serial'
+builder = 'deconst-single'
 
 # General information about the project.
 project = 'Rackspace Developer Documentation'
@@ -155,7 +159,7 @@ html_short_title = 'Rackspace Cloud Images'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-#html_static_path = []
+html_static_path = []
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
@@ -255,7 +259,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'rackspacedeveloperdocumentation', 'Rackspace Developer Documentation',
+    ('index', 'RackspaceCloudAPIQueuesDeveloperDoc', 'Rackspace Cloud Queues API Developer Guide',
      ['Rackspace'], 1)
 ]
 

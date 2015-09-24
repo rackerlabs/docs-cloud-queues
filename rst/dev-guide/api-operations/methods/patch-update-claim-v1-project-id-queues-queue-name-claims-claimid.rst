@@ -1,5 +1,6 @@
 .. _patch-update-claim:
 
+^^^^^^^^^^^^
 Update claim
 ^^^^^^^^^^^^
 .. code::

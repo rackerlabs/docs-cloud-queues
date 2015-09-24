@@ -1,5 +1,6 @@
 .. _contract-changes:
 
+~~~~~~~~~~~~~~~~~~~~
 API contract changes
 ~~~~~~~~~~~~~~~~~~~~
 

@@ -1,5 +1,6 @@
 .. _show-message-details:
 
+^^^^^^^^^^^^^^^^^^^^
 Show message details
 ^^^^^^^^^^^^^^^^^^^^
 .. code::
