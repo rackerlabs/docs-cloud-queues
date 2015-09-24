@@ -1,0 +1,11 @@
+.. _intended-audience:
+
+Intended audience
+~~~~~~~~~~~~~~~~~
+This document is intended for software developers who are interested in
+developing applications that use the Rackspace Cloud Queues API. It
+assumes that you have the following skills:
+
+* RESTful web services
+* HTTP/1.1 conventions
+* JSON data serialization formats
