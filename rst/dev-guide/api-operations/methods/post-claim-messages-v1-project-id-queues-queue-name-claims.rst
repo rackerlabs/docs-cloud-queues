@@ -179,9 +179,6 @@ The following table shows the query parameters for the request:
 |                          |                         |100 messages in response.|
 +--------------------------+-------------------------+-------------------------+
 
-.. note:: This operation does not accept a request body.
-
-
 **Example Claim messages: JSON request**
 
 .. code::

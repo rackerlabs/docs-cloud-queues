@@ -8,7 +8,7 @@ Rackspace Cloud services, including the Cloud Queues API, to authorized
 users only. RBAC enables Rackspace Cloud customers to specify which
 account users of their Cloud account have access to which Cloud Queues
 API service capabilities, based on
-`roles defined by Rackspace <rbac-roles-available>`__.
+:ref:`roles defined by Rackspace <rbac-roles-available>`.
 The permissions to perform certain operations in Cloud Queues
 API – create, read, update, delete –
 are assigned to specific roles, and these roles can be assigned by the
@@ -34,20 +34,21 @@ information on how to perform these tasks:
 * Assign roles to account users
 * Delete roles from account users
 
-..  note:
+..  note::
 	  The account admin user (identity:user-admin) role cannot hold any
-    additional roles because it already has full access to all capabilities
-    by default.
+		additional roles because it already has full access to all capabilities
+		by default.
 
 
 .. _rbac-roles-available:
 
 Roles available for Cloud Queues
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Cloud Queues provides both product roles and multi-product roles. Product
-roles enable access to the Cloud Queues product.
+Three roles (admin, creator, and observer) can be used to access the
+Cloud Queues API specifically. The following table describes these
+roles and their permissions:
 
-**Table: Cloud Queues product roles and capabilities**
+**Cloud Queues product roles and capabilities**
 
 +--------------------------------------+--------------------------------------+
 | Role name                            | Role permissions                     |
@@ -66,11 +67,12 @@ roles enable access to the Cloud Queues product.
 |                                      | granted.                             |
 +--------------------------------------+--------------------------------------+
 
-Multi-product roles enable access to all Rackspace Cloud services.
-Users with multi-product roles inherit access to future products when those products
-become RBAC-enabled. The following table describes these roles and their permissions.
+Additionally, two multi-product roles apply to all products. Users with
+multi-product roles inherit access to future products when those products
+become RBAC-enabled. The following table describes these roles and
+their permissions:
 
-**Table: Multi-product (global) roles and permissions**
+**Multi-product (global) roles and permissions**
 
 +--------------------------------------+--------------------------------------+
 | Role name                            | Role permissions                     |

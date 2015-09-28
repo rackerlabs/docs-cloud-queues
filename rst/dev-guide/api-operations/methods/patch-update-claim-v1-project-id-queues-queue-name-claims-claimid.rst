@@ -80,8 +80,6 @@ The following table shows the URI parameters for the request:
 |{claimId}    |String |The claim ID.                                               |
 +-------------+-------+------------------------------------------------------------+
 
-.. note:: This operation does not accept a request body.
-
 **Example Update claim: JSON request**
 
 .. code::
