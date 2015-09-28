@@ -157,8 +157,6 @@ The following table shows the URI parameters for the request:
 |             |       |underscores, and hyphens.                                   |
 +-------------+-------+------------------------------------------------------------+
 
-.. note:: This operation does not accept a request body.
-
 **Example Post message: JSON request**
 
 .. code::

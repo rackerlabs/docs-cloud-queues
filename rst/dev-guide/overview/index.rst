@@ -6,8 +6,8 @@ About the API
 Rackspace Cloud Queues is an open source, scalable, and highly available
 message and notifications service. Cloud Queues supports a variety of
 messaging patterns. Users of this service can create and manage a
-`producer-consumer <producer_consumer.html>`__ or a
-`publish-subscriber <publish_subscribe.html>`__ model from one simple
+producer-consumer or a publish-subscriber model
+(:ref:`messaging-patterns`) from one simple
 API. Unlimited queues and messages give Cloud Queues users the
 flexibility they need to create powerful web applications in the cloud.
 

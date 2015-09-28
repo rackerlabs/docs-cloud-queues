@@ -7,6 +7,11 @@ Accounts are configured with default thresholds, or limits, that manage
 capacity and prevent abuse of the system. The system recognizes
 default rate limits and absolute limits.
 
+.. note::
+   If the default limits are too low for your particular application,
+   please contact Rackspace Cloud support to request an increase. All
+   requests require reasonable justification.
+
 Rate limits
 ^^^^^^^^^^^
 Rate limits are thresholds that control the frequency at which the
@@ -24,12 +29,6 @@ code 429 Too Many Requests. If this occurs, reduce the application's
 request rate to the Cloud Queues API by pausing slightly between each
 request. If your application continues to hit this limit and you cannot
 slow down the request rate, please contact Rackspace Cloud support.
-
-.. note::
-   If the default limits are too low for your particular application,
-   please contact Rackspace Cloud support to request an increase. All
-   requests require reasonable justification.
-
 
 Absolute limits
 ^^^^^^^^^^^^^^^

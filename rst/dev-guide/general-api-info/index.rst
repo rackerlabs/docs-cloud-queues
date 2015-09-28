@@ -18,7 +18,7 @@ among products and services.
 .. toctree:: :hidden:
    :maxdepth: 2
 
-   authentication
+   Authentication <authentication>
    role-based-access-control
    service-access-endpoints
    contract-version

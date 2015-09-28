@@ -6,14 +6,10 @@ Concepts
 To use the Cloud Queues API effectively, you should understand the key
 concepts described in this section.
 
-Cloud Queues work flow
+How Cloud Queues works
 ~~~~~~~~~~~~~~~~~~~~~~
-Cloud Queues is an open-source messaging system, designed to help customers
-build and scale distributed applications in the cloud. The Cloud Queues API
-is built to be flexible, supporting a variety of messaging patterns like
-producer-consumer, poll based publisher-subscriber, and point-to-point to
-decouple resources in an application by serving as a communication layer between
-the different resources. The basic work flow follows these steps.
+Following is an overview of Cloud Queues works. For definitions of Cloud
+Queues terms, see the :ref:`glossary`.
 
 1. Create a queue to which producers or publishers post messages.
 
@@ -32,8 +28,7 @@ ordering of messages. However, if there is only a single producer, Cloud
 Queues ensures that messages are handled in a First In, First Out (FIFO)
 order.
 
-Following is an overview of Cloud Queues works. For definitions of Cloud
-Queues terms, see the :ref:`glossary`.
+.. _messaging-patterns:
 
 Messaging patterns
 ~~~~~~~~~~~~~~~~~~
@@ -46,7 +41,7 @@ following:
 
 
 Producer-consumer
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 The producer-consumer pattern has the following characteristics:
 
 * A producer is programmed to send messages to a queue.
@@ -59,9 +54,8 @@ The producer-consumer pattern has the following characteristics:
 
 This pattern is ideal for dispatching jobs to multiple processors.
 
-
 Publish-subscribe
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 Characteristics of the publish-subscribe pattern are:
 
 * The publisher sends a message to a queue.

@@ -14,7 +14,7 @@ service and API:
 * For additional product, documentation, and support information, see the
   :rax-cloud:`Cloud Queues product page <queues/>` on the Rackspace website.
 * To learn about using Rackspace Cloud SDKs, see
-  :rax-dev:`Software Development Kits & Tools <docs/#sdks>`.
+  :rax-dev:`Software Development Kits & Tools <sdks>`.
 
 Email all support questions to the `Cloud Queues team`_.
 
