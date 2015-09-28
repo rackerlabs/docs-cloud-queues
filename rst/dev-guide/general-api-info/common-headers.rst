@@ -19,7 +19,7 @@ following table provides the common headers used by the API.
 +-----------------------+----------------------------------------------------+
 | Accept                | Media type desired; initially, only                |
 |                       | ``application/json`` is supported.                 |
-|                       | **Note**: The ``Accept`` header is required.       |
+|                       | **Note: The Accept header is required.**           |
 +-----------------------+----------------------------------------------------+
 | Accept-Encoding       | Specifies that the agent accepts gzip-encoded      |
 |                       | response bodies                                    |
@@ -42,21 +42,13 @@ following table provides the common headers used by the API.
 |                       | between restarts of the client so the client       |
 |                       | should reuse that same Client-ID. Client-IDs       |
 |                       | messages keep track of who posted them.            |
-|                       | **Note**: All message-related operations require   |
-|                       | the use of ``Client-ID`` in the headers to ensure  |
+|                       | **Note: All message-related operations require     |
+|                       | the use of Client-ID in the headers to ensure      |
 |                       | that messages are not echoed back to the client    |
 |                       | that posted them, unless the client explicitly     |
-|                       | requests this.                                     |
+|                       | requests this.**                                   |
 |                       |                                                    |
 |                       | If you choose to use your own HTTP tools           |
 |                       | to communicate with the Cloud Queues API, you must |
 |                       | manage your own Client-IDs.                        |
 +-----------------------+----------------------------------------------------+
-
-.. note::
-   The ``Accept`` header is required.
-
-   All message-related operations require the use of ``Client-ID``
-   in the headers to ensure that messages are not echoed back to the
-   client that posted them, unless the client explicitly requests
-   this.
