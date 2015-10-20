@@ -101,8 +101,9 @@ pygments_style = 'sphinx'
 extlinks = {
     'rax': ('http://www.rackspace.com/%s', ''),
     'rax-cloud': ('http://www.rackspace.com/cloud/%s', ''),
-    'rax-docs': ('http://docs.rackspace.com/%s', ''),
     'rax-dev': ('https://developer.rackspace.com/%s', ''),
+    'rax-devdocs': ('https://developer.rackspace.com/docs/%s',''),
+    'rax-devguide': ('https://developer.rackspace.com/docs/%s/developer-guide/',''),
     'rax-api': ('http://api.rackspace.com/%s', ''),
     'rax-git': ('https://github.com/rackspace/%s', ''),
     'rax-legal': ('http://www.rackspace.com/information/legal/cloud/%s', ''),
@@ -115,8 +116,7 @@ extlinks = {
     'os-docs': ('http://docs.openstack.org/%s', ''),
     'os-wiki': ('http://wiki.openstack.org/%s', ''),
     'git-repo': ('https://github.com/rackerlabs/docs-cloud-queues/%s', ''),
-    'rackerlabs': ('https://github.com/rackerlabs/%s', ''),
-    'rocket': ('https://objectrocket.com/%s', '')
+    'rackerlabs': ('https://github.com/rackerlabs/%s', '')
 }
 
 # A list of ignored prefixes for module index sorting.
