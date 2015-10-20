@@ -26,8 +26,8 @@ Cloud Queues service. Each account has only one account owner, and that
 role is assigned by default to any Rackspace Cloud account when the
 account is created.
 
-See the :rax-docs:`Cloud Identity Client Developer Guide
-<auth/api/v2.0/auth-client-devguide/content/QuickStart-000.html>` for
+See the :rax-devguide:`Cloud Identity Client Developer Guide
+<cloud-identity/v2>` for
 information on how to perform these tasks:
 
 * Create account users
