@@ -30,9 +30,9 @@ See the :rax-devguide:`Cloud Identity Client Developer Guide
 <cloud-identity/v2>` for
 information on how to perform these tasks:
 
-* Create account users
-* Assign roles to account users
-* Delete roles from account users
+* :rax-devdocs:`Create account users <cloud-identity/v2/developer-guide/#add-user>`
+* :rax-devdocs:`Assign roles to account users <cloud-identity/v2/developer-guide/#add-role-to-user>`
+* :rax-devdocs:`Delete roles from account users <cloud-identity/v2/developer-guide/#delete-global-role-from-user>`
 
 ..  note::
 	  The account admin user (identity:user-admin) role cannot hold any
