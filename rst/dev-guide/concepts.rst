@@ -8,8 +8,7 @@ concepts described in this section.
 
 How Cloud Queues works
 ~~~~~~~~~~~~~~~~~~~~~~
-Following is an overview of Cloud Queues works. For definitions of Cloud
-Queues terms, see the :ref:`glossary`.
+Following is an overview of Cloud Queues works:
 
 1. Create a queue to which producers or publishers post messages.
 
