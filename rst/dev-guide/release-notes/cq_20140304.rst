@@ -1,0 +1,18 @@
+API |contract version| release - March 4, 2014
+----------------------------------------------
+
+What's new
+~~~~~~~~~~
+* Billing begins for the Cloud Queues service.
+
+  As part of the Rackspace Cloud, your use of the Cloud Queues API will be
+  billed according to the pricing schedule on the Cloud Queues
+  :rax-cloud:`product page <queues>`.
+
+Resolved issues
+~~~~~~~~~~~~~~~
+|no changes|
+
+Known issues
+~~~~~~~~~~~~
+|no changes|
