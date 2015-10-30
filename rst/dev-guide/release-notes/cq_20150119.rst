@@ -3,8 +3,8 @@ API |contract version| updates, January 19, 2015
 
 What's new
 ~~~~~~~~~~
-* The maximum value for the `limit` parameter was changed to 100 for the
-  `claim messages` operation.
+The maximum value for the `limit` parameter was changed to 100 for the
+`claim messages` operation.
 
 Resolved issues
 ~~~~~~~~~~~~~~~
