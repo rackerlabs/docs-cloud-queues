@@ -14,6 +14,7 @@
 
 import sys
 import os
+import shlex
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -53,7 +54,7 @@ master_doc = 'index'
 builder = 'deconst-single'
 
 # General information about the project.
-project = 'Rackspace Developer Documentation'
+project = 'Rackspace Cloud Queues'
 copyright = '2015, Rackspace'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -119,6 +120,14 @@ extlinks = {
     'rackerlabs': ('https://github.com/rackerlabs/%s', '')
 }
 
+# Global variables that are replaced by the specified value during the build
+# process
+
+rst_epilog = """
+.. |no changes| replace:: None for this release.
+.. |contract version| replace:: v1
+"""
+
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
 
@@ -145,7 +154,7 @@ extlinks = {
 html_title = 'Rackspace Cloud Queues version 1.0 API Developer Guide'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = 'Rackspace Cloud Images'
+html_short_title = 'Rackspace Cloud Queues'
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
@@ -208,7 +217,7 @@ html_static_path = []
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'RackspaceDeveloperDocumentationdoc'
+htmlhelp_basename = 'docs-cloud-queuesdoc'
 
 # this will change the 'paragraph' character to '#'
 html_add_permalinks = '#'
@@ -229,7 +238,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'RackspaceDeveloperDocumentation.tex', 'Rackspace Developer Documentation',
+  ('index', 'docs-cloud-queues.tex', 'Rackspace Cloud Queues API Developer Guide',
    'Rackspace', 'manual'),
 ]
 
@@ -259,7 +268,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'RackspaceCloudAPIQueuesDeveloperDoc', 'Rackspace Cloud Queues API Developer Guide',
+    ('index', 'API Developer Guide', 'Rackspace developer documentation',
      ['Rackspace'], 1)
 ]
 
@@ -273,8 +282,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'RackspaceCloudAPIQueuesDeveloperDoc', 'Rackspace Cloud Queues API Developer Guide',
-   'Rackspace', 'RackspaceCloudAPIQueuesDeveloperDoc', 'Learn about using the REST API for the Rackspace Cloud Queues service.',
+  ('index', 'docs-cloud-queues', 'Rackspace Cloud Queues API Developer Guide',
+   'Rackspace', 'docs-cloud-queues', 'Learn about using the REST API for the Rackspace Cloud Queues service.',
    'Miscellaneous'),
 ]
 
