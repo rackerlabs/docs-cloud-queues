@@ -3,7 +3,7 @@ API |contract version| updates, October 9, 2013
 
 What's new
 ~~~~~~~~~~
-* Initial Limited Access (LA) release of the Cloud Queues API.
+Initial Limited Access (LA) release of the Cloud Queues API.
 
 Resolved issues
 ~~~~~~~~~~~~~~~

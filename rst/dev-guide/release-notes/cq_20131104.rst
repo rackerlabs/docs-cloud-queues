@@ -3,7 +3,7 @@ API |contract version| updates, November 4, 2013
 
 What's new
 ~~~~~~~~~~
-* Initial Unlimited Availability (UA) release of the Cloud Queues API.
+Initial Unlimited Availability (UA) release of the Cloud Queues API.
 
 Resolved issues
 ~~~~~~~~~~~~~~~
