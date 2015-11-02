@@ -1,0 +1,16 @@
+API |contract version| updates, December 19, 2013
+-------------------------------------------------
+
+What's new
+~~~~~~~~~~
+Update to `POST` message description. You must include at least a single 
+message in a JSON array or you will receive the error message
+`Invalid request body`.
+
+Resolved issues
+~~~~~~~~~~~~~~~
+|no changes|
+
+Known issues
+~~~~~~~~~~~~
+|no changes|
