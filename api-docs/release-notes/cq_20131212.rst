@@ -3,11 +3,9 @@ API |contract version| updates, December 12, 2013
 
 What's new
 ~~~~~~~~~~
-* The `claim_id` parameter was removed from the URI for the
-  get messages by ID operation description.
+You can no longer use the `claim_id` parameter when issuing the
+operation to get messages by ID.
 
-* The instructions for locating the API key, tenant ID, and account
-  number in the Cloud Control Panel for authentication were updated.
 
 Resolved issues
 ~~~~~~~~~~~~~~~
