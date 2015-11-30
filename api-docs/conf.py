@@ -78,7 +78,7 @@ release = '1'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build', 'samples', 'api-operations/methods*']
+exclude_patterns = ['_build', 'samples', 'api-operations/methods*', 'common-gs']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -124,8 +124,10 @@ extlinks = {
 # process
 
 rst_epilog = """
-.. |no changes| replace:: None for this release.
-.. |contract version| replace:: v1
+.. |apiservice| replace:: Rackspace Cloud Queues API
+.. |no changes| replace:: None for this release
+.. |contract version| replace:: 2.0
+.. |product name| replace:: Rackspace Cloud Queues
 """
 
 # A list of ignored prefixes for module index sorting.
