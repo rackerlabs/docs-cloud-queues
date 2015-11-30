@@ -48,7 +48,7 @@ Rackspace data centers, using the ServiceNet endpoint in the same
 data center has no network costs and provides a faster connection.
 ServiceNet endpoints are prefixed with ``snet`` in the "Regionalized service
 endpoints" table above. ServiceNet is the data center internet network.
-In your authentication response (see :ref:`authentication`),
+In your authentication response (see :ref:`authentication-ovw`),
 it is listed as InternalURL.
 
 If you are working with servers that are not in one of the
