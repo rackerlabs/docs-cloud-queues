@@ -26,9 +26,8 @@ processing it. The client deletes the message before the claim expires
 to ensure that the message is processed only once. 
 
 If a client needs
-more time, Cloud Queues provides the update claim operation to make
-changes. See the :ref:`Cloud Queues Developer Guide <developer-guide>`
-for a description of this operation. 
+more time, Cloud Queues provides the :ref:`update claim<patch-update-claim>` operation 
+to make changes.
 
 As part of the delete operation,
 workers specify the claim ID (which is best done by simply using

@@ -3,12 +3,14 @@
 ==============================
 Rackspace Cloud Queues API 1.0
 ==============================
-Learn how to use the Rackspace Cloud Queues service by using the REST API.
 
-* For details about using the API, see the :ref:`developer-guide`.
-* For details about using API resources, operations, requests, and
-  responses, see the :ref:`api-reference`.
-* For service release notes, see the :ref:`Release Notes <release-notes>`.
+Use the following links to jump directly to user and reference information for 
+using the |apiservice|. 
+
+* :ref:`getting-started <getting-started>`
+* :ref:`developer-guide<developer-guide>`
+* :ref:`api-reference<api-reference>`
+* :ref:`Release Notes<release-notes>`
 
 
 
