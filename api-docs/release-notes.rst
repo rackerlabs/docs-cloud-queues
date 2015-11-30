@@ -1,8 +1,8 @@
 .. _release-notes:
 
-=============
-Release Notes
-=============
+===================
+**Release Notes**
+===================
 
 This section describes, for each release, the new features, changes to
 existing features, and any known issues.
