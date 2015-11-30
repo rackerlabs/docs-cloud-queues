@@ -1,8 +1,8 @@
 .. _developer-guide:
 
----------------
+===============
 Developer guide
----------------
+===============
 This guide is intended to assist software developers who want to develop applications by
 using the application programming interface (API) for the Rackspace Cloud Queues
 service.
