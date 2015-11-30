@@ -124,8 +124,10 @@ extlinks = {
 # process
 
 rst_epilog = """
-.. |no changes| replace:: None for this release.
-.. |contract version| replace:: v1
+.. |apiservice| replace:: Rackspace Cloud Servers API
+.. |no changes| replace:: None for this release
+.. |contract version| replace:: 2.0
+.. |product name| replace:: Rackspace Cloud Servers
 """
 
 # A list of ignored prefixes for module index sorting.
