@@ -87,7 +87,8 @@ token ID
 
 tenant ID
     The tenant ID provides your account number. For most Rackspace Cloud service APIs, the
-    tenant ID is appended to the API endpoint in the service catalog automatically. You
+    tenant ID is appended to the API endpoint in the service catalog automatically. For 
+    Rackspace Cloud Services, the tenant ID has the same value as the tenant name. 
 
 endpoint
 	The API endpoint provides the URL that you use to access the API service. For guidance
@@ -99,10 +100,6 @@ environment variables that can be substituted for the actual values. For example
 create an ``API_ENDPOINT`` variable to store the URL for accessing an API service.
 To reference the value in an API request, prefix the variable name with a $, for example
 ``$API_ENDPOINT``.
-
-.. code::
-
-    export
 
 .. include:: ../common-gs/using-env-variables.rst
 
@@ -149,4 +146,22 @@ To reference the value in an API request, prefix the variable name with a $, for
         $ export API_ENDPOINT="publicURL"
 
 
-   Replace *publicURL* with the publicURL value listed in the service catalog.
+   Replace *publicURL* with the publicURL value listed in the service catalog. 
+   
+   .. note::
+       Rackspace Cloud Identity returns an endpoint URL with your tenant ID (account ID). 
+       With Cloud Queues, you have two options for including the tenant ID in API requests. 
+       
+       - Include it in the URL.
+       
+         .. code::
+         
+             https://dfw.queues.api.rackspacecloud.com/v1/123456
+             
+             
+       - Submit API requests to the base endpoint 
+         ``https://dfw/queueus.api.rackspace.cloud.com/v1``, and specify the tenant ID 
+         value in the ``X-Project-ID`` header in each request with the value set to the tenant 
+         ID. 
+         
+       For details, see :ref:`Service access endpoints<service-access-endpoints>`.  

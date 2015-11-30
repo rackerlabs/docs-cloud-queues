@@ -1,11 +1,11 @@
 .. _getting-started:
 
-=====================
-Getting Started Guide
-=====================
-This guide contains a simple exercise with some basic Cloud Queues
-requests that you will commonly use. Example requests are provided in
-cURL, followed by the response.
+==========================
+**Getting Started Guide**
+==========================
 
-You can find additional details about Rackspace Cloud Queues in the
-:rax-devguide:`Cloud Queues Developer Guide <cloud-queues/v1>`.
+Use this Getting Started Guide to learn how to authenticate, send API requests, 
+and complete basic operations by using the Cloud Queues API.
+
+For more information about Cloud Queues concepts and API operations, see the 
+:ref:`Developer Guide<developer-guide>` and the :ref:`API Reference<api-reference>`. 

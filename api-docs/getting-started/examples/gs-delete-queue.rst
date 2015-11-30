@@ -1,7 +1,8 @@
 .. _gs-delete-queue:
 
-Delete queue
-~~~~~~~~~~~~
+Deleting a queue
+~~~~~~~~~~~~~~~~~~~
+
 The delete queue operation immediately deletes a queue and all
 of its existing messages.
 
@@ -17,11 +18,11 @@ Following are examples of a delete queue request and response:
 
 .. code:: bash
 
-     curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \
+     curl -i -X DELETE $API_ENDPOINT/queues/samplequeue \
      -H "Content-type: application/json" \
-     -H "X-Auth-Token: your_auth_token" \
+     -H "X-Auth-Token: $AUTH_TOKEN" \
      -H "Accept: application/json" \
-     -H "X-Project-Id: your_project_ID"
+     -H "X-Project-Id: $TENANT_ID"
 
 **Delete queue response**
 

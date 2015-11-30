@@ -1,10 +1,11 @@
 .. _gs-release-claim:
 
-Release claim
-~~~~~~~~~~~~~
-The release claim operation immediately releases a claim, making any
-remaining, undeleted) messages associated with the claim
-available to other workers.
+Releasing a claim
+~~~~~~~~~~~~~~~~~~~
+
+The release claim operation immediately releases all messages associated with a specified 
+claim ID. This action makes all remaining, undeleted messages associated with the claim 
+available to be processed by other workers.
 
 Following is the operation template:
 
@@ -23,12 +24,12 @@ Following are examples of a release claim request and response:
 
 .. code:: bash
 
-     curl -i -X DELETE https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue/claims/51ca011c821e7250f344efd6 \
+     curl -i -X DELETE $API_ENDPOINT/queues/samplequeue/claims/51ca011c821e7250f344efd6 \
      -H "Content-type: application/json" \
-     -H "X-Auth-Token: your_auth_token" \
+     -H "X-Auth-Token: $AUTH_TOKEN" \
      -H "Client-ID: e58668fc-26eb-11e3-8270-5b3128d43830"  \
      -H "Accept: application/json" \
-     -H "X-Project-Id: your_project_ID"
+     -H "X-Project-Id: $TENANT_ID"
 
 **Release claim response**
 

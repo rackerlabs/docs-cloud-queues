@@ -1,7 +1,8 @@
 .. _gs-create-queue:
 
-Create queue
-~~~~~~~~~~~~
+Creating a queue
+~~~~~~~~~~~~~~~~~~
+
 The queue operation creates a queue in the region of your choice.
 
 The body of the PUT request is empty.
@@ -22,10 +23,10 @@ Following are examples of a create queue request and response:
 
 .. code:: bash
 
-     curl -i -X PUT https://ord.queues.api.rackspacecloud.com/v1/queues/samplequeue \
-     -H "X-Auth-Token: your_auth_token" \
+     curl -i -X PUT $API_ENDPOINT/queues/samplequeue \
+     -H "X-Auth-Token: $AUTH_TOKEN" \
      -H "Accept: application/json" \
-     -H "X-Project-Id: your_project_ID"
+     -H "X-Project-Id: $TENANT_ID"
 
 **Create queue response**
 
