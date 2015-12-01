@@ -20,5 +20,6 @@ API workflow, messaging patterns, and use cases.
 .. include:: examples/gs-post-message.rst
 .. include:: examples/gs-claim-messages.rst
 .. include:: examples/gs-delete-message.rst
-.. include:: examples/gs-delete-queue.rst
 .. include:: examples/gs-release-claim.rst
+.. include:: examples/gs-delete-queue.rst
+
