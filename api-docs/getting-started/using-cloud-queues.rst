@@ -1,6 +1,6 @@
 .. _using-cloud-queues:
 
-Create queues and manage messages
+Manage queues and process messages
 ------------------------------------
 
 You can use the examples in the following sections to create message queues and process 
