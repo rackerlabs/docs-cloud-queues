@@ -17,7 +17,7 @@ using the |apiservice|.
 .. toctree:: :hidden:
     :maxdepth: 2
 
-    Cloud Queues <self>
+    Cloud Queues 1.0 <self>
     API Status <http://www.rackspacestatus.com/>
     About the API <overview/index>
     getting-started
