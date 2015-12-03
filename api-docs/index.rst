@@ -4,6 +4,8 @@
 Rackspace Cloud Queues API 1.0
 ==============================
 
+*Last updated:* |today|
+
 Use the following links to jump directly to user and reference information for 
 using the |apiservice|. 
 
