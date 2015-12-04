@@ -34,6 +34,10 @@ In the following example, the ellipsis (...)  represents other service endpoints
 are not shown. The values shown in this and other examples vary because the information
 returned is specific to your account.
 
+.. note:: 
+     For a detailed description of the information included in the authentication response, see 
+     :rax-devdocs:`Annotated authentication request and response<cloud-identity/v2/developer-guide/#document-authentication-info/sample-auth-req-response>`.
+     
 **Example: Authentication response**
 
 .. include:: ../common-gs/samples/auth-resp-json.rst
@@ -70,7 +74,6 @@ Configure environment variables
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The authentication response returns the following values that you
 need to include when you make service requests to the |apiservice|.
-
 
 token ID
     The token ID value is required to confirm your identity each time you access the service.
