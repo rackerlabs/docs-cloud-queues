@@ -56,9 +56,8 @@ Content | File
 |API Reference index|[api-operations/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/api-operations/index.rst)
 |API operations methods, including code samples|[api-operations/methods](https://github.com/rackerlabs/docs-cloud-queues/tree/master/api-docs/api-operations/methods) 
 |Release notes|[release-notes.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/release-notes.rst)
-
-* **make.bat**: Windows build script
-* **Makefile**: Linux and OS X build
+|**make.bat**|Windows build script
+|**Makefile**| Linux and OS X build
 
 ### Support and feedback
 
