@@ -48,10 +48,12 @@ the Sphinx project and content architecture for the documentation:
 * [getting-started.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/getting-started.rst): Introduction to the Getting Started section. 
 * [getting-started/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/getting-started/index.rst): Top-level index for the Getting Started section.
 * [developer-guide.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/developer-guide.rst): Introduction to Developer Guide
+* [concepts.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/concepts.rst): Concepts section.
 * [general-api-info/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/general-api-info/index.rst): Top-level topic index for the General API Information section.
 * [api-reference.rst](https://github.com/rackerlabs/docs-cloud-identity/blob/master/api-docs/api-reference.rst): Introduction to API reference.
 * [api-operations/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/api-operations/index.rst): Index for API Reference.
 * [api-operations/methods](https://github.com/rackerlabs/docs-cloud-queues/tree/master/api-docs/api-operations/methods): 
+* [release-notes.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/release-notes.rst): Release notes section. 
 Individual files for each API operations method, including code samples (converted from WADL).
 * **make.bat**: Windows build script
 * **Makefile**: Linux and OS X build
