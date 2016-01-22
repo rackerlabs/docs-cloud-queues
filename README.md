@@ -42,19 +42,19 @@ extensions and build tools.
 Source files for the Sphinx documentation project are in the ``api-docs`` directory. Here are the key files that define 
 the Sphinx project and content architecture for the documentation: 
 
-* [conf.py](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/conf.py): Sphinx documentation configuration file. (Typically, this file does not require changes.)
-* [index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/index.rst): Index page for the main content structure.
-* [overview/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/overview/index.rst): Index for the Overview section.
-* [getting-started.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/getting-started.rst): Introduction to the Getting Started section. 
-* [getting-started/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/getting-started/index.rst): Top-level index for the Getting Started section.
-* [developer-guide.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/developer-guide.rst): Introduction to Developer Guide
-* [concepts.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/concepts.rst): Concepts section.
-* [general-api-info/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/general-api-info/index.rst): Top-level topic index for the General API Information section.
-* [api-reference.rst](https://github.com/rackerlabs/docs-cloud-identity/blob/master/api-docs/api-reference.rst): Introduction to API reference.
-* [api-operations/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/api-operations/index.rst): Index for API Reference.
-* [api-operations/methods](https://github.com/rackerlabs/docs-cloud-queues/tree/master/api-docs/api-operations/methods): 
-* [release-notes.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/release-notes.rst): Release notes section. 
-Individual files for each API operations method, including code samples (converted from WADL).
+* Sphinx documentation configuration file: [conf.py](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/conf.py) (Typically, this file does not require changes.)
+* Index page for the main content structure: [index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/index.rst)
+* Overview section index: [overview/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/overview/index.rst)
+* Getting Startted introduction: [getting-started.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/getting-started.rst)
+* Getting Started index: [getting-started/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/getting-started/index.rst)
+* Developer Guide introduction: [developer-guide.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/developer-guide.rst)
+* Concepts section: [concepts.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/concepts.rst)
+* General API information index: [general-api-info/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/general-api-info/index.rst)
+* API Reference introduction: [api-reference.rst](https://github.com/rackerlabs/docs-cloud-identity/blob/master/api-docs/api-reference.rst)
+* API Reference index: [api-operations/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/api-operations/index.rst)
+* API operations methods, including code samples [api-operations/methods](https://github.com/rackerlabs/docs-cloud-queues/tree/master/api-docs/api-operations/methods) 
+* Release notes:[release-notes.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/release-notes.rst)
+
 * **make.bat**: Windows build script
 * **Makefile**: Linux and OS X build
 
