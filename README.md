@@ -45,8 +45,8 @@ the Sphinx project and content architecture for the documentation:
 Content | File
 --- | ---
 |Sphinx documentation configuration file| [conf.py](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/conf.py) (Typically, this file does not require changes.)
-|Index page for the main content structure}| [index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/index.rst)
-|Overview section index| [overview/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/overview/index.rst)
+|Index page for the main content structure| [index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/index.rst)
+|About the API index| [overview/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/overview/index.rst)
 |Getting Startted introduction| [getting-started.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/getting-started.rst)
 |Getting Started index|[getting-started/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/getting-started/index.rst)
 |Developer Guide introduction|[developer-guide.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/developer-guide.rst)
