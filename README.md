@@ -58,6 +58,6 @@ Individual files for each API operations method, including code samples (convert
 
 ### Support and feedback
 
-If you find a problem, open a GitHub [issue](https://github.com/rackerlabs/docs-cloud-identity/issues).
+If you find a problem, open a GitHub [issue](https://github.com/rackerlabs/docs-cloud-queues/issues).
 
 If you need additional assistance, contact us at [devdoc@rackspace.com](mailto:devdoc@rackspace.com).
