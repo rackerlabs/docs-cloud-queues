@@ -3,49 +3,64 @@
 [![Build Status](https://travis-ci.org/rackerlabs/docs-cloud-queues.svg?branch=master)](https://travis-ci.org/rackerlabs/docs-cloud-queues)
 
 
-## Resources
+## Purpose
 
-This github repository contains the source files for the following Rackspace Cloud Queues API documentation:
+This GitHub repository contains the source files for the following Rackspace Cloud Queues API documentation:
 
-* [Cloud Queues Getting Started Guide](http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/)
-* [Cloud Queues Developer Guide](http://docs.rackspace.com/queues/api/v1.0/cq-devguide/)
-* [Cloud Queues Release Notes](http://docs.rackspace.com/queues/api/v1.0/cq-releasenotes/)
+* [Cloud Queues Developer Guide](https://developer.rackspace.com/docs/cloud-queues/v1/developer-guide/)
 
 ## Contributing
 
-Contributions are welcome! To suggest changes to the documentation, submit an [issue](https://github.com/rackerlabs/docs-cloud-queues/issues) or a [pull request](https://github.com/rackerlabs/docs-cloud-queues/pulls).
+Contributions are welcome! 
 
-To make changes to a project, create your own fork of the project and send a pull request to have your changes reviewed and merged into the master branch as appropriate.
+* To suggest changes or report a problem, submit an [issue](https://github.com/rackerlabs/docs-cloud-queues/issues). 
 
-### Building from Source
+* To make changes to a project, create your own fork of the repository. Then, submit a [pull 
+request](https://github.com/rackerlabs/docs-cloud-queues/compare?expand=1) to have your changes reviewed 
+and merged into the master branch as appropriate.
 
-This repository uses Maven to generate the output documentation. Command line users can generate the complete output from this repository by using the following command:
+To contribute content, all you need is an editor and a 
+basic understanding of the project layout and [reStructuredText](http://sphinx-doc.org/rest.html) syntax.
 
-    mvn clean generate-sources
+You can use the GitHub editor or any text editor to work with documentation source files. For quick syntax checking, try the 
+[Online restructuredText editor](http://rst.ninjs.org/). 
 
-The output appears in PDF and HTML form in the following locations. The items in the **Name** column link to the location where the documentation is published, when available.
+**Note:** If you want to build the project, you need to install the [Sphinx documentation generator](http://www.sphinx-doc.org/en/stable/install.html). 
 
-| Name | Build Location |
-| --- | --- |
-| [Getting Started Guide](http://docs.rackspace.com/queues/api/v1.0/cq-gettingstarted/) | target/docbkx/webhelp/cq-gettingstarted-external |
-| [Developer Guide](http://docs.rackspace.com/queues/api/v1.0/cq-devguide/) | target/docbkx/webhelp/cq-devguide-external |
-| [Release Notes](http://docs.rackspace.com/queues/api/v1.0/cq-releasenotes/) | target/docbkx/webhelp/cq-releasenotes-external |
+## Source format
 
-#### Editors
+The Rackspace developer documentation is developed and built using the [Python Sphinx documentation generator](http://sphinx-doc.org/). Content is 
+written in [reStructuredText](http://sphinx-doc.org/rest.html), the markup syntax and parser component of 
+[Python Docutils](http://docutils.sourceforge.net/index.html).
 
-You can use any text editor to work with these source files. If you want to use an IDE, consider [NetBeans](http://netbeans.org). This cross-platform IDE offers seamless support for Maven projects and does not require  additional configuration to open the **pom.xml** file as a project. You can configure the project so that the **Build** command, which appears when you right-click a project in the **Projects** pane, executes the `clean generate-sources` command. To do so, perform the following steps:
+The repository includes the documentation source files, 
+Sphinx configuration and build files, as well any required Sphinx 
+extensions and build tools. 
 
-1. Right-click the project in the **Projects** pane and select **Properties**.
-2. Select the **Build** category in the left pane, and then select the **Build project** action in the right pane.
-3. Change **Execute Goals** to `clean generate-sources`.
-4. *(Optional)* Repeat steps 2 and 3 for the **Clean and Build project** and **Build with Dependencies** actions.
+## Structure
 
-### Quick Links
+Source files for the Sphinx documentation project are in the ``api-docs`` directory. Here are the key files that define 
+the Sphinx project and content architecture for the documentation: 
 
-The files that are most likely to be of interest to you are as follows:
+Content | File
+--- | ---
+|Sphinx documentation configuration file| [conf.py](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/conf.py) (Typically, this file does not require changes.)
+|Index page for the main content structure| [index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/index.rst)
+|About the API index| [overview/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/overview/index.rst)
+|Getting Startted introduction| [getting-started.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/getting-started.rst)
+|Getting Started index|[getting-started/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/getting-started/index.rst)
+|Developer Guide introduction|[developer-guide.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/developer-guide.rst)
+|Concepts section| [concepts.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/concepts.rst)
+|General API information index|[general-api-info/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/general-api-info/index.rst)
+|API Reference introduction|[api-reference.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/api-reference.rst)
+|API Reference index|[api-operations/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/api-operations/index.rst)
+|API operations methods, including code samples|[api-operations/methods](https://github.com/rackerlabs/docs-cloud-queues/tree/master/api-docs/api-operations/methods) 
+|Release notes|[release-notes.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/release-notes.rst)
+|**make.bat**|Windows build script
+|**Makefile**| Linux and OS X build
 
-* [src/docbkx/cq-gettingstarted.xml](src/docbkx/cq-gettingstarted.xml)
-* [src/docbkx/cq-devguide.xml](src/docbkx/cq-devguide.xml)
-* [src/wadl/cq-devguide.wadl](src/wadl/cq-devguide.wadl)
+### Support and feedback
 
-If you want to make changes to the example files referenced in the WADL file, you can find the example files at [src/wadl/samples](src/wadl/samples).
+If you find a problem, open a GitHub [issue](https://github.com/rackerlabs/docs-cloud-queues/issues).
+
+If you need additional assistance, contact us at [devdoc@rackspace.com](mailto:devdoc@rackspace.com).
