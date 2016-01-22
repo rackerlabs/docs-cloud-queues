@@ -52,7 +52,7 @@ Content | File
 |Developer Guide introduction|[developer-guide.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/developer-guide.rst)
 |Concepts section| [concepts.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/concepts.rst)
 |General API information index|[general-api-info/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/general-api-info/index.rst)
-|API Reference introduction|[api-reference.rst](https://github.com/rackerlabs/docs-cloud-identity/blob/master/api-docs/api-reference.rst)
+|API Reference introduction|[api-reference.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/api-reference.rst)
 |API Reference index|[api-operations/index.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/api-operations/index.rst)
 |API operations methods, including code samples|[api-operations/methods](https://github.com/rackerlabs/docs-cloud-queues/tree/master/api-docs/api-operations/methods) 
 |Release notes|[release-notes.rst](https://github.com/rackerlabs/docs-cloud-queues/blob/master/api-docs/release-notes.rst)
