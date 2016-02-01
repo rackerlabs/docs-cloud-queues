@@ -30,3 +30,4 @@ using the |apiservice|.
     api-reference
     api-operations/index
     release-notes
+    copyright
