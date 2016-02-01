@@ -37,4 +37,3 @@ messages, and more.
 
    additional-resources
    contract-changes
-   pricing-service-level
