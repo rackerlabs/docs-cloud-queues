@@ -1,6 +1,6 @@
 {
   "contentIDBase": "https://github.com/rackerlabs/docs-cloud-queues/",
-  "githubUrl": "https://github.com/rackerlabs/docs-cloud-queues/issues/new",
+  "githubUrl": "https://github.com/rackerlabs/docs-cloud-queues/",
   "githubBranch": "master",
   "meta": {
     "preferGithubIssues": true
