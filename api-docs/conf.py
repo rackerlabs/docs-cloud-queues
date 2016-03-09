@@ -104,15 +104,12 @@ extlinks = {
     'rax-cloud': ('http://www.rackspace.com/cloud/%s', ''),
     'rax-dev': ('https://developer.rackspace.com/%s', ''),
     'rax-devdocs': ('https://developer.rackspace.com/docs/%s',''),
-    'rax-devguide': ('https://developer.rackspace.com/docs/%s/developer-guide/',''),
-    'rax-api': ('http://api.rackspace.com/%s', ''),
+    'rax-devguide':('http:/developer.rackspace.com/docs/%s/developer-guide/',''),
+    'rax-api': ('http:/developer.rackspace.com/docs/%s/developer-guide/#api-reference',''),
     'rax-git': ('https://github.com/rackspace/%s', ''),
-    'rax-legal': ('http://www.rackspace.com/information/legal/cloud/%s', ''),
+    'rax-glossary': ('https://developer.rackspace.com/docs/glossary/%s', ''),
     'mycloud': ('https://mycloud.rackspace.com/%s', ''),
-    'kc': ('http://www.rackspace.com/knowledge_center/%s', ''),
-    'kc-article': ('http://www.rackspace.com/knowledge_center/article/%s', ''),
-    'kc-faq': ('http://www.rackspace.com/knowledge_center/frequently-asked-question/%s', ''),
-    'kc-product-faq': ('http://www.rackspace.com/knowledge_center/product-faq/%s', ''),
+    'how-to': ('http://support.rackspace.com/how-to/%s', ''),
     'os': ('http://www.openstack.org/%s', ''),
     'os-docs': ('http://docs.openstack.org/%s', ''),
     'os-wiki': ('http://wiki.openstack.org/%s', ''),
@@ -179,7 +176,7 @@ html_static_path = []
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
-html_last_updated_fmt = 'December 3, 2015'
+#html_last_updated_fmt = ''
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
