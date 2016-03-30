@@ -1,7 +1,6 @@
 # Rackspace Cloud Queues API documentation
 
-[![Build Status](https://travis-ci.org/rackerlabs/docs-cloud-queues.svg?branch=master)](https://travis-ci.org/rackerlabs/docs-cloud-queues)
-
+[![build badge](https://build.developer.rackspace.com/rackerlabs/docs-cloud-queues/badge?branch=master)](https://build.developer.rackspace.com/rackerlabs/docs-cloud-queues/)
 
 ## Purpose
 
