@@ -1,5 +1,0 @@
-<books xmlns="http://docs.rackspace.com/olink">
-  <book path="src/docbkx/cq-gettingstarted.xml"/>
-  <book path="src/docbkx/cq-devguide.xml"/>
-  <book path="src/docbkx/cq-releasenotes.xml"/>
-</books>
