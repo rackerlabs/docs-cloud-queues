@@ -43,7 +43,7 @@ for each region.
     * - Sydney (SYD) snet
       - ``https://snet-syd.queues.api.rackspacecloud.com/v1/``
     * - Hong Kong (HKG)
-      - `https://hkg.queues.api.rackspacecloud.com/v1/``
+      - ``https://hkg.queues.api.rackspacecloud.com/v1/``
     * - Hong Kong (HKG) snet
       - ``https://snet-hkg.queues.api.rackspacecloud.com/v1/``
 
