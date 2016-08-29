@@ -6,8 +6,13 @@ Rackspace |product name| API |contract version|
 
 *Last updated:* |today|
 
-The Rackspace |product name| service enables customers to
-<insert a description of the service here>.
+The Rackspace |product name| service  is an open source, scalable, and highly
+available message and notifications service based on the OpenStack Marconi
+project. It supports a variety of messaging patterns and enables customers to
+create and manage a producer-consumer or a publish-subscriber model
+(:ref:`messaging-patterns`) from one simple API. Unlimited queues and messages
+give |product name| users the flexibility they need to create powerful web
+applications in the cloud.
 
 This guide is intended to assist software developers who want to develop
 applications by using the REST application programming interface (API) for
@@ -35,19 +40,10 @@ the |product name| service REST API:
    one of the language-specific
    :rax-devdocs:`software development kits or the rack CLI <#sdks>`.
 
-
-|service| is an open source, scalable, and highly available
-message and notifications service. |product name| supports a variety of
-messaging patterns. Users of this service can create and manage a
-producer-consumer or a publish-subscriber model
-(:ref:`messaging-patterns`) from one simple
-API. Unlimited queues and messages give |product name| users the
-flexibility they need to create powerful web applications in the cloud.
-
-|service| is based on the OpenStack Marconi project.
-
 |service| consists of a few basic components: queues, messages,
-claims, and statistics. In the producer-consumer model, users create
+claims, and statistics.
+
+In the producer-consumer model, users create
 queues in which producers, or servers, can post messages. Workers, or
 consumers, can then claim those messages and delete them after they
 complete the actions associated with the messages. A single claim can
