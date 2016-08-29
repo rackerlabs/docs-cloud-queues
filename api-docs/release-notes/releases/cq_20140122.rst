@@ -1,0 +1,24 @@
+.. _cq-v1-20140122:
+
+API |contract version| updates, January 22, 2014
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+What's new
+----------
+* The maximum size of posted messages is now the maximum size of the
+  entire request document, including whitespace, rather than the sum of
+  the individual message "body" parameter values.
+
+  On error, the client is now notified by how much the request exceeded the
+  limit.
+
+* The maximum size of metadata is now the maximum size of the document,
+  including whitespace.
+
+Resolved issues
+---------------
+|no changes|
+
+Known issues
+------------
+|no changes|

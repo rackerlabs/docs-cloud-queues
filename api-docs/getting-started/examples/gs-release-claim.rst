@@ -1,11 +1,11 @@
 .. _gs-release-claim:
 
 Releasing a claim
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
-The release claim operation immediately releases all messages associated with a specified 
-claim ID. This action makes all remaining, undeleted messages associated with the claim 
-available to be processed by other workers.
+The release claim operation immediately releases all messages associated with a
+specified claim ID. This action makes all remaining, undeleted messages
+associated with the claim available to be processed by other workers.
 
 Following is the operation template:
 

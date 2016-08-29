@@ -1,7 +1,7 @@
 .. _gs-delete-queue:
 
 Deleting a queue
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 The delete queue operation immediately deletes a queue and all
 of its existing messages.

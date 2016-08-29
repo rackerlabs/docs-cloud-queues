@@ -1,9 +1,10 @@
 .. _faults:
 
-~~~~~~
+======
 Faults
-~~~~~~
-If any Cloud Queues request results in an error, the queuing service
+======
+
+If any |product name| request results in an error, the queuing service
 returns an appropriate 4xx or 5xx HTTP status code, and the following
 information in the body:
 
@@ -32,4 +33,5 @@ Following is an example of an error message:
        }
     }
 
-Error information for each operation is included in the API operations reference.
+Error information for each operation is included in the API operations
+reference.

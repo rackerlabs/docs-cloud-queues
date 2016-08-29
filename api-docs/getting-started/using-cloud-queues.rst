@@ -1,19 +1,21 @@
 .. _using-cloud-queues:
 
+==================================
 Manage queues and process messages
-------------------------------------
+==================================
 
-You can use the examples in the following sections to create message queues and process 
-messages by using Cloud Queues API operations. Before running the examples, 
-review the :ref:`Cloud Queues concepts<concepts>` to understand the 
-API workflow, messaging patterns, and use cases.  
+You can use the examples in the following sections to create message queues and
+process messages by using |apiservice| operations. Before running the examples,
+review the :ref:`Cloud Queues concepts<concepts>` to understand the
+API workflow, messaging patterns, and use cases.
 
-.. note:: 
-     These examples use the ``$API_ENDPOINT``, ``$AUTH_TOKEN``, and ``$TENANT_ID`` environment 
-     variables to specify the API endpoint, authentication token, and project ID values 
-     for accessing the service. Make sure you 
-     :ref:`configure these variables<configure-environment-variables>` before running the 
-     code samples. 
+.. note::
+     These examples use the ``$API_ENDPOINT``, ``$AUTH_TOKEN``, and
+     ``$TENANT_ID`` environment variables to specify the API endpoint,
+     authentication token, and project ID values for accessing the service.
+     Be sure to :ref:`configure these
+     variables<configure-environment-variables>` before running the
+     code samples.
 
 
 .. include:: examples/gs-create-queue.rst

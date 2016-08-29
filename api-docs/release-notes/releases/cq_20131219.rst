@@ -1,0 +1,18 @@
+.. _cq-v1-20131219:
+
+API |contract version| updates, December 19, 2013
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+What's new
+----------
+For the :ref:`post message <messages-operations>` operation, you must now
+include at least a single message in a JSON array or you will receive the error
+message `Invalid request body`.
+
+Resolved issues
+---------------
+|no changes|
+
+Known issues
+------------
+|no changes|

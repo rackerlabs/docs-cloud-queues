@@ -1,7 +1,7 @@
 .. _gs-post-message:
 
 Posting messages
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 The post message operation inserts one or more messages in a queue.
 

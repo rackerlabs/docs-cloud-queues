@@ -1,9 +1,10 @@
 .. _gs-delete-message:
 
 Deleting messages
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
-The delete message operation deletes messages that have been processed by a worker.
+The delete message operation deletes messages that have been processed by a
+worker.
 
 Following is the operation template:
 
@@ -16,7 +17,7 @@ The ``message_id`` parameter specifies the message to delete.
 The ``claim_id`` parameter specifies that the message is deleted only if
 it has the specified claim ID and that claim has not expired. This
 specification is useful for ensuring that only one worker processes
-any given message. 
+any given message.
 
 When a worker's claim expires before it deletes a
 message that it has processed, the worker must roll back any actions

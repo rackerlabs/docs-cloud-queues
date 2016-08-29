@@ -1,11 +1,11 @@
 .. _gs-claim-messages:
 
-Claiming messages for processing 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Claiming messages for processing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The claim messages operation gets a set of messages from a specified message queue 
-(up to the value of the ``limit`` parameter) from oldest to newest and skips any
-messages that are already claimed. If there are no messages available
+The claim messages operation gets a set of messages from a specified message
+queue (up to the value of the ``limit`` parameter) from oldest to newest and
+skips any messages that are already claimed. If there are no messages available
 to claim, the Cloud Queues service returns an HTTP `204 No Content`
 response code.
 
@@ -23,11 +23,10 @@ Following is the operation template:
 
 The client (worker) needs to delete the message when it has finished
 processing it. The client deletes the message before the claim expires
-to ensure that the message is processed only once. 
+to ensure that the message is processed only once.
 
-If a client needs
-more time, Cloud Queues provides the :ref:`update claim<patch-update-claim>` operation 
-to make changes.
+If a client needs more time, |product name| provides the
+:ref:`update claim<patch-update-claim>` operation to make changes.
 
 As part of the delete operation,
 workers specify the claim ID (which is best done by simply using
@@ -56,9 +55,9 @@ might claim and return less than the requested number of messages.
 If you specify a value for the ``limit`` parameter and the value is less than
 or equal to 100, Cloud Queues lets you claim free messages up to the
 number specified by the ``limit`` parameter. For example, if only 23 messages
-are free and ``limit`` is 100, Cloud Queues claims all 23 messages and
+are free and ``limit`` is 100, |product name| claims all 23 messages and
 returns 23 messages in the response. If 120 free messages are available
-and ``limit`` is 100, Cloud Queues claims the oldest 100 messages and returns
+and ``limit`` is 100, |product name| claims the oldest 100 messages and returns
 100 messages in response.
 
 The ``ttl`` attribute specifies the lifetime of the claim. While messages
