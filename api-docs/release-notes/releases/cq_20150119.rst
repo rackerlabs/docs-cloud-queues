@@ -1,0 +1,17 @@
+.. _cq-v1-20150119:
+
+API |contract version| updates, January 19, 2015
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+What's new
+----------
+The maximum value for the `limit` parameter was changed to 100 for the
+:ref:`claim messages <claims-operations>` operation.
+
+Resolved issues
+---------------
+|no changes|
+
+Known issues
+------------
+|no changes|

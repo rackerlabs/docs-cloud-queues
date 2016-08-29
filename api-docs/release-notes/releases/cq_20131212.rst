@@ -1,0 +1,18 @@
+.. _cq-v1-20131212:
+
+API |contract version| updates, December 12, 2013
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+What's new
+----------
+You can no longer use the `claim_id` parameter when issuing the operation to
+get messages by ID.
+
+
+Resolved issues
+---------------
+|no changes|
+
+Known issues
+------------
+|no changes|

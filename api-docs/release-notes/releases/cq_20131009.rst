@@ -1,0 +1,16 @@
+.. _cq-v1-20131009:
+
+API |contract version| LA release, October 9, 2013
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+What's new
+----------
+This is the initial Limited Access (LA) release of the |apiservice|.
+
+Resolved issues
+---------------
+|no changes|
+
+Known issues
+------------
+|no changes|

@@ -1,7 +1,7 @@
 .. _gs-create-queue:
 
 Creating a queue
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 The queue operation creates a queue in the region of your choice.
 
