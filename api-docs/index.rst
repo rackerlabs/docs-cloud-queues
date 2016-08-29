@@ -64,7 +64,7 @@ messages, and more.
 
 
 .. toctree:: :hidden:
-    :maxdepth: 2
+    :maxdepth: 3
 
     Cloud Queues 1.0 <self>
     getting-started/index
