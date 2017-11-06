@@ -5,8 +5,9 @@ Additional resources
 ====================
 
 
-We welcome feedback, comments, and bug reports. Visit the
-`Rackspace Product Feedback forum`_.
+We welcome feedback, comments, and bug reports.
+Email `<infodev@rackspace.com>`__ with your comments, suggestions, and
+feedback.
 
 Use the following links to learn more about the |product name| service and API:
 
@@ -32,5 +33,4 @@ Status Code Definitions <http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html>
 
 
 .. _Rackspace Cloud Guide to Core Infrastructure Services: https://developer.rackspace.com/docs/user-guides/infrastructure/
-.. _Rackspace Product Feedback forum: https://community.rackspace.com/feedback/f/68
 .. _Cloud Queues team: cloudqueues@rackspace.com
