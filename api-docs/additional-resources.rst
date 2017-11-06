@@ -6,8 +6,8 @@ Additional resources
 
 
 We welcome feedback, comments, and bug reports.
-Email `<infodev@rackspace.com>`__ with your comments, suggestions, and
-feedback.
+Email `<infodev@rackspace.com>`__ with your comments, suggestions,
+and feedback.
 
 Use the following links to learn more about the |product name| service and API:
 
