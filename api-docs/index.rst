@@ -62,7 +62,6 @@ display the most recent and oldest messages, the number of unclaimed
 messages, and more.
 
 
-
 .. toctree:: :hidden:
     :maxdepth: 3
 
@@ -74,5 +73,3 @@ messages, and more.
     service-updates
     additional-resources
     copyright
-
-

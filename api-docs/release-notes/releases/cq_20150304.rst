@@ -6,7 +6,7 @@ API |contract version| updates, March 4, 2015
 What's new
 ----------
 The London endpoint was removed. Rackspace now has one global endpoint
-for authentication using the Rackspace Identity service.
+for authentication using the Identity service.
 
 Resolved issues
 ---------------
