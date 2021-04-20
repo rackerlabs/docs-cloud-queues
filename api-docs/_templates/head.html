@@ -4,10 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% block htmltitle %}
     <title>{{ title|striptags|e }}{{ titlesuffix }}</title>
-      {% endblock %}<meta name="description" property="og:description" />
-    <meta name="category" property="article:section" content="Rackspace Cloud Queues API 1.0"/>
+      {% endblock %}
+    <meta name="description" property="og:description" content="The Rackspace Cloud Queues service is an open source, scalable, and highly available message and notifications service based on the OpenStack Marconi project. It supports a variety of messaging patterns and enables customers to create and manage a producer-consumer or a publish-subscriber model (Messaging patterns) from one simple API. Unlimited queues and messages give Cloud Queues users the flexibility they need to create powerful web applications in the cloud.
+
+    This guide is intended to assist software developers who want to develop applications by using the REST application programming interface (API) for the Cloud Queues service."/>
     <meta name="category" property="product:category" content="Rackspace Cloud Queues API 1.0"/>
-    <meta name="keywords" property="article:tag" content="Rackspace Cloud Queues API 1.0"/>    {# CSS #}
+    <meta name="keywords" property="article:tag" content="Cloud Queues, API, 1.0"/>    
+    {# CSS #}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css" />
     <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css" />
